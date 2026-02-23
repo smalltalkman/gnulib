@@ -29,6 +29,7 @@
 #include <unistd.h>
 
 #include "c-ctype.h"
+#include "file-remote.h"
 #include "xalloc.h"
 
 #if HAVE_SYS_PARAM_H
@@ -230,27 +231,13 @@ me_remote (char const *fs_name, _GL_UNUSED char const *fs_type)
 
 #ifndef ME_REMOTE
 /* A file system is "remote" if its Fs_name contains a ':'
-   or if (it is of type (smbfs or cifs) and its Fs_name starts with '//')
-   or if it is of any other of the listed types
-   or Fs_name is equal to "-hosts" (used by autofs to mount remote fs).
+   or Fs_name is equal to "-hosts" (used by autofs to mount remote fs)
+   or if it is of any other of the listed types.
    "VM" file systems like prl_fs or vboxsf are not considered remote here. */
 # define ME_REMOTE(Fs_name, Fs_type)            \
     (strchr (Fs_name, ':') != NULL              \
-     || ((Fs_name)[0] == '/'                    \
-         && (Fs_name)[1] == '/'                 \
-         && (streq (Fs_type, "smbfs")     \
-             || streq (Fs_type, "smb3")   \
-             || streq (Fs_type, "cifs"))) \
-     || streq (Fs_type, "acfs")           \
-     || streq (Fs_type, "afs")            \
-     || streq (Fs_type, "coda")           \
-     || streq (Fs_type, "auristorfs")     \
-     || streq (Fs_type, "fhgfs")          \
-     || streq (Fs_type, "gpfs")           \
-     || streq (Fs_type, "ibrix")          \
-     || streq (Fs_type, "ocfs2")          \
-     || streq (Fs_type, "vxfs")           \
-     || streq ("-hosts", Fs_name))
+     || streq ("-hosts", Fs_name))              \
+     || is_remote_fs_type_name (Fs_type)
 #endif
 
 #if MOUNTED_GETMNTINFO          /* Mac OS X, FreeBSD, OpenBSD, also (obsolete) 4.4BSD */

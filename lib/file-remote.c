@@ -56,6 +56,41 @@
 # endif
 #endif
 
+int _GL_ATTRIBUTE_CONST
+is_remote_fs_type_name (const char *fs_type)
+{
+  return (   strcmp (fs_type, "acfs") == 0
+          || strcmp (fs_type, "afs") == 0
+          || strcmp (fs_type, "autofs") == 0
+          || strcmp (fs_type, "auristorfs") == 0
+          || strcmp (fs_type, "cachefs") == 0
+          || strcmp (fs_type, "ceph") == 0
+          || strcmp (fs_type, "cifs") == 0
+          || strcmp (fs_type, "coda") == 0
+          || strcmp (fs_type, "fhgfs") == 0
+          || strcmp (fs_type, "gfs") == 0
+          || strcmp (fs_type, "gfs2") == 0
+          || strcmp (fs_type, "gpfs") == 0
+          || strcmp (fs_type, "ibrix") == 0
+          || strcmp (fs_type, "lustre") == 0
+          || strcmp (fs_type, "ncpfs") == 0
+          || strcmp (fs_type, "netfs") == 0
+          || strcmp (fs_type, "nfs") == 0
+          || strcmp (fs_type, "nfs3") == 0
+          || strcmp (fs_type, "nfs4") == 0
+          || strcmp (fs_type, "ocfs2") == 0
+          || strcmp (fs_type, "panfs") == 0
+          || strcmp (fs_type, "smb") == 0
+          || strcmp (fs_type, "smb2") == 0
+          || strcmp (fs_type, "smb3") == 0
+          || strcmp (fs_type, "smbfs") == 0
+          || strcmp (fs_type, "snfs") == 0
+          || strcmp (fs_type, "stnfs") == 0
+          || strcmp (fs_type, "userlandfs") == 0
+          || strcmp (fs_type, "vxfs") == 0
+          || strcmp (fs_type, "websearchfs") == 0);
+}
+
 #if defined _WIN32 || defined __CYGWIN__                    /* Windows */
 # define WIN32_LEAN_AND_MEAN  /* avoid including junk */
 # include <windows.h>
