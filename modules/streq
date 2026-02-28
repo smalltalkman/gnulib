@@ -1,0 +1,26 @@
+Description:
+streq() function: test for string equality
+
+Files:
+lib/streq.c
+m4/streq.m4
+
+Depends-on:
+bool
+string-h
+
+configure.ac:
+gl_FUNC_STREQ
+gl_STRING_MODULE_INDICATOR([streq])
+
+Makefile.am:
+lib_SOURCES += streq.c
+
+Include:
+<string.h>
+
+License:
+LGPLv2+
+
+Maintainer:
+all

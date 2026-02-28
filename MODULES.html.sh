@@ -1855,6 +1855,7 @@ func_all_modules ()
   func_module memchr
   func_module memchr2
   func_module memcmp2
+  func_module memeq
   func_module memmem
   func_module memmem-simple
   func_module mempcpy
@@ -1870,6 +1871,7 @@ func_all_modules ()
   func_module strcasestr
   func_module strcasestr-simple
   func_module strchrnul
+  func_module streq
   func_module streq-opt
   func_module strerrorname_np
   func_module strerror_r-posix
