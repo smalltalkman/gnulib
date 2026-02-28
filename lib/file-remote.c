@@ -59,36 +59,36 @@
 int _GL_ATTRIBUTE_CONST
 is_remote_fs_type_name (const char *fs_type)
 {
-  return (   strcmp (fs_type, "acfs") == 0
-          || strcmp (fs_type, "afs") == 0
-          || strcmp (fs_type, "autofs") == 0
-          || strcmp (fs_type, "auristorfs") == 0
-          || strcmp (fs_type, "cachefs") == 0
-          || strcmp (fs_type, "ceph") == 0
-          || strcmp (fs_type, "cifs") == 0
-          || strcmp (fs_type, "coda") == 0
-          || strcmp (fs_type, "fhgfs") == 0
-          || strcmp (fs_type, "gfs") == 0
-          || strcmp (fs_type, "gfs2") == 0
-          || strcmp (fs_type, "gpfs") == 0
-          || strcmp (fs_type, "ibrix") == 0
-          || strcmp (fs_type, "lustre") == 0
-          || strcmp (fs_type, "ncpfs") == 0
-          || strcmp (fs_type, "netfs") == 0
-          || strcmp (fs_type, "nfs") == 0
-          || strcmp (fs_type, "nfs3") == 0
-          || strcmp (fs_type, "nfs4") == 0
-          || strcmp (fs_type, "ocfs2") == 0
-          || strcmp (fs_type, "panfs") == 0
-          || strcmp (fs_type, "smb") == 0
-          || strcmp (fs_type, "smb2") == 0
-          || strcmp (fs_type, "smb3") == 0
-          || strcmp (fs_type, "smbfs") == 0
-          || strcmp (fs_type, "snfs") == 0
-          || strcmp (fs_type, "stnfs") == 0
-          || strcmp (fs_type, "userlandfs") == 0
-          || strcmp (fs_type, "vxfs") == 0
-          || strcmp (fs_type, "websearchfs") == 0);
+  return (   streq (fs_type, "acfs")
+          || streq (fs_type, "afs")
+          || streq (fs_type, "autofs")
+          || streq (fs_type, "auristorfs")
+          || streq (fs_type, "cachefs")
+          || streq (fs_type, "ceph")
+          || streq (fs_type, "cifs")
+          || streq (fs_type, "coda")
+          || streq (fs_type, "fhgfs")
+          || streq (fs_type, "gfs")
+          || streq (fs_type, "gfs2")
+          || streq (fs_type, "gpfs")
+          || streq (fs_type, "ibrix")
+          || streq (fs_type, "lustre")
+          || streq (fs_type, "ncpfs")
+          || streq (fs_type, "netfs")
+          || streq (fs_type, "nfs")
+          || streq (fs_type, "nfs3")
+          || streq (fs_type, "nfs4")
+          || streq (fs_type, "ocfs2")
+          || streq (fs_type, "panfs")
+          || streq (fs_type, "smb")
+          || streq (fs_type, "smb2")
+          || streq (fs_type, "smb3")
+          || streq (fs_type, "smbfs")
+          || streq (fs_type, "snfs")
+          || streq (fs_type, "stnfs")
+          || streq (fs_type, "userlandfs")
+          || streq (fs_type, "vxfs")
+          || streq (fs_type, "websearchfs"));
 }
 
 #if defined _WIN32 || defined __CYGWIN__                    /* Windows */
@@ -227,15 +227,15 @@ file_is_remote (const char *file)
   if (statfs (file, &fs) < 0)
     return -1;
   return (fs.f_flags & MNT_LOCAL) == 0
-         && !(strcmp (fs.f_fstypename, "fdesc") == 0);
+         && !streq (fs.f_fstypename, "fdesc");
 #elif defined __FreeBSD__ || defined __DragonFly__ || defined __FreeBSD_kernel__
                                                      /* FreeBSD, GNU/kFreeBSD */
   struct statfs fs;
   if (statfs (file, &fs) < 0)
     return -1;
   return (fs.f_flags & MNT_LOCAL) == 0
-         && !(strcmp (fs.f_fstypename, "devfs") == 0
-              || strcmp (fs.f_fstypename, "fdescfs") == 0);
+         && !(streq (fs.f_fstypename, "devfs")
+              || streq (fs.f_fstypename, "fdescfs"));
 #elif defined __NetBSD__                                    /* NetBSD */
   struct statvfs fs;
   if (statvfs1 (file, &fs, ST_NOWAIT) < 0)
@@ -251,20 +251,20 @@ file_is_remote (const char *file)
   if (statvfs (file, &fs) < 0)
     return -1;
   /* See /etc/vfs.  */
-  return (strcmp (fs.f_basetype, "nfs") == 0
-          || strcmp (fs.f_basetype, "nfs3") == 0
-          || strcmp (fs.f_basetype, "nfs4") == 0
-          || strcmp (fs.f_basetype, "stnfs") == 0
-          || strcmp (fs.f_basetype, "cachefs") == 0);
+  return (streq (fs.f_basetype, "nfs")
+          || streq (fs.f_basetype, "nfs3")
+          || streq (fs.f_basetype, "nfs4")
+          || streq (fs.f_basetype, "stnfs")
+          || streq (fs.f_basetype, "cachefs"));
 #elif defined __sun                                         /* Solaris */
   struct statvfs fs;
   if (statvfs (file, &fs) < 0)
     return -1;
   /* See /etc/dfs/fstypes.  */
-  return (strcmp (fs.f_basetype, "nfs") == 0
-          || strcmp (fs.f_basetype, "smb") == 0
-          || strcmp (fs.f_basetype, "smbfs") == 0
-          || strcmp (fs.f_basetype, "autofs") == 0);
+  return (streq (fs.f_basetype, "nfs")
+          || streq (fs.f_basetype, "smb")
+          || streq (fs.f_basetype, "smbfs")
+          || streq (fs.f_basetype, "autofs"));
 #elif defined __CYGWIN__                                    /* Cygwin */
   /* The 'struct statfs' member 'f_type' does not have the
      necessary information.  We need to use the native Windows API.  */
@@ -286,10 +286,10 @@ file_is_remote (const char *file)
   struct fs_info fs;
   if (fs_stat_dev (device, &fs) != B_OK)
     return -1;
-  return (strcmp (fs.fsh_name, "userlandfs") == 0
-          || strcmp (fs.fsh_name, "nfs") == 0
-          || strcmp (fs.fsh_name, "netfs") == 0
-          || strcmp (fs.fsh_name, "websearchfs") == 0);
+  return (streq (fs.fsh_name, "userlandfs")
+          || streq (fs.fsh_name, "nfs")
+          || streq (fs.fsh_name, "netfs")
+          || streq (fs.fsh_name, "websearchfs"));
 #else                                                       /* Unknown OS */
 # if defined SLOW_AND_OVERKILL
   /* This makes many system calls, is therefore slow, and
