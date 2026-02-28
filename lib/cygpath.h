@@ -19,6 +19,8 @@
 #ifndef _CYGPATH_H
 #define _CYGPATH_H
 
+#include <stdlib.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -28,7 +30,8 @@ extern "C" {
    Returns a freshly allocated file name.
    On the other platforms, it returns a freshly allocated copy of the
    argument file name.  */
-extern char *cygpath_w (const char *filename);
+extern char *cygpath_w (const char *filename)
+  _GL_ATTRIBUTE_MALLOC _GL_ATTRIBUTE_DEALLOC_FREE;
 
 #ifdef __cplusplus
 }
