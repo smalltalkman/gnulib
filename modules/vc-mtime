@@ -9,7 +9,8 @@ Depends-on:
 time-h
 bool
 spawn-pipe
-stringeq
+memeq
+streq
 strnul
 wait-process
 execute

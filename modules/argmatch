@@ -18,7 +18,8 @@ quote
 quotearg
 bool
 stdlib-h
-stringeq
+memeq
+streq
 
 configure.ac:
 

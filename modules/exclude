@@ -17,7 +17,7 @@ mbscasecmp
 mbuiter               [test "$GNULIB_MCEL_PREFER" != yes]
 nullptr
 regex
-stringeq
+streq
 bool
 unlocked-io-internal
 xalloc

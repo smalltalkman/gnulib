@@ -10,7 +10,7 @@ Depends-on:
 c-ctype
 extensions
 minmax
-stringeq
+streq
 unistd-h
 
 configure.ac:

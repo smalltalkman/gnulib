@@ -15,7 +15,7 @@ Depends-on:
 float-h
 fpieee
 memcmp
-stringeq
+memeq
 
 configure.ac:
 gl_FUNC_ISNANL_NO_LIBM

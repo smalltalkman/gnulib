@@ -7,7 +7,7 @@ lib/progname.c
 
 Depends-on:
 snippet/arg-nonnull
-stringeq
+memeq
 
 configure.ac:
 AC_CHECK_DECLS([program_invocation_name], [], [], [#include <errno.h>])

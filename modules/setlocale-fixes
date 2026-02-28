@@ -6,7 +6,7 @@ lib/setlocale-fixes.h
 lib/setlocale-fixes.c
 
 Depends-on:
-stringeq
+streq
 strncpy
 
 configure.ac:

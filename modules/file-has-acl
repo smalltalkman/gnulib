@@ -18,7 +18,7 @@ minmax
 free-posix
 limits-h
 stdint-h
-stringeq
+memeq
 strnul
 malloc-posix
 ssize_t

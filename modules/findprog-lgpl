@@ -16,7 +16,7 @@ concat-filename
 access
 stat
 unistd-h
-stringeq
+streq
 
 configure.ac:
 gl_FINDPROG

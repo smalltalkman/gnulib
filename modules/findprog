@@ -14,7 +14,7 @@ xalloc
 xconcat-filename
 access
 stat
-stringeq
+streq
 unistd-h
 
 configure.ac:

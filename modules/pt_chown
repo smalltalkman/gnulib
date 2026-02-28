@@ -11,7 +11,7 @@ root-uid
 stdlib-h
 configmake
 stat
-stringeq
+streq
 
 configure.ac:
 

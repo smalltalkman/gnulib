@@ -15,7 +15,7 @@ flexmember     [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test
 idx            [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test $REPLACE_MKTIME_Z = 1]
 setenv         [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test $REPLACE_MKTIME_Z = 1]
 bool           [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test $REPLACE_MKTIME_Z = 1]
-stringeq       [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test $REPLACE_MKTIME_Z = 1]
+streq          [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test $REPLACE_MKTIME_Z = 1]
 strnul         [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test $REPLACE_MKTIME_Z = 1]
 time_r         [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test $REPLACE_MKTIME_Z = 1]
 timegm         [test $HAVE_TZALLOC = 0 || test $REPLACE_LOCALTIME_RZ = 1 || test $REPLACE_MKTIME_Z = 1]

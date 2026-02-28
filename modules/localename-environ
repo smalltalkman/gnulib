@@ -8,7 +8,7 @@ m4/localename.m4
 m4/intlmacosx.m4
 
 Depends-on:
-stringeq
+streq
 
 configure.ac:
 gl_LOCALENAME_ENVIRON

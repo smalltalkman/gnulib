@@ -11,7 +11,7 @@ m4/readutmp.m4
 Depends-on:
 extensions
 idx
-stringeq
+memeq
 stat-time
 gettimeofday
 bool

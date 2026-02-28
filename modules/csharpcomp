@@ -18,7 +18,7 @@ scandir
 alphasort
 sh-quote
 safe-read
-stringeq
+memeq
 str_endswith
 xmalloca
 xvasprintf

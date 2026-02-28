@@ -38,7 +38,7 @@ memchr
 multiarch
 mbszero
 mbsnlen
-stringeq
+streq
 
 configure.ac:
 AC_REQUIRE([AC_C_RESTRICT])

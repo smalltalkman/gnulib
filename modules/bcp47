@@ -8,7 +8,8 @@ lib/bcp47.c
 Depends-on:
 bool
 c-ctype
-stringeq
+memeq
+streq
 
 configure.ac:
 

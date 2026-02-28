@@ -41,7 +41,7 @@ realloc-posix
 bool
 stddef-h
 stdint-h
-stringeq
+streq
 
 configure.ac:
 gl_FUNC_FTS

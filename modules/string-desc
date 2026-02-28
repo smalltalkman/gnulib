@@ -16,7 +16,7 @@ memchr
 memrchr
 memmem
 full-write
-stringeq
+memeq
 
 configure.ac:
 

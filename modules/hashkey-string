@@ -7,7 +7,7 @@ lib/hashkey-string.c
 
 Depends-on:
 bool
-stringeq
+streq
 
 configure.ac:
 

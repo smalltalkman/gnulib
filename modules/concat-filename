@@ -10,7 +10,7 @@ Depends-on:
 filename
 malloc-posix
 stpcpy
-stringeq
+streq
 
 configure.ac:
 

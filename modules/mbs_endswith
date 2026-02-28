@@ -8,7 +8,7 @@ Depends-on:
 string-h
 bool
 str_endswith
-stringeq
+streq
 mbslen
 mbiter
 

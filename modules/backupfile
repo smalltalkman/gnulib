@@ -24,7 +24,7 @@ renameatu
 bool
 stdckdint-h
 stdint-h
-stringeq
+memeq
 xalloc-die
 
 configure.ac:

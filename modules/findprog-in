@@ -15,7 +15,7 @@ concat-filename
 access
 stat
 strdup-posix
-stringeq
+streq
 malloc-posix
 unistd-h
 

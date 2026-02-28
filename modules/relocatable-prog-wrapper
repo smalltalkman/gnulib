@@ -76,7 +76,8 @@ stdckdint-h
 stdint-h
 stdlib-h
 string-h
-stringeq
+memeq
+streq
 sys_stat-h
 unistd-h
 xalloc-oversized

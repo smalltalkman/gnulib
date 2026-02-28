@@ -10,7 +10,7 @@ Depends-on:
 uniname/base
 attribute
 memcmp
-stringeq
+memeq
 bool
 c99
 

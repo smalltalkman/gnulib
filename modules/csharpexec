@@ -22,7 +22,7 @@ xsetenv
 scandir
 alphasort
 sh-quote
-stringeq
+memeq
 xalloc
 xmalloca
 copy-file

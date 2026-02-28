@@ -16,7 +16,7 @@ extern-inline
 fstat
 minmax
 stat
-stringeq
+streq
 bool
 sys_stat-h
 stdint-h

@@ -24,7 +24,7 @@ basename-lgpl
 extern-inline
 getopt-gnu
 strchrnul
-stringeq
+streq
 sysexits-h
 malloc-gnu
 mempcpy
