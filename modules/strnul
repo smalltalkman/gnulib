@@ -2,7 +2,7 @@ Description:
 strnul() function: return pointer to terminating NUL byte.
 
 Files:
-lib/string.c
+lib/strnul.c
 
 Depends-on:
 string-h
@@ -11,7 +11,7 @@ configure.ac:
 gl_STRING_MODULE_INDICATOR([strnul])
 
 Makefile.am:
-lib_SOURCES += string.c
+lib_SOURCES += strnul.c
 
 Include:
 <string.h>

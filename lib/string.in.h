@@ -81,9 +81,11 @@
 #endif
 
 _GL_INLINE_HEADER_BEGIN
-
 #ifndef _GL_STRING_INLINE
 # define _GL_STRING_INLINE _GL_INLINE
+#endif
+#ifndef _GL_STRNUL_INLINE
+# define _GL_STRNUL_INLINE _GL_INLINE
 #endif
 
 /* _GL_ATTRIBUTE_DEALLOC (F, I) declares that the function returns pointers
@@ -1243,10 +1245,10 @@ _GL_WARN_ON_USE (strtok_r, "strtok_r is unportable - "
 # ifdef __cplusplus
 extern "C" {
 # endif
-_GL_STRING_INLINE const char *gl_strnul (const char *string)
+_GL_STRNUL_INLINE const char *gl_strnul (const char *string)
      _GL_ATTRIBUTE_PURE
      _GL_ARG_NONNULL ((1));
-_GL_STRING_INLINE const char *gl_strnul (const char *string)
+_GL_STRNUL_INLINE const char *gl_strnul (const char *string)
 {
   /* In gcc >= 7 or clang >= 4, we could use the expression
        strchr (string, '\0')
