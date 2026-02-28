@@ -1,0 +1,25 @@
+Description:
+Determine whether a file system is local or remote.
+
+Files:
+lib/filesystem-remote.h
+lib/filesystem-remote.c
+
+Depends-on:
+streq
+
+configure.ac:
+
+Makefile.am:
+lib_SOURCES += filesystem-remote.c
+
+Include:
+"filesystem-remote.h"
+
+Link:
+
+License:
+GPL
+
+Maintainer:
+all

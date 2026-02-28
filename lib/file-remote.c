@@ -56,41 +56,6 @@
 # endif
 #endif
 
-int _GL_ATTRIBUTE_CONST
-is_remote_fs_type_name (const char *fs_type)
-{
-  return (   streq (fs_type, "acfs")
-          || streq (fs_type, "afs")
-          || streq (fs_type, "autofs")
-          || streq (fs_type, "auristorfs")
-          || streq (fs_type, "cachefs")
-          || streq (fs_type, "ceph")
-          || streq (fs_type, "cifs")
-          || streq (fs_type, "coda")
-          || streq (fs_type, "fhgfs")
-          || streq (fs_type, "gfs")
-          || streq (fs_type, "gfs2")
-          || streq (fs_type, "gpfs")
-          || streq (fs_type, "ibrix")
-          || streq (fs_type, "lustre")
-          || streq (fs_type, "ncpfs")
-          || streq (fs_type, "netfs")
-          || streq (fs_type, "nfs")
-          || streq (fs_type, "nfs3")
-          || streq (fs_type, "nfs4")
-          || streq (fs_type, "ocfs2")
-          || streq (fs_type, "panfs")
-          || streq (fs_type, "smb")
-          || streq (fs_type, "smb2")
-          || streq (fs_type, "smb3")
-          || streq (fs_type, "smbfs")
-          || streq (fs_type, "snfs")
-          || streq (fs_type, "stnfs")
-          || streq (fs_type, "userlandfs")
-          || streq (fs_type, "vxfs")
-          || streq (fs_type, "websearchfs"));
-}
-
 #if defined _WIN32 || defined __CYGWIN__                    /* Windows */
 # define WIN32_LEAN_AND_MEAN  /* avoid including junk */
 # include <windows.h>

@@ -30,10 +30,6 @@ extern "C" {
      - -1 with errno set, upon error (e.g. if the file is not accessible).  */
 extern int file_is_remote (const char *file);
 
-/* Returns 1 if the filesystem type name FS_TYPE is known to be a
-   remote filesystem type, 0 otherwise.  */
-extern int is_remote_fs_type_name (const char *fs_type);
-
 #ifdef __cplusplus
 }
 #endif

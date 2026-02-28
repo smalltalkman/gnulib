@@ -29,7 +29,7 @@
 #include <unistd.h>
 
 #include "c-ctype.h"
-#include "file-remote.h"
+#include "filesystem-remote.h"
 #include "xalloc.h"
 
 #if HAVE_SYS_PARAM_H
