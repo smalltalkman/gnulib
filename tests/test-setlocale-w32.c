@@ -86,13 +86,12 @@ main ()
   ASSERT (ret != NULL && streq (ret, LOCALE4));
   ret = setlocale (LC_ALL, NULL);
   ASSERT (ret != NULL
-          && strcmp (ret, "LC_COLLATE=" LOCALE1 ";"
-                          "LC_CTYPE=" LOCALE1 ";"
-                          "LC_MONETARY=" LOCALE5 ";"
-                          "LC_NUMERIC=" LOCALE2 ";"
-                          "LC_TIME=" LOCALE3 ";"
-                          "LC_MESSAGES=" LOCALE4)
-             == 0);
+          && streq (ret, "LC_COLLATE=" LOCALE1 ";"
+                         "LC_CTYPE=" LOCALE1 ";"
+                         "LC_MONETARY=" LOCALE5 ";"
+                         "LC_NUMERIC=" LOCALE2 ";"
+                         "LC_TIME=" LOCALE3 ";"
+                         "LC_MESSAGES=" LOCALE4));
   ret_all = _strdup (ret);
 
   /* Reset the locale.  */
@@ -122,13 +121,12 @@ main ()
   ASSERT (ret != NULL && streq (ret, LOCALE4));
   ret = setlocale (LC_ALL, NULL);
   ASSERT (ret != NULL
-          && strcmp (ret, "LC_COLLATE=" LOCALE1 ";"
-                          "LC_CTYPE=" LOCALE1 ";"
-                          "LC_MONETARY=" LOCALE5 ";"
-                          "LC_NUMERIC=" LOCALE2 ";"
-                          "LC_TIME=" LOCALE3 ";"
-                          "LC_MESSAGES=" LOCALE4)
-             == 0);
+          && streq (ret, "LC_COLLATE=" LOCALE1 ";"
+                         "LC_CTYPE=" LOCALE1 ";"
+                         "LC_MONETARY=" LOCALE5 ";"
+                         "LC_NUMERIC=" LOCALE2 ";"
+                         "LC_TIME=" LOCALE3 ";"
+                         "LC_MESSAGES=" LOCALE4));
 
   return test_exit_status;
 }

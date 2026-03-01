@@ -25,8 +25,8 @@
 int
 main ()
 {
-  ASSERT (strcmp (uc_general_category_name (UC_CATEGORY_Z), "Z") == 0);
-  ASSERT (strcmp (uc_general_category_name (UC_CATEGORY_Nl), "Nl") == 0);
+  ASSERT (streq (uc_general_category_name (UC_CATEGORY_Z), "Z"));
+  ASSERT (streq (uc_general_category_name (UC_CATEGORY_Nl), "Nl"));
   ASSERT (uc_general_category_name (uc_general_category_or (UC_CATEGORY_Z, UC_CATEGORY_Nl)) == NULL);
 
   return test_exit_status;

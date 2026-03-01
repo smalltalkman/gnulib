@@ -31,198 +31,198 @@ int
 main (void)
 {
   /* Signals specified by ISO C.  */
-  ASSERT (strcmp (sigabbrev_np (SIGABRT), "ABRT") == 0);
-  ASSERT (strcmp (sigabbrev_np (SIGFPE), "FPE") == 0);
-  ASSERT (strcmp (sigabbrev_np (SIGILL), "ILL") == 0);
-  ASSERT (strcmp (sigabbrev_np (SIGINT), "INT") == 0);
-  ASSERT (strcmp (sigabbrev_np (SIGSEGV), "SEGV") == 0);
-  ASSERT (strcmp (sigabbrev_np (SIGTERM), "TERM") == 0);
+  ASSERT (streq (sigabbrev_np (SIGABRT), "ABRT"));
+  ASSERT (streq (sigabbrev_np (SIGFPE), "FPE"));
+  ASSERT (streq (sigabbrev_np (SIGILL), "ILL"));
+  ASSERT (streq (sigabbrev_np (SIGINT), "INT"));
+  ASSERT (streq (sigabbrev_np (SIGSEGV), "SEGV"));
+  ASSERT (streq (sigabbrev_np (SIGTERM), "TERM"));
 
   /* Signals specified by POSIX.
      <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/signal.h.html>  */
   #ifdef SIGALRM
-  ASSERT (strcmp (sigabbrev_np (SIGALRM), "ALRM") == 0);
+  ASSERT (streq (sigabbrev_np (SIGALRM), "ALRM"));
   #endif
   #ifdef SIGBUS
-  ASSERT (strcmp (sigabbrev_np (SIGBUS), "BUS") == 0);
+  ASSERT (streq (sigabbrev_np (SIGBUS), "BUS"));
   #endif
   #ifdef SIGCHLD
-  ASSERT (strcmp (sigabbrev_np (SIGCHLD), "CHLD") == 0);
+  ASSERT (streq (sigabbrev_np (SIGCHLD), "CHLD"));
   #endif
   #ifdef SIGCONT
-  ASSERT (strcmp (sigabbrev_np (SIGCONT), "CONT") == 0);
+  ASSERT (streq (sigabbrev_np (SIGCONT), "CONT"));
   #endif
   #ifdef SIGHUP
-  ASSERT (strcmp (sigabbrev_np (SIGHUP), "HUP") == 0);
+  ASSERT (streq (sigabbrev_np (SIGHUP), "HUP"));
   #endif
   #ifdef SIGKILL
-  ASSERT (strcmp (sigabbrev_np (SIGKILL), "KILL") == 0);
+  ASSERT (streq (sigabbrev_np (SIGKILL), "KILL"));
   #endif
   #ifdef SIGPIPE
-  ASSERT (strcmp (sigabbrev_np (SIGPIPE), "PIPE") == 0);
+  ASSERT (streq (sigabbrev_np (SIGPIPE), "PIPE"));
   #endif
   #ifdef SIGQUIT
-  ASSERT (strcmp (sigabbrev_np (SIGQUIT), "QUIT") == 0);
+  ASSERT (streq (sigabbrev_np (SIGQUIT), "QUIT"));
   #endif
   #ifdef SIGSTOP
-  ASSERT (strcmp (sigabbrev_np (SIGSTOP), "STOP") == 0);
+  ASSERT (streq (sigabbrev_np (SIGSTOP), "STOP"));
   #endif
   #ifdef SIGTSTP
-  ASSERT (strcmp (sigabbrev_np (SIGTSTP), "TSTP") == 0);
+  ASSERT (streq (sigabbrev_np (SIGTSTP), "TSTP"));
   #endif
   #ifdef SIGTTIN
-  ASSERT (strcmp (sigabbrev_np (SIGTTIN), "TTIN") == 0);
+  ASSERT (streq (sigabbrev_np (SIGTTIN), "TTIN"));
   #endif
   #ifdef SIGTTOU
-  ASSERT (strcmp (sigabbrev_np (SIGTTOU), "TTOU") == 0);
+  ASSERT (streq (sigabbrev_np (SIGTTOU), "TTOU"));
   #endif
   #ifdef SIGUSR1
-  ASSERT (strcmp (sigabbrev_np (SIGUSR1), "USR1") == 0);
+  ASSERT (streq (sigabbrev_np (SIGUSR1), "USR1"));
   #endif
   #ifdef SIGUSR2
-  ASSERT (strcmp (sigabbrev_np (SIGUSR2), "USR2") == 0);
+  ASSERT (streq (sigabbrev_np (SIGUSR2), "USR2"));
   #endif
   #ifdef SIGPOLL
-  ASSERT (strcmp (sigabbrev_np (SIGPOLL), "POLL") == 0);
+  ASSERT (streq (sigabbrev_np (SIGPOLL), "POLL"));
   #endif
   #ifdef SIGPROF
-  ASSERT (strcmp (sigabbrev_np (SIGPROF), "PROF") == 0);
+  ASSERT (streq (sigabbrev_np (SIGPROF), "PROF"));
   #endif
   #ifdef SIGSYS
-  ASSERT (strcmp (sigabbrev_np (SIGSYS), "SYS") == 0);
+  ASSERT (streq (sigabbrev_np (SIGSYS), "SYS"));
   #endif
   #ifdef SIGTRAP
-  ASSERT (strcmp (sigabbrev_np (SIGTRAP), "TRAP") == 0);
+  ASSERT (streq (sigabbrev_np (SIGTRAP), "TRAP"));
   #endif
   #ifdef SIGURG
-  ASSERT (strcmp (sigabbrev_np (SIGURG), "URG") == 0);
+  ASSERT (streq (sigabbrev_np (SIGURG), "URG"));
   #endif
   #ifdef SIGVTALRM
-  ASSERT (strcmp (sigabbrev_np (SIGVTALRM), "VTALRM") == 0);
+  ASSERT (streq (sigabbrev_np (SIGVTALRM), "VTALRM"));
   #endif
   #ifdef SIGXCPU
-  ASSERT (strcmp (sigabbrev_np (SIGXCPU), "XCPU") == 0);
+  ASSERT (streq (sigabbrev_np (SIGXCPU), "XCPU"));
   #endif
   #ifdef SIGXFSZ
-  ASSERT (strcmp (sigabbrev_np (SIGXFSZ), "XFSZ") == 0);
+  ASSERT (streq (sigabbrev_np (SIGXFSZ), "XFSZ"));
   #endif
 
   /* Other signals on other systems.  */
   /* native Windows */
   #ifdef SIGBREAK
-  ASSERT (strcmp (sigabbrev_np (SIGBREAK), "BREAK") == 0);
+  ASSERT (streq (sigabbrev_np (SIGBREAK), "BREAK"));
   #endif
   /* AIX */
   #ifdef SIGCPUFAIL
-  ASSERT (strcmp (sigabbrev_np (SIGCPUFAIL), "CPUFAIL") == 0);
+  ASSERT (streq (sigabbrev_np (SIGCPUFAIL), "CPUFAIL"));
   #endif
   /* AIX */
   #ifdef SIGDANGER
-  ASSERT (strcmp (sigabbrev_np (SIGDANGER), "DANGER") == 0);
+  ASSERT (streq (sigabbrev_np (SIGDANGER), "DANGER"));
   #endif
   /* Mac OS X, FreeBSD, NetBSD, OpenBSD, Minix, AIX, Cygwin, mingw */
   #ifdef SIGEMT
-  ASSERT (strcmp (sigabbrev_np (SIGEMT), "EMT") == 0);
+  ASSERT (streq (sigabbrev_np (SIGEMT), "EMT"));
   #endif
   /* Mac OS X, FreeBSD, NetBSD, OpenBSD, Minix */
   #if defined SIGINFO && SIGINFO != SIGPWR
-  ASSERT (strcmp (sigabbrev_np (SIGINFO), "INFO") == 0);
+  ASSERT (streq (sigabbrev_np (SIGINFO), "INFO"));
   #endif
   /* AIX */
   #ifdef SIGKAP
-  ASSERT (strcmp (sigabbrev_np (SIGKAP), "KAP") == 0);
+  ASSERT (streq (sigabbrev_np (SIGKAP), "KAP"));
   #endif
   /* Haiku */
   #ifdef SIGKILLTHR
-  ASSERT (strcmp (sigabbrev_np (SIGKILLTHR), "KILLTHR") == 0);
+  ASSERT (streq (sigabbrev_np (SIGKILLTHR), "KILLTHR"));
   #endif
   /* Minix */
   #ifdef SIGKMEM
-  ASSERT (strcmp (sigabbrev_np (SIGKMEM), "KMEM") == 0);
+  ASSERT (streq (sigabbrev_np (SIGKMEM), "KMEM"));
   #endif
   /* Minix */
   #ifdef SIGKMESS
-  ASSERT (strcmp (sigabbrev_np (SIGKMESS), "KMESS") == 0);
+  ASSERT (streq (sigabbrev_np (SIGKMESS), "KMESS"));
   #endif
   /* Minix */
   #ifdef SIGKSIG
-  ASSERT (strcmp (sigabbrev_np (SIGKSIG), "KSIG") == 0);
+  ASSERT (streq (sigabbrev_np (SIGKSIG), "KSIG"));
   #endif
   /* Minix */
   #ifdef SIGKSIGSM
-  ASSERT (strcmp (sigabbrev_np (SIGKSIGSM), "KSIGSM") == 0);
+  ASSERT (streq (sigabbrev_np (SIGKSIGSM), "KSIGSM"));
   #endif
   /* FreeBSD */
   #ifdef SIGLIBRT
-  ASSERT (strcmp (sigabbrev_np (SIGLIBRT), "LIBRT") == 0);
+  ASSERT (streq (sigabbrev_np (SIGLIBRT), "LIBRT"));
   #endif
   /* AIX */
   #ifdef SIGMIGRATE
-  ASSERT (strcmp (sigabbrev_np (SIGMIGRATE), "MIGRATE") == 0);
+  ASSERT (streq (sigabbrev_np (SIGMIGRATE), "MIGRATE"));
   #endif
   /* AIX */
   #ifdef SIGMSG
-  ASSERT (strcmp (sigabbrev_np (SIGMSG), "MSG") == 0);
+  ASSERT (streq (sigabbrev_np (SIGMSG), "MSG"));
   #endif
   /* AIX */
   #ifdef SIGPRE
-  ASSERT (strcmp (sigabbrev_np (SIGPRE), "PRE") == 0);
+  ASSERT (streq (sigabbrev_np (SIGPRE), "PRE"));
   #endif
   /* Linux, NetBSD, Minix, AIX, Cygwin */
   #ifdef SIGPWR
-  ASSERT (strcmp (sigabbrev_np (SIGPWR), "PWR") == 0);
+  ASSERT (streq (sigabbrev_np (SIGPWR), "PWR"));
   #endif
   /* AIX */
   #ifdef SIGRECONFIG
-  ASSERT (strcmp (sigabbrev_np (SIGRECONFIG), "RECONFIG") == 0);
+  ASSERT (streq (sigabbrev_np (SIGRECONFIG), "RECONFIG"));
   #endif
   /* AIX */
   #ifdef SIGRECOVERY
-  ASSERT (strcmp (sigabbrev_np (SIGRECOVERY), "RECOVERY") == 0);
+  ASSERT (streq (sigabbrev_np (SIGRECOVERY), "RECOVERY"));
   #endif
   /* AIX */
   #ifdef SIGRETRACT
-  ASSERT (strcmp (sigabbrev_np (SIGRETRACT), "RETRACT") == 0);
+  ASSERT (streq (sigabbrev_np (SIGRETRACT), "RETRACT"));
   #endif
   /* AIX */
   #ifdef SIGSAK
-  ASSERT (strcmp (sigabbrev_np (SIGSAK), "SAK") == 0);
+  ASSERT (streq (sigabbrev_np (SIGSAK), "SAK"));
   #endif
   /* Minix */
   #ifdef SIGSNDELAY
-  ASSERT (strcmp (sigabbrev_np (SIGSNDELAY), "SNDELAY") == 0);
+  ASSERT (streq (sigabbrev_np (SIGSNDELAY), "SNDELAY"));
   #endif
   /* AIX */
   #ifdef SIGSOUND
-  ASSERT (strcmp (sigabbrev_np (SIGSOUND), "SOUND") == 0);
+  ASSERT (streq (sigabbrev_np (SIGSOUND), "SOUND"));
   #endif
   /* Linux */
   #ifdef SIGSTKFLT
-  ASSERT (strcmp (sigabbrev_np (SIGSTKFLT), "STKFLT") == 0);
+  ASSERT (streq (sigabbrev_np (SIGSTKFLT), "STKFLT"));
   #endif
   /* AIX */
   #ifdef SIGSYSERROR
-  ASSERT (strcmp (sigabbrev_np (SIGSYSERROR), "SYSERROR") == 0);
+  ASSERT (streq (sigabbrev_np (SIGSYSERROR), "SYSERROR"));
   #endif
   /* AIX */
   #ifdef SIGTALRM
-  ASSERT (strcmp (sigabbrev_np (SIGTALRM), "TALRM") == 0);
+  ASSERT (streq (sigabbrev_np (SIGTALRM), "TALRM"));
   #endif
   /* FreeBSD, OpenBSD */
   #ifdef SIGTHR
-  ASSERT (strcmp (sigabbrev_np (SIGTHR), "THR") == 0);
+  ASSERT (streq (sigabbrev_np (SIGTHR), "THR"));
   #endif
   /* AIX */
   #ifdef SIGVIRT
-  ASSERT (strcmp (sigabbrev_np (SIGVIRT), "VIRT") == 0);
+  ASSERT (streq (sigabbrev_np (SIGVIRT), "VIRT"));
   #endif
   /* AIX */
   #ifdef SIGWAITING
-  ASSERT (strcmp (sigabbrev_np (SIGWAITING), "WAITING") == 0);
+  ASSERT (streq (sigabbrev_np (SIGWAITING), "WAITING"));
   #endif
   /* Linux, Mac OS X, FreeBSD, NetBSD, OpenBSD, Minix, AIX, Cygwin, Haiku */
   #ifdef SIGWINCH
-  ASSERT (strcmp (sigabbrev_np (SIGWINCH), "WINCH") == 0);
+  ASSERT (streq (sigabbrev_np (SIGWINCH), "WINCH"));
   #endif
 
   ASSERT (sigabbrev_np (-714) == NULL);

@@ -50,12 +50,12 @@
 static int
 is_default (const char *name)
 {
-  return strcmp (name, gl_locale_name_default ()) == 0
+  return streq (name, gl_locale_name_default ())
          || (streq (name, C_CANONICALIZED)
-             && strcmp (gl_locale_name_default (), "C") == 0)
+             && streq (gl_locale_name_default (), "C"))
 #if MUSL_LIBC
          || (streq (name, "C.UTF-8")
-             && strcmp (gl_locale_name_default (), "C") == 0)
+             && streq (gl_locale_name_default (), "C"))
 #endif
          ;
 }
@@ -172,24 +172,21 @@ test_locale_name (void)
   unsetenv ("LC_MESSAGES");
   unsetenv ("LANG");
   setlocale (LC_ALL, "");
-  ASSERT (strcmp (gl_locale_name (LC_MESSAGES, "LC_MESSAGES"),
-                  C_CANONICALIZED) == 0);
+  ASSERT (streq (gl_locale_name (LC_MESSAGES, "LC_MESSAGES"), C_CANONICALIZED));
 
   unsetenv ("LC_ALL");
   setenv ("LC_CTYPE", "C", 1);
   setenv ("LC_MESSAGES", "C", 1);
   unsetenv ("LANG");
   setlocale (LC_ALL, "");
-  ASSERT (strcmp (gl_locale_name (LC_MESSAGES, "LC_MESSAGES"),
-                  C_CANONICALIZED) == 0);
+  ASSERT (streq (gl_locale_name (LC_MESSAGES, "LC_MESSAGES"), C_CANONICALIZED));
 
   unsetenv ("LC_ALL");
   unsetenv ("LC_CTYPE");
   unsetenv ("LC_MESSAGES");
   setenv ("LANG", "C", 1);
   setlocale (LC_ALL, "");
-  ASSERT (strcmp (gl_locale_name (LC_MESSAGES, "LC_MESSAGES"),
-                  C_CANONICALIZED) == 0);
+  ASSERT (streq (gl_locale_name (LC_MESSAGES, "LC_MESSAGES"), C_CANONICALIZED));
 
   /* Check mixed situations.  */
 
@@ -206,7 +203,7 @@ test_locale_name (void)
          returns NULL and
            gl_locale_name_posix (LC_CTYPE, "LC_CTYPE")
          returns either "de_DE" or "de_DE.UTF-8".  */
-      ASSERT (streq (name, "de_DE") || strcmp (name, "de_DE.UTF-8") == 0);
+      ASSERT (streq (name, "de_DE") || streq (name, "de_DE.UTF-8"));
 #else
       ASSERT (streq (name, "de_DE.UTF-8"));
 #endif
@@ -625,7 +622,7 @@ test_locale_name_posix (void)
     {
       name = gl_locale_name_posix (LC_CTYPE, "LC_CTYPE");
 #if defined _WIN32 && !defined __CYGWIN__
-      ASSERT (streq (name, "de_DE") || strcmp (name, "de_DE.UTF-8") == 0);
+      ASSERT (streq (name, "de_DE") || streq (name, "de_DE.UTF-8"));
 #else
       ASSERT (streq (name, "de_DE.UTF-8"));
 #endif
@@ -801,7 +798,7 @@ test_locale_name_default (void)
     if (locale != NULL)
       {
         uselocale (locale);
-        ASSERT (strcmp (gl_locale_name_default (), name) == 0);
+        ASSERT (streq (gl_locale_name_default (), name));
         uselocale (LC_GLOBAL_LOCALE);
         freelocale (locale);
       }

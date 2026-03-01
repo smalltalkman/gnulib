@@ -27,12 +27,12 @@
 int
 main ()
 {
-  ASSERT (strcmp (uc_joining_type_name (UC_JOINING_TYPE_U), "U") == 0);
-  ASSERT (strcmp (uc_joining_type_name (UC_JOINING_TYPE_T), "T") == 0);
-  ASSERT (strcmp (uc_joining_type_name (UC_JOINING_TYPE_C), "C") == 0);
-  ASSERT (strcmp (uc_joining_type_name (UC_JOINING_TYPE_L), "L") == 0);
-  ASSERT (strcmp (uc_joining_type_name (UC_JOINING_TYPE_R), "R") == 0);
-  ASSERT (strcmp (uc_joining_type_name (UC_JOINING_TYPE_D), "D") == 0);
+  ASSERT (streq (uc_joining_type_name (UC_JOINING_TYPE_U), "U"));
+  ASSERT (streq (uc_joining_type_name (UC_JOINING_TYPE_T), "T"));
+  ASSERT (streq (uc_joining_type_name (UC_JOINING_TYPE_C), "C"));
+  ASSERT (streq (uc_joining_type_name (UC_JOINING_TYPE_L), "L"));
+  ASSERT (streq (uc_joining_type_name (UC_JOINING_TYPE_R), "R"));
+  ASSERT (streq (uc_joining_type_name (UC_JOINING_TYPE_D), "D"));
   ASSERT (uc_joining_type_name (-1) == NULL);
 
   return test_exit_status;

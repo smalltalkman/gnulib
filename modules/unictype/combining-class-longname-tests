@@ -3,6 +3,7 @@ tests/unictype/test-combiningclass_longname.c
 tests/macros.h
 
 Depends-on:
+streq
 
 configure.ac:
 

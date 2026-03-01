@@ -9,6 +9,7 @@ Depends-on:
 setlocale
 snprintf
 xalloc
+streq
 
 configure.ac:
 gt_LOCALE_FR

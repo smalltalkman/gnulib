@@ -6,6 +6,7 @@ Depends-on:
 unictype/category-or
 unictype/category-Z
 unictype/category-Nl
+streq
 
 configure.ac:
 

@@ -288,8 +288,8 @@ main (_GL_UNUSED int argc, char *argv[])
     {
       set_quoting_style (NULL, (enum quoting_style) i);
       if (!(i == locale_quoting_style || i == clocale_quoting_style)
-          || (strcmp (locale_charset (), "ASCII") == 0
-              || strcmp (locale_charset (), "ANSI_X3.4-1968") == 0))
+          || (streq (locale_charset (), "ASCII")
+              || streq (locale_charset (), "ANSI_X3.4-1968")))
         {
           compare_strings (use_quotearg_buffer, &results_g[i].group1,
                            ascii_only);

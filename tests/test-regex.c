@@ -52,7 +52,7 @@ report_error (char const *format, ...)
 static int
 really_utf8 (void)
 {
-  return strcmp (locale_charset (), "UTF-8") == 0;
+  return streq (locale_charset (), "UTF-8");
 }
 
 /* Tests supposed to match; copied from glibc posix/bug-regex11.c.  */

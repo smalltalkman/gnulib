@@ -29,7 +29,7 @@ main ()
      variable.  */
   if (setlocale (LC_ALL, "") != NULL)
     /* It was successful.  Check whether LC_CTYPE is non-trivial.  */
-    if (strcmp (setlocale (LC_CTYPE, NULL), "C") == 0)
+    if (streq (setlocale (LC_CTYPE, NULL), "C"))
       {
         fprintf (stderr, "setlocale did not fail for implicit %s\n",
                  getenv ("LC_ALL"));
@@ -44,7 +44,7 @@ main ()
      variable.  */
   if (setlocale (LC_ALL, getenv ("LC_ALL")) != NULL)
     /* It was successful.  Check whether LC_CTYPE is non-trivial.  */
-    if (strcmp (setlocale (LC_CTYPE, NULL), "C") == 0)
+    if (streq (setlocale (LC_CTYPE, NULL), "C"))
       {
         fprintf (stderr, "setlocale did not fail for explicit %s\n",
                  getenv ("LC_ALL"));

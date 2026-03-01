@@ -25,8 +25,8 @@
 int
 main ()
 {
-  ASSERT (strcmp (uc_block ('x')->name, "Basic Latin") == 0);
-  ASSERT (strcmp (uc_block (0x20AC)->name, "Currency Symbols") == 0);
+  ASSERT (streq (uc_block ('x')->name, "Basic Latin"));
+  ASSERT (streq (uc_block (0x20AC)->name, "Currency Symbols"));
 
   for (unsigned int c = 0; c < 0x110000; c++)
     {

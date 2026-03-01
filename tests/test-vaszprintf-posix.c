@@ -133,7 +133,7 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ASSERT (result != NULL);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -169,7 +169,7 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ASSERT (result != NULL);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -194,7 +194,7 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ASSERT (result != NULL);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }

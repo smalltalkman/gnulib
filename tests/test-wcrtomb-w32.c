@@ -182,7 +182,7 @@ test_one_locale (const char *name, int codepage)
 
     case 65001:
       /* Locale encoding is CP65001 = UTF-8.  */
-      if (strcmp (locale_charset (), "UTF-8") != 0)
+      if (!streq (locale_charset (), "UTF-8"))
         return 77;
       {
         /* Convert "B\303\274\303\237er": "Büßer" */
@@ -274,7 +274,7 @@ test_one_locale (const char *name, int codepage)
 
     case 54936:
       /* Locale encoding is CP54936 = GB18030.  */
-      if (strcmp (locale_charset (), "GB18030") != 0)
+      if (!streq (locale_charset (), "GB18030"))
         return 77;
       {
         /* Convert "B\250\271\201\060\211\070er": "Büßer" */

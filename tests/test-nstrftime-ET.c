@@ -54,12 +54,12 @@ main ()
 {
   if (((setenv ("LC_ALL", LOCALE1, 1),
         (setlocale (LC_ALL, "") == NULL
-         || strcmp (setlocale (LC_ALL, NULL), "C") == 0))
+         || streq (setlocale (LC_ALL, NULL), "C")))
        && (LOCALE2 == NULL
            || (setenv ("LC_ALL", LOCALE2, 1),
                (setlocale (LC_ALL, "") == NULL
-                || strcmp (setlocale (LC_ALL, NULL), "C") == 0))))
-      || strcmp (locale_charset (), "UTF-8") != 0)
+                || streq (setlocale (LC_ALL, NULL), "C")))))
+      || !streq (locale_charset (), "UTF-8"))
     {
       fprintf (stderr, "Skipping test: Unicode locale for Ethiopia is not installed\n");
       return 77;

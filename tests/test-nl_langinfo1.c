@@ -106,18 +106,18 @@ main (int argc, char *argv[])
   ASSERT (strlen (nl_langinfo (ALTMON_12)) > 0);
   /* In the tested locales, alternate month names and month names ought to be
      the same.  */
-  ASSERT (strcmp (nl_langinfo (ALTMON_1), nl_langinfo (MON_1)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_2), nl_langinfo (MON_2)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_3), nl_langinfo (MON_3)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_4), nl_langinfo (MON_4)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_5), nl_langinfo (MON_5)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_6), nl_langinfo (MON_6)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_7), nl_langinfo (MON_7)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_8), nl_langinfo (MON_8)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_9), nl_langinfo (MON_9)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_10), nl_langinfo (MON_10)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_11), nl_langinfo (MON_11)) == 0);
-  ASSERT (strcmp (nl_langinfo (ALTMON_12), nl_langinfo (MON_12)) == 0);
+  ASSERT (streq (nl_langinfo (ALTMON_1), nl_langinfo (MON_1)));
+  ASSERT (streq (nl_langinfo (ALTMON_2), nl_langinfo (MON_2)));
+  ASSERT (streq (nl_langinfo (ALTMON_3), nl_langinfo (MON_3)));
+  ASSERT (streq (nl_langinfo (ALTMON_4), nl_langinfo (MON_4)));
+  ASSERT (streq (nl_langinfo (ALTMON_5), nl_langinfo (MON_5)));
+  ASSERT (streq (nl_langinfo (ALTMON_6), nl_langinfo (MON_6)));
+  ASSERT (streq (nl_langinfo (ALTMON_7), nl_langinfo (MON_7)));
+  ASSERT (streq (nl_langinfo (ALTMON_8), nl_langinfo (MON_8)));
+  ASSERT (streq (nl_langinfo (ALTMON_9), nl_langinfo (MON_9)));
+  ASSERT (streq (nl_langinfo (ALTMON_10), nl_langinfo (MON_10)));
+  ASSERT (streq (nl_langinfo (ALTMON_11), nl_langinfo (MON_11)));
+  ASSERT (streq (nl_langinfo (ALTMON_12), nl_langinfo (MON_12)));
   ASSERT (strlen (nl_langinfo (ABMON_1)) > 0);
   ASSERT (strlen (nl_langinfo (ABMON_2)) > 0);
   ASSERT (strlen (nl_langinfo (ABMON_3)) > 0);
@@ -144,18 +144,18 @@ main (int argc, char *argv[])
   ASSERT (strlen (nl_langinfo (ABALTMON_12)) > 0);
   /* In the tested locales, abbreviated alternate month names and abbreviated
      month names ought to be the same.  */
-  ASSERT (strcmp (nl_langinfo (ABALTMON_1), nl_langinfo (ABMON_1)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_2), nl_langinfo (ABMON_2)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_3), nl_langinfo (ABMON_3)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_4), nl_langinfo (ABMON_4)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_5), nl_langinfo (ABMON_5)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_6), nl_langinfo (ABMON_6)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_7), nl_langinfo (ABMON_7)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_8), nl_langinfo (ABMON_8)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_9), nl_langinfo (ABMON_9)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_10), nl_langinfo (ABMON_10)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_11), nl_langinfo (ABMON_11)) == 0);
-  ASSERT (strcmp (nl_langinfo (ABALTMON_12), nl_langinfo (ABMON_12)) == 0);
+  ASSERT (streq (nl_langinfo (ABALTMON_1), nl_langinfo (ABMON_1)));
+  ASSERT (streq (nl_langinfo (ABALTMON_2), nl_langinfo (ABMON_2)));
+  ASSERT (streq (nl_langinfo (ABALTMON_3), nl_langinfo (ABMON_3)));
+  ASSERT (streq (nl_langinfo (ABALTMON_4), nl_langinfo (ABMON_4)));
+  ASSERT (streq (nl_langinfo (ABALTMON_5), nl_langinfo (ABMON_5)));
+  ASSERT (streq (nl_langinfo (ABALTMON_6), nl_langinfo (ABMON_6)));
+  ASSERT (streq (nl_langinfo (ABALTMON_7), nl_langinfo (ABMON_7)));
+  ASSERT (streq (nl_langinfo (ABALTMON_8), nl_langinfo (ABMON_8)));
+  ASSERT (streq (nl_langinfo (ABALTMON_9), nl_langinfo (ABMON_9)));
+  ASSERT (streq (nl_langinfo (ABALTMON_10), nl_langinfo (ABMON_10)));
+  ASSERT (streq (nl_langinfo (ABALTMON_11), nl_langinfo (ABMON_11)));
+  ASSERT (streq (nl_langinfo (ABALTMON_12), nl_langinfo (ABMON_12)));
   ASSERT (strlen (nl_langinfo (ERA)) >= 0);
   ASSERT (strlen (nl_langinfo (ERA_D_FMT)) >= 0);
   ASSERT (strlen (nl_langinfo (ERA_D_T_FMT)) >= 0);

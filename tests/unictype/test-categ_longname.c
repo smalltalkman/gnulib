@@ -25,8 +25,8 @@
 int
 main ()
 {
-  ASSERT (strcmp (uc_general_category_long_name (UC_CATEGORY_Z), "Separator") == 0);
-  ASSERT (strcmp (uc_general_category_long_name (UC_CATEGORY_Nl), "Letter Number") == 0);
+  ASSERT (streq (uc_general_category_long_name (UC_CATEGORY_Z), "Separator"));
+  ASSERT (streq (uc_general_category_long_name (UC_CATEGORY_Nl), "Letter Number"));
   ASSERT (uc_general_category_long_name (uc_general_category_or (UC_CATEGORY_Z, UC_CATEGORY_Nl)) == NULL);
 
   return test_exit_status;

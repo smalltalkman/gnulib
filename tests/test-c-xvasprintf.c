@@ -50,12 +50,12 @@ main (int argc, char *argv[])
     char s[16];
 
     snprintf (s, sizeof s, "%#.0f", 1.0);
-    if (!strcmp (s, "1."))
+    if (streq (s, "1."))
       {
         /* Skip the test, since we're not in a useful locale for testing. */
         return 77;
       }
-    ASSERT (!strcmp (s, "1,"));
+    ASSERT (streq (s, "1,"));
   }
 
   /* Test behaviour of c_xasprintf() and c_xvasprintf().
@@ -65,12 +65,12 @@ main (int argc, char *argv[])
 
     s = c_xasprintf ("%#.0f", 1.0);
     ASSERT (s != NULL);
-    ASSERT (!strcmp (s, "1."));
+    ASSERT (streq (s, "1."));
     free (s);
 
     s = my_c_xasprintf ("%#.0f", 1.0);
     ASSERT (s != NULL);
-    ASSERT (!strcmp (s, "1."));
+    ASSERT (streq (s, "1."));
     free (s);
   }
 

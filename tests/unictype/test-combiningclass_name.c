@@ -25,26 +25,26 @@
 int
 main ()
 {
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_NR), "NR") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_OV), "OV") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_NK), "NK") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_KV), "KV") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_VR), "VR") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_ATBL), "ATBL") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_ATB), "ATB") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_ATA), "ATA") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_ATAR), "ATAR") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_BL), "BL") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_B), "B") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_BR), "BR") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_L), "L") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_R), "R") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_AL), "AL") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_A), "A") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_AR), "AR") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_DB), "DB") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_DA), "DA") == 0);
-  ASSERT (strcmp (uc_combining_class_name (UC_CCC_IS), "IS") == 0);
+  ASSERT (streq (uc_combining_class_name (UC_CCC_NR), "NR"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_OV), "OV"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_NK), "NK"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_KV), "KV"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_VR), "VR"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_ATBL), "ATBL"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_ATB), "ATB"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_ATA), "ATA"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_ATAR), "ATAR"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_BL), "BL"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_B), "B"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_BR), "BR"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_L), "L"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_R), "R"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_AL), "AL"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_A), "A"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_AR), "AR"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_DB), "DB"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_DA), "DA"));
+  ASSERT (streq (uc_combining_class_name (UC_CCC_IS), "IS"));
   ASSERT (uc_combining_class_name (-5) == NULL);
   ASSERT (uc_combining_class_name (163) == NULL);
   ASSERT (uc_combining_class_name (255) == NULL);

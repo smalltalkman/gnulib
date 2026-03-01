@@ -371,7 +371,7 @@ main (void)
     char *result2 = canonicalize_filename_mode (BASE "/p/1", CAN_EXISTING);
     ASSERT (result1 != NULL);
     ASSERT (result2 != NULL);
-    ASSERT (strcmp (result2 + strlen (result1), "/d/2") == 0);
+    ASSERT (streq (result2 + strlen (result1), "/d/2"));
     free (result1);
     free (result2);
   }

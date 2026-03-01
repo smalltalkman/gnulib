@@ -27,12 +27,12 @@
 int
 main ()
 {
-  ASSERT (strcmp (uc_joining_type_long_name (UC_JOINING_TYPE_U), "Non Joining") == 0);
-  ASSERT (strcmp (uc_joining_type_long_name (UC_JOINING_TYPE_T), "Transparent") == 0);
-  ASSERT (strcmp (uc_joining_type_long_name (UC_JOINING_TYPE_C), "Join Causing") == 0);
-  ASSERT (strcmp (uc_joining_type_long_name (UC_JOINING_TYPE_L), "Left Joining") == 0);
-  ASSERT (strcmp (uc_joining_type_long_name (UC_JOINING_TYPE_R), "Right Joining") == 0);
-  ASSERT (strcmp (uc_joining_type_long_name (UC_JOINING_TYPE_D), "Dual Joining") == 0);
+  ASSERT (streq (uc_joining_type_long_name (UC_JOINING_TYPE_U), "Non Joining"));
+  ASSERT (streq (uc_joining_type_long_name (UC_JOINING_TYPE_T), "Transparent"));
+  ASSERT (streq (uc_joining_type_long_name (UC_JOINING_TYPE_C), "Join Causing"));
+  ASSERT (streq (uc_joining_type_long_name (UC_JOINING_TYPE_L), "Left Joining"));
+  ASSERT (streq (uc_joining_type_long_name (UC_JOINING_TYPE_R), "Right Joining"));
+  ASSERT (streq (uc_joining_type_long_name (UC_JOINING_TYPE_D), "Dual Joining"));
   ASSERT (uc_joining_type_long_name (-1) == NULL);
 
   return test_exit_status;

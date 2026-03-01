@@ -179,7 +179,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%a %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNAND
@@ -188,7 +188,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%a %d", SNaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -390,7 +390,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
        <https://lists.gnu.org/r/bug-gnulib/2007-04/msg00107.html> */
     ASSERT (strlen (result) == 50 + 3
             && strisnan (result, strspn (result, " "), strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -450,7 +450,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%La %d", NaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNANL
@@ -459,7 +459,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%La %d", SNaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -471,7 +471,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%La %d", x.value, 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
   {
@@ -482,7 +482,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%La %d", x.value, 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
   /* sprintf should print something for noncanonical values.  */
@@ -726,7 +726,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
        <https://lists.gnu.org/r/bug-gnulib/2007-04/msg00107.html> */
     ASSERT (strlen (result) == 50 + 3
             && strisnan (result, strspn (result, " "), strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -876,7 +876,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%f %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNAND
@@ -885,7 +885,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%f %d", SNaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -966,7 +966,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%050f %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) == 50 + 3
             && strisnan (result, strspn (result, " "), strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1135,7 +1135,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Lf %d", NaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNANL
@@ -1144,7 +1144,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Lf %d", SNaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -1156,7 +1156,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Lf %d", x.value, 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
   {
@@ -1167,7 +1167,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Lf %d", x.value, 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
   /* sprintf should print something for noncanonical values.  */
@@ -1289,7 +1289,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%050Lf %d", NaNl (), 33, 44, 55);
     ASSERT (strlen (result) == 50 + 3
             && strisnan (result, strspn (result, " "), strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1373,7 +1373,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%F %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 1)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNAND
@@ -1382,7 +1382,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%F %d", SNaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 1)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -1480,7 +1480,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%LF %d", NaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 1)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNANL
@@ -1489,7 +1489,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%LF %d", SNaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 1)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -1636,9 +1636,8 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
                 || (strlen (result) == strlen (expected) + 1
                     && memcmp (result, expected, strlen (expected) - 2) == 0
                     && result[strlen (expected) - 2] == '0'
-                    && strcmp (result + strlen (expected) - 1,
-                               expected + strlen (expected) - 2)
-                       == 0));
+                    && streq (result + strlen (expected) - 1,
+                              expected + strlen (expected) - 2)));
         ASSERT (retval == strlen (result));
       }
   }
@@ -1689,7 +1688,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%e %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNAND
@@ -1698,7 +1697,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%e %d", SNaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -1796,7 +1795,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%050e %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) == 50 + 3
             && strisnan (result, strspn (result, " "), strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1928,9 +1927,8 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
                 || (strlen (result) == strlen (expected) + 1
                     && memcmp (result, expected, strlen (expected) - 2) == 0
                     && result[strlen (expected) - 2] == '0'
-                    && strcmp (result + strlen (expected) - 1,
-                               expected + strlen (expected) - 2)
-                       == 0));
+                    && streq (result + strlen (expected) - 1,
+                              expected + strlen (expected) - 2)));
         ASSERT (retval == strlen (result));
       }
   }
@@ -1981,7 +1979,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Le %d", NaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNANL
@@ -1990,7 +1988,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Le %d", SNaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -2002,7 +2000,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Le %d", x.value, 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
   {
@@ -2013,7 +2011,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Le %d", x.value, 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
   /* sprintf should print something for noncanonical values.  */
@@ -2152,7 +2150,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%050Le %d", NaNl (), 33, 44, 55);
     ASSERT (strlen (result) == 50 + 3
             && strisnan (result, strspn (result, " "), strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2286,9 +2284,8 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
                     && strlen (result) == strlen (expected) + 1
                     && memcmp (result, expected, strlen (expected) - 2) == 0
                     && result[strlen (expected) - 2] == '0'
-                    && strcmp (result + strlen (expected) - 1,
-                               expected + strlen (expected) - 2)
-                       == 0));
+                    && streq (result + strlen (expected) - 1,
+                              expected + strlen (expected) - 2)));
         ASSERT (retval == strlen (result));
       }
   }
@@ -2336,7 +2333,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%g %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNAND
@@ -2345,7 +2342,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%g %d", SNaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -2434,7 +2431,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%050g %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) == 50 + 3
             && strisnan (result, strspn (result, " "), strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2564,9 +2561,8 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
                     && strlen (result) == strlen (expected) + 1
                     && memcmp (result, expected, strlen (expected) - 2) == 0
                     && result[strlen (expected) - 2] == '0'
-                    && strcmp (result + strlen (expected) - 1,
-                               expected + strlen (expected) - 2)
-                       == 0));
+                    && streq (result + strlen (expected) - 1,
+                              expected + strlen (expected) - 2)));
         ASSERT (retval == strlen (result));
       }
   }
@@ -2614,7 +2610,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Lg %d", NaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #if HAVE_SNANL
@@ -2623,7 +2619,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%Lg %d", SNaNl (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 #endif
@@ -2635,7 +2631,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%La %d", x.value, 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
   {
@@ -2646,7 +2642,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%La %d", x.value, 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
   /* sprintf should print something for noncanonical values.  */
@@ -2776,7 +2772,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       my_sprintf (result, "%050Lg %d", NaNl (), 33, 44, 55);
     ASSERT (strlen (result) == 50 + 3
             && strisnan (result, strspn (result, " "), strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 

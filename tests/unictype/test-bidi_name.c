@@ -25,7 +25,7 @@
 int
 main ()
 {
-  ASSERT (strcmp (uc_bidi_class_name (UC_BIDI_NSM), "NSM") == 0);
+  ASSERT (streq (uc_bidi_class_name (UC_BIDI_NSM), "NSM"));
   ASSERT (uc_bidi_class_name (-1) == NULL);
 
   return test_exit_status;

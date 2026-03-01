@@ -27,10 +27,10 @@
 int
 main ()
 {
-  ASSERT (strcmp (uc_indic_conjunct_break_name (UC_INDIC_CONJUNCT_BREAK_NONE),      "None") == 0);
-  ASSERT (strcmp (uc_indic_conjunct_break_name (UC_INDIC_CONJUNCT_BREAK_CONSONANT), "Consonant") == 0);
-  ASSERT (strcmp (uc_indic_conjunct_break_name (UC_INDIC_CONJUNCT_BREAK_LINKER),    "Linker") == 0);
-  ASSERT (strcmp (uc_indic_conjunct_break_name (UC_INDIC_CONJUNCT_BREAK_EXTEND),    "Extend") == 0);
+  ASSERT (streq (uc_indic_conjunct_break_name (UC_INDIC_CONJUNCT_BREAK_NONE),      "None"));
+  ASSERT (streq (uc_indic_conjunct_break_name (UC_INDIC_CONJUNCT_BREAK_CONSONANT), "Consonant"));
+  ASSERT (streq (uc_indic_conjunct_break_name (UC_INDIC_CONJUNCT_BREAK_LINKER),    "Linker"));
+  ASSERT (streq (uc_indic_conjunct_break_name (UC_INDIC_CONJUNCT_BREAK_EXTEND),    "Extend"));
   ASSERT (uc_indic_conjunct_break_name (-1) == NULL);
 
   return test_exit_status;

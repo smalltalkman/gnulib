@@ -312,7 +312,7 @@ test_file (struct argp *argp, int argc, char **argv, struct test_args *args)
     fail ("argp_parse failed");
   else if (!args->file)
     fail ("option not processed");
-  else if (strcmp (args->file, "FILE"))
+  else if (!streq (args->file, "FILE"))
     fail ("option processed incorrectly");
 }
 
@@ -359,14 +359,14 @@ test_optional (struct argp *argp, int argc, char **argv,
       if (args->optional)
         fail ("option processed incorrectly");
     }
-  else if (strcmp (args->optional, val))
+  else if (!streq (args->optional, val))
     fail ("option processed incorrectly");
 
   if (a)
     {
       if (index == argc)
         fail ("expected command line argument not found");
-      else if (strcmp (argv[index], a))
+      else if (!streq (argv[index], a))
         fail ("expected command line argument does not match");
     }
 }

@@ -48,7 +48,7 @@ main ()
          category and therefore returns "C/fr_FR.UTF-8/C/C/C/C", but the
          LC_CTYPE category is effectively set to an ASCII LC_CTYPE category;
          in particular, locale_charset() returns "ASCII".  */
-      && strcmp (locale_charset (), "UTF-8") == 0)
+      && streq (locale_charset (), "UTF-8"))
     {
       /* Test width of ASCII characters.  */
       for (wchar_t wc = 0x20; wc < 0x7F; wc++)

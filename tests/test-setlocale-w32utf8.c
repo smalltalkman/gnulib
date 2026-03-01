@@ -42,20 +42,18 @@ main (void)
      limitations of the native setlocale().
      With the modern system settings, expect some "ll_CC.UTF-8" name.  */
   if (!((strlen (name) > 6 && str_endswith (name, ".UTF-8"))
-        || strcmp (name, "LC_COLLATE=English_United States.65001;"
-                         "LC_CTYPE=English_United States.65001;"
-                         "LC_MONETARY=English_United States.65001;"
-                         "LC_NUMERIC=English_United States.65001;"
-                         "LC_TIME=English_United States.65001;"
-                         "LC_MESSAGES=C.UTF-8")
-           == 0
-        || strcmp (name, "LC_COLLATE=English_United States.utf8;"
-                         "LC_CTYPE=English_United States.utf8;"
-                         "LC_MONETARY=English_United States.utf8;"
-                         "LC_NUMERIC=English_United States.utf8;"
-                         "LC_TIME=English_United States.utf8;"
-                         "LC_MESSAGES=C.UTF-8")
-           == 0))
+        || streq (name, "LC_COLLATE=English_United States.65001;"
+                        "LC_CTYPE=English_United States.65001;"
+                        "LC_MONETARY=English_United States.65001;"
+                        "LC_NUMERIC=English_United States.65001;"
+                        "LC_TIME=English_United States.65001;"
+                        "LC_MESSAGES=C.UTF-8")
+        || streq (name, "LC_COLLATE=English_United States.utf8;"
+                        "LC_CTYPE=English_United States.utf8;"
+                        "LC_MONETARY=English_United States.utf8;"
+                        "LC_NUMERIC=English_United States.utf8;"
+                        "LC_TIME=English_United States.utf8;"
+                        "LC_MESSAGES=C.UTF-8")))
     {
       fprintf (stderr, "setlocale() returned \"%s\".\n", name);
       exit (1);

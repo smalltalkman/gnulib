@@ -42,7 +42,7 @@ main ()
         /* Check whether it's really an UTF-8 locale.
            On native Windows, these setlocale calls succeed but the encoding
            of this locale is CP1252, not UTF-8.  */
-        && strcmp (locale_charset (), "UTF-8") == 0))
+        && streq (locale_charset (), "UTF-8")))
     {
       fprintf (stderr, "Skipping test: No common Unicode locale is installed\n");
       return 77;

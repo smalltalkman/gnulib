@@ -8,6 +8,7 @@ m4/mmap-anon.m4
 Depends-on:
 c99
 stdint-h
+streq
 
 configure.ac:
 dnl Check for prerequisites for memory fence checks.

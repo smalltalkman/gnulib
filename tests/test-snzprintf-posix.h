@@ -108,7 +108,7 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
       my_snzprintf (result, sizeof (result), "%f %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -135,7 +135,7 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
       my_snzprintf (result, sizeof (result), "%e %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -154,7 +154,7 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
       my_snzprintf (result, sizeof (result), "%g %d", NaNd (), 33, 44, 55);
     ASSERT (strlen (result) >= 3 + 3
             && strisnan (result, 0, strlen (result) - 3, 0)
-            && strcmp (result + strlen (result) - 3, " 33") == 0);
+            && streq (result + strlen (result) - 3, " 33"));
     ASSERT (retval == strlen (result));
   }
 

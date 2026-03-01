@@ -8,6 +8,7 @@ tests/macros.h
 Depends-on:
 setlocale
 snprintf
+streq
 
 configure.ac:
 gt_LOCALE_FR

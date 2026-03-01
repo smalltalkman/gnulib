@@ -26,12 +26,12 @@ int
 main ()
 {
   /* Test the uc_script function.  */
-  ASSERT (strcmp (uc_script ('A')->name, "Latin") == 0);
-  ASSERT (strcmp (uc_script ('%')->name, "Common") == 0);
+  ASSERT (streq (uc_script ('A')->name, "Latin"));
+  ASSERT (streq (uc_script ('%')->name, "Common"));
   ASSERT (uc_script (0xE0000) == NULL);
 
   /* Test the uc_script_byname function.  */
-  ASSERT (strcmp (uc_script_byname ("Armenian")->name, "Armenian") == 0);
+  ASSERT (streq (uc_script_byname ("Armenian")->name, "Armenian"));
   ASSERT (uc_script_byname ("Pekinese") == NULL);
 
   /* Test the uc_is_script function.  */

@@ -152,7 +152,7 @@ main (void)
                   t->name, dir, dirlen,
                   t->dir, (unsigned long) strlen (t->dir));
         }
-      if (strcmp (last, t->last))
+      if (!streq (last, t->last))
         {
           ok = false;
           printf ("last_component '%s': got '%s', expected '%s'\n",
@@ -169,7 +169,7 @@ main (void)
                   t->name, base, baselen,
                   t->base, (unsigned long) strlen (t->base));
         }
-      if (strcmp (stripped, t->stripped) || modified != t->modified)
+      if (!streq (stripped, t->stripped) || modified != t->modified)
         {
           ok = false;
           printf ("strip_trailing_slashes '%s': got %s %s, expected %s %s\n",

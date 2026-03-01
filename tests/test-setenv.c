@@ -35,7 +35,7 @@ main (void)
   /* Test overwriting.  */
   ASSERT (setenv ("a", "==", -1) == 0);
   ASSERT (setenv ("a", "2", 0) == 0);
-  ASSERT (strcmp (getenv ("a"), "==") == 0);
+  ASSERT (streq (getenv ("a"), "=="));
 
   /* Required to fail with EINVAL.  */
   errno = 0;

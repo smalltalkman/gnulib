@@ -89,7 +89,7 @@ check_all (gl_set_t set1, gl_set_t set2)
 static bool
 string_equals (const void *elt1, const void *elt2)
 {
-  return strcmp ((const char *) elt1, (const char *) elt2) == 0;
+  return streq ((const char *) elt1, (const char *) elt2);
 }
 
 static size_t

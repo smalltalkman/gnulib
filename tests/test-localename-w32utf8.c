@@ -37,7 +37,7 @@ main (void)
   /* With the legacy system settings, expect "C.UTF-8", not "C", because "C" is
      a single-byte locale.
      With the modern system settings, expect some "ll_CC.UTF-8" name.  */
-  ASSERT (strlen (name) > 6 && strcmp (name + strlen (name)- 6, ".UTF-8") == 0);
+  ASSERT (strlen (name) > 6 && streq (name + strlen (name)- 6, ".UTF-8"));
 
   return test_exit_status;
 #else
