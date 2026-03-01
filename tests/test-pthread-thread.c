@@ -51,9 +51,8 @@ main ()
       /* Check that pthread_self () has the same value before than after the
          first call to pthread_create ().  */
       main_thread_after = pthread_self ();
-      ASSERT (memcmp (&main_thread_before, &main_thread_after,
-                      sizeof (pthread_t))
-              == 0);
+      ASSERT (memeq (&main_thread_before, &main_thread_after,
+                     sizeof (pthread_t)));
 
       ASSERT (pthread_join (worker_thread, &ret) == 0);
 

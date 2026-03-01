@@ -35,8 +35,7 @@ main (void)
     "\xac\x8a\xf9\x83\x9c\x35\x92\x94\x2d\xb7\xb4\xb4\x08\x2e\x7f\xe2";
   char buf[SHA512_DIGEST_SIZE];
 
-  if (memcmp (sha512_buffer (in1, strlen (in1), buf),
-              out1, SHA512_DIGEST_SIZE) != 0)
+  if (!memeq (sha512_buffer (in1, strlen (in1), buf), out1, SHA512_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < SHA512_DIGEST_SIZE; i++)

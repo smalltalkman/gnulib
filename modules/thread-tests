@@ -4,6 +4,7 @@ tests/test-thread_create.c
 tests/macros.h
 
 Depends-on:
+memeq
 
 configure.ac:
 

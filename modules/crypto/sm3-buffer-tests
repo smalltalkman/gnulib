@@ -2,6 +2,7 @@ Files:
 tests/test-sm3-buffer.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

@@ -54,7 +54,7 @@ main (int argc, char *argv[])
   if (rc != GC_OK)
     return 1;
 
-  if (memcmp (scratch, ciphertext_1, sizeof (ciphertext_1)))
+  if (!memeq (scratch, ciphertext_1, sizeof (ciphertext_1)))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < 5; i++)
@@ -76,7 +76,7 @@ main (int argc, char *argv[])
   if (rc != GC_OK)
     return 1;
 
-  if (memcmp (scratch, plaintext_1, sizeof (plaintext_1)))
+  if (!memeq (scratch, plaintext_1, sizeof (plaintext_1)))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < 5; i++)

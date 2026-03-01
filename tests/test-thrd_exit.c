@@ -55,9 +55,7 @@ main ()
       /* Check that thrd_current () has the same value before than after the
          first call to thrd_create ().  */
       main_thread_after = thrd_current ();
-      ASSERT (memcmp (&main_thread_before, &main_thread_after,
-                      sizeof (thrd_t))
-              == 0);
+      ASSERT (memeq (&main_thread_before, &main_thread_after, sizeof (thrd_t)));
 
       ASSERT (thrd_join (worker_thread, &ret) == thrd_success);
 

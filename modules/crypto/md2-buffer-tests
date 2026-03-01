@@ -2,6 +2,7 @@ Files:
 tests/test-md2-buffer.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

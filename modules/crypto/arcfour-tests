@@ -2,6 +2,7 @@ Files:
 tests/test-arcfour.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

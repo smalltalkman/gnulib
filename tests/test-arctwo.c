@@ -77,42 +77,42 @@ main (int argc, char *argv[])
   arctwo_setkey_ekb (&ctx, sizeof (key_1), key_1, 0);
   arctwo_encrypt (&ctx, plaintext_1, scratch, ARCTWO_BLOCK_SIZE);
 
-  if (memcmp (scratch, ciphertext_1, sizeof (ciphertext_1)))
+  if (!memeq (scratch, ciphertext_1, sizeof (ciphertext_1)))
     return 1;
 
   arctwo_setkey_ekb (&ctx, sizeof (key_1), key_1, 0);
   arctwo_decrypt (&ctx, scratch, scratch, ARCTWO_BLOCK_SIZE);
-  if (memcmp (scratch, plaintext_1, sizeof (plaintext_1)))
+  if (!memeq (scratch, plaintext_1, sizeof (plaintext_1)))
     return 1;
 
   /* Second test. */
   arctwo_setkey_ekb (&ctx, sizeof (key_2), key_2, 0);
   arctwo_encrypt (&ctx, plaintext_2, scratch, ARCTWO_BLOCK_SIZE);
-  if (memcmp (scratch, ciphertext_2, sizeof (ciphertext_2)))
+  if (!memeq (scratch, ciphertext_2, sizeof (ciphertext_2)))
     return 1;
 
   arctwo_setkey_ekb (&ctx, sizeof (key_2), key_2, 0);
   arctwo_decrypt (&ctx, scratch, scratch, ARCTWO_BLOCK_SIZE);
-  if (memcmp (scratch, plaintext_2, sizeof (plaintext_2)))
+  if (!memeq (scratch, plaintext_2, sizeof (plaintext_2)))
     return 1;
 
   /* Third test. */
   arctwo_setkey_ekb (&ctx, sizeof (key_3), key_3, 0);
   arctwo_encrypt (&ctx, plaintext_3, scratch, ARCTWO_BLOCK_SIZE);
 
-  if (memcmp (scratch, ciphertext_3, sizeof (ciphertext_3)))
+  if (!memeq (scratch, ciphertext_3, sizeof (ciphertext_3)))
     return 1;
 
   arctwo_setkey_ekb (&ctx, sizeof (key_3), key_3, 0);
   arctwo_decrypt (&ctx, scratch, scratch, ARCTWO_BLOCK_SIZE);
-  if (memcmp (scratch, plaintext_3, sizeof (plaintext_3)))
+  if (!memeq (scratch, plaintext_3, sizeof (plaintext_3)))
     return 1;
 
   /* Fourth test. */
   arctwo_setkey_ekb (&ctx, sizeof (key_4), key_4, 63);
   arctwo_encrypt (&ctx, plaintext_4, scratch, ARCTWO_BLOCK_SIZE);
 
-  if (memcmp (scratch, ciphertext_4, sizeof (ciphertext_4)))
+  if (!memeq (scratch, ciphertext_4, sizeof (ciphertext_4)))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < sizeof (ciphertext_4); i++)
@@ -126,14 +126,14 @@ main (int argc, char *argv[])
 
   arctwo_setkey_ekb (&ctx, sizeof (key_4), key_4, 63);
   arctwo_decrypt (&ctx, scratch, scratch, ARCTWO_BLOCK_SIZE);
-  if (memcmp (scratch, plaintext_4, sizeof (plaintext_4)))
+  if (!memeq (scratch, plaintext_4, sizeof (plaintext_4)))
     return 1;
 
   /* Fifth test. */
   arctwo_setkey_ekb (&ctx, sizeof (key_5), key_5, 64);
   arctwo_encrypt (&ctx, plaintext_5, scratch, ARCTWO_BLOCK_SIZE);
 
-  if (memcmp (scratch, ciphertext_5, sizeof (ciphertext_5)))
+  if (!memeq (scratch, ciphertext_5, sizeof (ciphertext_5)))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < sizeof (ciphertext_5); i++)
@@ -147,14 +147,14 @@ main (int argc, char *argv[])
 
   arctwo_setkey_ekb (&ctx, sizeof (key_5), key_5, 64);
   arctwo_decrypt (&ctx, scratch, scratch, ARCTWO_BLOCK_SIZE);
-  if (memcmp (scratch, plaintext_5, sizeof (plaintext_5)))
+  if (!memeq (scratch, plaintext_5, sizeof (plaintext_5)))
     return 1;
 
   /* Sixth test. */
   arctwo_setkey_ekb (&ctx, 8, key_6, 64);
   arctwo_encrypt (&ctx, plaintext_6, scratch, ARCTWO_BLOCK_SIZE);
 
-  if (memcmp (scratch, ciphertext_6, sizeof (ciphertext_6)))
+  if (!memeq (scratch, ciphertext_6, sizeof (ciphertext_6)))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < sizeof (ciphertext_6); i++)
@@ -168,7 +168,7 @@ main (int argc, char *argv[])
 
   arctwo_setkey_ekb (&ctx, sizeof (key_6), key_6, 64);
   arctwo_decrypt (&ctx, scratch, scratch, ARCTWO_BLOCK_SIZE);
-  if (memcmp (scratch, plaintext_6, sizeof (plaintext_6)))
+  if (!memeq (scratch, plaintext_6, sizeof (plaintext_6)))
     return 1;
 
   return 0;

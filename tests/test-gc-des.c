@@ -80,7 +80,7 @@ main (int argc, char *argv[])
 
         ctx_array[i] = ctx;
       }
-    if (memcmp (temp3, result, 8))
+    if (!memeq (temp3, result, 8))
       return 1;
 
     for (int i = 0; i < 64; ++i)

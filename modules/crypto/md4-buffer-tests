@@ -2,6 +2,7 @@ Files:
 tests/test-md4-buffer.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

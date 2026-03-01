@@ -5,6 +5,7 @@ tests/test-thrd_exit.c
 tests/macros.h
 
 Depends-on:
+memeq
 
 configure.ac:
 

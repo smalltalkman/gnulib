@@ -35,7 +35,7 @@ main (int argc, char *argv[])
 
   arcfour_setkey (&ctx, key_1, sizeof (key_1));
   arcfour_stream (&ctx, plaintext_1, scratch, sizeof (plaintext_1));
-  if (memcmp (scratch, ciphertext_1, sizeof (ciphertext_1)))
+  if (!memeq (scratch, ciphertext_1, sizeof (ciphertext_1)))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < 5; i++)
@@ -51,7 +51,7 @@ main (int argc, char *argv[])
 
   arcfour_setkey (&ctx, key_1, sizeof (key_1));
   arcfour_stream (&ctx, scratch, scratch, sizeof (plaintext_1));
-  if (memcmp (scratch, plaintext_1, sizeof (plaintext_1)))
+  if (!memeq (scratch, plaintext_1, sizeof (plaintext_1)))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < 5; i++)

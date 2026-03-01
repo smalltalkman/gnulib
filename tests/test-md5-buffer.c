@@ -37,7 +37,7 @@ main (void)
     "\xF9\x6B\x69\x7D\x7C\xB7\x93\x8D\x52\x5A\x2F\x31\xAA\xF1\x61\xD0";
   char buf[MD5_DIGEST_SIZE];
 
-  if (memcmp (md5_buffer (in1, strlen (in1), buf), out1, MD5_DIGEST_SIZE) != 0)
+  if (!memeq (md5_buffer (in1, strlen (in1), buf), out1, MD5_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < MD5_DIGEST_SIZE; i++)
@@ -49,7 +49,7 @@ main (void)
       return 1;
     }
 
-  if (memcmp (md5_buffer (in2, strlen (in2), buf), out2, MD5_DIGEST_SIZE) != 0)
+  if (!memeq (md5_buffer (in2, strlen (in2), buf), out2, MD5_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < MD5_DIGEST_SIZE; i++)

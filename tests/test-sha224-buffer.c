@@ -33,8 +33,7 @@ main (void)
     "\x5b\xdf\x7e\x27\xa1\xb7\x00\xf4\x62\x89\x41\x84";
   char buf[SHA224_DIGEST_SIZE];
 
-  if (memcmp (sha224_buffer (in1, strlen (in1), buf),
-              out1, SHA224_DIGEST_SIZE) != 0)
+  if (!memeq (sha224_buffer (in1, strlen (in1), buf), out1, SHA224_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < SHA224_DIGEST_SIZE; i++)

@@ -27,8 +27,7 @@ test (const char *in, const char *out)
 {
   char buf[SM3_DIGEST_SIZE];
 
-  if (memcmp (sm3_buffer (in, strlen (in), buf),
-              out, SM3_DIGEST_SIZE) != 0)
+  if (!memeq (sm3_buffer (in, strlen (in), buf), out, SM3_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < SM3_DIGEST_SIZE; i++)

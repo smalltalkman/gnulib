@@ -2,6 +2,7 @@ Files:
 tests/test-gc-arctwo.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

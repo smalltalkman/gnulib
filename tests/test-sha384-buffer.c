@@ -34,8 +34,7 @@ main (void)
     "\x74\x8d\x80\x99\xfb\x05\xb5\x22\xa3\x8f\x29\x1c\xea\xdd\x7a\x82";
   char buf[SHA384_DIGEST_SIZE];
 
-  if (memcmp (sha384_buffer (in1, strlen (in1), buf),
-              out1, SHA384_DIGEST_SIZE) != 0)
+  if (!memeq (sha384_buffer (in1, strlen (in1), buf), out1, SHA384_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < SHA384_DIGEST_SIZE; i++)

@@ -34,8 +34,7 @@ main (int argc, char *argv[])
     "\x4e\x8d\xdf\xf3\x65\x02\x92\xab\x5a\x41\x08\xc3\xaa\x47\x94\x0b";
   char buf[MD2_DIGEST_SIZE];
 
-  if (memcmp (md2_buffer (in1, strlen (in1), buf), out1, MD2_DIGEST_SIZE) !=
-      0)
+  if (!memeq (md2_buffer (in1, strlen (in1), buf), out1, MD2_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < MD2_DIGEST_SIZE; i++)
@@ -47,8 +46,7 @@ main (int argc, char *argv[])
       return 1;
     }
 
-  if (memcmp (md2_buffer (in2, strlen (in2), buf), out2, MD2_DIGEST_SIZE) !=
-      0)
+  if (!memeq (md2_buffer (in2, strlen (in2), buf), out2, MD2_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < MD2_DIGEST_SIZE; i++)

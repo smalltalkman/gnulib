@@ -33,8 +33,7 @@ main (void)
     "\x89\xaf\xfa\x91\x9c\x8a\x85\xb7\x19\x8d\x8b\x15\xaf\xa3\x4b\x2c";
   char buf[SHA256_DIGEST_SIZE];
 
-  if (memcmp (sha256_buffer (in1, strlen (in1), buf),
-              out1, SHA256_DIGEST_SIZE) != 0)
+  if (!memeq (sha256_buffer (in1, strlen (in1), buf), out1, SHA256_DIGEST_SIZE))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < SHA256_DIGEST_SIZE; i++)

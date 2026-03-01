@@ -2,6 +2,7 @@ Files:
 tests/test-des.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

@@ -47,7 +47,7 @@ main (int argc, char *argv[])
         memcpy (key, temp3, 8);
         memcpy (input, temp1, 8);
       }
-    if (memcmp (temp3, result, 8))
+    if (!memeq (temp3, result, 8))
       return 1;
   }
 
@@ -71,7 +71,7 @@ main (int argc, char *argv[])
         gl_3des_set3keys (&des3, key1, input, key2);
         gl_3des_ecb_encrypt (&des3, input, input);
       }
-    if (memcmp (input, result, 8))
+    if (!memeq (input, result, 8))
       return 1;
   }
 
@@ -197,13 +197,13 @@ main (int argc, char *argv[])
                           testdata[i].key + 8, testdata[i].key + 16);
 
         gl_3des_ecb_encrypt (&des3, testdata[i].plain, result);
-        if (memcmp (testdata[i].cipher, result, 8))
+        if (!memeq (testdata[i].cipher, result, 8))
           {
             return 1;
           }
 
         gl_3des_ecb_decrypt (&des3, testdata[i].cipher, result);
-        if (memcmp (testdata[i].plain, result, 8))
+        if (!memeq (testdata[i].plain, result, 8))
           {
             return 1;
           }

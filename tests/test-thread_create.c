@@ -51,9 +51,8 @@ main ()
       /* Check that gl_thread_self () has the same value before than after the
          first call to gl_thread_create ().  */
       main_thread_after = gl_thread_self ();
-      ASSERT (memcmp (&main_thread_before, &main_thread_after,
-                      sizeof (gl_thread_t))
-              == 0);
+      ASSERT (memeq (&main_thread_before, &main_thread_after,
+                     sizeof (gl_thread_t)));
 
       gl_thread_join (worker_thread, &ret);
 
