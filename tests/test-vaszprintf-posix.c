@@ -65,10 +65,10 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%a %d", 3.1416015625, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.922p+1 33") == 0
-            || strcmp (result, "0x3.244p+0 33") == 0
-            || strcmp (result, "0x6.488p-1 33") == 0
-            || strcmp (result, "0xc.91p-2 33") == 0);
+    ASSERT (streq (result, "0x1.922p+1 33")
+            || streq (result, "0x3.244p+0 33")
+            || streq (result, "0x6.488p-1 33")
+            || streq (result, "0xc.91p-2 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -78,10 +78,10 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%A %d", -3.1416015625, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "-0X1.922P+1 33") == 0
-            || strcmp (result, "-0X3.244P+0 33") == 0
-            || strcmp (result, "-0X6.488P-1 33") == 0
-            || strcmp (result, "-0XC.91P-2 33") == 0);
+    ASSERT (streq (result, "-0X1.922P+1 33")
+            || streq (result, "-0X3.244P+0 33")
+            || streq (result, "-0X6.488P-1 33")
+            || streq (result, "-0XC.91P-2 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -91,10 +91,10 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%.2a %d", 1.51, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.83p+0 33") == 0
-            || strcmp (result, "0x3.05p-1 33") == 0
-            || strcmp (result, "0x6.0ap-2 33") == 0
-            || strcmp (result, "0xc.14p-3 33") == 0);
+    ASSERT (streq (result, "0x1.83p+0 33")
+            || streq (result, "0x3.05p-1 33")
+            || streq (result, "0x6.0ap-2 33")
+            || streq (result, "0xc.14p-3 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -105,10 +105,10 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%.0a %d", 1.51, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x2p+0 33") == 0
-            || strcmp (result, "0x3p-1 33") == 0
-            || strcmp (result, "0x6p-2 33") == 0
-            || strcmp (result, "0xcp-3 33") == 0);
+    ASSERT (streq (result, "0x2p+0 33")
+            || streq (result, "0x3p-1 33")
+            || streq (result, "0x6p-2 33")
+            || streq (result, "0xcp-3 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -120,8 +120,8 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%f %d", Infinityd (), 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -143,8 +143,8 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%010f %d", Infinityd (), 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "       inf 33") == 0
-            || strcmp (result, "  infinity 33") == 0);
+    ASSERT (streq (result, "       inf 33")
+            || streq (result, "  infinity 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -156,8 +156,8 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%e %d", Infinityd (), 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -181,8 +181,8 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%g %d", Infinityd (), 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -208,7 +208,7 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ASSERT (result != NULL);
     for (size_t i = 0; i < 4000 - 7; i++)
       ASSERT (result[i] == '0');
-    ASSERT (strcmp (result + 4000 - 7, "1234567 99") == 0);
+    ASSERT (streq (result + 4000 - 7, "1234567 99"));
     ASSERT (retval == strlen (result));
     free (result);
   }
@@ -222,7 +222,7 @@ test_function (ptrdiff_t (*my_aszprintf) (char **, const char *, ...))
     ptrdiff_t retval =
       my_aszprintf (&result, "%b %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
     free (result);
   }

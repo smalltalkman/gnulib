@@ -44,7 +44,7 @@ main (int argc, char *argv[])
   int ns = 123456789;
   char buf[100];
 
-  if (strcmp (argv[1], "1") == 0)
+  if (streq (argv[1], "1"))
     {
       /* Test a non-ASCII French month name.  */
       ptrdiff_t n = nstrftime (buf, sizeof (buf), "%B", tm, NULL, ns);
@@ -56,7 +56,7 @@ main (int argc, char *argv[])
       return test_exit_status;
     }
 
-  if (strcmp (argv[1], "2") == 0)
+  if (streq (argv[1], "2"))
     {
       /* Test a non-ASCII Japanese weekday name.  */
       ptrdiff_t n = nstrftime (buf, sizeof (buf), "%A", tm, NULL, ns);

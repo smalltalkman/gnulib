@@ -123,7 +123,7 @@ main (void)
 
   len = base64_encode_alloc (in, strlen (in), &p);
   ASSERT (len == 24);
-  ASSERT (strcmp (p, "YWJjZGVmZ2hpamtsbW5vcA==") == 0);
+  ASSERT (streq (p, "YWJjZGVmZ2hpamtsbW5vcA=="));
   free (p);
 
   len = base64_encode_alloc (in, IDX_MAX - 5, &p);

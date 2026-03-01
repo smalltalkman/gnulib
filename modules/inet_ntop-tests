@@ -6,6 +6,7 @@ tests/macros.h
 Depends-on:
 netinet_in-h
 sys_socket-h
+streq
 
 configure.ac:
 AC_C_BIGENDIAN

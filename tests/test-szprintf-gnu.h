@@ -31,7 +31,7 @@ test_function (ptrdiff_t (*my_szprintf) (char *, const char *, ...))
   { /* This test would fail on all platforms other than glibc ≥ 2.35.  */
     ptrdiff_t retval =
       my_szprintf (result, "%#B %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "0B11000000111001 33") == 0);
+    ASSERT (streq (result, "0B11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 }

@@ -83,7 +83,7 @@ main (void)
         char *new_dir = malloc (len);
         ASSERT (new_dir);
         ASSERT (getcwd (new_dir, len) == new_dir);
-        ASSERT (strcmp (cwd, new_dir) == 0);
+        ASSERT (streq (cwd, new_dir));
         free (new_dir);
       }
 

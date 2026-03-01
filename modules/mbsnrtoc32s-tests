@@ -19,6 +19,7 @@ mbsinit
 btoc32
 c32tob
 setlocale
+streq
 
 configure.ac:
 gt_LOCALE_EN_UTF8

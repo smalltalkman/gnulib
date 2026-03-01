@@ -3,6 +3,7 @@ tests/test-getndelim2.c
 tests/macros.h
 
 Depends-on:
+streq
 
 configure.ac:
 

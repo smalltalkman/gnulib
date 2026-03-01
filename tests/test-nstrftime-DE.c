@@ -77,18 +77,18 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1969-12-28") == 0);
+    ASSERT (streq (buf, "1969-12-28"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d. %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "28. Dezember 1969") == 0);
+    ASSERT (streq (buf, "28. Dezember 1969"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "28.12.1969") == 0
-            || strcmp (buf, "28.12.69") == 0 /* musl, NetBSD, Solaris */);
+    ASSERT (streq (buf, "28.12.1969")
+            || streq (buf, "28.12.69") /* musl, NetBSD, Solaris */);
   }
 # endif
   {
@@ -97,18 +97,18 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "2025-03-01") == 0);
+    ASSERT (streq (buf, "2025-03-01"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d. %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1. März 2025") == 0);
+    ASSERT (streq (buf, "1. März 2025"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "01.03.2025") == 0
-            || strcmp (buf, "01.03.25") == 0 /* musl, NetBSD, Solaris */);
+    ASSERT (streq (buf, "01.03.2025")
+            || streq (buf, "01.03.25") /* musl, NetBSD, Solaris */);
   }
 
   return test_exit_status;

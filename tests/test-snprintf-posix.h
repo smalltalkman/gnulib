@@ -110,28 +110,28 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   {
     int retval =
       my_snprintf (result, sizeof (result), "%ju %d", (uintmax_t) 12345671, 33, 44, 55);
-    ASSERT (strcmp (result, "12345671 33") == 0);
+    ASSERT (streq (result, "12345671 33"));
     ASSERT (retval == strlen (result));
   }
 
   {
     int retval =
       my_snprintf (result, sizeof (result), "%zu %d", (size_t) 12345672, 33, 44, 55);
-    ASSERT (strcmp (result, "12345672 33") == 0);
+    ASSERT (streq (result, "12345672 33"));
     ASSERT (retval == strlen (result));
   }
 
   {
     int retval =
       my_snprintf (result, sizeof (result), "%tu %d", (ptrdiff_t) 12345673, 33, 44, 55);
-    ASSERT (strcmp (result, "12345673 33") == 0);
+    ASSERT (streq (result, "12345673 33"));
     ASSERT (retval == strlen (result));
   }
 
   {
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", (long double) 1.5, 33, 44, 55);
-    ASSERT (strcmp (result, "1.5 33") == 0);
+    ASSERT (streq (result, "1.5 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -141,27 +141,27 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%a %d", 3.1416015625, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.922p+1 33") == 0
-            || strcmp (result, "0x3.244p+0 33") == 0
-            || strcmp (result, "0x6.488p-1 33") == 0
-            || strcmp (result, "0xc.91p-2 33") == 0);
+    ASSERT (streq (result, "0x1.922p+1 33")
+            || streq (result, "0x3.244p+0 33")
+            || streq (result, "0x6.488p-1 33")
+            || streq (result, "0xc.91p-2 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%A %d", -3.1416015625, 33, 44, 55);
-    ASSERT (strcmp (result, "-0X1.922P+1 33") == 0
-            || strcmp (result, "-0X3.244P+0 33") == 0
-            || strcmp (result, "-0X6.488P-1 33") == 0
-            || strcmp (result, "-0XC.91P-2 33") == 0);
+    ASSERT (streq (result, "-0X1.922P+1 33")
+            || streq (result, "-0X3.244P+0 33")
+            || streq (result, "-0X6.488P-1 33")
+            || streq (result, "-0XC.91P-2 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%a %d", 0.0, 33, 44, 55);
-    ASSERT (strcmp (result, "0x0p+0 33") == 0);
+    ASSERT (streq (result, "0x0p+0 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -169,21 +169,21 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%a %d", minus_zerod, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0x0p+0 33") == 0);
+      ASSERT (streq (result, "-0x0p+0 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%a %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0);
+    ASSERT (streq (result, "inf 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%a %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "-inf 33") == 0);
+    ASSERT (streq (result, "-inf 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -209,60 +209,60 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Rounding near the decimal point.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.0a %d", 1.5, 33, 44, 55);
-    ASSERT (strcmp (result, "0x2p+0 33") == 0
-            || strcmp (result, "0x3p-1 33") == 0
-            || strcmp (result, "0x6p-2 33") == 0
-            || strcmp (result, "0xcp-3 33") == 0);
+    ASSERT (streq (result, "0x2p+0 33")
+            || streq (result, "0x3p-1 33")
+            || streq (result, "0x6p-2 33")
+            || streq (result, "0xcp-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding with precision 0.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.0a %d", 1.51, 33, 44, 55);
-    ASSERT (strcmp (result, "0x2p+0 33") == 0
-            || strcmp (result, "0x3p-1 33") == 0
-            || strcmp (result, "0x6p-2 33") == 0
-            || strcmp (result, "0xcp-3 33") == 0);
+    ASSERT (streq (result, "0x2p+0 33")
+            || streq (result, "0x3p-1 33")
+            || streq (result, "0x6p-2 33")
+            || streq (result, "0xcp-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding with precision 1.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.1a %d", 1.51, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.8p+0 33") == 0
-            || strcmp (result, "0x3.0p-1 33") == 0
-            || strcmp (result, "0x6.1p-2 33") == 0
-            || strcmp (result, "0xc.1p-3 33") == 0);
+    ASSERT (streq (result, "0x1.8p+0 33")
+            || streq (result, "0x3.0p-1 33")
+            || streq (result, "0x6.1p-2 33")
+            || streq (result, "0xc.1p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding with precision 2.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2a %d", 1.51, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.83p+0 33") == 0
-            || strcmp (result, "0x3.05p-1 33") == 0
-            || strcmp (result, "0x6.0ap-2 33") == 0
-            || strcmp (result, "0xc.14p-3 33") == 0);
+    ASSERT (streq (result, "0x1.83p+0 33")
+            || streq (result, "0x3.05p-1 33")
+            || streq (result, "0x6.0ap-2 33")
+            || streq (result, "0xc.14p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding with precision 3.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.3a %d", 1.51, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.829p+0 33") == 0
-            || strcmp (result, "0x3.052p-1 33") == 0
-            || strcmp (result, "0x6.0a4p-2 33") == 0
-            || strcmp (result, "0xc.148p-3 33") == 0);
+    ASSERT (streq (result, "0x1.829p+0 33")
+            || streq (result, "0x3.052p-1 33")
+            || streq (result, "0x6.0a4p-2 33")
+            || streq (result, "0xc.148p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding can turn a ...FFF into a ...000.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.3a %d", 1.49999, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.800p+0 33") == 0
-            || strcmp (result, "0x3.000p-1 33") == 0
-            || strcmp (result, "0x6.000p-2 33") == 0
-            || strcmp (result, "0xc.000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.800p+0 33")
+            || streq (result, "0x3.000p-1 33")
+            || streq (result, "0x6.000p-2 33")
+            || streq (result, "0xc.000p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -270,120 +270,120 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
        This shows a Mac OS X 10.3.9 (Darwin 7.9) bug.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.1a %d", 1.999, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.0p+1 33") == 0
-            || strcmp (result, "0x2.0p+0 33") == 0
-            || strcmp (result, "0x4.0p-1 33") == 0
-            || strcmp (result, "0x8.0p-2 33") == 0);
+    ASSERT (streq (result, "0x1.0p+1 33")
+            || streq (result, "0x2.0p+0 33")
+            || streq (result, "0x4.0p-1 33")
+            || streq (result, "0x8.0p-2 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10a %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "  0x1.cp+0 33") == 0
-            || strcmp (result, "  0x3.8p-1 33") == 0
-            || strcmp (result, "    0x7p-2 33") == 0
-            || strcmp (result, "    0xep-3 33") == 0);
+    ASSERT (streq (result, "  0x1.cp+0 33")
+            || streq (result, "  0x3.8p-1 33")
+            || streq (result, "    0x7p-2 33")
+            || streq (result, "    0xep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*a %d", 10, 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "  0x1.cp+0 33") == 0
-            || strcmp (result, "  0x3.8p-1 33") == 0
-            || strcmp (result, "    0x7p-2 33") == 0
-            || strcmp (result, "    0xep-3 33") == 0);
+    ASSERT (streq (result, "  0x1.cp+0 33")
+            || streq (result, "  0x3.8p-1 33")
+            || streq (result, "    0x7p-2 33")
+            || streq (result, "    0xep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*a %d", -10, 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.cp+0   33") == 0
-            || strcmp (result, "0x3.8p-1   33") == 0
-            || strcmp (result, "0x7p-2     33") == 0
-            || strcmp (result, "0xep-3     33") == 0);
+    ASSERT (streq (result, "0x1.cp+0   33")
+            || streq (result, "0x3.8p-1   33")
+            || streq (result, "0x7p-2     33")
+            || streq (result, "0xep-3     33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Small precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.10a %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.c000000000p+0 33") == 0
-            || strcmp (result, "0x3.8000000000p-1 33") == 0
-            || strcmp (result, "0x7.0000000000p-2 33") == 0
-            || strcmp (result, "0xe.0000000000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.c000000000p+0 33")
+            || streq (result, "0x3.8000000000p-1 33")
+            || streq (result, "0x7.0000000000p-2 33")
+            || streq (result, "0xe.0000000000p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Large precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.50a %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.c0000000000000000000000000000000000000000000000000p+0 33") == 0
-            || strcmp (result, "0x3.80000000000000000000000000000000000000000000000000p-1 33") == 0
-            || strcmp (result, "0x7.00000000000000000000000000000000000000000000000000p-2 33") == 0
-            || strcmp (result, "0xe.00000000000000000000000000000000000000000000000000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.c0000000000000000000000000000000000000000000000000p+0 33")
+            || streq (result, "0x3.80000000000000000000000000000000000000000000000000p-1 33")
+            || streq (result, "0x7.00000000000000000000000000000000000000000000000000p-2 33")
+            || streq (result, "0xe.00000000000000000000000000000000000000000000000000p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10a %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.cp+0   33") == 0
-            || strcmp (result, "0x3.8p-1   33") == 0
-            || strcmp (result, "0x7p-2     33") == 0
-            || strcmp (result, "0xep-3     33") == 0);
+    ASSERT (streq (result, "0x1.cp+0   33")
+            || streq (result, "0x3.8p-1   33")
+            || streq (result, "0x7p-2     33")
+            || streq (result, "0xep-3     33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SHOWSIGN.  */
     int retval =
       my_snprintf (result, sizeof (result), "%+a %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "+0x1.cp+0 33") == 0
-            || strcmp (result, "+0x3.8p-1 33") == 0
-            || strcmp (result, "+0x7p-2 33") == 0
-            || strcmp (result, "+0xep-3 33") == 0);
+    ASSERT (streq (result, "+0x1.cp+0 33")
+            || streq (result, "+0x3.8p-1 33")
+            || streq (result, "+0x7p-2 33")
+            || streq (result, "+0xep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SPACE.  */
     int retval =
       my_snprintf (result, sizeof (result), "% a %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, " 0x1.cp+0 33") == 0
-            || strcmp (result, " 0x3.8p-1 33") == 0
-            || strcmp (result, " 0x7p-2 33") == 0
-            || strcmp (result, " 0xep-3 33") == 0);
+    ASSERT (streq (result, " 0x1.cp+0 33")
+            || streq (result, " 0x3.8p-1 33")
+            || streq (result, " 0x7p-2 33")
+            || streq (result, " 0xep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#a %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.cp+0 33") == 0
-            || strcmp (result, "0x3.8p-1 33") == 0
-            || strcmp (result, "0x7.p-2 33") == 0
-            || strcmp (result, "0xe.p-3 33") == 0);
+    ASSERT (streq (result, "0x1.cp+0 33")
+            || streq (result, "0x3.8p-1 33")
+            || streq (result, "0x7.p-2 33")
+            || streq (result, "0xe.p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#a %d", 1.0, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.p+0 33") == 0
-            || strcmp (result, "0x2.p-1 33") == 0
-            || strcmp (result, "0x4.p-2 33") == 0
-            || strcmp (result, "0x8.p-3 33") == 0);
+    ASSERT (streq (result, "0x1.p+0 33")
+            || streq (result, "0x2.p-1 33")
+            || streq (result, "0x4.p-2 33")
+            || streq (result, "0x8.p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with finite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%010a %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "0x001.cp+0 33") == 0
-            || strcmp (result, "0x003.8p-1 33") == 0
-            || strcmp (result, "0x00007p-2 33") == 0
-            || strcmp (result, "0x0000ep-3 33") == 0);
+    ASSERT (streq (result, "0x001.cp+0 33")
+            || streq (result, "0x003.8p-1 33")
+            || streq (result, "0x00007p-2 33")
+            || streq (result, "0x0000ep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -392,7 +392,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%010a %d", Infinityd (), 33, 44, 55);
     /* "0000000inf 33" is not a valid result; see
        <https://lists.gnu.org/r/bug-gnulib/2007-04/msg00107.html> */
-    ASSERT (strcmp (result, "       inf 33") == 0);
+    ASSERT (streq (result, "       inf 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -410,27 +410,27 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", 3.1416015625L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.922p+1 33") == 0
-            || strcmp (result, "0x3.244p+0 33") == 0
-            || strcmp (result, "0x6.488p-1 33") == 0
-            || strcmp (result, "0xc.91p-2 33") == 0);
+    ASSERT (streq (result, "0x1.922p+1 33")
+            || streq (result, "0x3.244p+0 33")
+            || streq (result, "0x6.488p-1 33")
+            || streq (result, "0xc.91p-2 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%LA %d", -3.1416015625L, 33, 44, 55);
-    ASSERT (strcmp (result, "-0X1.922P+1 33") == 0
-            || strcmp (result, "-0X3.244P+0 33") == 0
-            || strcmp (result, "-0X6.488P-1 33") == 0
-            || strcmp (result, "-0XC.91P-2 33") == 0);
+    ASSERT (streq (result, "-0X1.922P+1 33")
+            || streq (result, "-0X3.244P+0 33")
+            || streq (result, "-0X6.488P-1 33")
+            || streq (result, "-0XC.91P-2 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", 0.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x0p+0 33") == 0);
+    ASSERT (streq (result, "0x0p+0 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -438,7 +438,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", minus_zerol, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0x0p+0 33") == 0);
+      ASSERT (streq (result, "-0x0p+0 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -447,14 +447,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%La %d", Infinityl (), 33, 44, 55);
     /* Note: This assertion fails under valgrind.
        Reported at <https://bugs.kde.org/show_bug.cgi?id=424044>.  */
-    ASSERT (strcmp (result, "inf 33") == 0);
+    ASSERT (streq (result, "inf 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "-inf 33") == 0);
+    ASSERT (streq (result, "-inf 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -505,7 +505,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Infinity.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -513,7 +513,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Zero.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -521,7 +521,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Unnormalized number.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -529,7 +529,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Denormal.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -537,67 +537,67 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%La %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
 #endif
 
   { /* Rounding near the decimal point.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.0La %d", 1.5L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x2p+0 33") == 0
-            || strcmp (result, "0x3p-1 33") == 0
-            || strcmp (result, "0x6p-2 33") == 0
-            || strcmp (result, "0xcp-3 33") == 0);
+    ASSERT (streq (result, "0x2p+0 33")
+            || streq (result, "0x3p-1 33")
+            || streq (result, "0x6p-2 33")
+            || streq (result, "0xcp-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding with precision 0.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.0La %d", 1.51L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x2p+0 33") == 0
-            || strcmp (result, "0x3p-1 33") == 0
-            || strcmp (result, "0x6p-2 33") == 0
-            || strcmp (result, "0xcp-3 33") == 0);
+    ASSERT (streq (result, "0x2p+0 33")
+            || streq (result, "0x3p-1 33")
+            || streq (result, "0x6p-2 33")
+            || streq (result, "0xcp-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding with precision 1.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.1La %d", 1.51L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.8p+0 33") == 0
-            || strcmp (result, "0x3.0p-1 33") == 0
-            || strcmp (result, "0x6.1p-2 33") == 0
-            || strcmp (result, "0xc.1p-3 33") == 0);
+    ASSERT (streq (result, "0x1.8p+0 33")
+            || streq (result, "0x3.0p-1 33")
+            || streq (result, "0x6.1p-2 33")
+            || streq (result, "0xc.1p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding with precision 2.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2La %d", 1.51L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.83p+0 33") == 0
-            || strcmp (result, "0x3.05p-1 33") == 0
-            || strcmp (result, "0x6.0ap-2 33") == 0
-            || strcmp (result, "0xc.14p-3 33") == 0);
+    ASSERT (streq (result, "0x1.83p+0 33")
+            || streq (result, "0x3.05p-1 33")
+            || streq (result, "0x6.0ap-2 33")
+            || streq (result, "0xc.14p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding with precision 3.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.3La %d", 1.51L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.829p+0 33") == 0
-            || strcmp (result, "0x3.052p-1 33") == 0
-            || strcmp (result, "0x6.0a4p-2 33") == 0
-            || strcmp (result, "0xc.148p-3 33") == 0);
+    ASSERT (streq (result, "0x1.829p+0 33")
+            || streq (result, "0x3.052p-1 33")
+            || streq (result, "0x6.0a4p-2 33")
+            || streq (result, "0xc.148p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Rounding can turn a ...FFF into a ...000.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.3La %d", 1.49999L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.800p+0 33") == 0
-            || strcmp (result, "0x3.000p-1 33") == 0
-            || strcmp (result, "0x6.000p-2 33") == 0
-            || strcmp (result, "0xc.000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.800p+0 33")
+            || streq (result, "0x3.000p-1 33")
+            || streq (result, "0x6.000p-2 33")
+            || streq (result, "0xc.000p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -606,120 +606,120 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
        glibc 2.4 bug <https://sourceware.org/PR2908>.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.1La %d", 1.999L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.0p+1 33") == 0
-            || strcmp (result, "0x2.0p+0 33") == 0
-            || strcmp (result, "0x4.0p-1 33") == 0
-            || strcmp (result, "0x8.0p-2 33") == 0);
+    ASSERT (streq (result, "0x1.0p+1 33")
+            || streq (result, "0x2.0p+0 33")
+            || streq (result, "0x4.0p-1 33")
+            || streq (result, "0x8.0p-2 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10La %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "  0x1.cp+0 33") == 0
-            || strcmp (result, "  0x3.8p-1 33") == 0
-            || strcmp (result, "    0x7p-2 33") == 0
-            || strcmp (result, "    0xep-3 33") == 0);
+    ASSERT (streq (result, "  0x1.cp+0 33")
+            || streq (result, "  0x3.8p-1 33")
+            || streq (result, "    0x7p-2 33")
+            || streq (result, "    0xep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*La %d", 10, 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "  0x1.cp+0 33") == 0
-            || strcmp (result, "  0x3.8p-1 33") == 0
-            || strcmp (result, "    0x7p-2 33") == 0
-            || strcmp (result, "    0xep-3 33") == 0);
+    ASSERT (streq (result, "  0x1.cp+0 33")
+            || streq (result, "  0x3.8p-1 33")
+            || streq (result, "    0x7p-2 33")
+            || streq (result, "    0xep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*La %d", -10, 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.cp+0   33") == 0
-            || strcmp (result, "0x3.8p-1   33") == 0
-            || strcmp (result, "0x7p-2     33") == 0
-            || strcmp (result, "0xep-3     33") == 0);
+    ASSERT (streq (result, "0x1.cp+0   33")
+            || streq (result, "0x3.8p-1   33")
+            || streq (result, "0x7p-2     33")
+            || streq (result, "0xep-3     33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Small precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.10La %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.c000000000p+0 33") == 0
-            || strcmp (result, "0x3.8000000000p-1 33") == 0
-            || strcmp (result, "0x7.0000000000p-2 33") == 0
-            || strcmp (result, "0xe.0000000000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.c000000000p+0 33")
+            || streq (result, "0x3.8000000000p-1 33")
+            || streq (result, "0x7.0000000000p-2 33")
+            || streq (result, "0xe.0000000000p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Large precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.50La %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.c0000000000000000000000000000000000000000000000000p+0 33") == 0
-            || strcmp (result, "0x3.80000000000000000000000000000000000000000000000000p-1 33") == 0
-            || strcmp (result, "0x7.00000000000000000000000000000000000000000000000000p-2 33") == 0
-            || strcmp (result, "0xe.00000000000000000000000000000000000000000000000000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.c0000000000000000000000000000000000000000000000000p+0 33")
+            || streq (result, "0x3.80000000000000000000000000000000000000000000000000p-1 33")
+            || streq (result, "0x7.00000000000000000000000000000000000000000000000000p-2 33")
+            || streq (result, "0xe.00000000000000000000000000000000000000000000000000p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10La %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.cp+0   33") == 0
-            || strcmp (result, "0x3.8p-1   33") == 0
-            || strcmp (result, "0x7p-2     33") == 0
-            || strcmp (result, "0xep-3     33") == 0);
+    ASSERT (streq (result, "0x1.cp+0   33")
+            || streq (result, "0x3.8p-1   33")
+            || streq (result, "0x7p-2     33")
+            || streq (result, "0xep-3     33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SHOWSIGN.  */
     int retval =
       my_snprintf (result, sizeof (result), "%+La %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "+0x1.cp+0 33") == 0
-            || strcmp (result, "+0x3.8p-1 33") == 0
-            || strcmp (result, "+0x7p-2 33") == 0
-            || strcmp (result, "+0xep-3 33") == 0);
+    ASSERT (streq (result, "+0x1.cp+0 33")
+            || streq (result, "+0x3.8p-1 33")
+            || streq (result, "+0x7p-2 33")
+            || streq (result, "+0xep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SPACE.  */
     int retval =
       my_snprintf (result, sizeof (result), "% La %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, " 0x1.cp+0 33") == 0
-            || strcmp (result, " 0x3.8p-1 33") == 0
-            || strcmp (result, " 0x7p-2 33") == 0
-            || strcmp (result, " 0xep-3 33") == 0);
+    ASSERT (streq (result, " 0x1.cp+0 33")
+            || streq (result, " 0x3.8p-1 33")
+            || streq (result, " 0x7p-2 33")
+            || streq (result, " 0xep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#La %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.cp+0 33") == 0
-            || strcmp (result, "0x3.8p-1 33") == 0
-            || strcmp (result, "0x7.p-2 33") == 0
-            || strcmp (result, "0xe.p-3 33") == 0);
+    ASSERT (streq (result, "0x1.cp+0 33")
+            || streq (result, "0x3.8p-1 33")
+            || streq (result, "0x7.p-2 33")
+            || streq (result, "0xe.p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#La %d", 1.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.p+0 33") == 0
-            || strcmp (result, "0x2.p-1 33") == 0
-            || strcmp (result, "0x4.p-2 33") == 0
-            || strcmp (result, "0x8.p-3 33") == 0);
+    ASSERT (streq (result, "0x1.p+0 33")
+            || streq (result, "0x2.p-1 33")
+            || streq (result, "0x4.p-2 33")
+            || streq (result, "0x8.p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with finite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%010La %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "0x001.cp+0 33") == 0
-            || strcmp (result, "0x003.8p-1 33") == 0
-            || strcmp (result, "0x00007p-2 33") == 0
-            || strcmp (result, "0x0000ep-3 33") == 0);
+    ASSERT (streq (result, "0x001.cp+0 33")
+            || streq (result, "0x003.8p-1 33")
+            || streq (result, "0x00007p-2 33")
+            || streq (result, "0x0000ep-3 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -728,7 +728,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%010La %d", Infinityl (), 33, 44, 55);
     /* "0000000inf 33" is not a valid result; see
        <https://lists.gnu.org/r/bug-gnulib/2007-04/msg00107.html> */
-    ASSERT (strcmp (result, "       inf 33") == 0);
+    ASSERT (streq (result, "       inf 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -748,14 +748,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%f %d", 12.75, 33, 44, 55);
-    ASSERT (strcmp (result, "12.750000 33") == 0);
+    ASSERT (streq (result, "12.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A larger positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%f %d", 1234567.0, 33, 44, 55);
-    ASSERT (strcmp (result, "1234567.000000 33") == 0);
+    ASSERT (streq (result, "1234567.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -849,14 +849,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%f %d", -0.03125, 33, 44, 55);
-    ASSERT (strcmp (result, "-0.031250 33") == 0);
+    ASSERT (streq (result, "-0.031250 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%f %d", 0.0, 33, 44, 55);
-    ASSERT (strcmp (result, "0.000000 33") == 0);
+    ASSERT (streq (result, "0.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -864,23 +864,23 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%f %d", minus_zerod, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0.000000 33") == 0);
+      ASSERT (streq (result, "-0.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%f %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%f %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "-inf 33") == 0
-            || strcmp (result, "-infinity 33") == 0);
+    ASSERT (streq (result, "-inf 33")
+            || streq (result, "-infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -906,71 +906,71 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10f %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "  1.750000 33") == 0);
+    ASSERT (streq (result, "  1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*f %d", 10, 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "  1.750000 33") == 0);
+    ASSERT (streq (result, "  1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*f %d", -10, 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000   33") == 0);
+    ASSERT (streq (result, "1.750000   33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10f %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000   33") == 0);
+    ASSERT (streq (result, "1.750000   33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SHOWSIGN.  */
     int retval =
       my_snprintf (result, sizeof (result), "%+f %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "+1.750000 33") == 0);
+    ASSERT (streq (result, "+1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SPACE.  */
     int retval =
       my_snprintf (result, sizeof (result), "% f %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, " 1.750000 33") == 0);
+    ASSERT (streq (result, " 1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#f %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000 33") == 0);
+    ASSERT (streq (result, "1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.f %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "2. 33") == 0);
+    ASSERT (streq (result, "2. 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with finite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015f %d", 1234.0, 33, 44, 55);
-    ASSERT (strcmp (result, "00001234.000000 33") == 0);
+    ASSERT (streq (result, "00001234.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with infinite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015f %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "           -inf 33") == 0
-            || strcmp (result, "      -infinity 33") == 0);
+    ASSERT (streq (result, "           -inf 33")
+            || streq (result, "      -infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -986,35 +986,35 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.f %d", 1234.0, 33, 44, 55);
-    ASSERT (strcmp (result, "1234 33") == 0);
+    ASSERT (streq (result, "1234 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with no rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2f %d", 999.951, 33, 44, 55);
-    ASSERT (strcmp (result, "999.95 33") == 0);
+    ASSERT (streq (result, "999.95 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2f %d", 999.996, 33, 44, 55);
-    ASSERT (strcmp (result, "1000.00 33") == 0);
+    ASSERT (streq (result, "1000.00 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", 12.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "12.750000 33") == 0);
+    ASSERT (streq (result, "12.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A larger positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", 1234567.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "1234567.000000 33") == 0);
+    ASSERT (streq (result, "1234567.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1108,14 +1108,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", -0.03125L, 33, 44, 55);
-    ASSERT (strcmp (result, "-0.031250 33") == 0);
+    ASSERT (streq (result, "-0.031250 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", 0.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "0.000000 33") == 0);
+    ASSERT (streq (result, "0.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1123,23 +1123,23 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", minus_zerol, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0.000000 33") == 0);
+      ASSERT (streq (result, "-0.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "-inf 33") == 0
-            || strcmp (result, "-infinity 33") == 0);
+    ASSERT (streq (result, "-inf 33")
+            || streq (result, "-infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1190,7 +1190,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Infinity.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -1198,7 +1198,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Zero.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -1206,7 +1206,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Unnormalized number.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -1214,7 +1214,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Denormal.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -1222,78 +1222,78 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lf %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
 #endif
 
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10Lf %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "  1.750000 33") == 0);
+    ASSERT (streq (result, "  1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*Lf %d", 10, 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "  1.750000 33") == 0);
+    ASSERT (streq (result, "  1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*Lf %d", -10, 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000   33") == 0);
+    ASSERT (streq (result, "1.750000   33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10Lf %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000   33") == 0);
+    ASSERT (streq (result, "1.750000   33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SHOWSIGN.  */
     int retval =
       my_snprintf (result, sizeof (result), "%+Lf %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "+1.750000 33") == 0);
+    ASSERT (streq (result, "+1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SPACE.  */
     int retval =
       my_snprintf (result, sizeof (result), "% Lf %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, " 1.750000 33") == 0);
+    ASSERT (streq (result, " 1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#Lf %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000 33") == 0);
+    ASSERT (streq (result, "1.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.Lf %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "2. 33") == 0);
+    ASSERT (streq (result, "2. 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with finite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015Lf %d", 1234.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "00001234.000000 33") == 0);
+    ASSERT (streq (result, "00001234.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with infinite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015Lf %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "           -inf 33") == 0
-            || strcmp (result, "      -infinity 33") == 0);
+    ASSERT (streq (result, "           -inf 33")
+            || streq (result, "      -infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1309,21 +1309,21 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.Lf %d", 1234.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "1234 33") == 0);
+    ASSERT (streq (result, "1234 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with no rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2Lf %d", 999.951L, 33, 44, 55);
-    ASSERT (strcmp (result, "999.95 33") == 0);
+    ASSERT (streq (result, "999.95 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2Lf %d", 999.996L, 33, 44, 55);
-    ASSERT (strcmp (result, "1000.00 33") == 0);
+    ASSERT (streq (result, "1000.00 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1332,28 +1332,28 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%F %d", 12.75, 33, 44, 55);
-    ASSERT (strcmp (result, "12.750000 33") == 0);
+    ASSERT (streq (result, "12.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A larger positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%F %d", 1234567.0, 33, 44, 55);
-    ASSERT (strcmp (result, "1234567.000000 33") == 0);
+    ASSERT (streq (result, "1234567.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%F %d", -0.03125, 33, 44, 55);
-    ASSERT (strcmp (result, "-0.031250 33") == 0);
+    ASSERT (streq (result, "-0.031250 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%F %d", 0.0, 33, 44, 55);
-    ASSERT (strcmp (result, "0.000000 33") == 0);
+    ASSERT (streq (result, "0.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1361,23 +1361,23 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%F %d", minus_zerod, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0.000000 33") == 0);
+      ASSERT (streq (result, "-0.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%F %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "INF 33") == 0
-            || strcmp (result, "INFINITY 33") == 0);
+    ASSERT (streq (result, "INF 33")
+            || streq (result, "INFINITY 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%F %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "-INF 33") == 0
-            || strcmp (result, "-INFINITY 33") == 0);
+    ASSERT (streq (result, "-INF 33")
+            || streq (result, "-INFINITY 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1403,64 +1403,64 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* FLAG_ZERO.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015F %d", 1234.0, 33, 44, 55);
-    ASSERT (strcmp (result, "00001234.000000 33") == 0);
+    ASSERT (streq (result, "00001234.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with infinite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015F %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "           -INF 33") == 0
-            || strcmp (result, "      -INFINITY 33") == 0);
+    ASSERT (streq (result, "           -INF 33")
+            || streq (result, "      -INFINITY 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.F %d", 1234.0, 33, 44, 55);
-    ASSERT (strcmp (result, "1234 33") == 0);
+    ASSERT (streq (result, "1234 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with no rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2F %d", 999.951, 33, 44, 55);
-    ASSERT (strcmp (result, "999.95 33") == 0);
+    ASSERT (streq (result, "999.95 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2F %d", 999.996, 33, 44, 55);
-    ASSERT (strcmp (result, "1000.00 33") == 0);
+    ASSERT (streq (result, "1000.00 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%LF %d", 12.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "12.750000 33") == 0);
+    ASSERT (streq (result, "12.750000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A larger positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%LF %d", 1234567.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "1234567.000000 33") == 0);
+    ASSERT (streq (result, "1234567.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%LF %d", -0.03125L, 33, 44, 55);
-    ASSERT (strcmp (result, "-0.031250 33") == 0);
+    ASSERT (streq (result, "-0.031250 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%LF %d", 0.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "0.000000 33") == 0);
+    ASSERT (streq (result, "0.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1468,23 +1468,23 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%LF %d", minus_zerol, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0.000000 33") == 0);
+      ASSERT (streq (result, "-0.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%LF %d", Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "INF 33") == 0
-            || strcmp (result, "INFINITY 33") == 0);
+    ASSERT (streq (result, "INF 33")
+            || streq (result, "INFINITY 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%LF %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "-INF 33") == 0
-            || strcmp (result, "-INFINITY 33") == 0);
+    ASSERT (streq (result, "-INF 33")
+            || streq (result, "-INFINITY 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1510,36 +1510,36 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* FLAG_ZERO.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015LF %d", 1234.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "00001234.000000 33") == 0);
+    ASSERT (streq (result, "00001234.000000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with infinite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015LF %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "           -INF 33") == 0
-            || strcmp (result, "      -INFINITY 33") == 0);
+    ASSERT (streq (result, "           -INF 33")
+            || streq (result, "      -INFINITY 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.LF %d", 1234.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "1234 33") == 0);
+    ASSERT (streq (result, "1234 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with no rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2LF %d", 999.951L, 33, 44, 55);
-    ASSERT (strcmp (result, "999.95 33") == 0);
+    ASSERT (streq (result, "999.95 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.2LF %d", 999.996L, 33, 44, 55);
-    ASSERT (strcmp (result, "1000.00 33") == 0);
+    ASSERT (streq (result, "1000.00 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1548,16 +1548,16 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%e %d", 12.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.275000e+01 33") == 0
-            || strcmp (result, "1.275000e+001 33") == 0);
+    ASSERT (streq (result, "1.275000e+01 33")
+            || streq (result, "1.275000e+001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A larger positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%e %d", 1234567.0, 33, 44, 55);
-    ASSERT (strcmp (result, "1.234567e+06 33") == 0
-            || strcmp (result, "1.234567e+006 33") == 0);
+    ASSERT (streq (result, "1.234567e+06 33")
+            || streq (result, "1.234567e+006 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1644,7 +1644,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
         int retval =
           my_snprintf (result, sizeof (result), "%e", data[k].value);
         const char *expected = data[k].string;
-        ASSERT (strcmp (result, expected) == 0
+        ASSERT (streq (result, expected)
                 /* Some implementations produce exponents with 3 digits.  */
                 || (strlen (result) == strlen (expected) + 1
                     && memcmp (result, expected, strlen (expected) - 2) == 0
@@ -1659,16 +1659,16 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%e %d", -0.03125, 33, 44, 55);
-    ASSERT (strcmp (result, "-3.125000e-02 33") == 0
-            || strcmp (result, "-3.125000e-002 33") == 0);
+    ASSERT (streq (result, "-3.125000e-02 33")
+            || streq (result, "-3.125000e-002 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%e %d", 0.0, 33, 44, 55);
-    ASSERT (strcmp (result, "0.000000e+00 33") == 0
-            || strcmp (result, "0.000000e+000 33") == 0);
+    ASSERT (streq (result, "0.000000e+00 33")
+            || streq (result, "0.000000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1676,24 +1676,24 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%e %d", minus_zerod, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0.000000e+00 33") == 0
-              || strcmp (result, "-0.000000e+000 33") == 0);
+      ASSERT (streq (result, "-0.000000e+00 33")
+              || streq (result, "-0.000000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%e %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%e %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "-inf 33") == 0
-            || strcmp (result, "-infinity 33") == 0);
+    ASSERT (streq (result, "-inf 33")
+            || streq (result, "-infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1719,88 +1719,88 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%15e %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "   1.750000e+00 33") == 0
-            || strcmp (result, "  1.750000e+000 33") == 0);
+    ASSERT (streq (result, "   1.750000e+00 33")
+            || streq (result, "  1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*e %d", 15, 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "   1.750000e+00 33") == 0
-            || strcmp (result, "  1.750000e+000 33") == 0);
+    ASSERT (streq (result, "   1.750000e+00 33")
+            || streq (result, "  1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*e %d", -15, 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000e+00    33") == 0
-            || strcmp (result, "1.750000e+000   33") == 0);
+    ASSERT (streq (result, "1.750000e+00    33")
+            || streq (result, "1.750000e+000   33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-15e %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000e+00    33") == 0
-            || strcmp (result, "1.750000e+000   33") == 0);
+    ASSERT (streq (result, "1.750000e+00    33")
+            || streq (result, "1.750000e+000   33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SHOWSIGN.  */
     int retval =
       my_snprintf (result, sizeof (result), "%+e %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "+1.750000e+00 33") == 0
-            || strcmp (result, "+1.750000e+000 33") == 0);
+    ASSERT (streq (result, "+1.750000e+00 33")
+            || streq (result, "+1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SPACE.  */
     int retval =
       my_snprintf (result, sizeof (result), "% e %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, " 1.750000e+00 33") == 0
-            || strcmp (result, " 1.750000e+000 33") == 0);
+    ASSERT (streq (result, " 1.750000e+00 33")
+            || streq (result, " 1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#e %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000e+00 33") == 0
-            || strcmp (result, "1.750000e+000 33") == 0);
+    ASSERT (streq (result, "1.750000e+00 33")
+            || streq (result, "1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.e %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "2.e+00 33") == 0
-            || strcmp (result, "2.e+000 33") == 0);
+    ASSERT (streq (result, "2.e+00 33")
+            || streq (result, "2.e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.e %d", 9.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.e+01 33") == 0
-            || strcmp (result, "1.e+001 33") == 0);
+    ASSERT (streq (result, "1.e+01 33")
+            || streq (result, "1.e+001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with finite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015e %d", 1234.0, 33, 44, 55);
-    ASSERT (strcmp (result, "0001.234000e+03 33") == 0
-            || strcmp (result, "001.234000e+003 33") == 0);
+    ASSERT (streq (result, "0001.234000e+03 33")
+            || streq (result, "001.234000e+003 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with infinite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015e %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "           -inf 33") == 0
-            || strcmp (result, "      -infinity 33") == 0);
+    ASSERT (streq (result, "           -inf 33")
+            || streq (result, "      -infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1816,40 +1816,40 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.e %d", 1234.0, 33, 44, 55);
-    ASSERT (strcmp (result, "1e+03 33") == 0
-            || strcmp (result, "1e+003 33") == 0);
+    ASSERT (streq (result, "1e+03 33")
+            || streq (result, "1e+003 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with no rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.4e %d", 999.951, 33, 44, 55);
-    ASSERT (strcmp (result, "9.9995e+02 33") == 0
-            || strcmp (result, "9.9995e+002 33") == 0);
+    ASSERT (streq (result, "9.9995e+02 33")
+            || streq (result, "9.9995e+002 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.4e %d", 999.996, 33, 44, 55);
-    ASSERT (strcmp (result, "1.0000e+03 33") == 0
-            || strcmp (result, "1.0000e+003 33") == 0);
+    ASSERT (streq (result, "1.0000e+03 33")
+            || streq (result, "1.0000e+003 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", 12.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.275000e+01 33") == 0
-            || strcmp (result, "1.275000e+001 33") == 0);
+    ASSERT (streq (result, "1.275000e+01 33")
+            || streq (result, "1.275000e+001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A larger positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", 1234567.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.234567e+06 33") == 0
-            || strcmp (result, "1.234567e+006 33") == 0);
+    ASSERT (streq (result, "1.234567e+06 33")
+            || streq (result, "1.234567e+006 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1936,7 +1936,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
         int retval =
           my_snprintf (result, sizeof (result), "%Le", data[k].value);
         const char *expected = data[k].string;
-        ASSERT (strcmp (result, expected) == 0
+        ASSERT (streq (result, expected)
                 /* Some implementations produce exponents with 3 digits.  */
                 || (strlen (result) == strlen (expected) + 1
                     && memcmp (result, expected, strlen (expected) - 2) == 0
@@ -1951,16 +1951,16 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", -0.03125L, 33, 44, 55);
-    ASSERT (strcmp (result, "-3.125000e-02 33") == 0
-            || strcmp (result, "-3.125000e-002 33") == 0);
+    ASSERT (streq (result, "-3.125000e-02 33")
+            || streq (result, "-3.125000e-002 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", 0.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "0.000000e+00 33") == 0
-            || strcmp (result, "0.000000e+000 33") == 0);
+    ASSERT (streq (result, "0.000000e+00 33")
+            || streq (result, "0.000000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -1968,24 +1968,24 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", minus_zerol, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0.000000e+00 33") == 0
-              || strcmp (result, "-0.000000e+000 33") == 0);
+      ASSERT (streq (result, "-0.000000e+00 33")
+              || streq (result, "-0.000000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "-inf 33") == 0
-            || strcmp (result, "-infinity 33") == 0);
+    ASSERT (streq (result, "-inf 33")
+            || streq (result, "-infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2036,7 +2036,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Infinity.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -2044,7 +2044,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Zero.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -2052,7 +2052,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Unnormalized number.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -2060,7 +2060,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Denormal.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -2068,95 +2068,95 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Le %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
 #endif
 
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%15Le %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "   1.750000e+00 33") == 0
-            || strcmp (result, "  1.750000e+000 33") == 0);
+    ASSERT (streq (result, "   1.750000e+00 33")
+            || streq (result, "  1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*Le %d", 15, 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "   1.750000e+00 33") == 0
-            || strcmp (result, "  1.750000e+000 33") == 0);
+    ASSERT (streq (result, "   1.750000e+00 33")
+            || streq (result, "  1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*Le %d", -15, 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000e+00    33") == 0
-            || strcmp (result, "1.750000e+000   33") == 0);
+    ASSERT (streq (result, "1.750000e+00    33")
+            || streq (result, "1.750000e+000   33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-15Le %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000e+00    33") == 0
-            || strcmp (result, "1.750000e+000   33") == 0);
+    ASSERT (streq (result, "1.750000e+00    33")
+            || streq (result, "1.750000e+000   33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SHOWSIGN.  */
     int retval =
       my_snprintf (result, sizeof (result), "%+Le %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "+1.750000e+00 33") == 0
-            || strcmp (result, "+1.750000e+000 33") == 0);
+    ASSERT (streq (result, "+1.750000e+00 33")
+            || streq (result, "+1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SPACE.  */
     int retval =
       my_snprintf (result, sizeof (result), "% Le %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, " 1.750000e+00 33") == 0
-            || strcmp (result, " 1.750000e+000 33") == 0);
+    ASSERT (streq (result, " 1.750000e+00 33")
+            || streq (result, " 1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#Le %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.750000e+00 33") == 0
-            || strcmp (result, "1.750000e+000 33") == 0);
+    ASSERT (streq (result, "1.750000e+00 33")
+            || streq (result, "1.750000e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.Le %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "2.e+00 33") == 0
-            || strcmp (result, "2.e+000 33") == 0);
+    ASSERT (streq (result, "2.e+00 33")
+            || streq (result, "2.e+000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.Le %d", 9.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.e+01 33") == 0
-            || strcmp (result, "1.e+001 33") == 0);
+    ASSERT (streq (result, "1.e+01 33")
+            || streq (result, "1.e+001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with finite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015Le %d", 1234.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "0001.234000e+03 33") == 0
-            || strcmp (result, "001.234000e+003 33") == 0);
+    ASSERT (streq (result, "0001.234000e+03 33")
+            || streq (result, "001.234000e+003 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with infinite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015Le %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "           -inf 33") == 0
-            || strcmp (result, "      -infinity 33") == 0);
+    ASSERT (streq (result, "           -inf 33")
+            || streq (result, "      -infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2172,24 +2172,24 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.Le %d", 1234.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "1e+03 33") == 0
-            || strcmp (result, "1e+003 33") == 0);
+    ASSERT (streq (result, "1e+03 33")
+            || streq (result, "1e+003 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with no rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.4Le %d", 999.951L, 33, 44, 55);
-    ASSERT (strcmp (result, "9.9995e+02 33") == 0
-            || strcmp (result, "9.9995e+002 33") == 0);
+    ASSERT (streq (result, "9.9995e+02 33")
+            || streq (result, "9.9995e+002 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.4Le %d", 999.996L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.0000e+03 33") == 0
-            || strcmp (result, "1.0000e+003 33") == 0);
+    ASSERT (streq (result, "1.0000e+03 33")
+            || streq (result, "1.0000e+003 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2198,15 +2198,15 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%g %d", 12.75, 33, 44, 55);
-    ASSERT (strcmp (result, "12.75 33") == 0);
+    ASSERT (streq (result, "12.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A larger positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%g %d", 1234567.0, 33, 44, 55);
-    ASSERT (strcmp (result, "1.23457e+06 33") == 0
-            || strcmp (result, "1.23457e+006 33") == 0);
+    ASSERT (streq (result, "1.23457e+06 33")
+            || streq (result, "1.23457e+006 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2293,7 +2293,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
         int retval =
           my_snprintf (result, sizeof (result), "%g", data[k].value);
         const char *expected = data[k].string;
-        ASSERT (strcmp (result, expected) == 0
+        ASSERT (streq (result, expected)
                 /* Some implementations produce exponents with 3 digits.  */
                 || (expected[strlen (expected) - 4] == 'e'
                     && strlen (result) == strlen (expected) + 1
@@ -2309,14 +2309,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%g %d", -0.03125, 33, 44, 55);
-    ASSERT (strcmp (result, "-0.03125 33") == 0);
+    ASSERT (streq (result, "-0.03125 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%g %d", 0.0, 33, 44, 55);
-    ASSERT (strcmp (result, "0 33") == 0);
+    ASSERT (streq (result, "0 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2324,23 +2324,23 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%g %d", minus_zerod, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0 33") == 0);
+      ASSERT (streq (result, "-0 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%g %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%g %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "-inf 33") == 0
-            || strcmp (result, "-infinity 33") == 0);
+    ASSERT (streq (result, "-inf 33")
+            || streq (result, "-infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2366,79 +2366,79 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10g %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "      1.75 33") == 0);
+    ASSERT (streq (result, "      1.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*g %d", 10, 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "      1.75 33") == 0);
+    ASSERT (streq (result, "      1.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*g %d", -10, 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.75       33") == 0);
+    ASSERT (streq (result, "1.75       33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10g %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.75       33") == 0);
+    ASSERT (streq (result, "1.75       33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SHOWSIGN.  */
     int retval =
       my_snprintf (result, sizeof (result), "%+g %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "+1.75 33") == 0);
+    ASSERT (streq (result, "+1.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SPACE.  */
     int retval =
       my_snprintf (result, sizeof (result), "% g %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, " 1.75 33") == 0);
+    ASSERT (streq (result, " 1.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#g %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.75000 33") == 0);
+    ASSERT (streq (result, "1.75000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.g %d", 1.75, 33, 44, 55);
-    ASSERT (strcmp (result, "2. 33") == 0);
+    ASSERT (streq (result, "2. 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.g %d", 9.75, 33, 44, 55);
-    ASSERT (strcmp (result, "1.e+01 33") == 0
-            || strcmp (result, "1.e+001 33") == 0);
+    ASSERT (streq (result, "1.e+01 33")
+            || streq (result, "1.e+001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with finite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%010g %d", 1234.0, 33, 44, 55);
-    ASSERT (strcmp (result, "0000001234 33") == 0);
+    ASSERT (streq (result, "0000001234 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with infinite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015g %d", - Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "           -inf 33") == 0
-            || strcmp (result, "      -infinity 33") == 0);
+    ASSERT (streq (result, "           -inf 33")
+            || streq (result, "      -infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2454,37 +2454,37 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.g %d", 1234.0, 33, 44, 55);
-    ASSERT (strcmp (result, "1e+03 33") == 0
-            || strcmp (result, "1e+003 33") == 0);
+    ASSERT (streq (result, "1e+03 33")
+            || streq (result, "1e+003 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with no rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.5g %d", 999.951, 33, 44, 55);
-    ASSERT (strcmp (result, "999.95 33") == 0);
+    ASSERT (streq (result, "999.95 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.5g %d", 999.996, 33, 44, 55);
-    ASSERT (strcmp (result, "1000 33") == 0);
+    ASSERT (streq (result, "1000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", 12.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "12.75 33") == 0);
+    ASSERT (streq (result, "12.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A larger positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", 1234567.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.23457e+06 33") == 0
-            || strcmp (result, "1.23457e+006 33") == 0);
+    ASSERT (streq (result, "1.23457e+06 33")
+            || streq (result, "1.23457e+006 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2571,7 +2571,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
         int retval =
           my_snprintf (result, sizeof (result), "%Lg", data[k].value);
         const char *expected = data[k].string;
-        ASSERT (strcmp (result, expected) == 0
+        ASSERT (streq (result, expected)
                 /* Some implementations produce exponents with 3 digits.  */
                 || (expected[strlen (expected) - 4] == 'e'
                     && strlen (result) == strlen (expected) + 1
@@ -2587,14 +2587,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* A negative number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", -0.03125L, 33, 44, 55);
-    ASSERT (strcmp (result, "-0.03125 33") == 0);
+    ASSERT (streq (result, "-0.03125 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", 0.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "0 33") == 0);
+    ASSERT (streq (result, "0 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2602,23 +2602,23 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", minus_zerol, 33, 44, 55);
     if (have_minus_zero ())
-      ASSERT (strcmp (result, "-0 33") == 0);
+      ASSERT (streq (result, "-0 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Positive infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative infinity.  */
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "-inf 33") == 0
-            || strcmp (result, "-infinity 33") == 0);
+    ASSERT (streq (result, "-inf 33")
+            || streq (result, "-infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2669,7 +2669,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Infinity.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -2677,7 +2677,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Zero.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -2685,7 +2685,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Unnormalized number.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -2693,7 +2693,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
   { /* Pseudo-Denormal.  */
     static union { unsigned int word[4]; long double value; } x =
@@ -2701,86 +2701,86 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result), "%Lg %d", x.value, 33, 44, 55);
     ASSERT (retval == strlen (result));
-    ASSERT (3 < retval && strcmp (result + retval - 3, " 33") == 0);
+    ASSERT (3 < retval && streq (result + retval - 3, " 33"));
   }
 #endif
 
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10Lg %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "      1.75 33") == 0);
+    ASSERT (streq (result, "      1.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*Lg %d", 10, 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "      1.75 33") == 0);
+    ASSERT (streq (result, "      1.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*Lg %d", -10, 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.75       33") == 0);
+    ASSERT (streq (result, "1.75       33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10Lg %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.75       33") == 0);
+    ASSERT (streq (result, "1.75       33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SHOWSIGN.  */
     int retval =
       my_snprintf (result, sizeof (result), "%+Lg %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "+1.75 33") == 0);
+    ASSERT (streq (result, "+1.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_SPACE.  */
     int retval =
       my_snprintf (result, sizeof (result), "% Lg %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, " 1.75 33") == 0);
+    ASSERT (streq (result, " 1.75 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#Lg %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.75000 33") == 0);
+    ASSERT (streq (result, "1.75000 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.Lg %d", 1.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "2. 33") == 0);
+    ASSERT (streq (result, "2. 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#.Lg %d", 9.75L, 33, 44, 55);
-    ASSERT (strcmp (result, "1.e+01 33") == 0
-            || strcmp (result, "1.e+001 33") == 0);
+    ASSERT (streq (result, "1.e+01 33")
+            || streq (result, "1.e+001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with finite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%010Lg %d", 1234.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "0000001234 33") == 0);
+    ASSERT (streq (result, "0000001234 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ZERO with infinite number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%015Lg %d", - Infinityl (), 33, 44, 55);
-    ASSERT (strcmp (result, "           -inf 33") == 0
-            || strcmp (result, "      -infinity 33") == 0);
+    ASSERT (streq (result, "           -inf 33")
+            || streq (result, "      -infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2796,22 +2796,22 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.Lg %d", 1234.0L, 33, 44, 55);
-    ASSERT (strcmp (result, "1e+03 33") == 0
-            || strcmp (result, "1e+003 33") == 0);
+    ASSERT (streq (result, "1e+03 33")
+            || streq (result, "1e+003 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with no rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.5Lg %d", 999.951L, 33, 44, 55);
-    ASSERT (strcmp (result, "999.95 33") == 0);
+    ASSERT (streq (result, "999.95 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision with rounding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.5Lg %d", 999.996L, 33, 44, 55);
-    ASSERT (strcmp (result, "1000 33") == 0);
+    ASSERT (streq (result, "1000 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2822,7 +2822,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int count = -1;
     int retval =
       my_snprintf (result, sizeof (result), "%d %n", 123, &count, 33, 44, 55);
-    ASSERT (strcmp (result, "123 ") == 0);
+    ASSERT (streq (result, "123 "));
     ASSERT (retval == strlen (result));
     ASSERT (count == 4);
   }
@@ -2833,7 +2833,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   {
     int retval =
       my_snprintf (result, sizeof (result), "%2$d %1$d", 33, 55);
-    ASSERT (strcmp (result, "55 33") == 0);
+    ASSERT (streq (result, "55 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2851,21 +2851,21 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   {
     int retval =
       my_snprintf (result, sizeof (result), "a%*sc", -3, "b");
-    ASSERT (strcmp (result, "ab  c") == 0);
+    ASSERT (streq (result, "ab  c"));
     ASSERT (retval == strlen (result));
   }
 
   {
     int retval =
       my_snprintf (result, sizeof (result), "a%-*sc", 3, "b");
-    ASSERT (strcmp (result, "ab  c") == 0);
+    ASSERT (streq (result, "ab  c"));
     ASSERT (retval == strlen (result));
   }
 
   {
     int retval =
       my_snprintf (result, sizeof (result), "a%-*sc", -3, "b");
-    ASSERT (strcmp (result, "ab  c") == 0);
+    ASSERT (streq (result, "ab  c"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2876,7 +2876,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%.4000d %d", 1234567, 99);
     for (size_t i = 0; i < 4000 - 7; i++)
       ASSERT (result[i] == '0');
-    ASSERT (strcmp (result + 4000 - 7, "1234567 99") == 0);
+    ASSERT (streq (result + 4000 - 7, "1234567 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2885,7 +2885,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%.*d %d", 4000, 1234567, 99);
     for (size_t i = 0; i < 4000 - 7; i++)
       ASSERT (result[i] == '0');
-    ASSERT (strcmp (result + 4000 - 7, "1234567 99") == 0);
+    ASSERT (streq (result + 4000 - 7, "1234567 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2895,7 +2895,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     ASSERT (result[0] == '-');
     for (size_t i = 0; i < 4000 - 7; i++)
       ASSERT (result[1 + i] == '0');
-    ASSERT (strcmp (result + 1 + 4000 - 7, "1234567 99") == 0);
+    ASSERT (streq (result + 1 + 4000 - 7, "1234567 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2904,7 +2904,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%.4000u %d", 1234567, 99);
     for (size_t i = 0; i < 4000 - 7; i++)
       ASSERT (result[i] == '0');
-    ASSERT (strcmp (result + 4000 - 7, "1234567 99") == 0);
+    ASSERT (streq (result + 4000 - 7, "1234567 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2913,7 +2913,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%.4000o %d", 1234567, 99);
     for (size_t i = 0; i < 4000 - 7; i++)
       ASSERT (result[i] == '0');
-    ASSERT (strcmp (result + 4000 - 7, "4553207 99") == 0);
+    ASSERT (streq (result + 4000 - 7, "4553207 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2922,7 +2922,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%.4000x %d", 1234567, 99);
     for (size_t i = 0; i < 4000 - 6; i++)
       ASSERT (result[i] == '0');
-    ASSERT (strcmp (result + 4000 - 6, "12d687 99") == 0);
+    ASSERT (streq (result + 4000 - 6, "12d687 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2933,7 +2933,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     ASSERT (result[1] == 'x');
     for (size_t i = 0; i < 4000 - 6; i++)
       ASSERT (result[2 + i] == '0');
-    ASSERT (strcmp (result + 2 + 4000 - 6, "12d687 99") == 0);
+    ASSERT (streq (result + 2 + 4000 - 6, "12d687 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2944,7 +2944,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     ASSERT (result[1] == '.');
     for (size_t i = 0; i < 4000; i++)
       ASSERT (result[2 + i] == '0');
-    ASSERT (strcmp (result + 2 + 4000, " 99") == 0);
+    ASSERT (streq (result + 2 + 4000, " 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2955,7 +2955,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     ASSERT (result[1] == '.');
     for (size_t i = 0; i < 511; i++)
       ASSERT (result[2 + i] == '0');
-    ASSERT (strcmp (result + 2 + 511, " 99") == 0);
+    ASSERT (streq (result + 2 + 511, " 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2969,7 +2969,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     input[i] = '\0';
     retval = my_snprintf (result, sizeof (result), "%.4000s %d", input, 99);
     ASSERT (memcmp (result, input, 4000) == 0);
-    ASSERT (strcmp (result + 4000, " 99") == 0);
+    ASSERT (streq (result + 4000, " 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -2978,28 +2978,28 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10s %d", "xyz", 33, 44, 55);
-    ASSERT (strcmp (result, "       xyz 33") == 0);
+    ASSERT (streq (result, "       xyz 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*s %d", 10, "xyz", 33, 44, 55);
-    ASSERT (strcmp (result, "       xyz 33") == 0);
+    ASSERT (streq (result, "       xyz 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*s %d", -10, "xyz", 33, 44, 55);
-    ASSERT (strcmp (result, "xyz        33") == 0);
+    ASSERT (streq (result, "xyz        33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10s %d", "xyz", 33, 44, 55);
-    ASSERT (strcmp (result, "xyz        33") == 0);
+    ASSERT (streq (result, "xyz        33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3008,28 +3008,28 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10ls %d", L_xyz, 33, 44, 55);
-    ASSERT (strcmp (result, "       xyz 33") == 0);
+    ASSERT (streq (result, "       xyz 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*ls %d", 10, L_xyz, 33, 44, 55);
-    ASSERT (strcmp (result, "       xyz 33") == 0);
+    ASSERT (streq (result, "       xyz 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*ls %d", -10, L_xyz, 33, 44, 55);
-    ASSERT (strcmp (result, "xyz        33") == 0);
+    ASSERT (streq (result, "xyz        33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10ls %d", L_xyz, 33, 44, 55);
-    ASSERT (strcmp (result, "xyz        33") == 0);
+    ASSERT (streq (result, "xyz        33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3070,7 +3070,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%10c %d", (unsigned char) 'x', 33, 44, 55);
-    ASSERT (strcmp (result, "         x 33") == 0);
+    ASSERT (streq (result, "         x 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3078,7 +3078,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%*c %d", 10, (unsigned char) 'x', 33, 44, 55);
-    ASSERT (strcmp (result, "         x 33") == 0);
+    ASSERT (streq (result, "         x 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3086,7 +3086,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%*c %d", -10, (unsigned char) 'x', 33, 44, 55);
-    ASSERT (strcmp (result, "x          33") == 0);
+    ASSERT (streq (result, "x          33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3094,7 +3094,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%-10c %d", (unsigned char) 'x', 33, 44, 55);
-    ASSERT (strcmp (result, "x          33") == 0);
+    ASSERT (streq (result, "x          33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3102,7 +3102,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%.0c %d", (unsigned char) 'x', 33, 44, 55);
-    ASSERT (strcmp (result, "x 33") == 0);
+    ASSERT (streq (result, "x 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3119,28 +3119,28 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10lc %d", L_x, 33, 44, 55);
-    ASSERT (strcmp (result, "         x 33") == 0);
+    ASSERT (streq (result, "         x 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*lc %d", 10, L_x, 33, 44, 55);
-    ASSERT (strcmp (result, "         x 33") == 0);
+    ASSERT (streq (result, "         x 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*lc %d", -10, L_x, 33, 44, 55);
-    ASSERT (strcmp (result, "x          33") == 0);
+    ASSERT (streq (result, "x          33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10lc %d", L_x, 33, 44, 55);
-    ASSERT (strcmp (result, "x          33") == 0);
+    ASSERT (streq (result, "x          33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3148,7 +3148,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%.0lc %d", L_x, 33, 44, 55);
-    ASSERT (strcmp (result, "x 33") == 0);
+    ASSERT (streq (result, "x 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3190,56 +3190,56 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%x %d", 0, 33, 44, 55);
-    ASSERT (strcmp (result, "0 33") == 0);
+    ASSERT (streq (result, "0 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "303c 33") == 0);
+    ASSERT (streq (result, "303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A large positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%x %d", 0xFFFFFFFEU, 33, 44, 55);
-    ASSERT (strcmp (result, "fffffffe 33") == 0);
+    ASSERT (streq (result, "fffffffe 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%10x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "      303c 33") == 0);
+    ASSERT (streq (result, "      303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*x %d", 10, 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "      303c 33") == 0);
+    ASSERT (streq (result, "      303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*x %d", -10, 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "303c       33") == 0);
+    ASSERT (streq (result, "303c       33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.10x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "000000303c 33") == 0);
+    ASSERT (streq (result, "000000303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Zero precision and a positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.0x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "303c 33") == 0);
+    ASSERT (streq (result, "303c 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3248,14 +3248,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%.0x %d", 0, 33, 44, 55);
     /* ISO C and POSIX specify that "The result of converting a zero value
        with a precision of zero is no characters."  */
-    ASSERT (strcmp (result, " 33") == 0);
+    ASSERT (streq (result, " 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width and precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%15.10x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "     000000303c 33") == 0);
+    ASSERT (streq (result, "     000000303c 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3264,56 +3264,56 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%015.10x %d", 12348, 33, 44, 55);
     /* ISO C 99 § 7.19.6.1.(6) says: "For d, i, o, u, x, and X conversions, if a
        precision is specified, the 0 flag is ignored."  */
-    ASSERT (strcmp (result, "     000000303c 33") == 0);
+    ASSERT (streq (result, "     000000303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-10x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "303c       33") == 0);
+    ASSERT (streq (result, "303c       33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#x %d", 0, 33, 44, 55);
-    ASSERT (strcmp (result, "0 33") == 0);
+    ASSERT (streq (result, "0 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "0x303c 33") == 0);
+    ASSERT (streq (result, "0x303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number and width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#10x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "    0x303c 33") == 0);
+    ASSERT (streq (result, "    0x303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number and padding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%0#10x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "0x0000303c 33") == 0);
+    ASSERT (streq (result, "0x0000303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number and precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%0#.10x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "0x000000303c 33") == 0);
+    ASSERT (streq (result, "0x000000303c 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number and width and precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#15.10x %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "   0x000000303c 33") == 0);
+    ASSERT (streq (result, "   0x000000303c 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3322,7 +3322,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%0#15.10x %d", 12348, 33, 44, 55);
     /* ISO C 99 § 7.19.6.1.(6) says: "For d, i, o, u, x, and X conversions, if a
        precision is specified, the 0 flag is ignored."  */
-    ASSERT (strcmp (result, "   0x000000303c 33") == 0);
+    ASSERT (streq (result, "   0x000000303c 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3332,21 +3332,21 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     /* ISO C and POSIX specify that "The result of converting a zero value
        with a precision of zero is no characters.", and the prefix is added
        only for non-zero values.  */
-    ASSERT (strcmp (result, " 33") == 0);
+    ASSERT (streq (result, " 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Uppercase 'X'.  */
     int retval =
       my_snprintf (result, sizeof (result), "%X %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "303C 33") == 0);
+    ASSERT (streq (result, "303C 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Uppercase 'X' with FLAG_ALT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#X %d", 12348, 33, 44, 55);
-    ASSERT (strcmp (result, "0X303C 33") == 0);
+    ASSERT (streq (result, "0X303C 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3356,7 +3356,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     /* ISO C and POSIX specify that "The result of converting a zero value
        with a precision of zero is no characters.", and the prefix is added
        only for non-zero values.  */
-    ASSERT (strcmp (result, " 33") == 0);
+    ASSERT (streq (result, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3366,56 +3366,56 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
   { /* Zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%b %d", 0, 33, 44, 55);
-    ASSERT (strcmp (result, "0 33") == 0);
+    ASSERT (streq (result, "0 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* A large positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%b %d", 0xFFFFFFFEU, 33, 44, 55);
-    ASSERT (strcmp (result, "11111111111111111111111111111110 33") == 0);
+    ASSERT (streq (result, "11111111111111111111111111111110 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%20b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "      11000000111001 33") == 0);
+    ASSERT (streq (result, "      11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width given as argument.  */
     int retval =
       my_snprintf (result, sizeof (result), "%*b %d", 20, 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "      11000000111001 33") == 0);
+    ASSERT (streq (result, "      11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Negative width given as argument (cf. FLAG_LEFT below).  */
     int retval =
       my_snprintf (result, sizeof (result), "%*b %d", -20, 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001       33") == 0);
+    ASSERT (streq (result, "11000000111001       33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.20b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "00000011000000111001 33") == 0);
+    ASSERT (streq (result, "00000011000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Zero precision and a positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%.0b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3424,14 +3424,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%.0b %d", 0, 33, 44, 55);
     /* ISO C and POSIX specify that "The result of converting a zero value
        with a precision of zero is no characters."  */
-    ASSERT (strcmp (result, " 33") == 0);
+    ASSERT (streq (result, " 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* Width and precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%25.20b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "     00000011000000111001 33") == 0);
+    ASSERT (streq (result, "     00000011000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3440,56 +3440,56 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%025.20b %d", 12345, 33, 44, 55);
     /* Neither ISO C nor POSIX specify that the '0' flag is ignored when
        a width and a precision are both present.  But implementations do so.  */
-    ASSERT (strcmp (result, "     00000011000000111001 33") == 0);
+    ASSERT (streq (result, "     00000011000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_LEFT.  */
     int retval =
       my_snprintf (result, sizeof (result), "%-20b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001       33") == 0);
+    ASSERT (streq (result, "11000000111001       33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with zero.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#b %d", 0, 33, 44, 55);
-    ASSERT (strcmp (result, "0 33") == 0);
+    ASSERT (streq (result, "0 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "0b11000000111001 33") == 0);
+    ASSERT (streq (result, "0b11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number and width.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#20b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "    0b11000000111001 33") == 0);
+    ASSERT (streq (result, "    0b11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number and padding.  */
     int retval =
       my_snprintf (result, sizeof (result), "%0#20b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "0b000011000000111001 33") == 0);
+    ASSERT (streq (result, "0b000011000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number and precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%0#.20b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "0b00000011000000111001 33") == 0);
+    ASSERT (streq (result, "0b00000011000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* FLAG_ALT with a positive number and width and precision.  */
     int retval =
       my_snprintf (result, sizeof (result), "%#25.20b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "   0b00000011000000111001 33") == 0);
+    ASSERT (streq (result, "   0b00000011000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3498,7 +3498,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       my_snprintf (result, sizeof (result), "%0#25.20b %d", 12345, 33, 44, 55);
     /* Neither ISO C nor POSIX specify that the '0' flag is ignored when
        a width and a precision are both present.  But implementations do so.  */
-    ASSERT (strcmp (result, "   0b00000011000000111001 33") == 0);
+    ASSERT (streq (result, "   0b00000011000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3508,7 +3508,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     /* ISO C and POSIX specify that "The result of converting a zero value
        with a precision of zero is no characters.", and the prefix is added
        only for non-zero values.  */
-    ASSERT (strcmp (result, " 33") == 0);
+    ASSERT (streq (result, " 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3519,7 +3519,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hhd %d", (signed char) -42, 33, 44, 55);
-    ASSERT (strcmp (result, "-42 33") == 0);
+    ASSERT (streq (result, "-42 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3527,7 +3527,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hd %d", (short) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3535,7 +3535,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%d %d", -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3543,7 +3543,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%ld %d", (long int) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3551,7 +3551,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%lld %d", (long long int) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3559,7 +3559,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w8d %d", (int8_t) -42, 33, 44, 55);
-    ASSERT (strcmp (result, "-42 33") == 0);
+    ASSERT (streq (result, "-42 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3567,7 +3567,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w16d %d", (int16_t) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3575,7 +3575,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w32d %d", (int32_t) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3583,7 +3583,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w64d %d", (int64_t) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3591,7 +3591,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf8d %d", (int_fast8_t) -42, 33, 44, 55);
-    ASSERT (strcmp (result, "-42 33") == 0);
+    ASSERT (streq (result, "-42 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3599,7 +3599,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf16d %d", (int_fast16_t) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3607,7 +3607,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf32d %d", (int_fast32_t) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3615,7 +3615,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf64d %d", (int_fast64_t) -12345, 33, 44, 55);
-    ASSERT (strcmp (result, "-12345 33") == 0);
+    ASSERT (streq (result, "-12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3626,7 +3626,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hhu %d", (unsigned char) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "42 33") == 0);
+    ASSERT (streq (result, "42 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3634,7 +3634,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hu %d", (unsigned short) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3642,7 +3642,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%u %d", (unsigned int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3650,7 +3650,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%lu %d", (unsigned long int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3658,7 +3658,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%llu %d", (unsigned long long int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3666,7 +3666,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w8u %d", (uint8_t) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "42 33") == 0);
+    ASSERT (streq (result, "42 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3674,7 +3674,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w16u %d", (uint16_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3682,7 +3682,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w32u %d", (uint32_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3690,7 +3690,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w64u %d", (uint64_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3698,7 +3698,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf8u %d", (uint_fast8_t) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "42 33") == 0);
+    ASSERT (streq (result, "42 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3706,7 +3706,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf16u %d", (uint_fast16_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3714,7 +3714,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf32u %d", (uint_fast32_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3722,7 +3722,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf64u %d", (uint_fast64_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "12345 33") == 0);
+    ASSERT (streq (result, "12345 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3733,7 +3733,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hhb %d", (unsigned char) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "101010 33") == 0);
+    ASSERT (streq (result, "101010 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3741,7 +3741,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hb %d", (unsigned short) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3749,7 +3749,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%b %d", (unsigned int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3757,7 +3757,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%lb %d", (unsigned long int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3765,7 +3765,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%llb %d", (unsigned long long int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3773,7 +3773,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w8b %d", (uint8_t) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "101010 33") == 0);
+    ASSERT (streq (result, "101010 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3781,7 +3781,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w16b %d", (uint16_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3789,7 +3789,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w32b %d", (uint32_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3797,7 +3797,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w64b %d", (uint64_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3805,7 +3805,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf8b %d", (uint_fast8_t) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "101010 33") == 0);
+    ASSERT (streq (result, "101010 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3813,7 +3813,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf16b %d", (uint_fast16_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3821,7 +3821,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf32b %d", (uint_fast32_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3829,7 +3829,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf64b %d", (uint_fast64_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3840,7 +3840,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hho %d", (unsigned char) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "52 33") == 0);
+    ASSERT (streq (result, "52 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3848,7 +3848,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%ho %d", (unsigned short) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3856,7 +3856,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%o %d", (unsigned int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3864,7 +3864,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%lo %d", (unsigned long int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3872,7 +3872,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%llo %d", (unsigned long long int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3880,7 +3880,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w8o %d", (uint8_t) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "52 33") == 0);
+    ASSERT (streq (result, "52 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3888,7 +3888,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w16o %d", (uint16_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3896,7 +3896,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w32o %d", (uint32_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3904,7 +3904,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w64o %d", (uint64_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3912,7 +3912,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf8o %d", (uint_fast8_t) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "52 33") == 0);
+    ASSERT (streq (result, "52 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3920,7 +3920,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf16o %d", (uint_fast16_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3928,7 +3928,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf32o %d", (uint_fast32_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3936,7 +3936,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf64o %d", (uint_fast64_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "30071 33") == 0);
+    ASSERT (streq (result, "30071 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3947,7 +3947,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hhX %d", (unsigned char) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "2A 33") == 0);
+    ASSERT (streq (result, "2A 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3955,7 +3955,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%hX %d", (unsigned short) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3963,7 +3963,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%X %d", (unsigned int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3971,7 +3971,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%lX %d", (unsigned long int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3979,7 +3979,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%llX %d", (unsigned long long int) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3987,7 +3987,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w8X %d", (uint8_t) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "2A 33") == 0);
+    ASSERT (streq (result, "2A 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -3995,7 +3995,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w16X %d", (uint16_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -4003,7 +4003,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w32X %d", (uint32_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -4011,7 +4011,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%w64X %d", (uint64_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -4019,7 +4019,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf8X %d", (uint_fast8_t) 42, 33, 44, 55);
-    ASSERT (strcmp (result, "2A 33") == 0);
+    ASSERT (streq (result, "2A 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -4027,7 +4027,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf16X %d", (uint_fast16_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -4035,7 +4035,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf32X %d", (uint_fast32_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -4043,7 +4043,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "%wf64X %d", (uint_fast64_t) 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "3039 33") == 0);
+    ASSERT (streq (result, "3039 33"));
     ASSERT (retval == strlen (result));
   }
 }

@@ -48,7 +48,7 @@ main (void)
 # endif
     result = inet_ntop (AF_INET, &internal, printable, sizeof (printable));
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "129.13.115.2") == 0);
+    ASSERT (streq (result, "129.13.115.2"));
   }
 #endif
 

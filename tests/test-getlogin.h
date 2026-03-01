@@ -120,7 +120,7 @@ test_getlogin_result (const char *buf, int err)
   {
     const char *name = getenv ("USERNAME");
     if (name != NULL && name[0] != '\0')
-      ASSERT (strcmp (buf, name) == 0);
+      ASSERT (streq (buf, name));
   }
 #endif
 }

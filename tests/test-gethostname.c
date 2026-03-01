@@ -56,7 +56,7 @@ main (int argc, _GL_UNUSED char *argv[])
       return 1;
     }
 
-  if (strcmp (buf, NOHOSTNAME) == 0)
+  if (streq (buf, NOHOSTNAME))
     {
       printf ("gethostname left buffer untouched.\n");
       return 1;

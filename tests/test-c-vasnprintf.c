@@ -50,7 +50,7 @@ main (int argc, char *argv[])
     size_t length = sizeof (buf);
     char *result = my_c_asnprintf (buf, &length, "%#.0f", 1.0);
     ASSERT (result == buf);
-    ASSERT (strcmp (result, "1.") == 0);
+    ASSERT (streq (result, "1."));
   }
 
   return test_exit_status;

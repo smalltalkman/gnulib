@@ -103,10 +103,10 @@ test_with_uselocale (void)
     struct locale_dependent_values results;
     get_locale_dependent_values (&results);
 # if HAVE_MONETARY_H
-    ASSERT (strcmp (results.monetary, expected_results.monetary) == 0);
+    ASSERT (streq (results.monetary, expected_results.monetary));
 # endif
-    ASSERT (strcmp (results.numeric, expected_results.numeric) == 0);
-    ASSERT (strcmp (results.time, expected_results.time) == 0);
+    ASSERT (streq (results.numeric, expected_results.numeric));
+    ASSERT (streq (results.time, expected_results.time));
   }
 
   /* Now use the saved locale mixed2 again.  */
@@ -117,10 +117,10 @@ test_with_uselocale (void)
     struct locale_dependent_values results;
     get_locale_dependent_values (&results);
 # if HAVE_MONETARY_H
-    ASSERT (strcmp (results.monetary, expected_results.monetary) == 0);
+    ASSERT (streq (results.monetary, expected_results.monetary));
 # endif
-    ASSERT (strcmp (results.numeric, expected_results.numeric) == 0);
-    ASSERT (strcmp (results.time, expected_results.time) == 0);
+    ASSERT (streq (results.numeric, expected_results.numeric));
+    ASSERT (streq (results.time, expected_results.time));
   }
 
   setlocale (LC_ALL, "C");
@@ -194,13 +194,13 @@ test_with_locale_parameter (void)
     struct locale_dependent_values results;
     get_locale_dependent_values_from (&results, mixed1);
 #if HAVE_STRFMON_L
-    ASSERT (strcmp (results.monetary, expected_results.monetary) == 0);
+    ASSERT (streq (results.monetary, expected_results.monetary));
 #endif
 #if HAVE_SNPRINTF_L
-    ASSERT (strcmp (results.numeric, expected_results.numeric) == 0);
+    ASSERT (streq (results.numeric, expected_results.numeric));
 #endif
 #if HAVE_NL_LANGINFO_L && HAVE_WORKING_USELOCALE
-    ASSERT (strcmp (results.time, expected_results.time) == 0);
+    ASSERT (streq (results.time, expected_results.time));
 #endif
   }
 

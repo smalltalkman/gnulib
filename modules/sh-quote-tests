@@ -3,6 +3,7 @@ tests/test-sh-quote.c
 tests/macros.h
 
 Depends-on:
+streq
 
 configure.ac:
 

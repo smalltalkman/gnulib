@@ -5,6 +5,7 @@ Depends-on:
 assert-h
 c99
 errno-h-c++-tests
+streq
 
 configure.ac:
 

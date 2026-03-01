@@ -84,10 +84,10 @@ main ()
   printf ("PLAIN RECURSIVE -> type = %s\n", type_plain_rec);
   printf ("TIMED RECURSIVE -> type = %s\n", type_timed_rec);
 
-  ASSERT (strcmp (type_plain,     "NORMAL") == 0);
-  ASSERT (strcmp (type_timed,     "NORMAL") == 0);
-  ASSERT (strcmp (type_plain_rec, "RECURSIVE") == 0);
-  ASSERT (strcmp (type_timed_rec, "RECURSIVE") == 0);
+  ASSERT (streq (type_plain,     "NORMAL"));
+  ASSERT (streq (type_timed,     "NORMAL"));
+  ASSERT (streq (type_plain_rec, "RECURSIVE"));
+  ASSERT (streq (type_timed_rec, "RECURSIVE"));
 
   return test_exit_status;
 }

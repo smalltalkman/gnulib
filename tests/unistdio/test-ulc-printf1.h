@@ -25,7 +25,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%ju %d", (uintmax_t) 12345671, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12345671 33") == 0);
+    ASSERT (streq (result, "12345671 33"));
     free (result);
   }
 
@@ -33,7 +33,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%zu %d", (size_t) 12345672, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12345672 33") == 0);
+    ASSERT (streq (result, "12345672 33"));
     free (result);
   }
 
@@ -41,7 +41,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%tu %d", (ptrdiff_t) 12345673, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12345673 33") == 0);
+    ASSERT (streq (result, "12345673 33"));
     free (result);
   }
 
@@ -49,7 +49,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%Lg %d", (long double) 1.5, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.5 33") == 0);
+    ASSERT (streq (result, "1.5 33"));
     free (result);
   }
 
@@ -61,42 +61,42 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
       char *result =
         my_xasprintf ("%U %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello 33") == 0);
+      ASSERT (streq (result, "Hello 33"));
       free (result);
     }
     { /* Width.  */
       char *result =
         my_xasprintf ("%10U %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
     { /* Width given as argument.  */
       char *result =
         my_xasprintf ("%*U %d", 10, unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
     { /* Negative width given as argument (cf. FLAG_LEFT below).  */
       char *result =
         my_xasprintf ("%*U %d", -10, unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello      33") == 0);
+      ASSERT (streq (result, "Hello      33"));
       free (result);
     }
     { /* FLAG_LEFT.  */
       char *result =
         my_xasprintf ("%-10U %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello      33") == 0);
+      ASSERT (streq (result, "Hello      33"));
       free (result);
     }
     { /* FLAG_ZERO: no effect.  */
       char *result =
         my_xasprintf ("%010U %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
   }
@@ -107,42 +107,42 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
       char *result =
         my_xasprintf ("%lU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello 33") == 0);
+      ASSERT (streq (result, "Hello 33"));
       free (result);
     }
     { /* Width.  */
       char *result =
         my_xasprintf ("%10lU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
     { /* Width given as argument.  */
       char *result =
         my_xasprintf ("%*lU %d", 10, unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
     { /* Negative width given as argument (cf. FLAG_LEFT below).  */
       char *result =
         my_xasprintf ("%*lU %d", -10, unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello      33") == 0);
+      ASSERT (streq (result, "Hello      33"));
       free (result);
     }
     { /* FLAG_LEFT.  */
       char *result =
         my_xasprintf ("%-10lU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello      33") == 0);
+      ASSERT (streq (result, "Hello      33"));
       free (result);
     }
     { /* FLAG_ZERO: no effect.  */
       char *result =
         my_xasprintf ("%010lU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
   }
@@ -153,42 +153,42 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
       char *result =
         my_xasprintf ("%llU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello 33") == 0);
+      ASSERT (streq (result, "Hello 33"));
       free (result);
     }
     { /* Width.  */
       char *result =
         my_xasprintf ("%10llU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
     { /* Width given as argument.  */
       char *result =
         my_xasprintf ("%*llU %d", 10, unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
     { /* Negative width given as argument (cf. FLAG_LEFT below).  */
       char *result =
         my_xasprintf ("%*llU %d", -10, unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello      33") == 0);
+      ASSERT (streq (result, "Hello      33"));
       free (result);
     }
     { /* FLAG_LEFT.  */
       char *result =
         my_xasprintf ("%-10llU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Hello      33") == 0);
+      ASSERT (streq (result, "Hello      33"));
       free (result);
     }
     { /* FLAG_ZERO: no effect.  */
       char *result =
         my_xasprintf ("%010llU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     Hello 33") == 0);
+      ASSERT (streq (result, "     Hello 33"));
       free (result);
     }
   }
@@ -199,7 +199,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("Mr. %s %d", "Ronald Reagan", 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "Mr. Ronald Reagan 33") == 0);
+    ASSERT (streq (result, "Mr. Ronald Reagan 33"));
     free (result);
   }
 
@@ -207,7 +207,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("Mr. %20s %d", "Ronald Reagan", 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "Mr.        Ronald Reagan 33") == 0);
+    ASSERT (streq (result, "Mr.        Ronald Reagan 33"));
     free (result);
   }
 
@@ -215,7 +215,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("Mr. %*s %d", 20, "Ronald Reagan", 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "Mr.        Ronald Reagan 33") == 0);
+    ASSERT (streq (result, "Mr.        Ronald Reagan 33"));
     free (result);
   }
 
@@ -223,7 +223,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("Mr. %*s %d", -20, "Ronald Reagan", 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "Mr. Ronald Reagan        33") == 0);
+    ASSERT (streq (result, "Mr. Ronald Reagan        33"));
     free (result);
   }
 
@@ -231,7 +231,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("Mr. %-20s %d", "Ronald Reagan", 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "Mr. Ronald Reagan        33") == 0);
+    ASSERT (streq (result, "Mr. Ronald Reagan        33"));
     free (result);
   }
 
@@ -239,7 +239,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("Mr. %020s %d", "Ronald Reagan", 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "Mr.        Ronald Reagan 33") == 0);
+    ASSERT (streq (result, "Mr.        Ronald Reagan 33"));
     free (result);
   }
 
@@ -250,10 +250,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%a %d", 3.1416015625, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.922p+1 33") == 0
-            || strcmp (result, "0x3.244p+0 33") == 0
-            || strcmp (result, "0x6.488p-1 33") == 0
-            || strcmp (result, "0xc.91p-2 33") == 0);
+    ASSERT (streq (result, "0x1.922p+1 33")
+            || streq (result, "0x3.244p+0 33")
+            || streq (result, "0x6.488p-1 33")
+            || streq (result, "0xc.91p-2 33"));
     free (result);
   }
 
@@ -261,10 +261,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%10a %d", 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "  0x1.cp+0 33") == 0
-            || strcmp (result, "  0x3.8p-1 33") == 0
-            || strcmp (result, "    0x7p-2 33") == 0
-            || strcmp (result, "    0xep-3 33") == 0);
+    ASSERT (streq (result, "  0x1.cp+0 33")
+            || streq (result, "  0x3.8p-1 33")
+            || streq (result, "    0x7p-2 33")
+            || streq (result, "    0xep-3 33"));
     free (result);
   }
 
@@ -272,10 +272,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*a %d", 10, 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "  0x1.cp+0 33") == 0
-            || strcmp (result, "  0x3.8p-1 33") == 0
-            || strcmp (result, "    0x7p-2 33") == 0
-            || strcmp (result, "    0xep-3 33") == 0);
+    ASSERT (streq (result, "  0x1.cp+0 33")
+            || streq (result, "  0x3.8p-1 33")
+            || streq (result, "    0x7p-2 33")
+            || streq (result, "    0xep-3 33"));
     free (result);
   }
 
@@ -283,10 +283,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*a %d", -10, 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.cp+0   33") == 0
-            || strcmp (result, "0x3.8p-1   33") == 0
-            || strcmp (result, "0x7p-2     33") == 0
-            || strcmp (result, "0xep-3     33") == 0);
+    ASSERT (streq (result, "0x1.cp+0   33")
+            || streq (result, "0x3.8p-1   33")
+            || streq (result, "0x7p-2     33")
+            || streq (result, "0xep-3     33"));
     free (result);
   }
 
@@ -294,10 +294,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.10a %d", 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.c000000000p+0 33") == 0
-            || strcmp (result, "0x3.8000000000p-1 33") == 0
-            || strcmp (result, "0x7.0000000000p-2 33") == 0
-            || strcmp (result, "0xe.0000000000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.c000000000p+0 33")
+            || streq (result, "0x3.8000000000p-1 33")
+            || streq (result, "0x7.0000000000p-2 33")
+            || streq (result, "0xe.0000000000p-3 33"));
     free (result);
   }
 
@@ -305,10 +305,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.50a %d", 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.c0000000000000000000000000000000000000000000000000p+0 33") == 0
-            || strcmp (result, "0x3.80000000000000000000000000000000000000000000000000p-1 33") == 0
-            || strcmp (result, "0x7.00000000000000000000000000000000000000000000000000p-2 33") == 0
-            || strcmp (result, "0xe.00000000000000000000000000000000000000000000000000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.c0000000000000000000000000000000000000000000000000p+0 33")
+            || streq (result, "0x3.80000000000000000000000000000000000000000000000000p-1 33")
+            || streq (result, "0x7.00000000000000000000000000000000000000000000000000p-2 33")
+            || streq (result, "0xe.00000000000000000000000000000000000000000000000000p-3 33"));
     free (result);
   }
 
@@ -316,10 +316,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%La %d", 3.1416015625L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.922p+1 33") == 0
-            || strcmp (result, "0x3.244p+0 33") == 0
-            || strcmp (result, "0x6.488p-1 33") == 0
-            || strcmp (result, "0xc.91p-2 33") == 0);
+    ASSERT (streq (result, "0x1.922p+1 33")
+            || streq (result, "0x3.244p+0 33")
+            || streq (result, "0x6.488p-1 33")
+            || streq (result, "0xc.91p-2 33"));
     free (result);
   }
 
@@ -327,10 +327,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%10La %d", 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "  0x1.cp+0 33") == 0
-            || strcmp (result, "  0x3.8p-1 33") == 0
-            || strcmp (result, "    0x7p-2 33") == 0
-            || strcmp (result, "    0xep-3 33") == 0);
+    ASSERT (streq (result, "  0x1.cp+0 33")
+            || streq (result, "  0x3.8p-1 33")
+            || streq (result, "    0x7p-2 33")
+            || streq (result, "    0xep-3 33"));
     free (result);
   }
 
@@ -338,10 +338,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*La %d", 10, 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "  0x1.cp+0 33") == 0
-            || strcmp (result, "  0x3.8p-1 33") == 0
-            || strcmp (result, "    0x7p-2 33") == 0
-            || strcmp (result, "    0xep-3 33") == 0);
+    ASSERT (streq (result, "  0x1.cp+0 33")
+            || streq (result, "  0x3.8p-1 33")
+            || streq (result, "    0x7p-2 33")
+            || streq (result, "    0xep-3 33"));
     free (result);
   }
 
@@ -349,10 +349,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*La %d", -10, 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.cp+0   33") == 0
-            || strcmp (result, "0x3.8p-1   33") == 0
-            || strcmp (result, "0x7p-2     33") == 0
-            || strcmp (result, "0xep-3     33") == 0);
+    ASSERT (streq (result, "0x1.cp+0   33")
+            || streq (result, "0x3.8p-1   33")
+            || streq (result, "0x7p-2     33")
+            || streq (result, "0xep-3     33"));
     free (result);
   }
 
@@ -360,10 +360,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.10La %d", 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.c000000000p+0 33") == 0
-            || strcmp (result, "0x3.8000000000p-1 33") == 0
-            || strcmp (result, "0x7.0000000000p-2 33") == 0
-            || strcmp (result, "0xe.0000000000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.c000000000p+0 33")
+            || streq (result, "0x3.8000000000p-1 33")
+            || streq (result, "0x7.0000000000p-2 33")
+            || streq (result, "0xe.0000000000p-3 33"));
     free (result);
   }
 
@@ -371,10 +371,10 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.50La %d", 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1.c0000000000000000000000000000000000000000000000000p+0 33") == 0
-            || strcmp (result, "0x3.80000000000000000000000000000000000000000000000000p-1 33") == 0
-            || strcmp (result, "0x7.00000000000000000000000000000000000000000000000000p-2 33") == 0
-            || strcmp (result, "0xe.00000000000000000000000000000000000000000000000000p-3 33") == 0);
+    ASSERT (streq (result, "0x1.c0000000000000000000000000000000000000000000000000p+0 33")
+            || streq (result, "0x3.80000000000000000000000000000000000000000000000000p-1 33")
+            || streq (result, "0x7.00000000000000000000000000000000000000000000000000p-2 33")
+            || streq (result, "0xe.00000000000000000000000000000000000000000000000000p-3 33"));
     free (result);
   }
 
@@ -384,7 +384,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%f %d", 12.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12.750000 33") == 0);
+    ASSERT (streq (result, "12.750000 33"));
     free (result);
   }
 
@@ -392,7 +392,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%10f %d", 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "  1.750000 33") == 0);
+    ASSERT (streq (result, "  1.750000 33"));
     free (result);
   }
 
@@ -400,7 +400,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*f %d", 10, 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "  1.750000 33") == 0);
+    ASSERT (streq (result, "  1.750000 33"));
     free (result);
   }
 
@@ -408,7 +408,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*f %d", -10, 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.750000   33") == 0);
+    ASSERT (streq (result, "1.750000   33"));
     free (result);
   }
 
@@ -416,7 +416,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.f %d", 1234.0, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1234 33") == 0);
+    ASSERT (streq (result, "1234 33"));
     free (result);
   }
 
@@ -424,7 +424,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%Lf %d", 12.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12.750000 33") == 0);
+    ASSERT (streq (result, "12.750000 33"));
     free (result);
   }
 
@@ -432,7 +432,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%10Lf %d", 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "  1.750000 33") == 0);
+    ASSERT (streq (result, "  1.750000 33"));
     free (result);
   }
 
@@ -440,7 +440,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*Lf %d", 10, 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "  1.750000 33") == 0);
+    ASSERT (streq (result, "  1.750000 33"));
     free (result);
   }
 
@@ -448,7 +448,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*Lf %d", -10, 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.750000   33") == 0);
+    ASSERT (streq (result, "1.750000   33"));
     free (result);
   }
 
@@ -456,7 +456,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.Lf %d", 1234.0L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1234 33") == 0);
+    ASSERT (streq (result, "1234 33"));
     free (result);
   }
 
@@ -466,7 +466,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%F %d", 12.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12.750000 33") == 0);
+    ASSERT (streq (result, "12.750000 33"));
     free (result);
   }
 
@@ -474,7 +474,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.F %d", 1234.0, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1234 33") == 0);
+    ASSERT (streq (result, "1234 33"));
     free (result);
   }
 
@@ -482,7 +482,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%LF %d", 12.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12.750000 33") == 0);
+    ASSERT (streq (result, "12.750000 33"));
     free (result);
   }
 
@@ -490,7 +490,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.LF %d", 1234.0L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1234 33") == 0);
+    ASSERT (streq (result, "1234 33"));
     free (result);
   }
 
@@ -500,8 +500,8 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%e %d", 12.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.275000e+01 33") == 0
-            || strcmp (result, "1.275000e+001 33") == 0);
+    ASSERT (streq (result, "1.275000e+01 33")
+            || streq (result, "1.275000e+001 33"));
     free (result);
   }
 
@@ -509,8 +509,8 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%15e %d", 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "   1.750000e+00 33") == 0
-            || strcmp (result, "  1.750000e+000 33") == 0);
+    ASSERT (streq (result, "   1.750000e+00 33")
+            || streq (result, "  1.750000e+000 33"));
     free (result);
   }
 
@@ -518,8 +518,8 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*e %d", 15, 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "   1.750000e+00 33") == 0
-            || strcmp (result, "  1.750000e+000 33") == 0);
+    ASSERT (streq (result, "   1.750000e+00 33")
+            || streq (result, "  1.750000e+000 33"));
     free (result);
   }
 
@@ -527,8 +527,8 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*e %d", -15, 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.750000e+00    33") == 0
-            || strcmp (result, "1.750000e+000   33") == 0);
+    ASSERT (streq (result, "1.750000e+00    33")
+            || streq (result, "1.750000e+000   33"));
     free (result);
   }
 
@@ -536,8 +536,8 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.e %d", 1234.0, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1e+03 33") == 0
-            || strcmp (result, "1e+003 33") == 0);
+    ASSERT (streq (result, "1e+03 33")
+            || streq (result, "1e+003 33"));
     free (result);
   }
 
@@ -545,7 +545,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%Le %d", 12.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.275000e+01 33") == 0);
+    ASSERT (streq (result, "1.275000e+01 33"));
     free (result);
   }
 
@@ -553,7 +553,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%15Le %d", 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "   1.750000e+00 33") == 0);
+    ASSERT (streq (result, "   1.750000e+00 33"));
     free (result);
   }
 
@@ -561,7 +561,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*Le %d", 15, 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "   1.750000e+00 33") == 0);
+    ASSERT (streq (result, "   1.750000e+00 33"));
     free (result);
   }
 
@@ -569,7 +569,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*Le %d", -15, 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.750000e+00    33") == 0);
+    ASSERT (streq (result, "1.750000e+00    33"));
     free (result);
   }
 
@@ -577,7 +577,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.Le %d", 1234.0L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1e+03 33") == 0);
+    ASSERT (streq (result, "1e+03 33"));
     free (result);
   }
 
@@ -587,7 +587,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%g %d", 12.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12.75 33") == 0);
+    ASSERT (streq (result, "12.75 33"));
     free (result);
   }
 
@@ -595,7 +595,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%10g %d", 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "      1.75 33") == 0);
+    ASSERT (streq (result, "      1.75 33"));
     free (result);
   }
 
@@ -603,7 +603,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*g %d", 10, 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "      1.75 33") == 0);
+    ASSERT (streq (result, "      1.75 33"));
     free (result);
   }
 
@@ -611,7 +611,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*g %d", -10, 1.75, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.75       33") == 0);
+    ASSERT (streq (result, "1.75       33"));
     free (result);
   }
 
@@ -619,8 +619,8 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.g %d", 1234.0, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1e+03 33") == 0
-            || strcmp (result, "1e+003 33") == 0);
+    ASSERT (streq (result, "1e+03 33")
+            || streq (result, "1e+003 33"));
     free (result);
   }
 
@@ -628,7 +628,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%Lg %d", 12.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "12.75 33") == 0);
+    ASSERT (streq (result, "12.75 33"));
     free (result);
   }
 
@@ -636,7 +636,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%10Lg %d", 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "      1.75 33") == 0);
+    ASSERT (streq (result, "      1.75 33"));
     free (result);
   }
 
@@ -644,7 +644,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*Lg %d", 10, 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "      1.75 33") == 0);
+    ASSERT (streq (result, "      1.75 33"));
     free (result);
   }
 
@@ -652,7 +652,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%*Lg %d", -10, 1.75L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1.75       33") == 0);
+    ASSERT (streq (result, "1.75       33"));
     free (result);
   }
 
@@ -660,7 +660,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%.Lg %d", 1234.0L, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "1e+03 33") == 0);
+    ASSERT (streq (result, "1e+03 33"));
     free (result);
   }
 
@@ -672,7 +672,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
       my_xasprintf ("%d %n", 123, &count, 33, 44, 55);
 #if NEED_PRINTF_WITH_N_DIRECTIVE
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "123 ") == 0);
+    ASSERT (streq (result, "123 "));
     ASSERT (count == 4);
     free (result);
 #else
@@ -686,7 +686,7 @@ test_xfunction (char * (*my_xasprintf) (const char *, ...))
     char *result =
       my_xasprintf ("%2$d %1$d", 33, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "55 33") == 0);
+    ASSERT (streq (result, "55 33"));
     free (result);
   }
 

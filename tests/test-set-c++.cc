@@ -43,11 +43,11 @@ main (int argc, char *argv[])
   gl_Set<const char *>::iterator iter1 = set1.begin ();
   const char *elt;
   ASSERT (iter1.next (elt));
-  ASSERT (strcmp (elt, "A") == 0 || strcmp (elt, "D") == 0 || strcmp (elt, "C") == 0);
+  ASSERT (streq (elt, "A") || strcmp (elt, "D") == 0 || strcmp (elt, "C") == 0);
   ASSERT (iter1.next (elt));
-  ASSERT (strcmp (elt, "A") == 0 || strcmp (elt, "D") == 0 || strcmp (elt, "C") == 0);
+  ASSERT (streq (elt, "A") || strcmp (elt, "D") == 0 || strcmp (elt, "C") == 0);
   ASSERT (iter1.next (elt));
-  ASSERT (strcmp (elt, "A") == 0 || strcmp (elt, "D") == 0 || strcmp (elt, "C") == 0);
+  ASSERT (streq (elt, "A") || strcmp (elt, "D") == 0 || strcmp (elt, "C") == 0);
   ASSERT (!iter1.next (elt));
 
   set1.free ();

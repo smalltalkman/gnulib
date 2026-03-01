@@ -9,6 +9,7 @@ Depends-on:
 thrd
 stdint-h
 random
+streq
 
 configure.ac:
 AC_CHECK_HEADERS_ONCE([semaphore.h])

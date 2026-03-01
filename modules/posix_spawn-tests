@@ -21,6 +21,7 @@ environ
 fflush
 freopen
 waitpid
+streq
 
 configure.ac:
 

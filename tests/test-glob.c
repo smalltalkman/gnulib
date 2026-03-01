@@ -69,7 +69,7 @@ main ()
 
   res = glob (GL_NO_SUCH_FILE, GLOB_NOCHECK, NULL, &g);
   ASSERT (res == 0 && g.gl_pathc == 1);
-  ASSERT (strcmp (g.gl_pathv[0], GL_NO_SUCH_FILE) == 0);
+  ASSERT (streq (g.gl_pathv[0], GL_NO_SUCH_FILE));
   globfree (&g);
 
   if ((symlink (GL_NO_SUCH_FILE, BASE "globlink1") == 0 || errno == EEXIST)
@@ -79,19 +79,19 @@ main ()
     {
       res = glob (BASE "globlink[12]", 0, NULL, &g);
       ASSERT (res == 0 && g.gl_pathc == 2);
-      ASSERT (strcmp (g.gl_pathv[0], BASE "globlink1") == 0);
-      ASSERT (strcmp (g.gl_pathv[1], BASE "globlink2") == 0);
+      ASSERT (streq (g.gl_pathv[0], BASE "globlink1"));
+      ASSERT (streq (g.gl_pathv[1], BASE "globlink2"));
       globfree (&g);
 
       res = glob (BASE "globlink[123]/", 0, NULL, &g);
       ASSERT (res == 0 && g.gl_pathc == 1);
-      ASSERT (strcmp (g.gl_pathv[0], BASE "globlink2/") == 0);
+      ASSERT (streq (g.gl_pathv[0], BASE "globlink2/"));
       globfree (&g);
 
       res = glob (BASE "globlink[12]", GLOB_MARK, NULL, &g);
       ASSERT (res == 0 && g.gl_pathc == 2);
-      ASSERT (strcmp (g.gl_pathv[0], BASE "globlink1") == 0);
-      ASSERT (strcmp (g.gl_pathv[1], BASE "globlink2/") == 0);
+      ASSERT (streq (g.gl_pathv[0], BASE "globlink1"));
+      ASSERT (streq (g.gl_pathv[1], BASE "globlink2/"));
       globfree (&g);
     }
 

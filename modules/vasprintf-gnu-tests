@@ -4,6 +4,7 @@ tests/macros.h
 
 Depends-on:
 vasprintf-posix-tests
+streq
 
 configure.ac:
 

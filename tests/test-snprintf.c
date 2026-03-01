@@ -63,7 +63,7 @@ main ()
   {
     char result[100];
     retval = snprintf (result, sizeof (result), "%2$d %1$d", 33, 55);
-    ASSERT (strcmp (result, "55 33") == 0);
+    ASSERT (streq (result, "55 33"));
     ASSERT (retval == strlen (result));
   }
 

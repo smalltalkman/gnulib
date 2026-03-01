@@ -42,7 +42,7 @@ main ()
 
     for (size_t i = 0; i < nblocks; i++)
       {
-        if (strcmp (blocks[i].name, "Hebrew") == 0)
+        if (streq (blocks[i].name, "Hebrew"))
           {
             ASSERT (uc_block (0x05DE) == &blocks[i]);
             ASSERT (uc_is_block (0x05DE, &blocks[i]));

@@ -55,30 +55,30 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
   { /* This test would fail on Solaris 11.4.  */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%a %d", 3.1416015625, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.922p+1 33") == 0
-            || strcmp (result, "0x3.244p+0 33") == 0
-            || strcmp (result, "0x6.488p-1 33") == 0
-            || strcmp (result, "0xc.91p-2 33") == 0);
+    ASSERT (streq (result, "0x1.922p+1 33")
+            || streq (result, "0x3.244p+0 33")
+            || streq (result, "0x6.488p-1 33")
+            || streq (result, "0xc.91p-2 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* This test would fail on Solaris 11.4.  */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%A %d", -3.1416015625, 33, 44, 55);
-    ASSERT (strcmp (result, "-0X1.922P+1 33") == 0
-            || strcmp (result, "-0X3.244P+0 33") == 0
-            || strcmp (result, "-0X6.488P-1 33") == 0
-            || strcmp (result, "-0XC.91P-2 33") == 0);
+    ASSERT (streq (result, "-0X1.922P+1 33")
+            || streq (result, "-0X3.244P+0 33")
+            || streq (result, "-0X6.488P-1 33")
+            || streq (result, "-0XC.91P-2 33"));
     ASSERT (retval == strlen (result));
   }
 
   { /* This test would fail on FreeBSD 6.1, NetBSD 10.0. */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%.2a %d", 1.51, 33, 44, 55);
-    ASSERT (strcmp (result, "0x1.83p+0 33") == 0
-            || strcmp (result, "0x3.05p-1 33") == 0
-            || strcmp (result, "0x6.0ap-2 33") == 0
-            || strcmp (result, "0xc.14p-3 33") == 0);
+    ASSERT (streq (result, "0x1.83p+0 33")
+            || streq (result, "0x3.05p-1 33")
+            || streq (result, "0x6.0ap-2 33")
+            || streq (result, "0xc.14p-3 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -86,10 +86,10 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
        Solaris 11.4.  */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%.0a %d", 1.51, 33, 44, 55);
-    ASSERT (strcmp (result, "0x2p+0 33") == 0
-            || strcmp (result, "0x3p-1 33") == 0
-            || strcmp (result, "0x6p-2 33") == 0
-            || strcmp (result, "0xcp-3 33") == 0);
+    ASSERT (streq (result, "0x2p+0 33")
+            || streq (result, "0x3p-1 33")
+            || streq (result, "0x6p-2 33")
+            || streq (result, "0xcp-3 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -98,8 +98,8 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
   { /* This test would fail on AIX 7.3, Solaris 11.4.  */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%f %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -115,8 +115,8 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
   { /* This test would fail on AIX 7.3, Solaris 11.4.  */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%010f %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "       inf 33") == 0
-            || strcmp (result, "  infinity 33") == 0);
+    ASSERT (streq (result, "       inf 33")
+            || streq (result, "  infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -125,8 +125,8 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
   { /* This test would fail on AIX 7.3, Solaris 11.4.  */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%e %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -144,8 +144,8 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
   { /* This test would fail on AIX 7.3, Solaris 11.4.  */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%g %d", Infinityd (), 33, 44, 55);
-    ASSERT (strcmp (result, "inf 33") == 0
-            || strcmp (result, "infinity 33") == 0);
+    ASSERT (streq (result, "inf 33")
+            || streq (result, "infinity 33"));
     ASSERT (retval == strlen (result));
   }
 
@@ -165,7 +165,7 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
       my_snzprintf (result, sizeof (result), "%.4000d %d", 1234567, 99);
     for (size_t i = 0; i < 4000 - 7; i++)
       ASSERT (result[i] == '0');
-    ASSERT (strcmp (result + 4000 - 7, "1234567 99") == 0);
+    ASSERT (streq (result + 4000 - 7, "1234567 99"));
     ASSERT (retval == strlen (result));
   }
 
@@ -176,7 +176,7 @@ test_function (ptrdiff_t (*my_snzprintf) (char *, size_t, const char *, ...))
        FreeBSD 13.2, NetBSD 10.0, OpenBSD 7.5, AIX 7.3, Solaris 11.4.  */
     ptrdiff_t retval =
       my_snzprintf (result, sizeof (result), "%b %d", 12345, 33, 44, 55);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (retval == strlen (result));
   }
 }

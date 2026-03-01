@@ -145,7 +145,7 @@ main (int argc, char *argv[])
       {
         const char *s = immstrdup ("Hello");
         ASSERT (strlen (s) == 5);
-        ASSERT (strcmp (s, "Hello") == 0);
+        ASSERT (streq (s, "Hello"));
         immfree (s);
       }
       break;

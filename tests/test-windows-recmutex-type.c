@@ -59,7 +59,7 @@ main ()
 
   printf ("type = %s\n", type);
 
-  ASSERT (strcmp (type, "RECURSIVE") == 0);
+  ASSERT (streq (type, "RECURSIVE"));
 
   return test_exit_status;
 }

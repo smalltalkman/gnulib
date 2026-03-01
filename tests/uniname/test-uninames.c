@@ -308,7 +308,7 @@ test_inverse_lookup ()
                 if (result != UNINAME_INVALID
                     && !name_has_alias (result)
                     && !(unicode_names[result] != NULL
-                         && strcmp (unicode_names[result], buf) == 0))
+                         && streq (unicode_names[result], buf)))
                   {
                     fprintf (stderr,
                              "inverse name lookup of \"%s\" returned 0x%04X\n",

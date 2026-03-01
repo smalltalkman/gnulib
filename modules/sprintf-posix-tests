@@ -12,6 +12,7 @@ stdint-h
 float-h
 nan
 snan
+streq
 
 configure.ac:
 AC_REQUIRE([gl_LONG_DOUBLE_VS_DOUBLE])

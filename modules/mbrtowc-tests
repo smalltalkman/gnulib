@@ -32,6 +32,7 @@ wctob
 setlocale
 localcharset
 test-xfail
+streq
 
 configure.ac:
 gt_LOCALE_EN_UTF8

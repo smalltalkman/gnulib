@@ -10,6 +10,7 @@ Depends-on:
 setenv
 thread
 nanosleep
+streq
 
 configure.ac:
 gl_TM_GMTOFF

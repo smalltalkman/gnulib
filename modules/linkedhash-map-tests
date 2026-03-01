@@ -5,6 +5,7 @@ tests/macros.h
 Depends-on:
 array-map
 xalloc
+streq
 
 configure.ac:
 

@@ -18,6 +18,7 @@ setlocale
 thread
 nanosleep
 bool
+streq
 
 configure.ac:
 gt_LOCALE_FR

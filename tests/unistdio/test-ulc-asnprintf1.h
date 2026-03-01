@@ -28,7 +28,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       size_t length = size;
       char *result = my_asnprintf (NULL, &length, "%d", 12345);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "12345") == 0);
+      ASSERT (streq (result, "12345"));
       ASSERT (length == 5);
       free (result);
     }
@@ -42,7 +42,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       length = size;
       result = my_asnprintf (buf, &length, "%d", 12345);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "12345") == 0);
+      ASSERT (streq (result, "12345"));
       ASSERT (length == 5);
       if (size < 6)
         ASSERT (result != buf);

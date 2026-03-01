@@ -15,6 +15,7 @@ snan
 read-file
 full-write
 usleep
+streq
 
 configure.ac:
 

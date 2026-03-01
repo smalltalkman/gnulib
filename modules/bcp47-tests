@@ -3,6 +3,7 @@ tests/test-bcp47.c
 tests/macros.h
 
 Depends-on:
+streq
 
 configure.ac:
 

@@ -9,6 +9,7 @@ ignore-value
 same-inode
 symlink
 str_endswith
+streq
 
 configure.ac:
 

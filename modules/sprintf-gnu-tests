@@ -5,6 +5,7 @@ tests/macros.h
 
 Depends-on:
 sprintf-posix-tests
+streq
 
 configure.ac:
 

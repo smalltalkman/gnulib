@@ -146,7 +146,7 @@ main (void)
 
   len = base32_encode_alloc (in, strlen (in), &p);
   ASSERT (len == 32);
-  ASSERT (strcmp (p, "MFRGGZDFMZTWQ2LKNNWG23TPOA======") == 0);
+  ASSERT (streq (p, "MFRGGZDFMZTWQ2LKNNWG23TPOA======"));
   free (p);
 
   len = base32_encode_alloc (in, IDX_MAX - 5, &p);

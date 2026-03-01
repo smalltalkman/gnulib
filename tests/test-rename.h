@@ -34,7 +34,7 @@ dentry_exists (const char *filename)
       struct dirent *d = readdir (dir);
       if (d == NULL)
         break;
-      if (strcmp (d->d_name, filename) == 0)
+      if (streq (d->d_name, filename))
         {
           exists = true;
           break;

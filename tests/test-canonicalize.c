@@ -70,36 +70,36 @@ main (void)
         char *result;
 
         result = canonicalize_filename_mode ("/etc/passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_filename_mode ("/etc//passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_filename_mode ("/etc///passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         /* On Windows, the syntax //host/share/filename denotes a file
            in a directory named 'share', exported from host 'host'.
            See also m4/double-slash-root.m4.  */
 #if !(defined _WIN32 || defined __CYGWIN__)
         result = canonicalize_filename_mode ("//etc/passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_filename_mode ("//etc//passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_filename_mode ("//etc///passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 #endif
 
         result = canonicalize_filename_mode ("///etc/passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_filename_mode ("///etc//passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_filename_mode ("///etc///passwd", CAN_MISSING);
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
       }
   }
 
@@ -110,7 +110,7 @@ main (void)
                                                 CAN_EXISTING);
     ASSERT (result1 != NULL);
     ASSERT (result2 != NULL);
-    ASSERT (strcmp (result1, result2) == 0);
+    ASSERT (streq (result1, result2));
     ASSERT (strstr (result1, "/" BASE "/tra")
             == result1 + strlen (result1) - strlen ("/" BASE "/tra"));
     free (result1);
@@ -216,8 +216,8 @@ main (void)
     ASSERT (result1 != NULL);
     ASSERT (result2 != NULL);
     ASSERT (result3 != NULL);
-    ASSERT (strcmp (result1, result2) == 0);
-    ASSERT (strcmp (result2, result3) == 0);
+    ASSERT (streq (result1, result2));
+    ASSERT (streq (result2, result3));
     ASSERT (str_endswith (result1, "/" BASE "/tra"));
     free (result1);
     free (result2);
@@ -234,9 +234,9 @@ main (void)
     ASSERT (result2 != NULL);
     ASSERT (result3 != NULL);
     ASSERT (result4 != NULL);
-    ASSERT (strcmp (result1, result2) == 0);
-    ASSERT (strcmp (result2, result3) == 0);
-    ASSERT (strcmp (result3, result4) == 0);
+    ASSERT (streq (result1, result2));
+    ASSERT (streq (result2, result3));
+    ASSERT (streq (result3, result4));
     ASSERT (str_endswith (result1, "/" BASE "/lum"));
     free (result1);
     free (result2);
@@ -324,9 +324,9 @@ main (void)
     ASSERT (result2 != NULL);
     ASSERT (result3 != NULL);
     ASSERT (result4 != NULL);
-    ASSERT (strcmp (result1, result2) == 0);
-    ASSERT (strcmp (result2, result3) == 0);
-    ASSERT (strcmp (result3, result4) == 0);
+    ASSERT (streq (result1, result2));
+    ASSERT (streq (result2, result3));
+    ASSERT (streq (result3, result4));
     ASSERT (str_endswith (result1, "/" BASE "/zzz"));
     free (result1);
     free (result2);
@@ -344,9 +344,9 @@ main (void)
     ASSERT (result2 != NULL);
     ASSERT (result3 != NULL);
     ASSERT (result4 != NULL);
-    ASSERT (strcmp (result1, result2) == 0);
-    ASSERT (strcmp (result2, result3) == 0);
-    ASSERT (strcmp (result3, result4) == 0);
+    ASSERT (streq (result1, result2));
+    ASSERT (streq (result2, result3));
+    ASSERT (streq (result3, result4));
     ASSERT (str_endswith (result1, "/" BASE "/wum"));
     free (result1);
     free (result2);
@@ -398,17 +398,17 @@ main (void)
 #endif
     if (same)
       {
-        ASSERT (strcmp (result1, "/") == 0);
-        ASSERT (strcmp (result2, "/") == 0);
-        ASSERT (strcmp (result3, "/") == 0);
-        ASSERT (strcmp (result4, "/") == 0);
+        ASSERT (streq (result1, "/"));
+        ASSERT (streq (result2, "/"));
+        ASSERT (streq (result3, "/"));
+        ASSERT (streq (result4, "/"));
       }
     else
       {
-        ASSERT (strcmp (result1, "//") == 0);
-        ASSERT (strcmp (result2, "//") == 0);
-        ASSERT (strcmp (result3, "//") == 0);
-        ASSERT (strcmp (result4, "//") == 0);
+        ASSERT (streq (result1, "//"));
+        ASSERT (streq (result2, "//"));
+        ASSERT (streq (result3, "//"));
+        ASSERT (streq (result4, "//"));
       }
     free (result1);
     free (result2);
@@ -423,7 +423,7 @@ main (void)
     char *result2 = canonicalize_filename_mode ("/dev/null", CAN_ALL_BUT_LAST);
     ASSERT (result1 != NULL);
     ASSERT (result2 != NULL);
-    ASSERT (strcmp (result1, result2) == 0);
+    ASSERT (streq (result1, result2));
   }
 #endif
 

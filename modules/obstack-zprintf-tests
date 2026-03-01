@@ -7,6 +7,7 @@ tests/macros.h
 Depends-on:
 xalloc
 obstack-zprintf-extra-tests
+streq
 
 configure.ac:
 

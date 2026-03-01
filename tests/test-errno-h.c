@@ -155,10 +155,10 @@ main ()
       {
         fprintf (stderr, "%s == %s == %d\n",
                  errtab[i - 1].name, errtab[i].name, errtab[i].value);
-        if (! ((strcmp ("EAGAIN", errtab[i - 1].name) == 0
-                && strcmp ("EWOULDBLOCK", errtab[i].name) == 0)
-               || (strcmp ("ENOTSUP", errtab[i - 1].name) == 0
-                   && strcmp ("EOPNOTSUPP", errtab[i].name) == 0)))
+        if (! ((streq ("EAGAIN", errtab[i - 1].name)
+                && streq ("EWOULDBLOCK", errtab[i].name))
+               || (streq ("ENOTSUP", errtab[i - 1].name)
+                   && streq ("EOPNOTSUPP", errtab[i].name))))
           test_exit_status = EXIT_FAILURE;
       }
 

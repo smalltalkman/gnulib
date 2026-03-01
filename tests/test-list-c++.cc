@@ -44,13 +44,13 @@ main (int argc, char *argv[])
   {
     const char *elt;
     ASSERT (iter1.next (elt));
-    ASSERT (strcmp (elt, "A") == 0);
+    ASSERT (streq (elt, "A"));
     ASSERT (iter1.next (elt));
-    ASSERT (strcmp (elt, "C") == 0);
+    ASSERT (streq (elt, "C"));
     ASSERT (iter1.next (elt));
-    ASSERT (strcmp (elt, "D") == 0);
+    ASSERT (streq (elt, "D"));
     ASSERT (iter1.next (elt));
-    ASSERT (strcmp (elt, "C") == 0);
+    ASSERT (streq (elt, "C"));
     ASSERT (!iter1.next (elt));
   }
 
@@ -60,9 +60,9 @@ main (int argc, char *argv[])
   {
     const char *elt;
     ASSERT (iter2.next (elt));
-    ASSERT (strcmp (elt, "C") == 0);
+    ASSERT (streq (elt, "C"));
     ASSERT (iter2.next (elt));
-    ASSERT (strcmp (elt, "D") == 0);
+    ASSERT (streq (elt, "D"));
     ASSERT (!iter1.next (elt));
   }
 

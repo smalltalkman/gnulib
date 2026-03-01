@@ -89,8 +89,8 @@ main (void)
 #endif
 #if HAVE_STRUCT_TM_TM_ZONE
     printf ("tm_zone = %s\n", result->tm_zone == NULL ? "(null)" : result->tm_zone);
-    ASSERT (strcmp (result->tm_zone, "CEST") == 0
-            || strcmp (result->tm_zone, "GMT+2") == 0 /* Haiku */);
+    ASSERT (streq (result->tm_zone, "CEST")
+            || streq (result->tm_zone, "GMT+2") /* Haiku */);
 #endif
   }
 
@@ -114,8 +114,8 @@ main (void)
 #endif
 #if HAVE_STRUCT_TM_TM_ZONE
     printf ("tm_zone = %s\n", result->tm_zone == NULL ? "(null)" : result->tm_zone);
-    ASSERT (strcmp (result->tm_zone, "CET") == 0
-            || strcmp (result->tm_zone, FRENCH_TZ) == 0 /* Haiku */);
+    ASSERT (streq (result->tm_zone, "CET")
+            || streq (result->tm_zone, FRENCH_TZ) /* Haiku */);
 #endif
   }
   {
@@ -137,8 +137,8 @@ main (void)
 #endif
 #if HAVE_STRUCT_TM_TM_ZONE
     printf ("tm_zone = %s\n", result->tm_zone == NULL ? "(null)" : result->tm_zone);
-    ASSERT (strcmp (result->tm_zone, "CEST") == 0
-            || strcmp (result->tm_zone, "GMT+2") == 0 /* Haiku */);
+    ASSERT (streq (result->tm_zone, "CEST")
+            || streq (result->tm_zone, "GMT+2") /* Haiku */);
 #endif
   }
 
@@ -162,8 +162,8 @@ main (void)
 #endif
 #if HAVE_STRUCT_TM_TM_ZONE
     printf ("tm_zone = %s\n", result->tm_zone == NULL ? "(null)" : result->tm_zone);
-    ASSERT (strcmp (result->tm_zone, "CEST") == 0
-            || strcmp (result->tm_zone, "GMT+2") == 0 /* Haiku */);
+    ASSERT (streq (result->tm_zone, "CEST")
+            || streq (result->tm_zone, "GMT+2") /* Haiku */);
 #endif
   }
   {
@@ -185,8 +185,8 @@ main (void)
 #endif
 #if HAVE_STRUCT_TM_TM_ZONE
     printf ("tm_zone = %s\n", result->tm_zone == NULL ? "(null)" : result->tm_zone);
-    ASSERT (strcmp (result->tm_zone, "CET") == 0
-            || strcmp (result->tm_zone, FRENCH_TZ) == 0 /* Haiku */);
+    ASSERT (streq (result->tm_zone, "CET")
+            || streq (result->tm_zone, FRENCH_TZ) /* Haiku */);
 #endif
   }
 

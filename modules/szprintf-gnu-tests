@@ -4,6 +4,7 @@ tests/test-szprintf-gnu.h
 tests/macros.h
 
 Depends-on:
+streq
 
 configure.ac:
 

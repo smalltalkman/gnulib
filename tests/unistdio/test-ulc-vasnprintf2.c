@@ -40,8 +40,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%U %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Rafa? Maszkowski 33") == 0
-              || strcmp (result, "Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "Rafa? Maszkowski 33")
+              || streq (result, "Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -50,8 +50,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%20U %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "    Rafa? Maszkowski 33") == 0
-              || strcmp (result, "    Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "    Rafa? Maszkowski 33")
+              || streq (result, "    Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -60,8 +60,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%-20U %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Rafa? Maszkowski     33") == 0
-              || strcmp (result, "Rafal Maszkowski     33") == 0);
+      ASSERT (streq (result, "Rafa? Maszkowski     33")
+              || streq (result, "Rafal Maszkowski     33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -70,8 +70,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%020U %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "    Rafa? Maszkowski 33") == 0
-              || strcmp (result, "    Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "    Rafa? Maszkowski 33")
+              || streq (result, "    Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -82,7 +82,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%10U %d", unicode_string, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "         ? 33") == 0);
+    ASSERT (streq (result, "         ? 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -98,8 +98,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%lU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Rafa? Maszkowski 33") == 0
-              || strcmp (result, "Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "Rafa? Maszkowski 33")
+              || streq (result, "Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -108,8 +108,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%20lU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "    Rafa? Maszkowski 33") == 0
-              || strcmp (result, "    Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "    Rafa? Maszkowski 33")
+              || streq (result, "    Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -118,8 +118,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%-20lU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Rafa? Maszkowski     33") == 0
-              || strcmp (result, "Rafal Maszkowski     33") == 0);
+      ASSERT (streq (result, "Rafa? Maszkowski     33")
+              || streq (result, "Rafal Maszkowski     33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -128,8 +128,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%020lU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "    Rafa? Maszkowski 33") == 0
-              || strcmp (result, "    Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "    Rafa? Maszkowski 33")
+              || streq (result, "    Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -140,7 +140,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%10lU %d", unicode_string, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "         ? 33") == 0);
+    ASSERT (streq (result, "         ? 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -156,8 +156,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%llU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Rafa? Maszkowski 33") == 0
-              || strcmp (result, "Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "Rafa? Maszkowski 33")
+              || streq (result, "Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -166,8 +166,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%20llU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "    Rafa? Maszkowski 33") == 0
-              || strcmp (result, "    Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "    Rafa? Maszkowski 33")
+              || streq (result, "    Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -176,8 +176,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%-20llU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "Rafa? Maszkowski     33") == 0
-              || strcmp (result, "Rafal Maszkowski     33") == 0);
+      ASSERT (streq (result, "Rafa? Maszkowski     33")
+              || streq (result, "Rafal Maszkowski     33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -186,8 +186,8 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%020llU %d", unicode_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "    Rafa? Maszkowski 33") == 0
-              || strcmp (result, "    Rafal Maszkowski 33") == 0);
+      ASSERT (streq (result, "    Rafa? Maszkowski 33")
+              || streq (result, "    Rafal Maszkowski 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -198,7 +198,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%10llU %d", unicode_string, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "         ? 33") == 0);
+    ASSERT (streq (result, "         ? 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -212,7 +212,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%s %d", locale_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "\304rger 33") == 0);
+      ASSERT (streq (result, "\304rger 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -221,7 +221,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%10s %d", locale_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     \304rger 33") == 0);
+      ASSERT (streq (result, "     \304rger 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -230,7 +230,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%-10s %d", locale_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "\304rger      33") == 0);
+      ASSERT (streq (result, "\304rger      33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -239,7 +239,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%010s %d", locale_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "     \304rger 33") == 0);
+      ASSERT (streq (result, "     \304rger 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -256,7 +256,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%ls %d", wide_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "h\351t\351rog\351n\351it\351 33") == 0);
+      ASSERT (streq (result, "h\351t\351rog\351n\351it\351 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -265,7 +265,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%20ls %d", wide_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "       h\351t\351rog\351n\351it\351 33") == 0);
+      ASSERT (streq (result, "       h\351t\351rog\351n\351it\351 33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -274,7 +274,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%-20ls %d", wide_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "h\351t\351rog\351n\351it\351        33") == 0);
+      ASSERT (streq (result, "h\351t\351rog\351n\351it\351        33"));
       ASSERT (length == strlen (result));
       free (result);
     }
@@ -283,7 +283,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       char *result =
         my_asnprintf (NULL, &length, "%020ls %d", wide_string, 33, 44, 55);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "       h\351t\351rog\351n\351it\351 33") == 0);
+      ASSERT (streq (result, "       h\351t\351rog\351n\351it\351 33"));
       ASSERT (length == strlen (result));
       free (result);
     }

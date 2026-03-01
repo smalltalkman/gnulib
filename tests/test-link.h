@@ -87,13 +87,13 @@ test_link (int (*func) (char const *, char const *), bool print)
     fd = open (BASE "a", O_RDONLY);
     ASSERT (0 <= fd);
     ASSERT (read (fd, buf, 10) == 10);
-    ASSERT (strcmp (buf, "helloworld") == 0);
+    ASSERT (streq (buf, "helloworld"));
     ASSERT (close (fd) == 0);
     ASSERT (unlink (BASE "b") == 0);
     fd = open (BASE "a", O_RDONLY);
     ASSERT (0 <= fd);
     ASSERT (read (fd, buf, 10) == 10);
-    ASSERT (strcmp (buf, "helloworld") == 0);
+    ASSERT (streq (buf, "helloworld"));
     ASSERT (close (fd) == 0);
   }
 

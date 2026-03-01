@@ -66,22 +66,22 @@ main ()
     ASSERT (locale != NULL);
 
     ret = getlocalename_l (LC_COLLATE, locale);
-    ASSERT (strcmp (ret, "C") == 0);
+    ASSERT (streq (ret, "C"));
 
     ret = getlocalename_l (LC_CTYPE, locale);
-    ASSERT (strcmp (ret, "C") == 0);
+    ASSERT (streq (ret, "C"));
 
     ret = getlocalename_l (LC_MESSAGES, locale);
-    ASSERT (strcmp (ret, "C") == 0);
+    ASSERT (streq (ret, "C"));
 
     ret = getlocalename_l (LC_MONETARY, locale);
-    ASSERT (strcmp (ret, "C") == 0);
+    ASSERT (streq (ret, "C"));
 
     ret = getlocalename_l (LC_NUMERIC, locale);
-    ASSERT (strcmp (ret, "C") == 0);
+    ASSERT (streq (ret, "C"));
 
     ret = getlocalename_l (LC_TIME, locale);
-    ASSERT (strcmp (ret, "C") == 0);
+    ASSERT (streq (ret, "C"));
 
     freelocale (locale);
   }
@@ -94,22 +94,22 @@ main ()
         const char *ret;
 
         ret = getlocalename_l (LC_COLLATE, locale1);
-        ASSERT (strcmp (ret, LOCALE1) == 0);
+        ASSERT (streq (ret, LOCALE1));
 
         ret = getlocalename_l (LC_CTYPE, locale1);
-        ASSERT (strcmp (ret, LOCALE1) == 0);
+        ASSERT (streq (ret, LOCALE1));
 
         ret = getlocalename_l (LC_MESSAGES, locale1);
-        ASSERT (strcmp (ret, LOCALE1) == 0);
+        ASSERT (streq (ret, LOCALE1));
 
         ret = getlocalename_l (LC_MONETARY, locale1);
-        ASSERT (strcmp (ret, LOCALE1) == 0);
+        ASSERT (streq (ret, LOCALE1));
 
         ret = getlocalename_l (LC_NUMERIC, locale1);
-        ASSERT (strcmp (ret, LOCALE1) == 0);
+        ASSERT (streq (ret, LOCALE1));
 
         ret = getlocalename_l (LC_TIME, locale1);
-        ASSERT (strcmp (ret, LOCALE1) == 0);
+        ASSERT (streq (ret, LOCALE1));
 
         freelocale (locale1);
       }
@@ -126,22 +126,22 @@ main ()
             const char *ret;
 
             ret = getlocalename_l (LC_COLLATE, locale2);
-            ASSERT (strcmp (ret, LOCALE2) == 0);
+            ASSERT (streq (ret, LOCALE2));
 
             ret = getlocalename_l (LC_CTYPE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MESSAGES, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MONETARY, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_NUMERIC, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_TIME, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             freelocale (locale2);
           }
@@ -159,22 +159,22 @@ main ()
             const char *ret;
 
             ret = getlocalename_l (LC_COLLATE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_CTYPE, locale2);
-            ASSERT (strcmp (ret, LOCALE2) == 0);
+            ASSERT (streq (ret, LOCALE2));
 
             ret = getlocalename_l (LC_MESSAGES, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MONETARY, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_NUMERIC, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_TIME, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             freelocale (locale2);
           }
@@ -192,22 +192,22 @@ main ()
             const char *ret;
 
             ret = getlocalename_l (LC_COLLATE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_CTYPE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MESSAGES, locale2);
-            ASSERT (strcmp (ret, LOCALE2) == 0);
+            ASSERT (streq (ret, LOCALE2));
 
             ret = getlocalename_l (LC_MONETARY, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_NUMERIC, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_TIME, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             freelocale (locale2);
           }
@@ -225,22 +225,22 @@ main ()
             const char *ret;
 
             ret = getlocalename_l (LC_COLLATE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_CTYPE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MESSAGES, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MONETARY, locale2);
-            ASSERT (strcmp (ret, LOCALE2) == 0);
+            ASSERT (streq (ret, LOCALE2));
 
             ret = getlocalename_l (LC_NUMERIC, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_TIME, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             freelocale (locale2);
           }
@@ -258,22 +258,22 @@ main ()
             const char *ret;
 
             ret = getlocalename_l (LC_COLLATE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_CTYPE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MESSAGES, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MONETARY, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_NUMERIC, locale2);
-            ASSERT (strcmp (ret, LOCALE2) == 0);
+            ASSERT (streq (ret, LOCALE2));
 
             ret = getlocalename_l (LC_TIME, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             freelocale (locale2);
           }
@@ -291,22 +291,22 @@ main ()
             const char *ret;
 
             ret = getlocalename_l (LC_COLLATE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_CTYPE, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MESSAGES, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_MONETARY, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_NUMERIC, locale2);
-            ASSERT (strcmp (ret, LOCALE1) == 0);
+            ASSERT (streq (ret, LOCALE1));
 
             ret = getlocalename_l (LC_TIME, locale2);
-            ASSERT (strcmp (ret, LOCALE2) == 0);
+            ASSERT (streq (ret, LOCALE2));
 
             freelocale (locale2);
           }
@@ -320,22 +320,22 @@ main ()
     const char *ret;
 
     ret = getlocalename_l (LC_COLLATE, LC_GLOBAL_LOCALE);
-    ASSERT (strcmp (ret, C_CANONICALIZED) == 0);
+    ASSERT (streq (ret, C_CANONICALIZED));
 
     ret = getlocalename_l (LC_CTYPE, LC_GLOBAL_LOCALE);
-    ASSERT (strcmp (ret, C_CANONICALIZED) == 0);
+    ASSERT (streq (ret, C_CANONICALIZED));
 
     ret = getlocalename_l (LC_MESSAGES, LC_GLOBAL_LOCALE);
-    ASSERT (strcmp (ret, C_CANONICALIZED) == 0);
+    ASSERT (streq (ret, C_CANONICALIZED));
 
     ret = getlocalename_l (LC_MONETARY, LC_GLOBAL_LOCALE);
-    ASSERT (strcmp (ret, C_CANONICALIZED) == 0);
+    ASSERT (streq (ret, C_CANONICALIZED));
 
     ret = getlocalename_l (LC_NUMERIC, LC_GLOBAL_LOCALE);
-    ASSERT (strcmp (ret, C_CANONICALIZED) == 0);
+    ASSERT (streq (ret, C_CANONICALIZED));
 
     ret = getlocalename_l (LC_TIME, LC_GLOBAL_LOCALE);
-    ASSERT (strcmp (ret, C_CANONICALIZED) == 0);
+    ASSERT (streq (ret, C_CANONICALIZED));
   }
 
   /* Skip this part on OpenBSD <= 6.1.  */
@@ -345,22 +345,22 @@ main ()
       const char *ret;
 
       ret = getlocalename_l (LC_COLLATE, LC_GLOBAL_LOCALE);
-      ASSERT (strcmp (ret, LOCALE1) == 0);
+      ASSERT (streq (ret, LOCALE1));
 
       ret = getlocalename_l (LC_CTYPE, LC_GLOBAL_LOCALE);
-      ASSERT (strcmp (ret, LOCALE1) == 0);
+      ASSERT (streq (ret, LOCALE1));
 
       ret = getlocalename_l (LC_MESSAGES, LC_GLOBAL_LOCALE);
-      ASSERT (strcmp (ret, LOCALE1) == 0);
+      ASSERT (streq (ret, LOCALE1));
 
       ret = getlocalename_l (LC_MONETARY, LC_GLOBAL_LOCALE);
-      ASSERT (strcmp (ret, LOCALE1) == 0);
+      ASSERT (streq (ret, LOCALE1));
 
       ret = getlocalename_l (LC_NUMERIC, LC_GLOBAL_LOCALE);
-      ASSERT (strcmp (ret, LOCALE1) == 0);
+      ASSERT (streq (ret, LOCALE1));
 
       ret = getlocalename_l (LC_TIME, LC_GLOBAL_LOCALE);
-      ASSERT (strcmp (ret, LOCALE1) == 0);
+      ASSERT (streq (ret, LOCALE1));
     }
 #endif
 

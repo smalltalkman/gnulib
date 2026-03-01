@@ -49,13 +49,13 @@ main (int argc, char **argv)
   {
     char *result = xmemdup0 (buffer, 4);
     ASSERT (result);
-    ASSERT (strcmp (result, buffer) == 0);
+    ASSERT (streq (result, buffer));
     free (result);
   }
   {
     char *result = xmemdup0 (buffer, 5);
     ASSERT (result);
-    ASSERT (strcmp (result, buffer) == 0);
+    ASSERT (streq (result, buffer));
     ASSERT (result[5] == '\0');
     free (result);
   }

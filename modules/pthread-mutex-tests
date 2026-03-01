@@ -9,6 +9,7 @@ Depends-on:
 pthread-thread
 sched_yield
 random
+streq
 
 configure.ac:
 AC_CHECK_HEADERS_ONCE([semaphore.h])

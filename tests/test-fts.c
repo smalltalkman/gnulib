@@ -174,7 +174,7 @@ main (void)
   if (!ftsp)
     perror_exit (base, 6);
   while ((e = fts_read (ftsp)))
-    needles_seen += strcmp (e->fts_name, "needle") == 0;
+    needles_seen += streq (e->fts_name, "needle");
   int fts_read_errno = errno;
   fflush (stdout);
   if (fts_read_errno)

@@ -80,17 +80,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1923-02-23") == 0);
+    ASSERT (streq (buf, "1923-02-23"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "23 ጥቅምት 1923") == 0);
+    ASSERT (streq (buf, "23 ጥቅምት 1923"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "23/02/1923") == 0);
+    ASSERT (streq (buf, "23/02/1923"));
   }
   {
     DECLARE_TM (tm, 1969, 12, 28);
@@ -98,17 +98,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1962-04-19") == 0);
+    ASSERT (streq (buf, "1962-04-19"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "19 ታኅሣሥ 1962") == 0);
+    ASSERT (streq (buf, "19 ታኅሣሥ 1962"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "19/04/1962") == 0);
+    ASSERT (streq (buf, "19/04/1962"));
   }
 # endif
   {
@@ -117,17 +117,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "2017-06-22") == 0);
+    ASSERT (streq (buf, "2017-06-22"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "22 የካቲት 2017") == 0);
+    ASSERT (streq (buf, "22 የካቲት 2017"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "22/06/2017") == 0);
+    ASSERT (streq (buf, "22/06/2017"));
   }
 
   return test_exit_status;

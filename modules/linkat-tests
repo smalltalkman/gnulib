@@ -11,6 +11,7 @@ filenamecat-lgpl
 getcwd-lgpl
 same-inode
 unlinkat
+streq
 
 configure.ac:
 

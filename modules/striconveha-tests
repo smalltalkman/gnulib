@@ -4,6 +4,7 @@ tests/iconvsupport.c
 tests/macros.h
 
 Depends-on:
+streq
 
 configure.ac:
 

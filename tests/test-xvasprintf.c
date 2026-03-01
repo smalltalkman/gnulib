@@ -54,7 +54,7 @@ test_xvasprintf (void)
     {
       result = my_xasprintf ("%d", 12345);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "12345") == 0);
+      ASSERT (streq (result, "12345"));
       free (result);
     }
 
@@ -63,23 +63,23 @@ test_xvasprintf (void)
     const char *empty = "";
     result = my_xasprintf (empty);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
   }
 
   result = my_xasprintf ("%s", "foo");
   ASSERT (result != NULL);
-  ASSERT (strcmp (result, "foo") == 0);
+  ASSERT (streq (result, "foo"));
   free (result);
 
   result = my_xasprintf ("%s%s", "foo", "bar");
   ASSERT (result != NULL);
-  ASSERT (strcmp (result, "foobar") == 0);
+  ASSERT (streq (result, "foobar"));
   free (result);
 
   result = my_xasprintf ("%s%sbaz", "foo", "bar");
   ASSERT (result != NULL);
-  ASSERT (strcmp (result, "foobarbaz") == 0);
+  ASSERT (streq (result, "foobarbaz"));
   free (result);
 }
 
@@ -92,7 +92,7 @@ test_xasprintf (void)
     {
       result = xasprintf ("%d", 12345);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "12345") == 0);
+      ASSERT (streq (result, "12345"));
       free (result);
     }
 
@@ -103,23 +103,23 @@ test_xasprintf (void)
     const char *empty = "";
     result = xasprintf (empty, empty);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
   }
 
   result = xasprintf ("%s", "foo");
   ASSERT (result != NULL);
-  ASSERT (strcmp (result, "foo") == 0);
+  ASSERT (streq (result, "foo"));
   free (result);
 
   result = xasprintf ("%s%s", "foo", "bar");
   ASSERT (result != NULL);
-  ASSERT (strcmp (result, "foobar") == 0);
+  ASSERT (streq (result, "foobar"));
   free (result);
 
   result = my_xasprintf ("%s%sbaz", "foo", "bar");
   ASSERT (result != NULL);
-  ASSERT (strcmp (result, "foobarbaz") == 0);
+  ASSERT (streq (result, "foobarbaz"));
   free (result);
 }
 

@@ -142,7 +142,7 @@ main (void)
       char *stripped = strdup (t->name);
       bool modified = strip_trailing_slashes (stripped);
       bool absolute = IS_ABSOLUTE_FILE_NAME (t->name);
-      if (! (strcmp (dir, t->dir) == 0
+      if (! (streq (dir, t->dir)
              && (dirlen == strlen (dir)
                  || (dirlen + 1 == strlen (dir) && dir[dirlen] == '.'))))
         {
@@ -158,7 +158,7 @@ main (void)
           printf ("last_component '%s': got '%s', expected '%s'\n",
                   t->name, last, t->last);
         }
-      if (! (strcmp (base, t->base) == 0
+      if (! (streq (base, t->base)
              && (baselen == strlen (base)
                  || (baselen + 1 == strlen (base)
                      && ISSLASH (base[baselen])))))

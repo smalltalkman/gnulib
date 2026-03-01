@@ -47,7 +47,7 @@ check_one (const char *input, const char *expected)
   ASSERT (memcmp (buf, output, output_len + 1) == 0);
   ASSERT (buf[output_len + 1] == '%');
 
-  ASSERT (strcmp (output, expected) == 0);
+  ASSERT (streq (output, expected));
 
   free (output);
 }
@@ -174,7 +174,7 @@ main (void)
     char *result;
     argv[0] = NULL;
     result = shell_quote_argv (argv);
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
   }
   {
@@ -183,7 +183,7 @@ main (void)
     argv[0] = "foo bar/baz";
     argv[1] = NULL;
     result = shell_quote_argv (argv);
-    ASSERT (strcmp (result, "'foo bar/baz'") == 0); /* or "\"foo bar/baz\"" */
+    ASSERT (streq (result, "'foo bar/baz'")); /* or "\"foo bar/baz\"" */
     free (result);
   }
   {
@@ -193,7 +193,7 @@ main (void)
     argv[1] = "$";
     argv[2] = NULL;
     result = shell_quote_argv (argv);
-    ASSERT (strcmp (result, "'foo bar/baz' '$'") == 0); /* or "\"foo bar/baz\" \"\\$\"" */
+    ASSERT (streq (result, "'foo bar/baz' '$'")); /* or "\"foo bar/baz\" \"\\$\"" */
     free (result);
   }
 

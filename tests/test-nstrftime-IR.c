@@ -80,17 +80,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1346-08-04") == 0);
+    ASSERT (streq (buf, "1346-08-04"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "4 آبان 1346") == 0);
+    ASSERT (streq (buf, "4 آبان 1346"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "۱۳۴۶/۸/۴") == 0);
+    ASSERT (streq (buf, "۱۳۴۶/۸/۴"));
   }
   {
     DECLARE_TM (tm, 1969, 12, 28);
@@ -98,17 +98,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1348-10-07") == 0);
+    ASSERT (streq (buf, "1348-10-07"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "7 دی 1348") == 0);
+    ASSERT (streq (buf, "7 دی 1348"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "۱۳۴۸/۱۰/۷") == 0);
+    ASSERT (streq (buf, "۱۳۴۸/۱۰/۷"));
   }
 # endif
   /* Verify that 1403 is a leap year and 1404 is not.  */
@@ -118,17 +118,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1402-12-29") == 0);
+    ASSERT (streq (buf, "1402-12-29"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "29 اسفند 1402") == 0);
+    ASSERT (streq (buf, "29 اسفند 1402"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "۱۴۰۲/۱۲/۲۹") == 0);
+    ASSERT (streq (buf, "۱۴۰۲/۱۲/۲۹"));
   }
   {
     DECLARE_TM (tm, 2024, 3, 22);
@@ -136,17 +136,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1403-01-03") == 0);
+    ASSERT (streq (buf, "1403-01-03"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "3 فروردین 1403") == 0);
+    ASSERT (streq (buf, "3 فروردین 1403"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "۱۴۰۳/۱/۳") == 0);
+    ASSERT (streq (buf, "۱۴۰۳/۱/۳"));
   }
   {
     DECLARE_TM (tm, 2025, 3, 19);
@@ -154,17 +154,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1403-12-29") == 0);
+    ASSERT (streq (buf, "1403-12-29"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "29 اسفند 1403") == 0);
+    ASSERT (streq (buf, "29 اسفند 1403"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "۱۴۰۳/۱۲/۲۹") == 0);
+    ASSERT (streq (buf, "۱۴۰۳/۱۲/۲۹"));
   }
   {
     DECLARE_TM (tm, 2025, 3, 22);
@@ -172,17 +172,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1404-01-02") == 0);
+    ASSERT (streq (buf, "1404-01-02"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "2 فروردین 1404") == 0);
+    ASSERT (streq (buf, "2 فروردین 1404"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "۱۴۰۴/۱/۲") == 0);
+    ASSERT (streq (buf, "۱۴۰۴/۱/۲"));
   }
 
   return test_exit_status;

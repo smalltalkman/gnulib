@@ -36,9 +36,9 @@ main ()
 
     for (size_t i = 0; i < nblocks; i++)
       {
-        if (strcmp (blocks[i].name, "Latin") == 0)
+        if (streq (blocks[i].name, "Latin"))
           latin_block = &blocks[i];
-        if (strcmp (blocks[i].name, "Hebrew") == 0)
+        if (streq (blocks[i].name, "Hebrew"))
           hebrew_block = &blocks[i];
       }
     ASSERT (latin_block == NULL);

@@ -10,6 +10,7 @@ c99
 errno-h
 remove
 unlinkat
+streq
 
 configure.ac:
 

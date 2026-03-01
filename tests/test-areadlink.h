@@ -69,12 +69,12 @@ test_areadlink (char * (*func) (char const *, size_t), bool print)
     /* Too small a guess is okay.  */
     char *buf = func (BASE "link", 1);
     ASSERT (buf);
-    ASSERT (strcmp (buf, BASE "dir") == 0);
+    ASSERT (streq (buf, BASE "dir"));
     free (buf);
     /* Too large a guess is okay.  */
     buf = func (BASE "link", 10000000);
     ASSERT (buf);
-    ASSERT (strcmp (buf, BASE "dir") == 0);
+    ASSERT (streq (buf, BASE "dir"));
     free (buf);
   }
   ASSERT (rmdir (BASE "dir") == 0);

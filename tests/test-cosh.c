@@ -45,7 +45,7 @@ main ()
     x = 5.152911276257581641;
     y = cosh (x);
     sprintf (buf, "%.2f", y);
-    ASSERT (strcmp (buf, "86.47") == 0);
+    ASSERT (streq (buf, "86.47"));
   }
 
   return test_exit_status;

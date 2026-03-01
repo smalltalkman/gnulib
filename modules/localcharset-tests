@@ -9,6 +9,7 @@ m4/windows-rc.m4
 Depends-on:
 setlocale
 test-xfail
+streq
 
 configure.ac:
 gl_WINDOWS_RC

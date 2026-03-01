@@ -33,73 +33,73 @@ test_ascii (void)
 {
   {
     char *result = trim ("");
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
     result = trim_leading ("");
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
     result = trim_trailing ("");
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
   }
 
   {
     char *result = trim ("  ");
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
     result = trim_leading ("  ");
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
     result = trim_trailing ("  ");
-    ASSERT (strcmp (result, "") == 0);
+    ASSERT (streq (result, ""));
     free (result);
   }
 
   {
     char *result = trim ("Hello world");
-    ASSERT (strcmp (result, "Hello world") == 0);
+    ASSERT (streq (result, "Hello world"));
     free (result);
     result = trim_leading ("Hello world");
-    ASSERT (strcmp (result, "Hello world") == 0);
+    ASSERT (streq (result, "Hello world"));
     free (result);
     result = trim_trailing ("Hello world");
-    ASSERT (strcmp (result, "Hello world") == 0);
+    ASSERT (streq (result, "Hello world"));
     free (result);
   }
 
   {
     char *result = trim ("   Hello world");
-    ASSERT (strcmp (result, "Hello world") == 0);
+    ASSERT (streq (result, "Hello world"));
     free (result);
     result = trim_leading ("   Hello world");
-    ASSERT (strcmp (result, "Hello world") == 0);
+    ASSERT (streq (result, "Hello world"));
     free (result);
     result = trim_trailing ("   Hello world");
-    ASSERT (strcmp (result, "   Hello world") == 0);
+    ASSERT (streq (result, "   Hello world"));
     free (result);
   }
 
   {
     char *result = trim ("Hello world  ");
-    ASSERT (strcmp (result, "Hello world") == 0);
+    ASSERT (streq (result, "Hello world"));
     free (result);
     result = trim_leading ("Hello world  ");
-    ASSERT (strcmp (result, "Hello world  ") == 0);
+    ASSERT (streq (result, "Hello world  "));
     free (result);
     result = trim_trailing ("Hello world  ");
-    ASSERT (strcmp (result, "Hello world") == 0);
+    ASSERT (streq (result, "Hello world"));
     free (result);
   }
 
   {
     char *result = trim ("   Hello world  ");
-    ASSERT (strcmp (result, "Hello world") == 0);
+    ASSERT (streq (result, "Hello world"));
     free (result);
     result = trim_leading ("   Hello world  ");
-    ASSERT (strcmp (result, "Hello world  ") == 0);
+    ASSERT (streq (result, "Hello world  "));
     free (result);
     result = trim_trailing ("   Hello world  ");
-    ASSERT (strcmp (result, "   Hello world") == 0);
+    ASSERT (streq (result, "   Hello world"));
     free (result);
   }
 }
@@ -125,12 +125,12 @@ main (int argc, char *argv[])
         /* Locale encoding is UTF-8.  */
         { /* U+2002 EN SPACE */
           char *result = trim ("\342\200\202\302\267foo\342\200\202");
-          ASSERT (strcmp (result, "\302\267foo") == 0);
+          ASSERT (streq (result, "\302\267foo"));
           free (result);
         }
         { /* U+3000 IDEOGRAPHIC SPACE */
           char *result = trim ("\343\200\200\302\267foo\343\200\200");
-          ASSERT (strcmp (result, "\302\267foo") == 0);
+          ASSERT (streq (result, "\302\267foo"));
           free (result);
         }
         return test_exit_status;
@@ -140,14 +140,14 @@ main (int argc, char *argv[])
         #if !((defined __APPLE__ && defined __MACH__) || defined __FreeBSD__ || defined __DragonFly__ || defined __sun)
         { /* U+2002 EN SPACE */
           char *result = trim ("\201\066\243\070\241\244foo\201\066\243\070");
-          ASSERT (strcmp (result, "\241\244foo") == 0);
+          ASSERT (streq (result, "\241\244foo"));
           free (result);
         }
         #endif
         #if !((defined __APPLE__ && defined __MACH__) || defined __FreeBSD__ || defined __DragonFly__ || defined __illumos__)
         { /* U+3000 IDEOGRAPHIC SPACE */
           char *result = trim ("\241\241\241\244foo\241\241");
-          ASSERT (strcmp (result, "\241\244foo") == 0);
+          ASSERT (streq (result, "\241\244foo"));
           free (result);
         }
         #endif

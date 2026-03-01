@@ -48,7 +48,7 @@ main (void)
     putenv (set_LOGNAME);
     buf = getlogin ();
     ASSERT (!(buf != NULL
-              && strcmp (buf, "ygvfibmslhkmvoetbrcegzwydorcke") == 0));
+              && streq (buf, "ygvfibmslhkmvoetbrcegzwydorcke")));
   }
 
   return test_exit_status;

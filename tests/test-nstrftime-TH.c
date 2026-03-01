@@ -74,17 +74,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "2482-03-23") == 0);
+    ASSERT (streq (buf, "2482-03-23"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d. %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "23. มิถุนายน 2482") == 0);
+    ASSERT (streq (buf, "23. มิถุนายน 2482"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "23/03/2482") == 0);
+    ASSERT (streq (buf, "23/03/2482"));
   }
   {
     DECLARE_TM (tm, 1969, 12, 28);
@@ -92,17 +92,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "2512-12-28") == 0);
+    ASSERT (streq (buf, "2512-12-28"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d. %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "28. ธันวาคม 2512") == 0);
+    ASSERT (streq (buf, "28. ธันวาคม 2512"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "28/12/2512") == 0);
+    ASSERT (streq (buf, "28/12/2512"));
   }
 # endif
   {
@@ -111,17 +111,17 @@ main ()
     ret = nstrftime (buf, sizeof (buf), "%Y-%m-%d",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "2568-03-01") == 0);
+    ASSERT (streq (buf, "2568-03-01"));
 
     ret = nstrftime (buf, sizeof (buf), "%-d. %B %Y",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "1. มีนาคม 2568") == 0);
+    ASSERT (streq (buf, "1. มีนาคม 2568"));
 
     ret = nstrftime (buf, sizeof (buf), "%x",
                      &tm, (timezone_t) 0, 0);
     ASSERT (ret > 0);
-    ASSERT (strcmp (buf, "01/03/2568") == 0);
+    ASSERT (streq (buf, "01/03/2568"));
   }
 
   return test_exit_status;

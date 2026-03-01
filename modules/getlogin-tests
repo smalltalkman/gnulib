@@ -6,6 +6,7 @@ tests/macros.h
 
 Depends-on:
 bool
+streq
 
 configure.ac:
 

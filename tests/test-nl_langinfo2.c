@@ -51,7 +51,7 @@ main (int argc, char *argv[])
 
   /* Sanity checks.  */
   (void) c_CODESET;
-  ASSERT (strcmp (c_RADIXCHAR, ".") == 0);
+  ASSERT (streq (c_RADIXCHAR, "."));
   ASSERT (strlen (c_T_FMT_AMPM) > 0);
   ASSERT (strlen (c_AM_STR) > 0);
   ASSERT (strlen (c_PM_STR) > 0);
@@ -91,7 +91,7 @@ main (int argc, char *argv[])
 
               /* nl_langinfo items of the LC_NUMERIC category */
               const char *fr_RADIXCHAR = nl_langinfo (RADIXCHAR);
-              ASSERT (strcmp (fr_RADIXCHAR, ",") == 0);
+              ASSERT (streq (fr_RADIXCHAR, ","));
 
               /* nl_langinfo items of the LC_TIME category */
               /* macOS and Solaris 11 don't get the LC_TIME values right.
@@ -101,7 +101,7 @@ main (int argc, char *argv[])
               const char *fr_AM_STR = nl_langinfo (AM_STR);
               const char *fr_PM_STR = nl_langinfo (PM_STR);
               ASSERT (strlen (fr_T_FMT_AMPM) == 0
-                      || strcmp (fr_T_FMT_AMPM, "%I:%M:%S") == 0);
+                      || streq (fr_T_FMT_AMPM, "%I:%M:%S"));
               ASSERT (strlen (fr_AM_STR) == 0);
               ASSERT (strlen (fr_PM_STR) == 0);
               #endif
@@ -113,7 +113,7 @@ main (int argc, char *argv[])
               const char *fr_CRNCYSTR = nl_langinfo (CRNCYSTR);
               if (pass == 2)
                 ASSERT (strlen (fr_CRNCYSTR) >= 1
-                        && strcmp (fr_CRNCYSTR + 1, "€") == 0);
+                        && streq (fr_CRNCYSTR + 1, "€"));
               #endif
 
               #endif

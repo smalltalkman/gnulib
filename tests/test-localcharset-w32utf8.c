@@ -45,7 +45,7 @@ main (void)
 
   setlocale (LC_ALL, "");
   const char *lc = locale_charset ();
-  if (!(strcmp (lc, "UTF-8") == 0))
+  if (!(streq (lc, "UTF-8")))
     {
       fprintf (stderr,
                "locale_charset () is \"%s\", not \"UTF-8\" as expected.\n",

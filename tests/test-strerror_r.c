@@ -123,7 +123,7 @@ main (void)
         ret = strerror_r (err, buf, len + 1);
         ASSERT (ret != ERANGE);
         ASSERT (errno == 0);
-        ASSERT (strcmp (buf, buf2) == 0);
+        ASSERT (streq (buf, buf2));
       }
   }
 

@@ -47,8 +47,8 @@ main (void)
 #endif
 #if HAVE_STRUCT_TM_TM_ZONE /* glibc, musl, macOS, FreeBSD, NetBSD, OpenBSD, Minix, Cygwin, Android */
     printf ("tm_zone = %s\n", result->tm_zone == NULL ? "(null)" : result->tm_zone);
-    ASSERT (strcmp (result->tm_zone, "GMT") == 0 /* glibc, NetBSD, OpenBSD, Minix, Cygwin, Android */
-            || strcmp (result->tm_zone, "UTC") == 0 /* musl, macOS, FreeBSD */);
+    ASSERT (streq (result->tm_zone, "GMT") /* glibc, NetBSD, OpenBSD, Minix, Cygwin, Android */
+            || streq (result->tm_zone, "UTC") /* musl, macOS, FreeBSD */);
 #endif
   }
 

@@ -51,7 +51,7 @@ test_vasprintf ()
       int retval = my_asprintf (&result, "%d", 12345);
       ASSERT (retval == 5);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "12345") == 0);
+      ASSERT (streq (result, "12345"));
       free (result);
     }
 
@@ -61,7 +61,7 @@ test_vasprintf ()
       int retval = my_asprintf (&result, "%08lx", 12345UL);
       ASSERT (retval == 8);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "00003039") == 0);
+      ASSERT (streq (result, "00003039"));
       free (result);
     }
 }
@@ -75,7 +75,7 @@ test_asprintf ()
       int retval = asprintf (&result, "%d", 12345);
       ASSERT (retval == 5);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "12345") == 0);
+      ASSERT (streq (result, "12345"));
       free (result);
     }
 
@@ -85,7 +85,7 @@ test_asprintf ()
       int retval = asprintf (&result, "%08lx", 12345UL);
       ASSERT (retval == 8);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "00003039") == 0);
+      ASSERT (streq (result, "00003039"));
       free (result);
     }
 }

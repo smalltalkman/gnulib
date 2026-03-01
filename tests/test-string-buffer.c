@@ -63,7 +63,7 @@ main ()
     sb_append1 (&buffer, 'x');
     sb_append1 (&buffer, '\377');
     char *s = sb_dupfree_c (&buffer);
-    ASSERT (s != NULL && strcmp (s, "x\377") == 0);
+    ASSERT (s != NULL && streq (s, "x\377"));
     free (s);
   }
   {
@@ -99,7 +99,7 @@ main ()
 
     sb_init (&buffer);
     char *s = sb_dupfree_c (&buffer);
-    ASSERT (s != NULL && strcmp (s, "") == 0);
+    ASSERT (s != NULL && streq (s, ""));
     free (s);
   }
 
@@ -111,7 +111,7 @@ main ()
     sb_append_c (&buffer, "");
     sb_append_c (&buffer, "defg");
     char *s = sb_dupfree_c (&buffer);
-    ASSERT (s != NULL && strcmp (s, "abcdefg") == 0);
+    ASSERT (s != NULL && streq (s, "abcdefg"));
     free (s);
   }
 
@@ -136,7 +136,7 @@ main ()
     sb_appendf (&buffer, "%x", 3735928559U);
     sb_append_c (&buffer, ">");
     char *s = sb_dupfree_c (&buffer);
-    ASSERT (s != NULL && strcmp (s, "<deadbeef>") == 0);
+    ASSERT (s != NULL && streq (s, "<deadbeef>"));
     free (s);
   }
 
@@ -149,7 +149,7 @@ main ()
     my_appendf (&buffer, "%x", 3735928559U);
     sb_append_c (&buffer, ">");
     char *s = sb_dupfree_c (&buffer);
-    ASSERT (s != NULL && strcmp (s, "<deadbeef>") == 0);
+    ASSERT (s != NULL && streq (s, "<deadbeef>"));
     free (s);
   }
 

@@ -142,7 +142,7 @@ main (int argc, char *argv[])
 {
   int exitstatus;
 
-  if (!(argc > 1 && strcmp (argv[1], "-child") == 0))
+  if (!(argc > 1 && streq (argv[1], "-child")))
     {
       /* This is the parent process.  */
       signal (SIGINT, cleanup_then_die);

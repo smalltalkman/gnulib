@@ -18,6 +18,7 @@ read-file
 bool
 stdint-h
 unistd-h
+streq
 
 configure.ac:
 dnl Test for Linux system call close_range(), declared in <unistd.h>.

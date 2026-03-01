@@ -73,7 +73,7 @@ main (void)
     ASSERT (0 <= fd);
     ASSERT (read (fd, buf, N) == N);
     ASSERT (close (fd) == 0);
-    ASSERT (strcmp ("W1W3W5W7W9",buf) == 0);
+    ASSERT (streq ("W1W3W5W7W9",buf));
   }
 
   /* Test behaviour for invalid file descriptors.  */

@@ -52,7 +52,7 @@ main (int argc, char **argv)
   /* Make sure that result is normalized.  */
   pwd2 = getcwd (NULL, 0);
   ASSERT (pwd2);
-  ASSERT (strcmp (pwd1, pwd2) == 0);
+  ASSERT (streq (pwd1, pwd2));
   free (pwd2);
   {
     size_t len = strlen (pwd1);
@@ -74,7 +74,7 @@ main (int argc, char **argv)
         tmp = getcwd (NULL, i);
         if (tmp)
           {
-            ASSERT (strcmp (pwd1, tmp) == 0);
+            ASSERT (streq (pwd1, tmp));
             free (tmp);
           }
         else

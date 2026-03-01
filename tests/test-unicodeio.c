@@ -69,31 +69,31 @@ main (int argc, char *argv[])
                such as CP1252, that contains the U+2022 character.  */
             {
               const char *charset = locale_charset ();
-              if (strcmp (charset, "CP874") == 0
-                  || strcmp (charset, "CP1250") == 0
-                  || strcmp (charset, "CP1251") == 0
-                  || strcmp (charset, "CP1252") == 0
-                  || strcmp (charset, "CP1253") == 0
-                  || strcmp (charset, "CP1254") == 0
-                  || strcmp (charset, "CP1255") == 0
-                  || strcmp (charset, "CP1256") == 0
-                  || strcmp (charset, "CP1257") == 0
-                  || strcmp (charset, "CP1258") == 0)
-                ASSERT (strcmp (result, "\x95") == 0);
+              if (streq (charset, "CP874")
+                  || streq (charset, "CP1250")
+                  || streq (charset, "CP1251")
+                  || streq (charset, "CP1252")
+                  || streq (charset, "CP1253")
+                  || streq (charset, "CP1254")
+                  || streq (charset, "CP1255")
+                  || streq (charset, "CP1256")
+                  || streq (charset, "CP1257")
+                  || streq (charset, "CP1258"))
+                ASSERT (streq (result, "\x95"));
               else
-                ASSERT (strcmp (result, TEST_CODE_AS_UTF8) == 0);
+                ASSERT (streq (result, TEST_CODE_AS_UTF8));
             }
             break;
           case '2':
-            ASSERT (strcmp (result, TEST_CODE_AS_UTF8) == 0);
+            ASSERT (streq (result, TEST_CODE_AS_UTF8));
             break;
           case '3':
-            ASSERT (strcmp (result, TEST_CODE_AS_GB18030) == 0);
+            ASSERT (streq (result, TEST_CODE_AS_GB18030));
             break;
           }
       break;
     case 55:
-      ASSERT (strcmp (result, ".") == 0);
+      ASSERT (streq (result, "."));
       break;
     default:
       ASSERT (0);

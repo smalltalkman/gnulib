@@ -97,7 +97,7 @@ main (int argc, char *argv[])
   for (int i = 1; i < argc; i++)
     {
       const char *arg = argv[i];
-      if (strcmp (arg, "-v") == 0)
+      if (streq (arg, "-v"))
         verbose = true;
     }
 

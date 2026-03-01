@@ -82,7 +82,7 @@ is_running_under_virtualbox_kvm (void)
                    word != NULL;
                    word = strtok_r (NULL, " \n", &saveptr))
                 {
-                  if (strcmp (word, "kvm-clock") == 0)
+                  if (streq (word, "kvm-clock"))
                     return true;
                 }
             }

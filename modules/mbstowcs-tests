@@ -18,6 +18,7 @@ mbrtowc
 mbsinit
 wctob
 setlocale
+streq
 
 configure.ac:
 gt_LOCALE_EN_UTF8

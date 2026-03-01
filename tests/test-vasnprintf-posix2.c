@@ -39,10 +39,10 @@ main (int argc, char *argv[])
     size_t length;
     char *result = asnprintf (NULL, &length, "%.1a", 1.0);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1,0p+0") == 0
-            || strcmp (result, "0x2,0p-1") == 0
-            || strcmp (result, "0x4,0p-2") == 0
-            || strcmp (result, "0x8,0p-3") == 0);
+    ASSERT (streq (result, "0x1,0p+0")
+            || streq (result, "0x2,0p-1")
+            || streq (result, "0x4,0p-2")
+            || streq (result, "0x8,0p-3"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -52,10 +52,10 @@ main (int argc, char *argv[])
     size_t length;
     char *result = asnprintf (NULL, &length, "%.1La", 1.0L);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0x1,0p+0") == 0
-            || strcmp (result, "0x2,0p-1") == 0
-            || strcmp (result, "0x4,0p-2") == 0
-            || strcmp (result, "0x8,0p-3") == 0);
+    ASSERT (streq (result, "0x1,0p+0")
+            || streq (result, "0x2,0p-1")
+            || streq (result, "0x4,0p-2")
+            || streq (result, "0x8,0p-3"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -74,7 +74,7 @@ main (int argc, char *argv[])
       ASSERT (length == 4 + separator_len);
       ASSERT (memcmp (result, "1", 1) == 0
               && memcmp (result + 1, separator, separator_len) == 0
-              && strcmp (result + 1 + separator_len, "000") == 0);
+              && streq (result + 1 + separator_len, "000"));
       free (result);
     }
     {
@@ -84,7 +84,7 @@ main (int argc, char *argv[])
       ASSERT (length == 5 + separator_len);
       ASSERT (memcmp (result, "-1", 2) == 0
               && memcmp (result + 2, separator, separator_len) == 0
-              && strcmp (result + 2 + separator_len, "000") == 0);
+              && streq (result + 2 + separator_len, "000"));
       free (result);
     }
     {
@@ -94,7 +94,7 @@ main (int argc, char *argv[])
       ASSERT (length == 7 + separator_len);
       ASSERT (memcmp (result, "-142", 4) == 0
               && memcmp (result + 4, separator, separator_len) == 0
-              && strcmp (result + 4 + separator_len, "857") == 0);
+              && streq (result + 4 + separator_len, "857"));
       free (result);
     }
     {
@@ -108,7 +108,7 @@ main (int argc, char *argv[])
               && memcmp (result + 4 + separator_len, separator, separator_len) == 0
               && memcmp (result + 4 + 2 * separator_len, "483", 3) == 0
               && memcmp (result + 7 + 2 * separator_len, separator, separator_len) == 0
-              && strcmp (result + 7 + 3 * separator_len, "647") == 0);
+              && streq (result + 7 + 3 * separator_len, "647"));
       free (result);
     }
     {
@@ -122,7 +122,7 @@ main (int argc, char *argv[])
               && memcmp (result + 5 + separator_len, separator, separator_len) == 0
               && memcmp (result + 5 + 2 * separator_len, "483", 3) == 0
               && memcmp (result + 8 + 2 * separator_len, separator, separator_len) == 0
-              && strcmp (result + 8 + 3 * separator_len, "647") == 0);
+              && streq (result + 8 + 3 * separator_len, "647"));
       free (result);
     }
     {
@@ -136,7 +136,7 @@ main (int argc, char *argv[])
           ASSERT (length == 10 + separator_len);
           ASSERT (memcmp (result, "0000001", 7) == 0
                   && memcmp (result + 7, separator, separator_len) == 0
-                  && strcmp (result + 7 + separator_len, "000") == 0);
+                  && streq (result + 7 + separator_len, "000"));
         }
       else
         {
@@ -150,7 +150,7 @@ main (int argc, char *argv[])
                   && memcmp (result + 4 + separator_len, separator, separator_len) == 0
                   && memcmp (result + 4 + 2 * separator_len, "001", 3) == 0
                   && memcmp (result + 7 + 2 * separator_len, separator, separator_len) == 0
-                  && strcmp (result + 7 + 3 * separator_len, "000") == 0);
+                  && streq (result + 7 + 3 * separator_len, "000"));
         }
       free (result);
     }
@@ -165,7 +165,7 @@ main (int argc, char *argv[])
           ASSERT (length == 11 + separator_len);
           ASSERT (memcmp (result, "-0000001", 8) == 0
                   && memcmp (result + 8, separator, separator_len) == 0
-                  && strcmp (result + 8 + separator_len, "000") == 0);
+                  && streq (result + 8 + separator_len, "000"));
         }
       else
         {
@@ -179,7 +179,7 @@ main (int argc, char *argv[])
                   && memcmp (result + 5 + separator_len, separator, separator_len) == 0
                   && memcmp (result + 5 + 2 * separator_len, "001", 3) == 0
                   && memcmp (result + 8 + 2 * separator_len, separator, separator_len) == 0
-                  && strcmp (result + 8 + 3 * separator_len, "000") == 0);
+                  && streq (result + 8 + 3 * separator_len, "000"));
         }
       free (result);
     }
@@ -198,7 +198,7 @@ main (int argc, char *argv[])
               ASSERT (length == 10);
               ASSERT (memcmp (result, "      1" + separator_len, 7 - separator_len) == 0
                       && memcmp (result + 7 - separator_len, separator, separator_len) == 0
-                      && strcmp (result + 7, "000") == 0);
+                      && streq (result + 7, "000"));
             }
           else
             {
@@ -210,13 +210,13 @@ main (int argc, char *argv[])
               ASSERT (length == 9 + separator_len);
               ASSERT (memcmp (result, "     1", 6) == 0
                       && memcmp (result + 6, separator, separator_len) == 0
-                      && strcmp (result + 6 + separator_len, "000") == 0);
+                      && streq (result + 6 + separator_len, "000"));
             }
         }
       else
         {
           ASSERT (length == 10);
-          ASSERT (strcmp (result, "      1000") == 0);
+          ASSERT (streq (result, "      1000"));
         }
       free (result);
     }
@@ -235,7 +235,7 @@ main (int argc, char *argv[])
               ASSERT (length == 10);
               ASSERT (memcmp (result, "     -1" + separator_len, 7 - separator_len) == 0
                       && memcmp (result + 7 - separator_len, separator, separator_len) == 0
-                      && strcmp (result + 7, "000") == 0);
+                      && streq (result + 7, "000"));
             }
           else
             {
@@ -247,13 +247,13 @@ main (int argc, char *argv[])
               ASSERT (length == 9 + separator_len);
               ASSERT (memcmp (result, "    -1", 6) == 0
                       && memcmp (result + 6, separator, separator_len) == 0
-                      && strcmp (result + 6 + separator_len, "000") == 0);
+                      && streq (result + 6 + separator_len, "000"));
             }
         }
       else
         {
           ASSERT (length == 10);
-          ASSERT (strcmp (result, "     -1000") == 0);
+          ASSERT (streq (result, "     -1000"));
         }
       free (result);
     }
@@ -266,7 +266,7 @@ main (int argc, char *argv[])
       ASSERT (length == 4 + separator_len);
       ASSERT (memcmp (result, "1", 1) == 0
               && memcmp (result + 1, separator, separator_len) == 0
-              && strcmp (result + 1 + separator_len, "000") == 0);
+              && streq (result + 1 + separator_len, "000"));
       free (result);
     }
     {
@@ -280,7 +280,7 @@ main (int argc, char *argv[])
               && memcmp (result + 4 + separator_len, separator, separator_len) == 0
               && memcmp (result + 4 + 2 * separator_len, "592", 3) == 0
               && memcmp (result + 7 + 2 * separator_len, separator, separator_len) == 0
-              && strcmp (result + 7 + 3 * separator_len, "653,58979") == 0);
+              && streq (result + 7 + 3 * separator_len, "653,58979"));
       free (result);
     }
     {
@@ -294,7 +294,7 @@ main (int argc, char *argv[])
               && memcmp (result + 5 + separator_len, separator, separator_len) == 0
               && memcmp (result + 5 + 2 * separator_len, "592", 3) == 0
               && memcmp (result + 8 + 2 * separator_len, separator, separator_len) == 0
-              && strcmp (result + 8 + 3 * separator_len, "653,58979") == 0);
+              && streq (result + 8 + 3 * separator_len, "653,58979"));
       free (result);
     }
     {
@@ -312,7 +312,7 @@ main (int argc, char *argv[])
               ASSERT (length == 10);
               ASSERT (memcmp (result, "0000001" + separator_len, 7 - separator_len) == 0
                       && memcmp (result + 7 - separator_len, separator, separator_len) == 0
-                      && strcmp (result + 7, "000") == 0);
+                      && streq (result + 7, "000"));
             }
           else
             {
@@ -324,13 +324,13 @@ main (int argc, char *argv[])
               ASSERT (length == 9 + separator_len);
               ASSERT (memcmp (result, "000001", 6) == 0
                       && memcmp (result + 6, separator, separator_len) == 0
-                      && strcmp (result + 6 + separator_len, "000") == 0);
+                      && streq (result + 6 + separator_len, "000"));
             }
         }
       else
         {
           ASSERT (length == 10);
-          ASSERT (strcmp (result, "0000001000") == 0);
+          ASSERT (streq (result, "0000001000"));
         }
       free (result);
     }
@@ -343,7 +343,7 @@ main (int argc, char *argv[])
       ASSERT (length == 4 + separator_len);
       ASSERT (memcmp (result, "1", 1) == 0
               && memcmp (result + 1, separator, separator_len) == 0
-              && strcmp (result + 1 + separator_len, "000") == 0);
+              && streq (result + 1 + separator_len, "000"));
       free (result);
     }
     {
@@ -353,7 +353,7 @@ main (int argc, char *argv[])
       ASSERT (length == 7 + separator_len);
       ASSERT (memcmp (result, "-142", 4) == 0
               && memcmp (result + 4, separator, separator_len) == 0
-              && strcmp (result + 4 + separator_len, "857") == 0);
+              && streq (result + 4 + separator_len, "857"));
       free (result);
     }
     {
@@ -363,10 +363,10 @@ main (int argc, char *argv[])
       #if defined _WIN32 && !defined __CYGWIN__
         /* Native Windows uses 3 digits for the exponent.  */
         ASSERT (length == 11);
-        ASSERT (strcmp (result, "3,1416e+009") == 0);
+        ASSERT (streq (result, "3,1416e+009"));
       #else
         ASSERT (length == 10);
-        ASSERT (strcmp (result, "3,1416e+09") == 0);
+        ASSERT (streq (result, "3,1416e+09"));
       #endif
       free (result);
     }
@@ -377,10 +377,10 @@ main (int argc, char *argv[])
       #if defined _WIN32 && !defined __CYGWIN__
         /* Native Windows uses 3 digits for the exponent.  */
         ASSERT (length == 12);
-        ASSERT (strcmp (result, "-3,1416e+009") == 0);
+        ASSERT (streq (result, "-3,1416e+009"));
       #else
         ASSERT (length == 11);
-        ASSERT (strcmp (result, "-3,1416e+09") == 0);
+        ASSERT (streq (result, "-3,1416e+09"));
       #endif
       free (result);
     }
@@ -418,7 +418,7 @@ main (int argc, char *argv[])
               ASSERT (length == 10);
               ASSERT (memcmp (result, "0000001" + separator_len, 7 - separator_len) == 0
                       && memcmp (result + 7 - separator_len, separator, separator_len) == 0
-                      && strcmp (result + 7, "000") == 0);
+                      && streq (result + 7, "000"));
             }
           else
             {
@@ -430,13 +430,13 @@ main (int argc, char *argv[])
               ASSERT (length == 9 + separator_len);
               ASSERT (memcmp (result, "000001", 6) == 0
                       && memcmp (result + 6, separator, separator_len) == 0
-                      && strcmp (result + 6 + separator_len, "000") == 0);
+                      && streq (result + 6 + separator_len, "000"));
             }
         }
       else
         {
           ASSERT (length == 10);
-          ASSERT (strcmp (result, "0000001000") == 0);
+          ASSERT (streq (result, "0000001000"));
         }
       free (result);
     }

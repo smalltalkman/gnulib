@@ -42,7 +42,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     static const char expected[] = /* "۱۲۳۴۵۶۷ 99" */
       "\xDB\xB1\xDB\xB2\xDB\xB3\xDB\xB4\xDB\xB5\xDB\xB6\xDB\xB7 99";
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, expected) == 0);
+    ASSERT (streq (result, expected));
     ASSERT (length == strlen (result));
     free (result);
   }

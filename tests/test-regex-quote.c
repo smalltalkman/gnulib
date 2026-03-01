@@ -35,7 +35,7 @@ check (const char *literal, int cflags, const char *expected)
 
   spec = regex_quote_spec_posix (cflags, false);
   result = regex_quote (literal, &spec);
-  ASSERT (strcmp (result, expected) == 0);
+  ASSERT (streq (result, expected));
   length = regex_quote_length (literal, &spec);
   ASSERT (length == strlen (result));
   free (result);

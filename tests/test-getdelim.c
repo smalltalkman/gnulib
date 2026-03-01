@@ -57,7 +57,7 @@ main (void)
   len = 0;
   result = getdelim (&line, &len, 'n', f);
   ASSERT (result == 2);
-  ASSERT (strcmp (line, "an") == 0);
+  ASSERT (streq (line, "an"));
   ASSERT (2 < len);
   free (line);
 
@@ -66,7 +66,7 @@ main (void)
   len = (size_t)(~0) / 4;
   result = getdelim (&line, &len, 'n', f);
   ASSERT (result == 2);
-  ASSERT (strcmp (line, "An") == 0);
+  ASSERT (streq (line, "An"));
   ASSERT (2 < len);
   free (line);
 
@@ -75,7 +75,7 @@ main (void)
   len = 1;
   result = getdelim (&line, &len, 'n', f);
   ASSERT (result == 3);
-  ASSERT (strcmp (line, "bcn") == 0);
+  ASSERT (streq (line, "bcn"));
   ASSERT (3 < len);
 
   /* Test embedded NULs and EOF behavior.  */

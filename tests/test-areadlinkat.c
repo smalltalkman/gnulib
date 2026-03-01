@@ -70,7 +70,7 @@ main (void)
       ASSERT (chdir (BASE "dir") == 0);
       buf = areadlinkat (dfd, BASE "link");
       ASSERT (buf);
-      ASSERT (strcmp (buf, "nowhere") == 0);
+      ASSERT (streq (buf, "nowhere"));
       free (buf);
       errno = 0;
       ASSERT (areadlinkat (AT_FDCWD == -2 ? -1 : -2, BASE "link") == NULL);

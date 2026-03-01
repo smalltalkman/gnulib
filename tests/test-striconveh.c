@@ -834,7 +834,7 @@ main ()
                                           : &cdeh_88592_to_88591),
                                          handler);
           ASSERT (result != NULL);
-          ASSERT (strcmp (result, expected) == 0);
+          ASSERT (streq (result, expected));
           free (result);
         }
     }
@@ -862,7 +862,7 @@ main ()
               {
                 static const char expected[] = "Rafa? Maszkowski";
                 ASSERT (result != NULL);
-                ASSERT (strcmp (result, expected) == 0);
+                ASSERT (streq (result, expected));
                 free (result);
               }
               break;
@@ -892,7 +892,7 @@ main ()
               {
                 static const char expected[] = "Rafa? Maszkowski";
                 ASSERT (result != NULL);
-                ASSERT (strcmp (result, expected) == 0);
+                ASSERT (streq (result, expected));
                 free (result);
               }
               break;
@@ -900,7 +900,7 @@ main ()
               {
                 static const char expected[] = "Rafa\\u0142 Maszkowski";
                 ASSERT (result != NULL);
-                ASSERT (strcmp (result, expected) == 0);
+                ASSERT (streq (result, expected));
                 free (result);
               }
               break;
@@ -918,7 +918,7 @@ main ()
                                      &cdeh_88591_to_utf8,
                                      handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -933,7 +933,7 @@ main ()
                                      &cdeh_88591_to_gb18030,
                                      handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 # endif
@@ -948,7 +948,7 @@ main ()
                                      &cdeh_utf8_to_88591,
                                      handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -970,7 +970,7 @@ main ()
           {
             static const char expected[] = "Rafa? Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -978,7 +978,7 @@ main ()
           {
             static const char expected[] = "Rafa\357\277\275 Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1006,7 +1006,7 @@ main ()
           {
             static const char expected[] = "Rafa? Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1014,7 +1014,7 @@ main ()
           {
             static const char expected[] = "Rafa\2041\2447 Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1040,7 +1040,7 @@ main ()
           {
             static const char expected[] = "Costs: 27 ?";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1048,7 +1048,7 @@ main ()
           {
             static const char expected[] = "Costs: 27 \\u20AC";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1064,7 +1064,7 @@ main ()
                                      &cdeh_utf8_to_88591,
                                      handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "") == 0);
+      ASSERT (streq (result, ""));
       free (result);
     }
 
@@ -1376,7 +1376,7 @@ main ()
       static const char expected[] = "\304rger mit b\366sen B\374bchen ohne Augenma\337";
       char *result = str_iconveh (input, "ISO-8859-2", "ISO-8859-1", handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -1396,7 +1396,7 @@ main ()
           {
             static const char expected[] = "Rafa? Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1404,7 +1404,7 @@ main ()
           {
             static const char expected[] = "Rafa\\u0142 Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1419,7 +1419,7 @@ main ()
       static const char expected[] = "\303\204rger mit b\303\266sen B\303\274bchen ohne Augenma\303\237";
       char *result = str_iconveh (input, "ISO-8859-1", "UTF-8", handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -1432,7 +1432,7 @@ main ()
       static const char expected[] = "\2010\2072rger mit b\2010\2132sen B\250\271bchen ohne Augenma\2010\2118";
       char *result = str_iconveh (input, "ISO-8859-1", "GB18030", handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 # endif
@@ -1445,7 +1445,7 @@ main ()
       static const char expected[] = "\304rger mit b\366sen B\374bchen ohne Augenma\337";
       char *result = str_iconveh (input, "UTF-8", "ISO-8859-1", handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -1465,7 +1465,7 @@ main ()
           {
             static const char expected[] = "Costs: 27 ?";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1473,7 +1473,7 @@ main ()
           {
             static const char expected[] = "Costs: 27 \\u20AC";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -1487,7 +1487,7 @@ main ()
       static const char input[] = "\342";
       char *result = str_iconveh (input, "UTF-8", "ISO-8859-1", handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "") == 0);
+      ASSERT (streq (result, ""));
       free (result);
     }
 

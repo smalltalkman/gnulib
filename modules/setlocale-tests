@@ -20,6 +20,7 @@ Depends-on:
 strdup
 str_endswith
 test-xfail
+streq
 
 configure.ac:
 gt_LOCALE_FR

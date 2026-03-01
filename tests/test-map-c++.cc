@@ -46,19 +46,19 @@ main (int argc, char *argv[])
   const char *key;
   const int *val;
   ASSERT (iter1.next (key, val));
-  ASSERT (strcmp (key, "five") == 0);
+  ASSERT (streq (key, "five"));
   ASSERT (*val == 5);
   ASSERT (iter1.next (key, val));
-  ASSERT (strcmp (key, "one") == 0);
+  ASSERT (streq (key, "one"));
   ASSERT (*val == 1);
   ASSERT (iter1.next (key, val));
-  ASSERT (strcmp (key, "two") == 0);
+  ASSERT (streq (key, "two"));
   ASSERT (*val == 2);
   ASSERT (iter1.next (key, val));
-  ASSERT (strcmp (key, "three") == 0);
+  ASSERT (streq (key, "three"));
   ASSERT (*val == 3);
   ASSERT (iter1.next (key, val));
-  ASSERT (strcmp (key, "four") == 0);
+  ASSERT (streq (key, "four"));
   ASSERT (*val == 4);
   ASSERT (!iter1.next (key, val));
 

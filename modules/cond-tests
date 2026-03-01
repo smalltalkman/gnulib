@@ -8,6 +8,9 @@ thread
 yield
 gettimeofday
 sleep
+streq
+
+configure.ac:
 
 Makefile.am:
 TESTS += test-cond

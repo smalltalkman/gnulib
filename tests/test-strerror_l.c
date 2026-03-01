@@ -60,7 +60,7 @@ main ()
       return 77;
     }
   fr_message = xstrdup (strerror (ERANGE));
-  if (strcmp (fr_message, c_message) == 0)
+  if (streq (fr_message, c_message))
     {
       fprintf (stderr, "Skipping test: error descriptions are not localized.\n");
       return 77;
@@ -71,7 +71,7 @@ main ()
     ASSERT (l1 != NULL);
     char *message = strerror_l (ERANGE, l1);
     ASSERT (message != NULL);
-    ASSERT (strcmp (message, c_message) == 0);
+    ASSERT (streq (message, c_message));
     freelocale (l1);
   }
   {

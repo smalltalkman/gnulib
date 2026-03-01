@@ -76,7 +76,7 @@ check_same_link (char const *name1, char const *name2)
   contents2 = areadlink_with_size (name2, st2.st_size);
   ASSERT (contents1);
   ASSERT (contents2);
-  ASSERT (strcmp (contents1, contents2) == 0);
+  ASSERT (streq (contents1, contents2));
   if (EXPECT_LINK_HARDLINKS_SYMLINKS)
     ASSERT (psame_inode (&st1, &st2));
   free (contents1);

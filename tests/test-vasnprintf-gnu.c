@@ -37,7 +37,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%B %d", 0, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0 33") == 0);
+    ASSERT (streq (result, "0 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -47,7 +47,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -57,7 +57,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%B %d", 0xFFFFFFFEU, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "11111111111111111111111111111110 33") == 0);
+    ASSERT (streq (result, "11111111111111111111111111111110 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -67,7 +67,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%20B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "      11000000111001 33") == 0);
+    ASSERT (streq (result, "      11000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -77,7 +77,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%*B %d", 20, 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "      11000000111001 33") == 0);
+    ASSERT (streq (result, "      11000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -87,7 +87,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%*B %d", -20, 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "11000000111001       33") == 0);
+    ASSERT (streq (result, "11000000111001       33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -97,7 +97,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%.20B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "00000011000000111001 33") == 0);
+    ASSERT (streq (result, "00000011000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -107,7 +107,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%.0B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "11000000111001 33") == 0);
+    ASSERT (streq (result, "11000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -119,7 +119,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     ASSERT (result != NULL);
     /* ISO C and POSIX specify that "The result of converting a zero value
        with a precision of zero is no characters."  */
-    ASSERT (strcmp (result, " 33") == 0);
+    ASSERT (streq (result, " 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -129,7 +129,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%25.20B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "     00000011000000111001 33") == 0);
+    ASSERT (streq (result, "     00000011000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -141,7 +141,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     ASSERT (result != NULL);
     /* Neither ISO C nor POSIX specify that the '0' flag is ignored when
        a width and a precision are both present.  But implementations do so.  */
-    ASSERT (strcmp (result, "     00000011000000111001 33") == 0);
+    ASSERT (streq (result, "     00000011000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -151,7 +151,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%-20B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "11000000111001       33") == 0);
+    ASSERT (streq (result, "11000000111001       33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -161,7 +161,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%#B %d", 0, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0 33") == 0);
+    ASSERT (streq (result, "0 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -171,7 +171,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%#B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0B11000000111001 33") == 0);
+    ASSERT (streq (result, "0B11000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -181,7 +181,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%#20B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "    0B11000000111001 33") == 0);
+    ASSERT (streq (result, "    0B11000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -191,7 +191,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%0#20B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0B000011000000111001 33") == 0);
+    ASSERT (streq (result, "0B000011000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -201,7 +201,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%0#.20B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "0B00000011000000111001 33") == 0);
+    ASSERT (streq (result, "0B00000011000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -211,7 +211,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     char *result =
       my_asnprintf (NULL, &length, "%#25.20B %d", 12345, 33, 44, 55);
     ASSERT (result != NULL);
-    ASSERT (strcmp (result, "   0B00000011000000111001 33") == 0);
+    ASSERT (streq (result, "   0B00000011000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -223,7 +223,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     ASSERT (result != NULL);
     /* Neither ISO C nor POSIX specify that the '0' flag is ignored when
        a width and a precision are both present.  But implementations do so.  */
-    ASSERT (strcmp (result, "   0B00000011000000111001 33") == 0);
+    ASSERT (streq (result, "   0B00000011000000111001 33"));
     ASSERT (length == strlen (result));
     free (result);
   }
@@ -236,7 +236,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
     /* ISO C and POSIX specify that "The result of converting a zero value
        with a precision of zero is no characters.", and the prefix is added
        only for non-zero values.  */
-    ASSERT (strcmp (result, " 33") == 0);
+    ASSERT (streq (result, " 33"));
     ASSERT (length == strlen (result));
     free (result);
   }

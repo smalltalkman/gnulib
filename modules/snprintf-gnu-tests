@@ -5,6 +5,7 @@ tests/macros.h
 
 Depends-on:
 snprintf-posix-tests
+streq
 
 configure.ac:
 

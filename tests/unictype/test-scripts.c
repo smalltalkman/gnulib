@@ -59,7 +59,7 @@ main ()
     for (size_t i = 0; i < nscripts; i++)
       {
         ASSERT (scripts[i].name != NULL);
-        if (strcmp (scripts[i].name, "Hebrew") == 0)
+        if (streq (scripts[i].name, "Hebrew"))
           found = true;
       }
     ASSERT (found);

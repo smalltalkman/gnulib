@@ -45,9 +45,9 @@ main (void)
     loc = newlocale (LC_ALL_MASK, "C", NULL);
     ASSERT (loc != NULL);
     ret = strfmon_l (buf, sizeof (buf), loc, "%^#5.0n", 123.4);
-    ASSERT (   (ret == 5 && strcmp (buf,  "  123") == 0) /* AIX, Solaris */
-            || (ret == 6 && strcmp (buf, "   123") == 0) /* glibc */
-            || (ret == 7 && strcmp (buf, "   123 ") == 0) /* Mac OS X */
+    ASSERT (   (ret == 5 && streq (buf,  "  123")) /* AIX, Solaris */
+            || (ret == 6 && streq (buf, "   123")) /* glibc */
+            || (ret == 7 && streq (buf, "   123 ")) /* Mac OS X */
            );
   }
 
@@ -77,7 +77,7 @@ main (void)
     setlocale (LC_ALL, "de_DE.UTF-8");
     loc = newlocale (LC_ALL_MASK, "en_US.UTF-8", NULL);
     ASSERT (strfmon_l (buf, sizeof (buf), loc, "%.2n", 123.5) >= 0);
-    ASSERT (strcmp (buf, expected_buf) == 0);
+    ASSERT (streq (buf, expected_buf));
     freelocale (loc);
   }
   {
@@ -90,7 +90,7 @@ main (void)
     setlocale (LC_ALL, "en_US.UTF-8");
     loc = newlocale (LC_ALL_MASK, "de_DE.UTF-8", NULL);
     ASSERT (strfmon_l (buf, sizeof (buf), loc, "%.2n", 123.5) >= 0);
-    ASSERT (strcmp (buf, expected_buf) == 0);
+    ASSERT (streq (buf, expected_buf));
     freelocale (loc);
   }
 #endif

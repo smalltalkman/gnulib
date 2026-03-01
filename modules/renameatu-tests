@@ -11,6 +11,7 @@ getcwd-lgpl
 opendir
 readdir
 closedir
+streq
 
 configure.ac:
 

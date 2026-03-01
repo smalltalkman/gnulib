@@ -8,6 +8,7 @@ Depends-on:
 creat
 root-uid
 symlink
+streq
 
 configure.ac:
 AC_CHECK_FUNCS_ONCE([geteuid])

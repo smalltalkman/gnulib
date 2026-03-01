@@ -40,7 +40,7 @@ string_equals (const void *x1, const void *x2)
 {
   const char *s1 = x1;
   const char *s2 = x2;
-  return strcmp (s1, s2) == 0;
+  return streq (s1, s2);
 }
 
 /* A hash function for NUL-terminated char* strings using

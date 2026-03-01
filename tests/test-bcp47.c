@@ -33,7 +33,7 @@ test_correspondence (const char *xpg, const char *bcp47)
     memset (buf, 0x77, BCP47_MAX);
 
     xpg_to_bcp47 (buf, xpg);
-    ASSERT (strcmp (buf, bcp47) == 0);
+    ASSERT (streq (buf, bcp47));
   }
 
   /* Test bcp47_to_xpg.  */
@@ -42,7 +42,7 @@ test_correspondence (const char *xpg, const char *bcp47)
     memset (buf, 0x77, BCP47_MAX);
 
     bcp47_to_xpg (buf, bcp47, NULL);
-    ASSERT (strcmp (buf, xpg) == 0);
+    ASSERT (streq (buf, xpg));
   }
 }
 
@@ -128,7 +128,7 @@ main ()
     memset (buf, 0x77, BCP47_MAX);
 
     bcp47_to_xpg (buf, "quz-PE", NULL);
-    ASSERT (strcmp (buf, "qu_PE") == 0);
+    ASSERT (streq (buf, "qu_PE"));
   }
 
   /* For Tamazight, Microsoft uses the ISO 639-3 code "tzm" instead of the
@@ -138,7 +138,7 @@ main ()
     memset (buf, 0x77, BCP47_MAX);
 
     bcp47_to_xpg (buf, "tzm-MA", NULL);
-    ASSERT (strcmp (buf, "ber_MA") == 0);
+    ASSERT (streq (buf, "ber_MA"));
   }
 
   /* Languages with a regional variant.  */
@@ -152,14 +152,14 @@ main ()
     memset (buf, 0x77, BCP47_MAX);
 
     xpg_to_bcp47 (buf, "en_US.UTF-8");
-    ASSERT (strcmp (buf, "en-US") == 0);
+    ASSERT (streq (buf, "en-US"));
   }
   {
     char buf[BCP47_MAX];
     memset (buf, 0x77, BCP47_MAX);
 
     xpg_to_bcp47 (buf, "az_AZ.UTF-8@cyrillic");
-    ASSERT (strcmp (buf, "az-Cyrl-AZ") == 0);
+    ASSERT (streq (buf, "az-Cyrl-AZ"));
   }
 
   /* Test bcp47_to_xpg with an encoding.  */
@@ -168,14 +168,14 @@ main ()
     memset (buf, 0x77, BCP47_MAX);
 
     bcp47_to_xpg (buf, "en-US", "UTF-8");
-    ASSERT (strcmp (buf, "en_US.UTF-8") == 0);
+    ASSERT (streq (buf, "en_US.UTF-8"));
   }
   {
     char buf[BCP47_MAX];
     memset (buf, 0x77, BCP47_MAX);
 
     bcp47_to_xpg (buf, "az-Cyrl-AZ", "UTF-8");
-    ASSERT (strcmp (buf, "az_AZ.UTF-8@cyrillic") == 0);
+    ASSERT (streq (buf, "az_AZ.UTF-8@cyrillic"));
   }
 
   /* Test case mapping done by bcp47_to_xpg.  */
@@ -184,21 +184,21 @@ main ()
     memset (buf, 0x77, BCP47_MAX);
 
     bcp47_to_xpg (buf, "EN-US", "UTF-8");
-    ASSERT (strcmp (buf, "en_US.UTF-8") == 0);
+    ASSERT (streq (buf, "en_US.UTF-8"));
   }
   {
     char buf[BCP47_MAX];
     memset (buf, 0x77, BCP47_MAX);
 
     bcp47_to_xpg (buf, "en-us", "UTF-8");
-    ASSERT (strcmp (buf, "en_US.UTF-8") == 0);
+    ASSERT (streq (buf, "en_US.UTF-8"));
   }
   {
     char buf[BCP47_MAX];
     memset (buf, 0x77, BCP47_MAX);
 
     bcp47_to_xpg (buf, "Zh-hANs-cN", "UTF-8");
-    ASSERT (strcmp (buf, "zh_CN.UTF-8") == 0);
+    ASSERT (streq (buf, "zh_CN.UTF-8"));
   }
 
   return test_exit_status;

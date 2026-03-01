@@ -40,7 +40,7 @@ is_administrator (void)
     {
       gid_t id = list[i];
       struct group *details = getgrgid (id);
-      if (details != NULL && strcmp (details->gr_passwd, "S-1-5-32-544") == 0)
+      if (details != NULL && streq (details->gr_passwd, "S-1-5-32-544"))
         return 1;
     }
   return 0;

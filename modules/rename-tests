@@ -14,6 +14,7 @@ sys_stat-h
 opendir
 readdir
 closedir
+streq
 
 configure.ac:
 

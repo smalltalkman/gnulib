@@ -3,6 +3,7 @@ tests/unictype/test-scripts.c
 tests/macros.h
 
 Depends-on:
+streq
 
 configure.ac:
 

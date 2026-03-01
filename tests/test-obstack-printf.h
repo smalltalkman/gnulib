@@ -43,7 +43,7 @@ test_function (RETTYPE (*my_obstack_printf) (struct obstack *, const char *, ...
     obstack_1grow (&obs, 0);
     new_base = obstack_finish (&obs);
     ASSERT (base != new_base);
-    ASSERT (strcmp (new_base + room, "123 456") == 0);
+    ASSERT (streq (new_base + room, "123 456"));
   }
 
   /* Check that strings shorter than the obstack free space don't

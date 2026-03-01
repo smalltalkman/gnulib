@@ -79,33 +79,33 @@ main (void)
         char *result;
 
         result = canonicalize_file_name ("/etc//passwd");
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_file_name ("/etc///passwd");
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         /* On Windows, the syntax //host/share/filename denotes a file
            in a directory named 'share', exported from host 'host'.
            See also m4/double-slash-root.m4.  */
 #if !(defined _WIN32 || defined __CYGWIN__)
         result = canonicalize_file_name ("//etc/passwd");
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_file_name ("//etc//passwd");
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_file_name ("//etc///passwd");
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 #endif
 
         result = canonicalize_file_name ("///etc/passwd");
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_file_name ("///etc//passwd");
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
 
         result = canonicalize_file_name ("///etc///passwd");
-        ASSERT (result != NULL && strcmp (result, result0) == 0);
+        ASSERT (result != NULL && streq (result, result0));
       }
   }
 
@@ -177,7 +177,7 @@ main (void)
     char *result2 = canonicalize_file_name (BASE "/tra");
     ASSERT (result1 != NULL);
     ASSERT (result2 != NULL);
-    ASSERT (strcmp (result1, result2) == 0);
+    ASSERT (streq (result1, result2));
     ASSERT (str_endswith (result1, "/" BASE "/tra"));
     free (result1);
     free (result2);
@@ -191,8 +191,8 @@ main (void)
     ASSERT (result1 != NULL);
     ASSERT (result2 != NULL);
     ASSERT (result3 != NULL);
-    ASSERT (strcmp (result1, result2) == 0);
-    ASSERT (strcmp (result2, result3) == 0);
+    ASSERT (streq (result1, result2));
+    ASSERT (streq (result2, result3));
     ASSERT (str_endswith (result1, "/" BASE "/lum"));
     free (result1);
     free (result2);
@@ -269,13 +269,13 @@ main (void)
 #endif
     if (same)
       {
-        ASSERT (strcmp (result1, "/") == 0);
-        ASSERT (strcmp (result2, "/") == 0);
+        ASSERT (streq (result1, "/"));
+        ASSERT (streq (result2, "/"));
       }
     else
       {
-        ASSERT (strcmp (result1, "//") == 0);
-        ASSERT (strcmp (result2, "//") == 0);
+        ASSERT (streq (result1, "//"));
+        ASSERT (streq (result2, "//"));
       }
     free (result1);
     free (result2);

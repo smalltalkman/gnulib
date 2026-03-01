@@ -49,7 +49,7 @@ main ()
       static const char expected[] = "\304rger mit b\366sen B\374bchen ohne Augenma\337";
       char *result = u16_strconv_to_encoding (input, "ISO-8859-1", handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -73,8 +73,8 @@ main ()
             static const char expected[] = "Rafa? Maszkowski";
             static const char expected_translit[] = "Rafal Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0
-                    || strcmp (result, expected_translit) == 0);
+            ASSERT (streq (result, expected)
+                    || streq (result, expected_translit));
             free (result);
           }
           break;
@@ -82,7 +82,7 @@ main ()
           {
             static const char expected[] = "Rafa\\u0142 Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -97,7 +97,7 @@ main ()
       static const uint16_t input[] = { 0xD845, 0 };
       char *result = u16_strconv_to_encoding (input, "ISO-8859-1", handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "") == 0);
+      ASSERT (streq (result, ""));
       free (result);
     }
 # endif

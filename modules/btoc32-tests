@@ -11,6 +11,7 @@ m4/codeset.m4
 
 Depends-on:
 setlocale
+streq
 
 configure.ac:
 gt_LOCALE_EN_UTF8

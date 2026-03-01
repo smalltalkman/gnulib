@@ -9,6 +9,7 @@ ignore-value
 errno-h
 bool
 sys_stat-h
+streq
 
 configure.ac:
 

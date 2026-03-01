@@ -112,16 +112,16 @@ main ()
   printf ("PTHREAD_MUTEX_DEFAULT    -> type = %s\n", type_default);
   printf ("Default                  -> type = %s\n", type_def);
 
-  ASSERT (strcmp (type_normal,        "NORMAL") == 0);
-  ASSERT (strcmp (type_errorcheck,    "NORMAL") == 0);
-  ASSERT (strcmp (type_recursive,     "RECURSIVE") == 0);
+  ASSERT (streq (type_normal,        "NORMAL"));
+  ASSERT (streq (type_errorcheck,    "NORMAL"));
+  ASSERT (streq (type_recursive,     "RECURSIVE"));
 
-  ASSERT (strcmp (type_default, type_def) == 0);
+  ASSERT (streq (type_default, type_def));
 
   /* This is not required by POSIX, but happens to be the case on all
      platforms.  */
-  ASSERT (strcmp (type_default,       "NORMAL") == 0);
-  ASSERT (strcmp (type_def,           "NORMAL") == 0);
+  ASSERT (streq (type_default,       "NORMAL"));
+  ASSERT (streq (type_def,           "NORMAL"));
 
   return test_exit_status;
 }

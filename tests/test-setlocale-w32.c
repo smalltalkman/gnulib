@@ -73,17 +73,17 @@ main ()
 
   /* Check the individual categories.  */
   ret = setlocale (LC_COLLATE, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE1) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE1));
   ret = setlocale (LC_CTYPE, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE1) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE1));
   ret = setlocale (LC_MONETARY, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE5) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE5));
   ret = setlocale (LC_NUMERIC, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE2) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE2));
   ret = setlocale (LC_TIME, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE3) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE3));
   ret = setlocale (LC_MESSAGES, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE4) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE4));
   ret = setlocale (LC_ALL, NULL);
   ASSERT (ret != NULL
           && strcmp (ret, "LC_COLLATE=" LOCALE1 ";"
@@ -99,27 +99,27 @@ main ()
   ASSERT (setlocale (LC_ALL, "C") != NULL);
 
   ret = setlocale (LC_ALL, NULL);
-  ASSERT (ret != NULL && strcmp (ret, "C") == 0);
+  ASSERT (ret != NULL && streq (ret, "C"));
   ret = setlocale (LC_MESSAGES, NULL);
-  ASSERT (ret != NULL && strcmp (ret, "C") == 0);
+  ASSERT (ret != NULL && streq (ret, "C"));
 
   /* Restore the locale.  */
   ret = setlocale (LC_ALL, ret_all);
-  ASSERT (ret != NULL && strcmp (ret, ret_all) == 0);
+  ASSERT (ret != NULL && streq (ret, ret_all));
 
   /* Check the individual categories again.  */
   ret = setlocale (LC_COLLATE, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE1) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE1));
   ret = setlocale (LC_CTYPE, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE1) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE1));
   ret = setlocale (LC_MONETARY, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE5) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE5));
   ret = setlocale (LC_NUMERIC, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE2) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE2));
   ret = setlocale (LC_TIME, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE3) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE3));
   ret = setlocale (LC_MESSAGES, NULL);
-  ASSERT (ret != NULL && strcmp (ret, LOCALE4) == 0);
+  ASSERT (ret != NULL && streq (ret, LOCALE4));
   ret = setlocale (LC_ALL, NULL);
   ASSERT (ret != NULL
           && strcmp (ret, "LC_COLLATE=" LOCALE1 ";"

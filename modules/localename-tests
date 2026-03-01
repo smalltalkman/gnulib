@@ -15,6 +15,7 @@ unsetenv
 setlocale
 strdup
 test-xfail
+streq
 
 configure.ac:
 gl_CHECK_FUNCS_ANDROID([newlocale], [[#include <locale.h>]])

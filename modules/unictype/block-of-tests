@@ -5,6 +5,7 @@ tests/macros.h
 Depends-on:
 unictype/block-list
 unictype/block-test
+streq
 
 configure.ac:
 

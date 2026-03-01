@@ -12,6 +12,7 @@ setenv
 bool
 unistd-h
 unsetenv
+streq
 
 configure.ac:
 

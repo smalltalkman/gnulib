@@ -65,7 +65,7 @@ main (void)
     static char hugebuf[70000];
 
     ASSERT (getlogin_r (hugebuf, sizeof (hugebuf)) == 0);
-    ASSERT (strcmp (hugebuf, buf) == 0);
+    ASSERT (streq (hugebuf, buf));
   }
 
   /* Check that getlogin_r() does not merely return getenv ("LOGNAME").  */
@@ -73,7 +73,7 @@ main (void)
     static char set_LOGNAME[] = "LOGNAME=ygvfibmslhkmvoetbrcegzwydorcke";
     putenv (set_LOGNAME);
     err = getlogin_r (buf, sizeof buf);
-    ASSERT (!(err == 0 && strcmp (buf, "ygvfibmslhkmvoetbrcegzwydorcke") == 0));
+    ASSERT (!(err == 0 && streq (buf, "ygvfibmslhkmvoetbrcegzwydorcke")));
   }
 
   return test_exit_status;

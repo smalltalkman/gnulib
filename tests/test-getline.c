@@ -57,7 +57,7 @@ main (void)
   len = 0;
   result = getline (&line, &len, f);
   ASSERT (result == 2);
-  ASSERT (strcmp (line, "a\n") == 0);
+  ASSERT (streq (line, "a\n"));
   ASSERT (2 < len);
   free (line);
 
@@ -66,7 +66,7 @@ main (void)
   len = (size_t)(~0) / 4;
   result = getline (&line, &len, f);
   ASSERT (result == 2);
-  ASSERT (strcmp (line, "A\n") == 0);
+  ASSERT (streq (line, "A\n"));
   ASSERT (2 < len);
   free (line);
 
@@ -75,7 +75,7 @@ main (void)
   line = malloc (len);
   result = getline (&line, &len, f);
   ASSERT (result == 3);
-  ASSERT (strcmp (line, "bc\n") == 0);
+  ASSERT (streq (line, "bc\n"));
   ASSERT (3 < len);
 
   /* Test embedded NULs and EOF behavior.  */

@@ -3,6 +3,7 @@ tests/test-base64.c
 tests/macros.h
 
 Depends-on:
+streq
 
 configure.ac:
 

@@ -3,6 +3,7 @@ tests/signature.h
 tests/test-getdomainname.c
 
 Depends-on:
+streq
 
 configure.ac:
 

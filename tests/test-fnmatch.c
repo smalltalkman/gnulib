@@ -45,7 +45,7 @@ main (int argc, char *argv[])
      "C" locale.  Furthermore, when you attempt to set the "C" or "POSIX"
      locale via setlocale(), what you get is a "C" locale with UTF-8 encoding,
      that is, effectively the "C.UTF-8" locale.  */
-  if (argc > 1 && strcmp (argv[1], "1") == 0 && MB_CUR_MAX > 1)
+  if (argc > 1 && streq (argv[1], "1") && MB_CUR_MAX > 1)
     argv[1] = "3";
 #endif
 
@@ -474,12 +474,12 @@ main (int argc, char *argv[])
 
   /* Locales other than the "C" locale may order the ASCII letters like this:
      AaBb...Mm...Zz .  Seen on FreeBSD and Solaris 11.  */
-  if (argc == 1 || strcmp (argv[1], "1") == 0)
+  if (argc == 1 || streq (argv[1], "1"))
     ASSERT (fnmatch ("[a-z]", "M", 0) == FNM_NOMATCH);
   #if !defined GNULIB_defined_fnmatch_function
   ASSERT (fnmatch ("[a-z]", "M", FNM_CASEFOLD) == 0);
   #endif
-  if (argc == 1 || strcmp (argv[1], "1") == 0)
+  if (argc == 1 || streq (argv[1], "1"))
     ASSERT (fnmatch ("[A-Z]", "m", 0) == FNM_NOMATCH);
   #if !defined GNULIB_defined_fnmatch_function
   ASSERT (fnmatch ("[A-Z]", "m", FNM_CASEFOLD) == 0);
@@ -572,7 +572,7 @@ main (int argc, char *argv[])
     ASSERT (fnmatch ("a\\bc", "abc", FNM_NOESCAPE) == FNM_NOMATCH);
     ASSERT (fnmatch ("*x", ".x", 0) == 0);
     ASSERT (fnmatch ("*x", ".x", FNM_PERIOD) == FNM_NOMATCH);
-    if (argc == 1 || strcmp (argv[1], "1") == 0)
+    if (argc == 1 || streq (argv[1], "1"))
       {
         /* glibc bug <https://sourceware.org/PR361>
            exists in glibc 2.3.3, fixed in glibc 2.5.  */

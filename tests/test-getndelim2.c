@@ -49,7 +49,7 @@ main (void)
   /* Test initial allocation, which must include trailing NUL.  */
   result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, '\n', '\n', f);
   ASSERT (result == 2);
-  ASSERT (strcmp (line, "a\n") == 0);
+  ASSERT (streq (line, "a\n"));
   ASSERT (2 < len);
 
   /* Test growth of buffer, must not leak.  */
@@ -58,7 +58,7 @@ main (void)
   len = 0;
   result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, EOF, '\n', f);
   ASSERT (result == 3);
-  ASSERT (strcmp (line, "bc\n") == 0);
+  ASSERT (streq (line, "bc\n"));
   ASSERT (3 < len);
 
   /* Test embedded NULs and EOF behavior.  */
@@ -81,13 +81,13 @@ main (void)
   result = getndelim2 (&line, &len, 6, 10, 'd', 'd', f);
   ASSERT (result == 3);
   ASSERT (10 == len);
-  ASSERT (strcmp (line, "eeeeeea\nb") == 0);
+  ASSERT (streq (line, "eeeeeea\nb"));
 
   /* No change if offset larger than limit.  */
   result = getndelim2 (&line, &len, len, 1, EOF, EOF, f);
   ASSERT (result == -1);
   ASSERT (10 == len);
-  ASSERT (strcmp (line, "eeeeeea\nb") == 0);
+  ASSERT (streq (line, "eeeeeea\nb"));
 
   /* Consume to end of file, including embedded NUL.  */
   result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, EOF, EOF, f);
@@ -113,32 +113,32 @@ main (void)
     buffer[499] = '0';
     buffer[500] = '\r';
     buffer[501] = '\0';
-    ASSERT (strcmp (buffer, line) == 0);
+    ASSERT (streq (buffer, line));
 
     result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, '\n', '\r', f);
     ASSERT (result == 501);
     ASSERT (501 < len);
     buffer[499] = '1';
     buffer[500] = '\n';
-    ASSERT (strcmp (buffer, line) == 0);
+    ASSERT (streq (buffer, line));
 
     result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, 'g', 'f', f);
     ASSERT (result == 501 * 14 - 1);
     ASSERT (501 * 14 <= len);
     buffer[499] = 'f';
     buffer[500] = '\0';
-    ASSERT (strcmp (buffer, line + 501 * 13) == 0);
+    ASSERT (streq (buffer, line + 501 * 13));
 
     result = getndelim2 (&line, &len, 501 * 14 - 1, GETNLINE_NO_LIMIT,
                          EOF, EOF, f);
     ASSERT (result == 1);
     buffer[500] = '\n';
-    ASSERT (strcmp (buffer, line + 501 * 13) == 0);
+    ASSERT (streq (buffer, line + 501 * 13));
 
     result = getndelim2 (&line, &len, 501 * 14 - 1, GETNLINE_NO_LIMIT,
                          EOF, EOF, f);
     buffer[500] = '\0';
-    ASSERT (strcmp (buffer, line + 501 * 13) == 0);
+    ASSERT (streq (buffer, line + 501 * 13));
     ASSERT (result == -1);
   }
 

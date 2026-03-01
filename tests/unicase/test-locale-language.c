@@ -38,7 +38,7 @@ main (int argc, char *argv[])
   expected = argv[1];
 
   language = uc_locale_language ();
-  ASSERT (strcmp (language, expected) == 0);
+  ASSERT (streq (language, expected));
 
   return test_exit_status;
 }

@@ -59,7 +59,7 @@ main ()
 
   printf ("type = %s\n", type);
 
-  ASSERT (strcmp (type, "NORMAL") == 0);
+  ASSERT (streq (type, "NORMAL"));
 
   return test_exit_status;
 }

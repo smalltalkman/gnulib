@@ -6,6 +6,7 @@ tests/macros.h
 
 Depends-on:
 test-framework-sh
+streq
 
 configure.ac:
 

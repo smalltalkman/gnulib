@@ -445,7 +445,7 @@ main ()
       static const char expected[] = "\304rger mit b\366sen B\374bchen ohne Augenma\337";
       char *result = str_iconveha (input, "ISO-8859-2", "ISO-8859-1", false, handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -464,7 +464,7 @@ main ()
           {
             static const char expected[] = "Rafa? Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -472,7 +472,7 @@ main ()
           {
             static const char expected[] = "Rafa\\u0142 Maszkowski";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -487,7 +487,7 @@ main ()
       static const char expected[] = "\303\204rger mit b\303\266sen B\303\274bchen ohne Augenma\303\237";
       char *result = str_iconveha (input, "ISO-8859-1", "UTF-8", false, handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -499,7 +499,7 @@ main ()
       static const char expected[] = "\304rger mit b\366sen B\374bchen ohne Augenma\337";
       char *result = str_iconveha (input, "UTF-8", "ISO-8859-1", false, handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 
@@ -518,7 +518,7 @@ main ()
           {
             static const char expected[] = "Costs: 27 ?";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -526,7 +526,7 @@ main ()
           {
             static const char expected[] = "Costs: 27 \\u20AC";
             ASSERT (result != NULL);
-            ASSERT (strcmp (result, expected) == 0);
+            ASSERT (streq (result, expected));
             free (result);
           }
           break;
@@ -540,7 +540,7 @@ main ()
       static const char input[] = "\342";
       char *result = str_iconveha (input, "UTF-8", "ISO-8859-1", false, handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, "") == 0);
+      ASSERT (streq (result, ""));
       free (result);
     }
 
@@ -557,7 +557,7 @@ main ()
           static const char expected[] = "\343\201\223\343\202\223\343\201\253\343\201\241\343\201\257"; /* こんにちは */
           char *result = str_iconveha (input, "autodetect_jp", "UTF-8", false, handler);
           ASSERT (result != NULL);
-          ASSERT (strcmp (result, expected) == 0);
+          ASSERT (streq (result, expected));
           free (result);
         }
       for (size_t h = 0; h < SIZEOF (handlers); h++)
@@ -567,7 +567,7 @@ main ()
           static const char expected[] = "\343\201\223\343\202\223\343\201\253\343\201\241\343\201\257"; /* こんにちは */
           char *result = str_iconveha (input, "autodetect_jp", "UTF-8", false, handler);
           ASSERT (result != NULL);
-          ASSERT (strcmp (result, expected) == 0);
+          ASSERT (streq (result, expected));
           free (result);
         }
       for (size_t h = 0; h < SIZEOF (handlers); h++)
@@ -577,7 +577,7 @@ main ()
           static const char expected[] = "\343\201\223\343\202\223\343\201\253\343\201\241\343\201\257"; /* こんにちは */
           char *result = str_iconveha (input, "autodetect_jp", "UTF-8", false, handler);
           ASSERT (result != NULL);
-          ASSERT (strcmp (result, expected) == 0);
+          ASSERT (streq (result, expected));
           free (result);
         }
     }
@@ -592,7 +592,7 @@ main ()
       static const char expected[] = "Costs: 27 EUR";
       char *result = str_iconveha (input, "UTF-8", "ISO-8859-1", true, handler);
       ASSERT (result != NULL);
-      ASSERT (strcmp (result, expected) == 0);
+      ASSERT (streq (result, expected));
       free (result);
     }
 # endif

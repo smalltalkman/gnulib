@@ -113,7 +113,7 @@ main (int argc, char *argv[])
      "C" locale.  Furthermore, when you attempt to set the "C" or "POSIX"
      locale via setlocale(), what you get is a "C" locale with UTF-8 encoding,
      that is, effectively the "C.UTF-8" locale.  */
-  if (argc > 1 && strcmp (argv[1], "1") == 0 && MB_CUR_MAX > 1)
+  if (argc > 1 && streq (argv[1], "1") && MB_CUR_MAX > 1)
     argv[1] = "3";
 #endif
 

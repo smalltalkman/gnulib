@@ -32,12 +32,12 @@ main ()
   /* Test in the "C" locale.  */
   {
     char *s = xstrerror ("can't steal", EACCES);
-    ASSERT (strcmp (s, "can't steal: Permission denied") == 0);
+    ASSERT (streq (s, "can't steal: Permission denied"));
     free (s);
   }
   {
     char *s = xstrerror (NULL, EACCES);
-    ASSERT (strcmp (s, "Permission denied") == 0);
+    ASSERT (streq (s, "Permission denied"));
     free (s);
   }
 

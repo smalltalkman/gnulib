@@ -10,6 +10,7 @@ inttypes-h
 sleep
 pthread-thread
 test-xfail
+streq
 
 configure.ac:
 

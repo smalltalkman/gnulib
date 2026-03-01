@@ -8,6 +8,7 @@ pthread-thread
 pthread-mutex
 nanosleep
 sched_yield
+streq
 
 configure.ac:
 AC_CHECK_DECLS_ONCE([alarm])

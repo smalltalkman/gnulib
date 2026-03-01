@@ -6,6 +6,7 @@ m4/intl-thread-locale.m4
 
 Depends-on:
 langinfo-h
+streq
 
 configure.ac:
 AC_CHECK_FUNCS_ONCE([strfmon_l snprintf_l])
