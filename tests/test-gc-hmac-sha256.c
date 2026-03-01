@@ -50,7 +50,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (digest, out, GC_SHA256_DIGEST_SIZE) != 0)
+    if (!memeq (digest, out, GC_SHA256_DIGEST_SIZE))
       {
         printf ("hash 1 mismatch. expected:\n");
         for (size_t i = 0; i < GC_SHA256_DIGEST_SIZE; i++)

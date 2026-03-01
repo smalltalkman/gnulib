@@ -155,7 +155,7 @@ main (int argc, char *argv[])
 
       /* u32_wordbreaks always set BREAKS[0] to 0.  */
       breaks[0] = breaks_expected[0] = 1;
-      if (memcmp (breaks, breaks_expected, i - 1) != 0)
+      if (!memeq (breaks, breaks_expected, i - 1))
         {
           fprintf (stderr, "%s:%d: expected: ", filename, lineno);
           for (int j = 0; j < i - 1; j++)

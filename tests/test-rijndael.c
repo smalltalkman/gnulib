@@ -55,7 +55,7 @@ main (int argc, char *argv[])
       memcpy (in, out, RIJNDAEL_BITSPERBLOCK / 8);
     }
 
-  if (memcmp (out, ct, RIJNDAEL_BITSPERBLOCK / 8) != 0)
+  if (!memeq (out, ct, RIJNDAEL_BITSPERBLOCK / 8))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < RIJNDAEL_BITSPERBLOCK / 8; i++)
@@ -85,7 +85,7 @@ main (int argc, char *argv[])
         printf ("blockEncrypt failed %d\n", rc);
     }
 
-  if (memcmp (out, pt, RIJNDAEL_BITSPERBLOCK / 8) != 0)
+  if (!memeq (out, pt, RIJNDAEL_BITSPERBLOCK / 8))
     {
       printf ("expected:\n");
       for (size_t i = 0; i < RIJNDAEL_BITSPERBLOCK / 8; i++)

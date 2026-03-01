@@ -50,7 +50,7 @@ main (void)
         {
           /* It is very unlikely that two calls to getrandom produce the
              same results.  */
-          ASSERT (memcmp (buf1, buf2, sizeof (buf1)) != 0);
+          ASSERT (!memeq (buf1, buf2, sizeof (buf1)));
         }
     }
 
@@ -67,7 +67,7 @@ main (void)
         {
           /* It is very unlikely that two calls to getrandom produce the
              same results.  */
-          ASSERT (memcmp (buf1, buf2, sizeof (buf1)) != 0);
+          ASSERT (!memeq (buf1, buf2, sizeof (buf1)));
         }
     }
 

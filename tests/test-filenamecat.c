@@ -73,7 +73,7 @@ main (_GL_UNUSED int argc, char *argv[])
           fprintf (stderr, "test #%u: base_in_result is not in result\n", i);
           fail = true;
         }
-      if (reslen < t0len || memcmp (res, t[0], t0len) != 0)
+      if (reslen < t0len || !memeq (res, t[0], t0len))
         {
           fprintf (stderr, "test #%u: %s is not a prefix of %s\n",
                    i, t[0], res);

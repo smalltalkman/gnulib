@@ -22,6 +22,7 @@ wcscmp
 wcsspn
 wmemcmp
 wmemcpy
+memeq
 
 configure.ac:
 AC_REQUIRE([gl_LONG_DOUBLE_VS_DOUBLE])

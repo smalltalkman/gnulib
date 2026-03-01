@@ -150,7 +150,7 @@ test (const char *pwd_prog)
      "/".  */
   if (!is_qemu)
     {
-      if (memcmp (line, KNOWNDIR "\n", strlen (KNOWNDIR) + 1) != 0)
+      if (!memeq (line, KNOWNDIR "\n", strlen (KNOWNDIR) + 1))
         {
           fprintf (stderr, "read output is not the expected output\n");
           exit (1);

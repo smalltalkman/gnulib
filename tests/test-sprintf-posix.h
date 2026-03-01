@@ -27,7 +27,7 @@ have_minus_zero ()
 {
   static double plus_zero = 0.0;
   double minus_zero = minus_zerod;
-  return memcmp (&plus_zero, &minus_zero, sizeof (double)) != 0;
+  return !memeq (&plus_zero, &minus_zero, sizeof (double));
 }
 
 /* Representation of an 80-bit 'long double' as an initializer for a sequence

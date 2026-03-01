@@ -2,6 +2,7 @@ Files:
 tests/test-gc-sha1.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

@@ -2,6 +2,7 @@ Files:
 tests/test-rijndael.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

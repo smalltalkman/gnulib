@@ -77,7 +77,7 @@ main (int argc, char *argv[])
         fflush (stderr);
         abort ();
       }
-    if (memcmp (contents1, contents2, size1) != 0)
+    if (!memeq (contents1, contents2, size1))
       {
         fprintf (stderr, "files %s and %s have different contents\n",
                  file1, file2);
@@ -629,7 +629,7 @@ main (int argc, char *argv[])
                acl2.a.u_access, acl2.a.g_access, acl2.a.o_access);
       return 1;
     }
-  if (memcmp (acl1.a.acl_ext, acl2.a.acl_ext, acl1.a.acl_len) != 0)
+  if (!memeq (acl1.a.acl_ext, acl2.a.acl_ext, acl1.a.acl_len))
     {
       fprintf (stderr, "files %s and %s have different ACL entries\n",
                file1, file2);

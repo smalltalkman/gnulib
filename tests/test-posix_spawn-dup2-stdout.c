@@ -150,7 +150,7 @@ main ()
       fprintf (stderr, "could not read expected output\n");
       exit (1);
     }
-  if (memcmp (line, "Halle Potta", 11) != 0)
+  if (!memeq (line, "Halle Potta", 11))
     {
       fprintf (stderr, "read output is not the expected output\n");
       exit (1);

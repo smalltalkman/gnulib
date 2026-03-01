@@ -6,6 +6,7 @@ tests/uniwbrk/WordBreakTest.txt
 tests/macros.h
 
 Depends-on:
+memeq
 
 configure.ac:
 

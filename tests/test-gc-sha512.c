@@ -52,7 +52,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (out, expect, 64) != 0)
+    if (!memeq (out, expect, 64))
       {
         printf ("sha512 test1 mismatch. expected:\n");
         for (size_t i = 0; i < 64; i++)
@@ -71,7 +71,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (out, expect, 64) != 0)
+    if (!memeq (out, expect, 64))
       {
         printf ("sha512 test2 mismatch. expected:\n");
         for (size_t i = 0; i < 64; i++)
@@ -105,7 +105,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (p, expect, 64) != 0)
+    if (!memeq (p, expect, 64))
       {
         printf ("sha512 test3 mismatch. expected:\n");
         for (size_t i = 0; i < 64; i++)

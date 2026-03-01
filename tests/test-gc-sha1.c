@@ -49,7 +49,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (out, expect, 20) != 0)
+    if (!memeq (out, expect, 20))
       {
         printf ("sha1 test1 mismatch. expected:\n");
         for (size_t i = 0; i < 20; i++)
@@ -68,7 +68,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (out, expect, 20) != 0)
+    if (!memeq (out, expect, 20))
       {
         printf ("sha1 test2 mismatch. expected:\n");
         for (size_t i = 0; i < 20; i++)
@@ -102,7 +102,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (p, expect, 20) != 0)
+    if (!memeq (p, expect, 20))
       {
         printf ("sha1 test3 mismatch. expected:\n");
         for (size_t i = 0; i < 20; i++)

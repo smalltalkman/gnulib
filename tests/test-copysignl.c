@@ -102,7 +102,7 @@ main ()
   y = -1.0L;
   z = copysignl (x, y);
   ASSERT (z == 0.0L);
-  ASSERT (memcmp (&z, &zero, LDBL_BYTES) != 0);
+  ASSERT (!memeq (&z, &zero, LDBL_BYTES));
 
   x = minus_zerol;
   y = 1.0L;
@@ -114,7 +114,7 @@ main ()
   y = -1.0L;
   z = copysignl (x, y);
   ASSERT (z == 0.0L);
-  ASSERT (memcmp (&z, &zero, LDBL_BYTES) != 0);
+  ASSERT (!memeq (&z, &zero, LDBL_BYTES));
 
   return test_exit_status;
 }

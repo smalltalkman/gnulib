@@ -5,6 +5,7 @@ Depends-on:
 idx
 bool
 streq
+memeq
 
 configure.ac:
 

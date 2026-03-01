@@ -52,7 +52,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (out, expect, 32) != 0)
+    if (!memeq (out, expect, 32))
       {
         printf ("sm3 mismatch. expected:\n");
         for (size_t i = 0; i < 32; i++)
@@ -71,7 +71,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (out, expect, 32) != 0)
+    if (!memeq (out, expect, 32))
       {
         printf ("sm3' mismatch. expected:\n");
         for (size_t i = 0; i < 32; i++)
@@ -105,7 +105,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (p, expect, 32) != 0)
+    if (!memeq (p, expect, 32))
       {
         printf ("sm3 mismatch. expected:\n");
         for (size_t i = 0; i < 32; i++)

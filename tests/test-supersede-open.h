@@ -93,7 +93,7 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
         /* Note: On Linux/mips, statbuf.st_dev is smaller than a dev_t!  */
         dev_t new_dev = statbuf.st_dev;
         ASSERT (memeq (&orig_dev, &new_dev, sizeof (dev_t)));
-        ASSERT (memcmp (&orig_ino, &statbuf.st_ino, sizeof (ino_t)) != 0);
+        ASSERT (!memeq (&orig_ino, &statbuf.st_ino, sizeof (ino_t)));
 #endif
       }
   }
@@ -164,7 +164,7 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
             /* Note: On Linux/mips, statbuf.st_dev is smaller than a dev_t!  */
             dev_t new_dev = statbuf.st_dev;
             ASSERT (memeq (&orig_dev, &new_dev, sizeof (dev_t)));
-            ASSERT (memcmp (&orig_ino, &statbuf.st_ino, sizeof (ino_t)) != 0);
+            ASSERT (!memeq (&orig_ino, &statbuf.st_ino, sizeof (ino_t)));
 #endif
           }
 

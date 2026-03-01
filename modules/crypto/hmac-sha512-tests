@@ -3,6 +3,7 @@ tests/test-hmac-sha512.c
 
 Depends-on:
 c99
+memeq
 
 configure.ac:
 

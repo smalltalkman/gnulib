@@ -42,7 +42,7 @@ test_clobber ()
   lt = localtime (&t);
   saved_lt = *lt;
   gettimeofday (&tv, NULL);
-  if (memcmp (lt, &saved_lt, sizeof (struct tm)) != 0)
+  if (!memeq (lt, &saved_lt, sizeof (struct tm)))
     {
       fprintf (stderr, "gettimeofday still clobbers the localtime buffer!\n");
       exit (1);

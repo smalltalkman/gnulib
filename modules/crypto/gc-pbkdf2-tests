@@ -2,6 +2,7 @@ Files:
 tests/test-gc-pbkdf2.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

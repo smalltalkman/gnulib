@@ -95,7 +95,7 @@ main (int argc, char *argv[])
           return 1;
         }
 
-      if (memcmp (pkcs5[i].expected, out, pkcs5[i].dklen) != 0)
+      if (!memeq (pkcs5[i].expected, out, pkcs5[i].dklen))
         {
           printf ("PKCS5 entry %ld failed\n", (unsigned long) i);
           return 1;

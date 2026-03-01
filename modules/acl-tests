@@ -17,6 +17,7 @@ unistd-h
 xalloc
 test-framework-sh
 streq
+memeq
 
 configure.ac:
 

@@ -51,7 +51,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (out, expect, 16) != 0)
+    if (!memeq (out, expect, 16))
       {
         printf ("md2 1 mismatch. expected:\n");
         for (size_t i = 0; i < 16; i++)
@@ -69,7 +69,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (out, expect, 16) != 0)
+    if (!memeq (out, expect, 16))
       {
         printf ("md2 2 mismatch. expected:\n");
         for (size_t i = 0; i < 16; i++)
@@ -103,7 +103,7 @@ main (int argc, char *argv[])
         return 1;
       }
 
-    if (memcmp (p, expect, 16) != 0)
+    if (!memeq (p, expect, 16))
       {
         printf ("md2 3 mismatch. expected:\n");
         for (size_t i = 0; i < 16; i++)

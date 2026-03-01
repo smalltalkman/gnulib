@@ -36,7 +36,7 @@ hmac_check (const void *key, size_t key_len,
       exit (1);
     }
 
-  if (memcmp (digest, out, 64) != 0)
+  if (!memeq (digest, out, 64))
     {
       printf ("hash 1 mismatch. expected:\n");
       for (size_t i = 0; i < 64; i++)

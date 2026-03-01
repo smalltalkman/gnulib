@@ -37,7 +37,7 @@ main (int argc, char *argv[])
   ASSERT (getentropy (buf, sizeof buf) == 0);
 
   /* This test fails with probability 2**-2048.  (Run it again if so. :-) */
-  ASSERT (memcmp (buf, empty_buf, sizeof buf) != 0);
+  ASSERT (!memeq (buf, empty_buf, sizeof buf));
 
   /* It is very unlikely that two calls to getentropy produce the same
      results.  */
@@ -47,7 +47,7 @@ main (int argc, char *argv[])
 
     ASSERT (getentropy (buf1, sizeof (buf1)) == 0);
     ASSERT (getentropy (buf2, sizeof (buf2)) == 0);
-    ASSERT (memcmp (buf1, buf2, sizeof (buf1)) != 0);
+    ASSERT (!memeq (buf1, buf2, sizeof (buf1)));
   }
 
   return test_exit_status;

@@ -134,7 +134,7 @@ test_heap (void)
     {
       /* some implementation could override freed memory by canaries so
          compare against secret */
-      ASSERT (memcmp (heapbuf, SECRET, SECRET_SIZE) != 0);
+      ASSERT (!memeq (heapbuf, SECRET, SECRET_SIZE));
       printf ("test_heap: address range is still mapped after free().\n");
     }
   else
@@ -194,7 +194,7 @@ do_secret_stuff (int volatile pass, char *volatile *volatile last_stackbuf)
          different address than *last_stackbuf.  This can happen
          when the compiler splits this function into different functions,
          one for pass == 1 and one for pass != 1.  */
-      return memcmp (zero, *last_stackbuf, SECRET_SIZE) != 0;
+      return !memeq (zero, *last_stackbuf, SECRET_SIZE);
     }
 }
 

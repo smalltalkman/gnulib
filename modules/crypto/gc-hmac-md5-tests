@@ -2,6 +2,7 @@ Files:
 tests/test-gc-hmac-md5.c
 
 Depends-on:
+memeq
 
 configure.ac:
 

@@ -3,6 +3,7 @@ tests/test-hmac-md5.c
 
 Depends-on:
 c99
+memeq
 
 configure.ac:
 

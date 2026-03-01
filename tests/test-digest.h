@@ -111,7 +111,7 @@ test_digest_on_files (int (*streamfunc) (FILE *, void *),
             fprintf (stderr, "%s failed with error %d\n", streamfunc_name, -ret);
             exit (1);
           }
-        if (memcmp (digest, expected, digest_size) != 0)
+        if (!memeq (digest, expected, digest_size))
           {
             fprintf (stderr, "%s produced wrong result.\n", streamfunc_name);
             fprintf (stderr, "Expected: ");

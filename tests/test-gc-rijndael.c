@@ -64,7 +64,7 @@ main (int argc, char *argv[])
           }
       }
 
-    if (memcmp (buf, ct, 16) != 0)
+    if (!memeq (buf, ct, 16))
       {
         printf ("expected:\n");
         for (size_t i = 0; i < 16; i++)
@@ -86,7 +86,7 @@ main (int argc, char *argv[])
           }
       }
 
-    if (memcmp (buf, pt, 16) != 0)
+    if (!memeq (buf, pt, 16))
       {
         printf ("expected:\n");
         for (size_t i = 0; i < 16; i++)
@@ -138,7 +138,7 @@ main (int argc, char *argv[])
           }
       }
 
-    if (memcmp (buf, ct, 16) != 0)
+    if (!memeq (buf, ct, 16))
       {
         printf ("expected:\n");
         for (size_t i = 0; i < 16; i++)
