@@ -525,7 +525,7 @@ test_function (long double (*my_strtold) (const char *, char **))
     errno = 0;
     result = my_strtold (input, &ptr);
     ASSERT (0.0L < result && result <= LDBL_MIN);
-    ASSERT (ptr == input + strlen (input));
+    ASSERT (ptr == strnul (input));
 #if !defined _MSC_VER
     ASSERT (errno == ERANGE);
 #endif
@@ -541,7 +541,7 @@ test_function (long double (*my_strtold) (const char *, char **))
     errno = 0;
     result = my_strtold (input, &ptr);
     ASSERT (-LDBL_MIN <= result && result < 0.0L);
-    ASSERT (ptr == input + strlen (input));
+    ASSERT (ptr == strnul (input));
 #if !defined _MSC_VER
     ASSERT (errno == ERANGE);
 #endif

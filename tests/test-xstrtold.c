@@ -664,7 +664,7 @@ main ()
     bool ok = xstrtold (input, &ptr, &result, strtold);
     ASSERT (ok);
     ASSERT (0.0L < result && result <= LDBL_MIN);
-    ASSERT (ptr == input + strlen (input));
+    ASSERT (ptr == strnul (input));
     ASSERT (errno == 0);
   }
   {
@@ -678,7 +678,7 @@ main ()
     bool ok = xstrtold (input, &ptr, &result, strtold);
     ASSERT (ok);
     ASSERT (-LDBL_MIN <= result && result < 0.0L);
-    ASSERT (ptr == input + strlen (input));
+    ASSERT (ptr == strnul (input));
     ASSERT (errno == 0);
   }
 

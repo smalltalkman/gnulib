@@ -8,6 +8,7 @@ strtold
 float-h
 isnanl-nolibm
 signbit-no-c++
+strnul
 
 configure.ac:
 

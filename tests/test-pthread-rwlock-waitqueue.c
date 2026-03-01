@@ -111,7 +111,7 @@ reader_func (void *arg)
       abort ();
     }
   ASSERT (pthread_rwlock_wrlock (&sprintf_lock) == 0);
-  sprintf (l->result + strlen (l->result), " %s", l->name);
+  sprintf (strnul (l->result), " %s", l->name);
   ASSERT (pthread_rwlock_unlock (&sprintf_lock) == 0);
   if (l->wait_after > 0)
     {
@@ -150,7 +150,7 @@ writer_func (void *arg)
       abort ();
     }
   ASSERT (pthread_rwlock_wrlock (&sprintf_lock) == 0);
-  sprintf (l->result + strlen (l->result), " %s", l->name);
+  sprintf (strnul (l->result), " %s", l->name);
   ASSERT (pthread_rwlock_unlock (&sprintf_lock) == 0);
   if (l->wait_after > 0)
     {

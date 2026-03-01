@@ -18,6 +18,7 @@ setlocale
 thread
 nanosleep
 strtold
+strnul
 
 configure.ac:
 gt_LOCALE_FR

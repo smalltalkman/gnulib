@@ -13,6 +13,7 @@ unistd-h
 regex
 setlocale
 test-framework-sh
+strnul
 
 configure.ac:
 

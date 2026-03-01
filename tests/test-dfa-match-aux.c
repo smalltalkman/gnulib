@@ -67,7 +67,7 @@ main (int argc, char **argv)
   dfacomp (argv[1], strlen (argv[1]), dfa, 0);
 
   beg = argv[2];
-  end = argv[2] + strlen (argv[2]);
+  end = strnul (argv[2]);
   allow_nl = argc > 3 && atoi (argv[3]);
 
   p = dfaexec (dfa, beg, end, allow_nl, NULL, NULL);
