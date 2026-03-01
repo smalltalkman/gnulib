@@ -75,7 +75,7 @@ main (_GL_UNUSED int argc, char *argv[])
   {
     const char *locale_name = getenv ("LOCALE");
 
-    if (!(locale_name != NULL && strcmp (locale_name, "none") != 0
+    if (!(locale_name != NULL && !streq (locale_name, "none")
           && setenv ("LC_ALL", locale_name, 1) == 0
           && setlocale (LC_ALL, "") != NULL))
       {

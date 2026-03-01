@@ -38,10 +38,10 @@ main (void)
   int forward = 1;
   int reverse = -1;
   qsort_r (buf, sizeof buf - 1, 1, cmp, &forward);
-  if (strcmp (buf, "abcddeeeefghhijklmnoooopqrrsttuuvwxyz") != 0)
+  if (!streq (buf, "abcddeeeefghhijklmnoooopqrrsttuuvwxyz"))
     return 1;
   qsort_r (buf, sizeof buf - 1, 1, cmp, &reverse);
-  if (strcmp (buf, "zyxwvuuttsrrqpoooonmlkjihhgfeeeeddcba") != 0)
+  if (!streq (buf, "zyxwvuuttsrrqpoooonmlkjihhgfeeeeddcba"))
     return 1;
   return 0;
 }

@@ -7,6 +7,7 @@ unportable-test
 
 Depends-on:
 unlink
+streq
 
 configure.ac:
 

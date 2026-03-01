@@ -67,7 +67,7 @@ thread1_func (void *arg)
   for (;;)
     {
       const char *value = localeconv () -> decimal_point;
-      if (strcmp (expected1, value) != 0)
+      if (!streq (expected1, value))
         {
           fprintf (stderr, "thread1 disturbed by threadN!\n"); fflush (stderr);
           abort ();
@@ -85,7 +85,7 @@ thread2_func (void *arg)
   for (;;)
     {
       const char *value = localeconv () -> thousands_sep;
-      if (strcmp (expected2, value) != 0)
+      if (!streq (expected2, value))
         {
           fprintf (stderr, "thread2 disturbed by threadN!\n"); fflush (stderr);
           abort ();
@@ -103,7 +103,7 @@ thread3_func (void *arg)
   for (;;)
     {
       const char *value = localeconv () -> mon_decimal_point;
-      if (strcmp (expected3, value) != 0)
+      if (!streq (expected3, value))
         {
           fprintf (stderr, "thread3 disturbed by threadN!\n"); fflush (stderr);
           abort ();
@@ -121,7 +121,7 @@ thread4_func (void *arg)
   for (;;)
     {
       const char *value = localeconv () -> mon_thousands_sep;
-      if (strcmp (expected4, value) != 0)
+      if (!streq (expected4, value))
         {
           fprintf (stderr, "thread4 disturbed by threadN!\n"); fflush (stderr);
           abort ();
@@ -139,7 +139,7 @@ thread5_func (void *arg)
   for (;;)
     {
       const char *value = localeconv () -> currency_symbol;
-      if (strcmp (expected5, value) != 0)
+      if (!streq (expected5, value))
         {
           fprintf (stderr, "thread5 disturbed by threadN!\n"); fflush (stderr);
           abort ();
@@ -157,7 +157,7 @@ thread6_func (void *arg)
   for (;;)
     {
       const char *value = localeconv () -> int_curr_symbol;
-      if (strcmp (expected6, value) != 0)
+      if (!streq (expected6, value))
         {
           fprintf (stderr, "thread6 disturbed by threadN!\n"); fflush (stderr);
           abort ();

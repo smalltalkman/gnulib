@@ -47,7 +47,7 @@ main ()
 
     /* gen_tempname arranges (via O_EXCL) to not return the name of an existing
        file.  */
-    ASSERT (strcmp (filename1, filename2) != 0);
+    ASSERT (!streq (filename1, filename2));
 
     /* Clean up.  */
     close (fd1);
@@ -75,7 +75,7 @@ main ()
        the probability of getting the same file name twice in a row should be
        1/62^6 < 1/10^10.
        But on 64-bit native Windows, this probability is ca. 0.1% to 0.3%.  */
-    ASSERT (strcmp (filename1, filename2) != 0);
+    ASSERT (!streq (filename1, filename2));
 
     /* Clean up.  */
     close (fd2);

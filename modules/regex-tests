@@ -6,6 +6,7 @@ Depends-on:
 gettext-h
 localcharset
 wctype-h
+streq
 
 configure.ac:
 AC_CHECK_DECLS_ONCE([alarm])

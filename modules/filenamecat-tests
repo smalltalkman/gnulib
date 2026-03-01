@@ -4,6 +4,7 @@ tests/test-filenamecat.c
 Depends-on:
 idx
 bool
+streq
 
 configure.ac:
 

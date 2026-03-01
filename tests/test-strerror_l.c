@@ -84,8 +84,8 @@ main ()
     char *message = strerror_l (ERANGE, l1);
     ASSERT (message != NULL);
     /* German is neither English nor French.  */
-    ASSERT (strcmp (message, c_message) != 0);
-    ASSERT (strcmp (message, fr_message) != 0);
+    ASSERT (!streq (message, c_message));
+    ASSERT (!streq (message, fr_message));
     freelocale (l1);
   }
 

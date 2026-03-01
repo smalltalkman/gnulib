@@ -18,6 +18,7 @@ setenv
 unsetenv
 setlocale
 localcharset
+streq
 
 configure.ac:
 gt_LOCALE_FR

@@ -66,7 +66,7 @@ main (int argc, char *argv[])
        */
       const char *fr_locale_name =
         getenv (pass == 1 ? "LOCALE_FR" : "LOCALE_FR_UTF8");
-      if (strcmp (fr_locale_name, "none") != 0)
+      if (!streq (fr_locale_name, "none"))
         {
           /* Use a per-thread locale.  */
           locale_t fr_locale = newlocale (LC_ALL_MASK, fr_locale_name, NULL);

@@ -211,7 +211,7 @@ test_name_lookup ()
               fprintf (stderr, "\\u%04X name lookup failed!\n", i);
               error = 1;
             }
-          else if (strcmp (result, unicode_names[i]) != 0)
+          else if (!streq (result, unicode_names[i]))
             {
               fprintf (stderr, "\\u%04X name lookup returned wrong name: %s\n",
                                i, result);
@@ -362,7 +362,7 @@ main (int argc, char *argv[])
   int error = 0;
   int i;
 
-  for (i = 1; i < argc && strcmp (argv[i], "--") != 0; i++)
+  for (i = 1; i < argc && !streq (argv[i], "--"); i++)
     fill_names (argv[i]);
 
   if (i < argc)

@@ -7,6 +7,7 @@ tests/macros.h
 Depends-on:
 gethostname
 root-uid
+streq
 
 configure.ac:
 AC_CHECK_FUNCS_ONCE([geteuid])

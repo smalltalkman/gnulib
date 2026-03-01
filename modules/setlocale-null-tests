@@ -6,6 +6,7 @@ tests/test-setlocale_null-mt-all.c
 Depends-on:
 thread
 nanosleep
+streq
 
 configure.ac:
 

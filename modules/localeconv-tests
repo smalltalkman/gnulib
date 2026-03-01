@@ -8,6 +8,7 @@ Depends-on:
 setlocale
 thread
 nanosleep
+streq
 
 configure.ac:
 

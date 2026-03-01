@@ -469,7 +469,7 @@ main (void)
   s = re_compile_pattern (pat_badback, sizeof pat_badback, &regex);
   if (!s && re_search (&regex, "x", 1, 0, 1, &regs) != -1)
     s = "mishandled invalid back reference";
-  if (s && strcmp (s, "Invalid back reference") != 0)
+  if (s && !streq (s, "Invalid back reference"))
     report_error ("%s: %s", pat_badback, s);
 
 #if 0

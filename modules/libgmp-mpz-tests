@@ -5,6 +5,7 @@ tests/test-libgmp-mpz.c
 Depends-on:
 assert-h
 c99
+streq
 
 configure.ac:
 

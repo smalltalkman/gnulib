@@ -73,7 +73,7 @@ thread1_func (void *arg)
 
       if (setlocale_null_r (LC_NUMERIC, buf, sizeof (buf)))
         abort ();
-      if (strcmp (expected, buf) != 0)
+      if (!streq (expected, buf))
         {
           fprintf (stderr, "thread1 disturbed by thread2!\n"); fflush (stderr);
           abort ();

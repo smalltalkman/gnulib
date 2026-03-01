@@ -76,7 +76,7 @@ main (int argc, char *argv[])
                    p->if_index);
           return 1;
         }
-      if (strcmp (p->if_name, q) != 0)
+      if (!streq (p->if_name, q))
         {
           fprintf (stderr, "if_indextoname (%s) = %s ?!\n", p->if_name, q);
           return 1;

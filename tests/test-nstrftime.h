@@ -287,7 +287,7 @@ quarter_test (void)
         }
 
       exp[0] = mon < 4 ? '1' : mon < 7 ? '2' : mon < 10 ? '3' : '4';
-      if (strcmp (out, exp) != 0)
+      if (!streq (out, exp))
         {
           printf ("%s %%q: expected \"%s\", got \"%s\"\n", FUNC_NAME, exp, out);
           fflush (stdout);

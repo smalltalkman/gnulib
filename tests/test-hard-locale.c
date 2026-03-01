@@ -65,7 +65,7 @@ test_one (const char *name, int failure_bitmask)
 #if defined __NetBSD__
       expected = false;
 #elif defined MUSL_LIBC
-      expected = strcmp (name, "C.UTF-8") != 0;
+      expected = !streq (name, "C.UTF-8");
 #elif (defined __OpenBSD__ && HAVE_DUPLOCALE) || defined __HAIKU__ || defined __ANDROID__ /* OpenBSD >= 6.2, Haiku, Android */
       expected = true;
 #else

@@ -2,6 +2,7 @@ Files:
 tests/test-gettext-h.c
 
 Depends-on:
+streq
 
 configure.ac:
 

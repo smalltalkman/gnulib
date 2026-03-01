@@ -40,13 +40,13 @@ main ()
     char gmp_header_version[32];
     sprintf (gmp_header_version, "%d.%d.%d", __GNU_MP_VERSION,
              __GNU_MP_VERSION_MINOR, __GNU_MP_VERSION_PATCHLEVEL);
-    if (strcmp (gmp_version, gmp_header_version) != 0)
+    if (!streq (gmp_version, gmp_header_version))
       {
         char gmp_header_version2[32];
         if (__GNU_MP_VERSION_PATCHLEVEL > 0
             || (sprintf (gmp_header_version2, "%d.%d", __GNU_MP_VERSION,
                          __GNU_MP_VERSION_MINOR),
-                strcmp (gmp_version, gmp_header_version2) != 0))
+                !streq (gmp_version, gmp_header_version2)))
           {
             fprintf (stderr,
                      "gmp header version (%s) does not match gmp library version (%s).\n",

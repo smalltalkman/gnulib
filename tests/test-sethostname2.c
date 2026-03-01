@@ -99,7 +99,7 @@ main (int argc, _GL_UNUSED char *argv[])
       /* if we don't get back what we put in, there is no need to
          restore the original name as we will assume it was not
          properly changed. */
-      if (strcmp (newname, TESTHOSTNAME) != 0)
+      if (!streq (newname, TESTHOSTNAME))
         {
           fprintf (stderr, "set/get comparison failed.\n");
           return 1;

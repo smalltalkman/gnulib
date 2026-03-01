@@ -2,6 +2,7 @@ Files:
 tests/test-qsort_r.c
 
 Depends-on:
+streq
 
 configure.ac:
 

@@ -16,6 +16,7 @@ read-file
 unistd-h
 xalloc
 test-framework-sh
+streq
 
 configure.ac:
 

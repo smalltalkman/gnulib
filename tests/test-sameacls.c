@@ -171,7 +171,7 @@ main (int argc, char *argv[])
                   {
                     if (text2 != NULL)
                       {
-                        if (strcmp (text1, text2) != 0)
+                        if (!streq (text1, text2))
                           {
                             fprintf (stderr, "files %s and %s have different ACLs:\n%s\n%s\n",
                                      file1, file2, text1, text2);
@@ -583,7 +583,7 @@ main (int argc, char *argv[])
         abort ();
       }
 
-  if (strcmp (text1, text2) != 0)
+  if (!streq (text1, text2))
     {
       fprintf (stderr, "files %s and %s have different ACLs:\n%s\n%s\n",
                file1, file2, text1, text2);

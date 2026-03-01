@@ -57,12 +57,12 @@ main (_GL_UNUSED int argc, char *argv[])
       idx_t prefixlen = base_in_result - res;
       size_t t0len = strlen (t[0]);
       size_t reslen = strlen (res);
-      if (strcmp (res, t[2]) != 0)
+      if (!streq (res, t[2]))
         {
           fprintf (stderr, "test #%u: got %s, expected %s\n", i, res, t[2]);
           fail = true;
         }
-      if (strcmp (t[1], base_in_result) != 0)
+      if (!streq (t[1], base_in_result))
         {
           fprintf (stderr, "test #%u: base %s != base_in_result %s\n",
                    i, t[1], base_in_result);
