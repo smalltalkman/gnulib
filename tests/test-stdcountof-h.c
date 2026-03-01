@@ -35,12 +35,14 @@ extern int unbounded[];
 extern int bounded[10];
 extern int multidimensional[10][20];
 
+#if !defined __cplusplus
 static int call_count;
 static int
 do_call ()
 {
   return call_count++;
 }
+#endif
 
 static void
 test_func (int parameter[3])
