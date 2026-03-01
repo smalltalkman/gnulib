@@ -78,7 +78,7 @@ posixtm_test (void)
           fflush (stdout);
         }
 
-      if (! STREQ (buf, T[i].exp))
+      if (! streq (buf, T[i].exp))
         {
           fail = 1;
           printf ("%s: result mismatch: got %s, expected %s\n",
@@ -239,10 +239,10 @@ tzalloc_test (void)
           continue;
         }
 
-      if (! (STREQ (buf, LT[i].exp)
+      if (! (streq (buf, LT[i].exp)
              || (!tz && n == strlen (LT[i].exp)
                  && memcmp (buf, LT[i].exp, n - sizeof "(GMT)" + 1) == 0
-                 && STREQ (buf + n - sizeof "(GMT)" + 1, "(GMT)"))
+                 && streq (buf + n - sizeof "(GMT)" + 1, "(GMT)"))
 #if defined _WIN32 && !defined __CYGWIN__
              /* On native Windows, the time zone is printed differently.  */
              || strncmp (buf, LT[i].exp, 20) == 0
@@ -369,7 +369,7 @@ errno_test (void)
               ptrdiff_t n1 =
                 FUNC_CHECKED (buf1, sizeof buf1, "%s", tmp, NULL, 0);
               buf1[n1] = '\0';
-              if (! STREQ (buf, buf1))
+              if (! streq (buf, buf1))
                 {
                   fail = 1;
                   printf ("%s %%s first returned '%s', then '%s'\n",
@@ -404,7 +404,7 @@ locales_test (language_t language)
   ASSERT (n > 0);
   printf ("Format as ISO 8601: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "2017-10-26 06:40:03.123456789"));
+  ASSERT (streq (buf, "2017-10-26 06:40:03.123456789"));
 
   /* Exercise various POSIX format directives.  */
 
@@ -415,11 +415,11 @@ locales_test (language_t language)
   switch (language)
     {
     case english:
-      ASSERT (STREQ (buf, "Thu"));
+      ASSERT (streq (buf, "Thu"));
       break;
     case french:
-      ASSERT (STREQ (buf, "jeu.") /* glibc, FreeBSD, NetBSD, Solaris, Cygwin */
-              || STREQ (buf, "Jeu") /* macOS, older FreeBSD */);
+      ASSERT (streq (buf, "jeu.") /* glibc, FreeBSD, NetBSD, Solaris, Cygwin */
+              || streq (buf, "Jeu") /* macOS, older FreeBSD */);
       break;
     }
 
@@ -430,11 +430,11 @@ locales_test (language_t language)
   switch (language)
     {
     case english:
-      ASSERT (STREQ (buf, "Thursday"));
+      ASSERT (streq (buf, "Thursday"));
       break;
     case french:
-      ASSERT (STREQ (buf, "jeudi") /* glibc, FreeBSD, NetBSD, Solaris, Cygwin */
-              || STREQ (buf, "Jeudi") /* macOS, older FreeBSD */);
+      ASSERT (streq (buf, "jeudi") /* glibc, FreeBSD, NetBSD, Solaris, Cygwin */
+              || streq (buf, "Jeudi") /* macOS, older FreeBSD */);
       break;
     }
 
@@ -445,11 +445,11 @@ locales_test (language_t language)
   switch (language)
     {
     case english:
-      ASSERT (STREQ (buf, "Oct"));
+      ASSERT (streq (buf, "Oct"));
       break;
     case french:
-      ASSERT (STREQ (buf, "oct.") /* glibc, FreeBSD, NetBSD, Solaris, Cygwin */
-              || STREQ (buf, "oct") /* macOS, older FreeBSD */);
+      ASSERT (streq (buf, "oct.") /* glibc, FreeBSD, NetBSD, Solaris, Cygwin */
+              || streq (buf, "oct") /* macOS, older FreeBSD */);
       break;
     }
 
@@ -460,10 +460,10 @@ locales_test (language_t language)
   switch (language)
     {
     case english:
-      ASSERT (STREQ (buf, "October"));
+      ASSERT (streq (buf, "October"));
       break;
     case french:
-      ASSERT (STREQ (buf, "octobre"));
+      ASSERT (streq (buf, "octobre"));
       break;
     }
 
@@ -474,15 +474,15 @@ locales_test (language_t language)
   switch (language)
     {
     case english:
-      ASSERT (STREQ (buf, "Thu Oct 26 06:40:03 2017"));
+      ASSERT (streq (buf, "Thu Oct 26 06:40:03 2017"));
       break;
     case french:
-      ASSERT (STREQ (buf, "jeu. 26 oct. 2017 06:40:03") /* glibc, Cygwin */
-              || STREQ (buf, "jeu. 26 oct. 06:40:03 2017") /* FreeBSD */
-              || STREQ (buf, "Jeu 26 oct 06:40:03 2017") /* macOS, older FreeBSD */
-              || STREQ (buf, "26 octobre 2017 06:40:03") /* NetBSD */
-              || STREQ (buf, "26 octobre 2017 à 06:40:03") /* Solaris (UTF-8) */
-              || STREQ (buf, "26 octobre 2017 \340 06:40:03") /* Solaris (ISO-8859-1) */);
+      ASSERT (streq (buf, "jeu. 26 oct. 2017 06:40:03") /* glibc, Cygwin */
+              || streq (buf, "jeu. 26 oct. 06:40:03 2017") /* FreeBSD */
+              || streq (buf, "Jeu 26 oct 06:40:03 2017") /* macOS, older FreeBSD */
+              || streq (buf, "26 octobre 2017 06:40:03") /* NetBSD */
+              || streq (buf, "26 octobre 2017 à 06:40:03") /* Solaris (UTF-8) */
+              || streq (buf, "26 octobre 2017 \340 06:40:03") /* Solaris (ISO-8859-1) */);
       break;
     }
 
@@ -490,43 +490,43 @@ locales_test (language_t language)
   ASSERT (n > 0);
   printf ("%%C directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "20"));
+  ASSERT (streq (buf, "20"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%d", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%d directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "26"));
+  ASSERT (streq (buf, "26"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%D", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%D directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "10/26/17"));
+  ASSERT (streq (buf, "10/26/17"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%e", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%e directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "26"));
+  ASSERT (streq (buf, "26"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%F", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%F directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "2017-10-26"));
+  ASSERT (streq (buf, "2017-10-26"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%g", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%g directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "17"));
+  ASSERT (streq (buf, "17"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%G", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%G directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "2017"));
+  ASSERT (streq (buf, "2017"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%h", tm, NULL, ns);
   ASSERT (n > 0);
@@ -535,11 +535,11 @@ locales_test (language_t language)
   switch (language)
     {
     case english:
-      ASSERT (STREQ (buf, "Oct"));
+      ASSERT (streq (buf, "Oct"));
       break;
     case french:
-      ASSERT (STREQ (buf, "oct.") /* glibc, FreeBSD, NetBSD, Solaris, Cygwin */
-              || STREQ (buf, "oct") /* macOS, older FreeBSD */);
+      ASSERT (streq (buf, "oct.") /* glibc, FreeBSD, NetBSD, Solaris, Cygwin */
+              || streq (buf, "oct") /* macOS, older FreeBSD */);
       break;
     }
 
@@ -547,37 +547,37 @@ locales_test (language_t language)
   ASSERT (n > 0);
   printf ("%%H directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "06"));
+  ASSERT (streq (buf, "06"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%I", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%I directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "06"));
+  ASSERT (streq (buf, "06"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%j", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%j directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "299"));
+  ASSERT (streq (buf, "299"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%m", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%m directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "10"));
+  ASSERT (streq (buf, "10"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%M", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%M directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "40"));
+  ASSERT (streq (buf, "40"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%n", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%n directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "\n"));
+  ASSERT (streq (buf, "\n"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%p", tm, NULL, ns);
   switch (language)
@@ -586,7 +586,7 @@ locales_test (language_t language)
       ASSERT (n > 0);
       printf ("%%p directive: %s\n", buf);
       fflush (stdout);
-      ASSERT (STREQ (buf, "AM"));
+      ASSERT (streq (buf, "AM"));
       break;
     case french:
       ASSERT (n == 0);
@@ -600,12 +600,12 @@ locales_test (language_t language)
   switch (language)
     {
     case english:
-      ASSERT (STREQ (buf, "06:40:03 AM"));
+      ASSERT (streq (buf, "06:40:03 AM"));
       break;
     case french:
-      ASSERT (STREQ (buf, "06:40:03 ") /* glibc */
-              || STREQ (buf, "06:40:03") /* NetBSD, Cygwin */
-              || STREQ (buf, " 6:40:03") /* Solaris */);
+      ASSERT (streq (buf, "06:40:03 ") /* glibc */
+              || streq (buf, "06:40:03") /* NetBSD, Cygwin */
+              || streq (buf, " 6:40:03") /* Solaris */);
       break;
     }
 
@@ -613,55 +613,55 @@ locales_test (language_t language)
   ASSERT (n > 0);
   printf ("%%R directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "06:40"));
+  ASSERT (streq (buf, "06:40"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%S", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%S directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "03"));
+  ASSERT (streq (buf, "03"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%t", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%t directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "\t"));
+  ASSERT (streq (buf, "\t"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%T", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%T directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "06:40:03"));
+  ASSERT (streq (buf, "06:40:03"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%u", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%u directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "4"));
+  ASSERT (streq (buf, "4"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%U", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%U directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "43"));
+  ASSERT (streq (buf, "43"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%V", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%V directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "43"));
+  ASSERT (streq (buf, "43"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%w", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%w directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "4"));
+  ASSERT (streq (buf, "4"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%W", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%W directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "43"));
+  ASSERT (streq (buf, "43"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%x", tm, NULL, ns);
   ASSERT (n > 0);
@@ -670,11 +670,11 @@ locales_test (language_t language)
   switch (language)
     {
     case english:
-      ASSERT (STREQ (buf, "10/26/17"));
+      ASSERT (streq (buf, "10/26/17"));
       break;
     case french:
-      ASSERT (STREQ (buf, "26/10/2017") /* glibc, NetBSD, Solaris, Cygwin */
-              || STREQ (buf, "26.10.2017") /* FreeBSD, macOS */);
+      ASSERT (streq (buf, "26/10/2017") /* glibc, NetBSD, Solaris, Cygwin */
+              || streq (buf, "26.10.2017") /* FreeBSD, macOS */);
       break;
     }
 
@@ -682,38 +682,38 @@ locales_test (language_t language)
   ASSERT (n > 0);
   printf ("%%X directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "06:40:03"));
+  ASSERT (streq (buf, "06:40:03"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%y", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%y directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "17"));
+  ASSERT (streq (buf, "17"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%Y", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%Y directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "2017"));
+  ASSERT (streq (buf, "2017"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%z", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%z directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "+0000"));
+  ASSERT (streq (buf, "+0000"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%Z", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%Z directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "GMT") /* glibc, NetBSD, OpenBSD, AIX, Solaris, Cygwin, Android */
-          || STREQ (buf, "UTC") /* musl, macOS, FreeBSD */);
+  ASSERT (streq (buf, "GMT") /* glibc, NetBSD, OpenBSD, AIX, Solaris, Cygwin, Android */
+          || streq (buf, "UTC") /* musl, macOS, FreeBSD */);
 
   n = FUNC_CHECKED (buf, sizeof buf, "%%", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%%% directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "%"));
+  ASSERT (streq (buf, "%"));
 
   /* Exercise various GNU extensions from glibc.  */
 
@@ -721,13 +721,13 @@ locales_test (language_t language)
   ASSERT (n > 0);
   printf ("%%k directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, " 6"));
+  ASSERT (streq (buf, " 6"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%l", tm, NULL, ns);
   ASSERT (n > 0);
   printf ("%%l directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, " 6"));
+  ASSERT (streq (buf, " 6"));
 
   n = FUNC_CHECKED (buf, sizeof buf, "%P", tm, NULL, ns);
   switch (language)
@@ -736,7 +736,7 @@ locales_test (language_t language)
       ASSERT (n > 0);
       printf ("%%P directive: %s\n", buf);
       fflush (stdout);
-      ASSERT (STREQ (buf, "am"));
+      ASSERT (streq (buf, "am"));
       break;
     case french:
       ASSERT (n == 0);
@@ -747,7 +747,7 @@ locales_test (language_t language)
   ASSERT (n > 0);
   printf ("%%s directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "1509000003"));
+  ASSERT (streq (buf, "1509000003"));
 
   /* Exercise various GNU extensions from gnulib.  */
 
@@ -755,7 +755,7 @@ locales_test (language_t language)
   ASSERT (n > 0);
   printf ("%%N directive: %s\n", buf);
   fflush (stdout);
-  ASSERT (STREQ (buf, "123456789"));
+  ASSERT (streq (buf, "123456789"));
 
   return fail;
 }

@@ -41,11 +41,11 @@ main (int argc, char *argv[])
     {
       int exception;
 
-      if (STREQ (argv[1], "FE_INVALID"))   exception = FE_INVALID;   else
-      if (STREQ (argv[1], "FE_DIVBYZERO")) exception = FE_DIVBYZERO; else
-      if (STREQ (argv[1], "FE_OVERFLOW"))  exception = FE_OVERFLOW;  else
-      if (STREQ (argv[1], "FE_UNDERFLOW")) exception = FE_UNDERFLOW; else
-      if (STREQ (argv[1], "FE_INEXACT"))   exception = FE_INEXACT;   else
+      if (streq (argv[1], "FE_INVALID"))   exception = FE_INVALID;   else
+      if (streq (argv[1], "FE_DIVBYZERO")) exception = FE_DIVBYZERO; else
+      if (streq (argv[1], "FE_OVERFLOW"))  exception = FE_OVERFLOW;  else
+      if (streq (argv[1], "FE_UNDERFLOW")) exception = FE_UNDERFLOW; else
+      if (streq (argv[1], "FE_INEXACT"))   exception = FE_INEXACT;   else
         {
           printf ("Invalid argument: %s\n", argv[1]);
           exit (1);

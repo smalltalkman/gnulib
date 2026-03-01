@@ -9,6 +9,7 @@ m4/musl.m4
 
 Depends-on:
 fpe-trapping
+streq
 
 configure.ac:
 gl_MUSL_LIBC

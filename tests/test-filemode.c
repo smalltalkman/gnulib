@@ -70,7 +70,7 @@ main (void)
   for (size_t i = 0; i < SIZEOF (table); ++i)
     {
       strmode (table[i].mode, buffer);
-      ASSERT (STREQ (table[i].str, buffer));
+      ASSERT (streq (table[i].str, buffer));
     }
 
   return test_exit_status;

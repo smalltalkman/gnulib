@@ -74,7 +74,7 @@ main (int argc, char **argv)
   delim = argv[1];
   delim_len = strlen (delim);
 
-  if (STREQ (delim, "\\0"))
+  if (streq (delim, "\\0"))
     {
       delim = "";
       delim_len = 1;

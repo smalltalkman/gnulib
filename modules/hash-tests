@@ -6,6 +6,7 @@ Depends-on:
 hashcode-string2
 inttostr
 bool
+streq
 
 configure.ac:
 

@@ -6,6 +6,7 @@ tests/test-readtokens.sh
 Depends-on:
 closeout
 test-framework-sh
+streq
 
 configure.ac:
 

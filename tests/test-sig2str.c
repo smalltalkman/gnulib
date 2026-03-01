@@ -37,22 +37,22 @@ test_sig2str (void)
   /* Test sig2str on signals specified by ISO C.  */
 
   ASSERT (sig2str (SIGABRT, buffer) == 0);
-  ASSERT (STREQ (buffer, "ABRT"));
+  ASSERT (streq (buffer, "ABRT"));
 
   ASSERT (sig2str (SIGFPE, buffer) == 0);
-  ASSERT (STREQ (buffer, "FPE"));
+  ASSERT (streq (buffer, "FPE"));
 
   ASSERT (sig2str (SIGILL, buffer) == 0);
-  ASSERT (STREQ (buffer, "ILL"));
+  ASSERT (streq (buffer, "ILL"));
 
   ASSERT (sig2str (SIGINT, buffer) == 0);
-  ASSERT (STREQ (buffer, "INT"));
+  ASSERT (streq (buffer, "INT"));
 
   ASSERT (sig2str (SIGSEGV, buffer) == 0);
-  ASSERT (STREQ (buffer, "SEGV"));
+  ASSERT (streq (buffer, "SEGV"));
 
   ASSERT (sig2str (SIGTERM, buffer) == 0);
-  ASSERT (STREQ (buffer, "TERM"));
+  ASSERT (streq (buffer, "TERM"));
 
   /* Check behavior of sig2str on invalid signals.  */
 

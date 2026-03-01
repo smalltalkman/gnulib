@@ -10,6 +10,7 @@ dup2
 ftruncate
 strerror
 test-framework-sh
+streq
 
 configure.ac:
 

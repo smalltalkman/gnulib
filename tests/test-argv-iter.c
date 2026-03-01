@@ -26,7 +26,6 @@
 #include "macros.h"
 
 #define ARRAY_CARDINALITY(Array) (sizeof (Array) / sizeof *(Array))
-#define STREQ(a, b) (strcmp (a, b) == 0)
 
 static FILE *
 write_nul_delimited_argv (char **argv)
@@ -89,7 +88,7 @@ main (void)
               /* In stream mode, the strings are equal, but
                  in argv mode the actual pointers are equal.  */
               ASSERT (use_stream
-                      ? STREQ (s, av[i][n_found])
+                      ? streq (s, av[i][n_found])
                       : s == av[i][n_found]);
               ++n_found;
             }

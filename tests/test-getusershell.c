@@ -81,7 +81,7 @@ second_pass (void)
     {
       ptr = getusershell ();
       ASSERT (ptr != NULL);
-      ASSERT (STREQ (ptr, shells[i]));
+      ASSERT (streq (ptr, shells[i]));
       printf ("%s\n", ptr);
       free (shells[i]);
     }

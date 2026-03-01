@@ -5,6 +5,7 @@ tests/signature.h
 
 Depends-on:
 unsetenv
+streq
 
 configure.ac:
 

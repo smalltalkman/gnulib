@@ -28,14 +28,13 @@
 
 #include "macros.h"
 
-#define STREQ(a, b) (strcmp (a, b) == 0)
 #define ARRAY_CARDINALITY(Array) (sizeof (Array) / sizeof *(Array))
 
 static bool
 hash_compare_strings (void const *x, void const *y)
 {
   ASSERT (x != y);
-  return STREQ (x, y) ? true : false;
+  return streq (x, y) ? true : false;
 }
 
 static void
@@ -115,7 +114,7 @@ main (int argc, char **argv)
         ASSERT (str1);
         str2 = hash_insert (ht, str1);
         ASSERT (str1 != str2);
-        ASSERT (STREQ (str1, str2));
+        ASSERT (streq (str1, str2));
         free (str1);
       }
       insert_new (ht, "b");
@@ -127,7 +126,7 @@ main (int argc, char **argv)
         void *buf[5] = { NULL };
         ASSERT (hash_get_entries (ht, NULL, 0) == 0);
         ASSERT (hash_get_entries (ht, buf, 5) == 3);
-        ASSERT (STREQ (buf[0], "a") || STREQ (buf[0], "b") || STREQ (buf[0], "c"));
+        ASSERT (streq (buf[0], "a") || streq (buf[0], "b") || streq (buf[0], "c"));
       }
       ASSERT (hash_remove (ht, "a"));
       ASSERT (hash_remove (ht, "a") == NULL);

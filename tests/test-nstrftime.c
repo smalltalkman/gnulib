@@ -47,7 +47,7 @@ main (void)
   if (setlocale (LC_ALL, "") == NULL)
     return 1;
 
-  bool is_C_locale = STREQ (getenv ("LC_ALL"), "C");
+  bool is_C_locale = streq (getenv ("LC_ALL"), "C");
 
   int fail = 0;
   fail |= posixtm_test ();

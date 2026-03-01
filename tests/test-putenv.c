@@ -46,7 +46,7 @@ main (void)
     ASSERT (putenv (var) == 0);
     ptr = getenv ("TEST_VAR");
     ASSERT (ptr != NULL);
-    ASSERT (STREQ (ptr, "abc"));
+    ASSERT (streq (ptr, "abc"));
   }
 
   /* Verify removing an environment variable.  */

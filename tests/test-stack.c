@@ -65,7 +65,7 @@ main (void)
   string_stack_type string_stack [1];
   string_stack_init (string_stack);
   string_stack_push (string_stack, "foo");
-  ASSERT (STREQ (string_stack_pop (string_stack), "foo"));
+  ASSERT (streq (string_stack_pop (string_stack), "foo"));
   ASSERT (string_stack_empty (string_stack));
   string_stack_destroy (string_stack);
 

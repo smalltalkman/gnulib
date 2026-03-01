@@ -76,8 +76,6 @@ static struct test T[] =
     { "" /* placeholder */,    -1, -1,     "",     "", NULL},
   };
 
-#define STREQ(a, b) (strcmp (a, b) == 0)
-
 static char const *
 maybe_null (char const *s)
 {
@@ -91,7 +89,7 @@ same_diag (char const *s, char const *t)
     return true;
   if (s == NULL || t == NULL)
     return false;
-  return STREQ (s, t);
+  return streq (s, t);
 }
 
 int
@@ -187,9 +185,9 @@ main (void)
                 printf ("%s did not warn\n", T[i].in);
               else if (! (uid == uid2 && gid == gid2
                           && !!user_name == !!user_name2
-                          && (!user_name || STREQ (user_name, user_name2))
+                          && (!user_name || streq (user_name, user_name2))
                           && !!group_name == !!group_name2
-                          && (!group_name || STREQ (group_name, group_name2))))
+                          && (!group_name || streq (group_name, group_name2))))
                 printf ("%s treated differently than with colon\n", T[i].in);
 
               free (user_name2);

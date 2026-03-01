@@ -6,6 +6,7 @@ Depends-on:
 intprops
 inttypes-h
 snprintf
+streq
 
 configure.ac:
 

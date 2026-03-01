@@ -84,7 +84,7 @@ main (void)
     errno = -5;
     perror ("");
     ASSERT (!ferror (stderr));
-    ASSERT (STREQ (msg4, str4));
+    ASSERT (streq (msg4, str4));
 
     free (str1);
     free (str2);

@@ -51,7 +51,7 @@ main (int argc, char *argv[])
       ASSERT (n > 0);
       printf ("buf = |%s|\n", buf);
       fflush (stdout);
-      ASSERT (STREQ (buf, "f\303\251vrier")); /* "février" */
+      ASSERT (streq (buf, "f\303\251vrier")); /* "février" */
 
       return test_exit_status;
     }
@@ -63,7 +63,7 @@ main (int argc, char *argv[])
       ASSERT (n > 0);
       printf ("buf = |%s|\n", buf);
       fflush (stdout);
-      ASSERT (STREQ (buf, "\346\260\264\346\233\234\346\227\245")); /* "水曜日" */
+      ASSERT (streq (buf, "\346\260\264\346\233\234\346\227\245")); /* "水曜日" */
 
       return test_exit_status;
     }

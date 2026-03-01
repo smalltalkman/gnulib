@@ -163,7 +163,7 @@ main (void)
 
     strerror_r (EACCES, buf, sizeof buf);
     strerror_r (-5, buf, sizeof buf);
-    ASSERT (STREQ (msg4, str4));
+    ASSERT (streq (msg4, str4));
 
     free (str1);
     free (str2);
