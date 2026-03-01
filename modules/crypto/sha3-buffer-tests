@@ -14,6 +14,7 @@ Depends-on:
 c99
 getrusage
 gettimeofday
+memeq
 
 configure.ac:
 

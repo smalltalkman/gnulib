@@ -94,7 +94,7 @@ main ()
           return 1;
         }
       if (!(res == strlen (expected)
-            && memcmp (buf, expected, strlen (expected)) == 0))
+            && memeq (buf, expected, strlen (expected))))
         {
           fprintf (stderr, "read result unexpected\n");
           return 1;

@@ -241,7 +241,7 @@ tzalloc_test (void)
 
       if (! (streq (buf, LT[i].exp)
              || (!tz && n == strlen (LT[i].exp)
-                 && memcmp (buf, LT[i].exp, n - sizeof "(GMT)" + 1) == 0
+                 && memeq (buf, LT[i].exp, n - sizeof "(GMT)" + 1)
                  && streq (buf + n - sizeof "(GMT)" + 1, "(GMT)"))
 #if defined _WIN32 && !defined __CYGWIN__
              /* On native Windows, the time zone is printed differently.  */

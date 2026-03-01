@@ -23,6 +23,7 @@ mbrtoc32
 setlocale
 localcharset
 streq
+memeq
 
 configure.ac:
 gt_LOCALE_EN_UTF8

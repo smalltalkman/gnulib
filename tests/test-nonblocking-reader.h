@@ -147,7 +147,7 @@ main_reader_loop (int test, size_t data_block_size, int fd)
       ret = full_read (fd, data, data_block_size);
       END_TIMING
       ASSERT (ret == data_block_size);
-      ASSERT (memcmp (data, expected, data_block_size) == 0);
+      ASSERT (memeq (data, expected, data_block_size));
       ASSERT (spent_time > 0.5);
       /* This assertion fails if data_block_size is very large and
          ENABLE_DEBUGGING is 1.  */
@@ -159,7 +159,7 @@ main_reader_loop (int test, size_t data_block_size, int fd)
       ret = full_read (fd, data, data_block_size);
       END_TIMING
       ASSERT (ret == data_block_size);
-      ASSERT (memcmp (data, expected + data_block_size, data_block_size) == 0);
+      ASSERT (memeq (data, expected + data_block_size, data_block_size));
       /* This assertion fails if data_block_size is much larger than needed
          and SMALL_DELAY is too large.  */
       ASSERT (spent_time < 0.5);
@@ -172,7 +172,7 @@ main_reader_loop (int test, size_t data_block_size, int fd)
       ret = full_read_from_nonblocking_fd (fd, data, data_block_size);
       END_TIMING
       ASSERT (ret == data_block_size);
-      ASSERT (memcmp (data, expected, data_block_size) == 0);
+      ASSERT (memeq (data, expected, data_block_size));
       ASSERT (spent_time > 0.5);
       /* This assertion fails if data_block_size is much larger than needed
          and SMALL_DELAY is too large, or if data_block_size is very large and
@@ -185,7 +185,7 @@ main_reader_loop (int test, size_t data_block_size, int fd)
       ret = full_read_from_nonblocking_fd (fd, data, data_block_size);
       END_TIMING
       ASSERT (ret == data_block_size);
-      ASSERT (memcmp (data, expected + data_block_size, data_block_size) == 0);
+      ASSERT (memeq (data, expected + data_block_size, data_block_size));
       /* This assertion fails if data_block_size is much larger than needed
          and SMALL_DELAY is too large.  */
       ASSERT (spent_time < 0.5);

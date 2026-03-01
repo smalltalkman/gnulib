@@ -158,27 +158,27 @@ main (int argc, char *argv[])
           /* U+00B2 SUPERSCRIPT TWO */
           mb = for_character ("\262", 1);
           ASSERT (mb.nbytes == 1);
-          ASSERT (memcmp (mb.buf, "\262", 1) == 0);
+          ASSERT (memeq (mb.buf, "\262", 1));
           /* U+00B5 MICRO SIGN */
           mb = for_character ("\265", 1);
           ASSERT (mb.nbytes == 1);
-          ASSERT (memcmp (mb.buf, "\265", 1) == 0);
+          ASSERT (memeq (mb.buf, "\265", 1));
           /* U+00C9 LATIN CAPITAL LETTER E WITH ACUTE */
           mb = for_character ("\311", 1);
           ASSERT (mb.nbytes == 1);
-          ASSERT (memcmp (mb.buf, "\351", 1) == 0);
+          ASSERT (memeq (mb.buf, "\351", 1));
           /* U+00DF LATIN SMALL LETTER SHARP S */
           mb = for_character ("\337", 1);
           ASSERT (mb.nbytes == 1);
-          ASSERT (memcmp (mb.buf, "\337", 1) == 0);
+          ASSERT (memeq (mb.buf, "\337", 1));
           /* U+00E9 LATIN SMALL LETTER E WITH ACUTE */
           mb = for_character ("\351", 1);
           ASSERT (mb.nbytes == 1);
-          ASSERT (memcmp (mb.buf, "\351", 1) == 0);
+          ASSERT (memeq (mb.buf, "\351", 1));
           /* U+00FF LATIN SMALL LETTER Y WITH DIAERESIS */
           mb = for_character ("\377", 1);
           ASSERT (mb.nbytes == 1);
-          ASSERT (memcmp (mb.buf, "\377", 1) == 0);
+          ASSERT (memeq (mb.buf, "\377", 1));
         }
         return test_exit_status;
 
@@ -189,54 +189,54 @@ main (int argc, char *argv[])
           /* U+00C9 LATIN CAPITAL LETTER E WITH ACUTE */
           mb = for_character ("\217\252\261", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\217\253\261", 3) == 0);
+          ASSERT (memeq (mb.buf, "\217\253\261", 3));
         #endif
           /* U+00DF LATIN SMALL LETTER SHARP S */
           mb = for_character ("\217\251\316", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\217\251\316", 3) == 0);
+          ASSERT (memeq (mb.buf, "\217\251\316", 3));
           /* U+00E9 LATIN SMALL LETTER E WITH ACUTE */
           mb = for_character ("\217\253\261", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\217\253\261", 3) == 0);
+          ASSERT (memeq (mb.buf, "\217\253\261", 3));
           /* U+00FF LATIN SMALL LETTER Y WITH DIAERESIS */
           mb = for_character ("\217\253\363", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\217\253\363", 3) == 0);
+          ASSERT (memeq (mb.buf, "\217\253\363", 3));
         #if !((defined __APPLE__ && defined __MACH__) || defined __DragonFly__)
           /* U+0141 LATIN CAPITAL LETTER L WITH STROKE */
           mb = for_character ("\217\251\250", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\217\251\310", 3) == 0);
+          ASSERT (memeq (mb.buf, "\217\251\310", 3));
         #endif
           /* U+0142 LATIN SMALL LETTER L WITH STROKE */
           mb = for_character ("\217\251\310", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\217\251\310", 3) == 0);
+          ASSERT (memeq (mb.buf, "\217\251\310", 3));
         #if !defined __DragonFly__
           /* U+0429 CYRILLIC CAPITAL LETTER SHCHA */
           mb = for_character ("\247\273", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\247\353", 2) == 0);
+          ASSERT (memeq (mb.buf, "\247\353", 2));
         #endif
           /* U+0449 CYRILLIC SMALL LETTER SHCHA */
           mb = for_character ("\247\353", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\247\353", 2) == 0);
+          ASSERT (memeq (mb.buf, "\247\353", 2));
           /* U+3073 HIRAGANA LETTER BI */
           mb = for_character ("\244\323", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\244\323", 2) == 0);
+          ASSERT (memeq (mb.buf, "\244\323", 2));
         #if !defined __DragonFly__
           /* U+FF27 FULLWIDTH LATIN CAPITAL LETTER G */
           mb = for_character ("\243\307", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\243\347", 2) == 0);
+          ASSERT (memeq (mb.buf, "\243\347", 2));
         #endif
           /* U+FF47 FULLWIDTH LATIN SMALL LETTER G */
           mb = for_character ("\243\347", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\243\347", 2) == 0);
+          ASSERT (memeq (mb.buf, "\243\347", 2));
         }
         return test_exit_status;
 
@@ -246,85 +246,85 @@ main (int argc, char *argv[])
           /* U+00B2 SUPERSCRIPT TWO */
           mb = for_character ("\302\262", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\302\262", 2) == 0);
+          ASSERT (memeq (mb.buf, "\302\262", 2));
           /* U+00B5 MICRO SIGN */
           mb = for_character ("\302\265", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\302\265", 2) == 0);
+          ASSERT (memeq (mb.buf, "\302\265", 2));
           /* U+00C9 LATIN CAPITAL LETTER E WITH ACUTE */
           mb = for_character ("\303\211", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\303\251", 2) == 0);
+          ASSERT (memeq (mb.buf, "\303\251", 2));
           /* U+00DF LATIN SMALL LETTER SHARP S */
           mb = for_character ("\303\237", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\303\237", 2) == 0);
+          ASSERT (memeq (mb.buf, "\303\237", 2));
           /* U+00E9 LATIN SMALL LETTER E WITH ACUTE */
           mb = for_character ("\303\251", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\303\251", 2) == 0);
+          ASSERT (memeq (mb.buf, "\303\251", 2));
           /* U+00FF LATIN SMALL LETTER Y WITH DIAERESIS */
           mb = for_character ("\303\277", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\303\277", 2) == 0);
+          ASSERT (memeq (mb.buf, "\303\277", 2));
           /* U+0141 LATIN CAPITAL LETTER L WITH STROKE */
           mb = for_character ("\305\201", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\305\202", 2) == 0);
+          ASSERT (memeq (mb.buf, "\305\202", 2));
           /* U+0142 LATIN SMALL LETTER L WITH STROKE */
           mb = for_character ("\305\202", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\305\202", 2) == 0);
+          ASSERT (memeq (mb.buf, "\305\202", 2));
           /* U+0429 CYRILLIC CAPITAL LETTER SHCHA */
           mb = for_character ("\320\251", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\321\211", 2) == 0);
+          ASSERT (memeq (mb.buf, "\321\211", 2));
           /* U+0449 CYRILLIC SMALL LETTER SHCHA */
           mb = for_character ("\321\211", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\321\211", 2) == 0);
+          ASSERT (memeq (mb.buf, "\321\211", 2));
           /* U+05D5 HEBREW LETTER VAV */
           mb = for_character ("\327\225", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\327\225", 2) == 0);
+          ASSERT (memeq (mb.buf, "\327\225", 2));
           /* U+3073 HIRAGANA LETTER BI */
           mb = for_character ("\343\201\263", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\343\201\263", 3) == 0);
+          ASSERT (memeq (mb.buf, "\343\201\263", 3));
           /* U+3162 HANGUL LETTER YI */
           mb = for_character ("\343\205\242", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\343\205\242", 3) == 0);
+          ASSERT (memeq (mb.buf, "\343\205\242", 3));
           /* U+FF27 FULLWIDTH LATIN CAPITAL LETTER G */
           mb = for_character ("\357\274\247", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\357\275\207", 3) == 0);
+          ASSERT (memeq (mb.buf, "\357\275\207", 3));
           /* U+FF47 FULLWIDTH LATIN SMALL LETTER G */
           mb = for_character ("\357\275\207", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\357\275\207", 3) == 0);
+          ASSERT (memeq (mb.buf, "\357\275\207", 3));
           /* U+FFDB HALFWIDTH HANGUL LETTER YI */
           mb = for_character ("\357\277\233", 3);
           ASSERT (mb.nbytes == 3);
-          ASSERT (memcmp (mb.buf, "\357\277\233", 3) == 0);
+          ASSERT (memeq (mb.buf, "\357\277\233", 3));
         #if !(defined __DragonFly__ || defined __sun)
           /* U+10419 DESERET CAPITAL LETTER EF */
           mb = for_character ("\360\220\220\231", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\360\220\221\201", 4) == 0);
+          ASSERT (memeq (mb.buf, "\360\220\221\201", 4));
         #endif
           /* U+10441 DESERET SMALL LETTER EF */
           mb = for_character ("\360\220\221\201", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\360\220\221\201", 4) == 0);
+          ASSERT (memeq (mb.buf, "\360\220\221\201", 4));
           /* U+E0041 TAG LATIN CAPITAL LETTER A */
           mb = for_character ("\363\240\201\201", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\363\240\201\201", 4) == 0);
+          ASSERT (memeq (mb.buf, "\363\240\201\201", 4));
           /* U+E0061 TAG LATIN SMALL LETTER A */
           mb = for_character ("\363\240\201\241", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\363\240\201\241", 4) == 0);
+          ASSERT (memeq (mb.buf, "\363\240\201\241", 4));
         }
         return test_exit_status;
 
@@ -340,93 +340,93 @@ main (int argc, char *argv[])
           /* U+00B2 SUPERSCRIPT TWO */
           mb = for_character ("\201\060\205\065", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\201\060\205\065", 4) == 0);
+          ASSERT (memeq (mb.buf, "\201\060\205\065", 4));
           /* U+00B5 MICRO SIGN */
           mb = for_character ("\201\060\205\070", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\201\060\205\070", 4) == 0);
+          ASSERT (memeq (mb.buf, "\201\060\205\070", 4));
         #if !((defined __APPLE__ && defined __MACH__) || defined __FreeBSD__ || defined __DragonFly__ || defined __sun)
           /* U+00C9 LATIN CAPITAL LETTER E WITH ACUTE */
           mb = for_character ("\201\060\207\067", 4);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\250\246", 2) == 0);
+          ASSERT (memeq (mb.buf, "\250\246", 2));
         #endif
           /* U+00DF LATIN SMALL LETTER SHARP S */
           mb = for_character ("\201\060\211\070", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\201\060\211\070", 4) == 0);
+          ASSERT (memeq (mb.buf, "\201\060\211\070", 4));
           /* U+00E9 LATIN SMALL LETTER E WITH ACUTE */
           mb = for_character ("\250\246", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\250\246", 2) == 0);
+          ASSERT (memeq (mb.buf, "\250\246", 2));
           /* U+00FF LATIN SMALL LETTER Y WITH DIAERESIS */
           mb = for_character ("\201\060\213\067", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\201\060\213\067", 4) == 0);
+          ASSERT (memeq (mb.buf, "\201\060\213\067", 4));
         #if !((defined __APPLE__ && defined __MACH__) || defined __FreeBSD__ || defined __DragonFly__ || defined __sun)
           /* U+0141 LATIN CAPITAL LETTER L WITH STROKE */
           mb = for_character ("\201\060\221\071", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\201\060\222\060", 4) == 0);
+          ASSERT (memeq (mb.buf, "\201\060\222\060", 4));
         #endif
           /* U+0142 LATIN SMALL LETTER L WITH STROKE */
           mb = for_character ("\201\060\222\060", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\201\060\222\060", 4) == 0);
+          ASSERT (memeq (mb.buf, "\201\060\222\060", 4));
         #if !((defined __APPLE__ && defined __MACH__) || defined __FreeBSD__ || defined __DragonFly__)
           /* U+0429 CYRILLIC CAPITAL LETTER SHCHA */
           mb = for_character ("\247\273", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\247\353", 2) == 0);
+          ASSERT (memeq (mb.buf, "\247\353", 2));
         #endif
           /* U+0449 CYRILLIC SMALL LETTER SHCHA */
           mb = for_character ("\247\353", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\247\353", 2) == 0);
+          ASSERT (memeq (mb.buf, "\247\353", 2));
           /* U+05D5 HEBREW LETTER VAV */
           mb = for_character ("\201\060\371\067", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\201\060\371\067", 4) == 0);
+          ASSERT (memeq (mb.buf, "\201\060\371\067", 4));
           /* U+3073 HIRAGANA LETTER BI */
           mb = for_character ("\244\323", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\244\323", 2) == 0);
+          ASSERT (memeq (mb.buf, "\244\323", 2));
           /* U+3162 HANGUL LETTER YI */
           mb = for_character ("\201\071\256\062", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\201\071\256\062", 4) == 0);
+          ASSERT (memeq (mb.buf, "\201\071\256\062", 4));
         #if !defined __DragonFly__
           /* U+FF27 FULLWIDTH LATIN CAPITAL LETTER G */
           mb = for_character ("\243\307", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\243\347", 2) == 0);
+          ASSERT (memeq (mb.buf, "\243\347", 2));
         #endif
           /* U+FF47 FULLWIDTH LATIN SMALL LETTER G */
           mb = for_character ("\243\347", 2);
           ASSERT (mb.nbytes == 2);
-          ASSERT (memcmp (mb.buf, "\243\347", 2) == 0);
+          ASSERT (memeq (mb.buf, "\243\347", 2));
           /* U+FFDB HALFWIDTH HANGUL LETTER YI */
           mb = for_character ("\204\061\241\071", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\204\061\241\071", 4) == 0);
+          ASSERT (memeq (mb.buf, "\204\061\241\071", 4));
         #if !((defined __APPLE__ && defined __MACH__) || defined __FreeBSD__ || defined __DragonFly__ || defined __NetBSD__ || defined __sun)
           /* U+10419 DESERET CAPITAL LETTER EF */
           mb = for_character ("\220\060\351\071", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\220\060\355\071", 4) == 0);
+          ASSERT (memeq (mb.buf, "\220\060\355\071", 4));
         #endif
           /* U+10441 DESERET SMALL LETTER EF */
           mb = for_character ("\220\060\355\071", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\220\060\355\071", 4) == 0);
+          ASSERT (memeq (mb.buf, "\220\060\355\071", 4));
           /* U+E0041 TAG LATIN CAPITAL LETTER A */
           mb = for_character ("\323\066\234\063", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\323\066\234\063", 4) == 0);
+          ASSERT (memeq (mb.buf, "\323\066\234\063", 4));
           /* U+E0061 TAG LATIN SMALL LETTER A */
           mb = for_character ("\323\066\237\065", 4);
           ASSERT (mb.nbytes == 4);
-          ASSERT (memcmp (mb.buf, "\323\066\237\065", 4) == 0);
+          ASSERT (memeq (mb.buf, "\323\066\237\065", 4));
         }
         return test_exit_status;
 

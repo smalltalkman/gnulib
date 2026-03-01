@@ -146,7 +146,7 @@ main (void)
        master.  */
     if (result == 0)
       {
-        ASSERT (memcmp (buffer, "/dev/", 5) == 0);
+        ASSERT (memeq (buffer, "/dev/", 5));
       }
 
     close (fd);
@@ -173,7 +173,7 @@ main (void)
 
     result = ptsname_r (fd, buffer, sizeof buffer);
     ASSERT (result == 0);
-    ASSERT (memcmp (buffer, "/dev/pts/", 9) == 0);
+    ASSERT (memeq (buffer, "/dev/pts/", 9));
 
     test_errors (fd, buffer);
 
@@ -206,7 +206,7 @@ main (void)
 
     result = ptsname_r (fd, buffer, sizeof buffer);
     ASSERT (result == 0);
-    ASSERT (memcmp (buffer, "/dev/pts/", 9) == 0);
+    ASSERT (memeq (buffer, "/dev/pts/", 9));
 
     test_errors (fd, buffer);
 

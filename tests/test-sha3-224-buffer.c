@@ -48,7 +48,7 @@ static int
 mismatch (char const expect[SHA3_224_DIGEST_SIZE],
           char const buf[SHA3_224_DIGEST_SIZE])
 {
-  if (memcmp (expect, buf, SHA3_224_DIGEST_SIZE) == 0)
+  if (memeq (expect, buf, SHA3_224_DIGEST_SIZE))
     return 0;
   printf ("expected:\n");
   for (size_t i = 0; i < SHA3_224_DIGEST_SIZE; i++)

@@ -76,7 +76,7 @@ main (void)
   {
     char *ptr = xsd_c (s2);
     ASSERT (ptr != NULL);
-    ASSERT (memcmp (ptr, "The\0quick\0brown\0\0fox\0", 22) == 0);
+    ASSERT (memeq (ptr, "The\0quick\0brown\0\0fox\0", 22));
     free (ptr);
   }
 

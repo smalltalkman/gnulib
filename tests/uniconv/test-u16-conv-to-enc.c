@@ -68,7 +68,7 @@ main ()
                                                NULL, &length);
           ASSERT (result != NULL);
           ASSERT (length == strlen (expected));
-          ASSERT (memcmp (result, expected, length) == 0);
+          ASSERT (memeq (result, expected, length));
           if (o)
             {
               for (size_t i = 0; i < 37; i++)
@@ -112,8 +112,8 @@ main ()
                 static const char expected_translit[] = "Rafal Maszkowski";
                 ASSERT (result != NULL);
                 ASSERT (length == strlen (expected));
-                ASSERT (memcmp (result, expected, length) == 0
-                        || memcmp (result, expected_translit, length) == 0);
+                ASSERT (memeq (result, expected, length)
+                        || memeq (result, expected_translit, length));
                 if (o)
                   {
                     for (size_t i = 0; i < 16; i++)
@@ -129,7 +129,7 @@ main ()
                 static const char expected[] = "Rafa\\u0142 Maszkowski";
                 ASSERT (result != NULL);
                 ASSERT (length == strlen (expected));
-                ASSERT (memcmp (result, expected, length) == 0);
+                ASSERT (memeq (result, expected, length));
                 if (o)
                   {
                     for (size_t i = 0; i < 16; i++)

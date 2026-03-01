@@ -89,7 +89,7 @@ main ()
       ASSERT (sd_char_at (sd, 3) == 'z');
     }
     char *s = sb_dupfree_c (&buffer);
-    ASSERT (s != NULL && memcmp (s, "x\377\0z\0", 5) == 0);
+    ASSERT (s != NULL && memeq (s, "x\377\0z\0", 5));
     free (s);
   }
 
@@ -123,7 +123,7 @@ main ()
     sb_append_desc (&buffer, sd_new_addr (5, "de\0fg"));
     sb_append_c (&buffer, "hij");
     char *s = sb_dupfree_c (&buffer);
-    ASSERT (s != NULL && memcmp (s, "abcde\0fghij", 12) == 0);
+    ASSERT (s != NULL && memeq (s, "abcde\0fghij", 12));
     free (s);
   }
 

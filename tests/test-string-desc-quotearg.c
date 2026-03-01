@@ -36,7 +36,7 @@ main (void)
     char buf[80];
     size_t n = sd_quotearg_buffer (buf, sizeof (buf), s2, NULL);
     ASSERT (n == 21);
-    ASSERT (memcmp (buf, "The\0quick\0brown\0\0fox", n) == 0);
+    ASSERT (memeq (buf, "The\0quick\0brown\0\0fox", n));
   }
 
   /* Test sd_quotearg_alloc.  */
@@ -44,60 +44,60 @@ main (void)
     size_t n;
     char *ret = sd_quotearg_alloc (s2, &n, NULL);
     ASSERT (n == 21);
-    ASSERT (memcmp (ret, "The\0quick\0brown\0\0fox", n) == 0);
+    ASSERT (memeq (ret, "The\0quick\0brown\0\0fox", n));
     free (ret);
   }
 
   /* Test sd_quotearg_n.  */
   {
     char *ret = sd_quotearg_n (1, s2);
-    ASSERT (memcmp (ret, "Thequickbrownfox", 16 + 1) == 0);
+    ASSERT (memeq (ret, "Thequickbrownfox", 16 + 1));
   }
 
   /* Test sd_quotearg.  */
   {
     char *ret = sd_quotearg (s2);
-    ASSERT (memcmp (ret, "Thequickbrownfox", 16 + 1) == 0);
+    ASSERT (memeq (ret, "Thequickbrownfox", 16 + 1));
   }
 
   /* Test sd_quotearg_n_style.  */
   {
     char *ret = sd_quotearg_n_style (1, clocale_quoting_style, s2);
-    ASSERT (memcmp (ret, "\"The\\0quick\\0brown\\0\\0fox\\0\"", 28 + 1) == 0
+    ASSERT (memeq (ret, "\"The\\0quick\\0brown\\0\\0fox\\0\"", 28 + 1)
             || /* if the locale has UTF-8 encoding */
-               memcmp (ret, "\342\200\230The\\0quick\\0brown\\0\\0fox\\0\342\200\231", 32 + 1) == 0);
+               memeq (ret, "\342\200\230The\\0quick\\0brown\\0\\0fox\\0\342\200\231", 32 + 1));
   }
 
   /* Test sd_quotearg_style.  */
   {
     char *ret = sd_quotearg_style (clocale_quoting_style, s2);
-    ASSERT (memcmp (ret, "\"The\\0quick\\0brown\\0\\0fox\\0\"", 28 + 1) == 0
+    ASSERT (memeq (ret, "\"The\\0quick\\0brown\\0\\0fox\\0\"", 28 + 1)
             || /* if the locale has UTF-8 encoding */
-               memcmp (ret, "\342\200\230The\\0quick\\0brown\\0\\0fox\\0\342\200\231", 32 + 1) == 0);
+               memeq (ret, "\342\200\230The\\0quick\\0brown\\0\\0fox\\0\342\200\231", 32 + 1));
   }
 
   /* Test sd_quotearg_char.  */
   {
     char *ret = sd_quotearg_char (s1, ' ');
-    ASSERT (memcmp (ret, "Hello world!", 12 + 1) == 0); /* ' ' not quoted?! */
+    ASSERT (memeq (ret, "Hello world!", 12 + 1)); /* ' ' not quoted?! */
   }
 
   /* Test sd_quotearg_colon.  */
   {
     char *ret = sd_quotearg_colon (sd_from_c ("a:b"));
-    ASSERT (memcmp (ret, "a:b", 3 + 1) == 0); /* ':' not quoted?! */
+    ASSERT (memeq (ret, "a:b", 3 + 1)); /* ':' not quoted?! */
   }
 
   /* Test sd_quotearg_n_custom.  */
   {
     char *ret = sd_quotearg_n_custom (2, "<", ">", s1);
-    ASSERT (memcmp (ret, "<Hello world!>", 14 + 1) == 0);
+    ASSERT (memeq (ret, "<Hello world!>", 14 + 1));
   }
 
   /* Test sd_quotearg_n_custom.  */
   {
     char *ret = sd_quotearg_custom ("[[", "]]", s1);
-    ASSERT (memcmp (ret, "[[Hello world!]]", 16 + 1) == 0);
+    ASSERT (memeq (ret, "[[Hello world!]]", 16 + 1));
   }
 
   return test_exit_status;

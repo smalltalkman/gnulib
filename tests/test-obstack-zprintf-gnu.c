@@ -42,7 +42,7 @@ test_function (ptrdiff_t (*my_obstack_zprintf) (struct obstack *, const char *, 
   obstack_init (&obs);
 
   #define RESULT_EQ(expected) \
-    (len == strlen (expected) && memcmp (result, expected, len) == 0)
+    (len == strlen (expected) && memeq (result, expected, len))
 
   /* Test the support of the 'B' conversion specifier for binary output of
      integers.  */

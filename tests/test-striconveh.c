@@ -164,7 +164,7 @@ main ()
                                            &result, &length);
               ASSERT (retval == 0);
               ASSERT (length == strlen (expected));
-              ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+              ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
               if (o)
                 {
                   for (size_t i = 0; i < 37; i++)
@@ -211,7 +211,7 @@ main ()
                     static const char expected[] = "Rafa? Maszkowski";
                     ASSERT (retval == 0);
                     ASSERT (length == strlen (expected));
-                    ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                    ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                     if (o)
                       {
                         for (size_t i = 0; i < 16; i++)
@@ -260,7 +260,7 @@ main ()
                     static const char expected[] = "Rafa? Maszkowski";
                     ASSERT (retval == 0);
                     ASSERT (length == strlen (expected));
-                    ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                    ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                     if (o)
                       {
                         for (size_t i = 0; i < 16; i++)
@@ -276,7 +276,7 @@ main ()
                     static const char expected[] = "Rafa\\u0142 Maszkowski";
                     ASSERT (retval == 0);
                     ASSERT (length == strlen (expected));
-                    ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                    ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                     if (o)
                       {
                         for (size_t i = 0; i < 16; i++)
@@ -311,7 +311,7 @@ main ()
                                        &result, &length);
           ASSERT (retval == 0);
           ASSERT (length == strlen (expected));
-          ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+          ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
           if (o)
             {
               for (size_t i = 0; i < 37; i++)
@@ -345,7 +345,7 @@ main ()
                                        &result, &length);
           ASSERT (retval == 0);
           ASSERT (length == strlen (expected));
-          ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+          ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
           if (o)
             {
               for (size_t i = 0; i < 37; i++)
@@ -379,7 +379,7 @@ main ()
                                        &result, &length);
           ASSERT (retval == 0);
           ASSERT (length == strlen (expected));
-          ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+          ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
           if (o)
             {
               for (size_t i = 0; i < 41; i++)
@@ -427,7 +427,7 @@ main ()
                 static const char expected[] = "Rafa? Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 16; i++)
@@ -443,7 +443,7 @@ main ()
                 static const char expected[] = "Rafa\357\277\275 Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 16; i++)
@@ -490,7 +490,7 @@ main ()
                 static const char expected[] = "Rafa? Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 16; i++)
@@ -506,7 +506,7 @@ main ()
                 static const char expected[] = "Rafa\2041\2447 Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 16; i++)
@@ -551,7 +551,7 @@ main ()
                 static const char expected[] = "Rafa? Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 17; i++)
@@ -569,7 +569,7 @@ main ()
                 static const char expected[] = "Rafa\\u0142 Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 17; i++)
@@ -638,9 +638,9 @@ main ()
           ASSERT (length == strlen (expected1) || length == strlen (expected2));
           ASSERT (result != NULL);
           if (length == strlen (expected1))
-            ASSERT (memcmp (result, expected1, strlen (expected1)) == 0);
+            ASSERT (memeq (result, expected1, strlen (expected1)));
           else
-            ASSERT (memcmp (result, expected2, strlen (expected2)) == 0);
+            ASSERT (memeq (result, expected2, strlen (expected2)));
           free (result);
         }
 
@@ -665,9 +665,9 @@ main ()
           ASSERT (length == strlen (expected1) || length == strlen (expected2));
           ASSERT (result != NULL);
           if (length == strlen (expected1))
-            ASSERT (memcmp (result, expected1, strlen (expected1)) == 0);
+            ASSERT (memeq (result, expected1, strlen (expected1)));
           else
-            ASSERT (memcmp (result, expected2, strlen (expected2)) == 0);
+            ASSERT (memeq (result, expected2, strlen (expected2)));
           free (result);
         }
 #  endif
@@ -712,11 +712,11 @@ main ()
                         || length == strlen (expected3));
                 ASSERT (result != NULL);
                 if (length == strlen (expected1))
-                  ASSERT (memcmp (result, expected1, strlen (expected1)) == 0);
+                  ASSERT (memeq (result, expected1, strlen (expected1)));
                 else if (length == strlen (expected2))
-                  ASSERT (memcmp (result, expected2, strlen (expected2)) == 0);
+                  ASSERT (memeq (result, expected2, strlen (expected2)));
                 else
-                  ASSERT (memcmp (result, expected3, strlen (expected3)) == 0);
+                  ASSERT (memeq (result, expected3, strlen (expected3)));
                 free (result);
               }
               break;
@@ -734,11 +734,11 @@ main ()
                         || length == strlen (expected3));
                 ASSERT (result != NULL);
                 if (length == strlen (expected1))
-                  ASSERT (memcmp (result, expected1, strlen (expected1)) == 0);
+                  ASSERT (memeq (result, expected1, strlen (expected1)));
                 else if (length == strlen (expected2))
-                  ASSERT (memcmp (result, expected2, strlen (expected2)) == 0);
+                  ASSERT (memeq (result, expected2, strlen (expected2)));
                 else
-                  ASSERT (memcmp (result, expected3, strlen (expected3)) == 0);
+                  ASSERT (memeq (result, expected3, strlen (expected3)));
                 free (result);
               }
             }
@@ -784,10 +784,10 @@ main ()
                         || length == strlen (expected3));
                 ASSERT (result != NULL);
                 if (length == strlen (expected1))
-                  ASSERT (memcmp (result, expected1, strlen (expected1)) == 0);
+                  ASSERT (memeq (result, expected1, strlen (expected1)));
                 else if (length == strlen (expected2))
-                  ASSERT (memcmp (result, expected2, strlen (expected2)) == 0
-                          || memcmp (result, expected3, strlen (expected3)) == 0);
+                  ASSERT (memeq (result, expected2, strlen (expected2))
+                          || memeq (result, expected3, strlen (expected3)));
                 free (result);
               }
               break;
@@ -805,10 +805,10 @@ main ()
                         || length == strlen (expected3));
                 ASSERT (result != NULL);
                 if (length == strlen (expected1))
-                  ASSERT (memcmp (result, expected1, strlen (expected1)) == 0);
+                  ASSERT (memeq (result, expected1, strlen (expected1)));
                 else if (length == strlen (expected2))
-                  ASSERT (memcmp (result, expected2, strlen (expected2)) == 0
-                          || memcmp (result, expected3, strlen (expected3)) == 0);
+                  ASSERT (memeq (result, expected2, strlen (expected2))
+                          || memeq (result, expected3, strlen (expected3)));
                 free (result);
               }
             }
@@ -1097,7 +1097,7 @@ main ()
                                     &result, &length);
           ASSERT (retval == 0);
           ASSERT (length == strlen (expected));
-          ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+          ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
           if (o)
             {
               for (size_t i = 0; i < 37; i++)
@@ -1138,7 +1138,7 @@ main ()
                 static const char expected[] = "Rafa? Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 16; i++)
@@ -1154,7 +1154,7 @@ main ()
                 static const char expected[] = "Rafa\\u0142 Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 16; i++)
@@ -1188,7 +1188,7 @@ main ()
                                     &result, &length);
           ASSERT (retval == 0);
           ASSERT (length == strlen (expected));
-          ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+          ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
           if (o)
             {
               for (size_t i = 0; i < 37; i++)
@@ -1222,7 +1222,7 @@ main ()
                                     &result, &length);
           ASSERT (retval == 0);
           ASSERT (length == strlen (expected));
-          ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+          ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
           if (o)
             {
               for (size_t i = 0; i < 37; i++)
@@ -1256,7 +1256,7 @@ main ()
                                     &result, &length);
           ASSERT (retval == 0);
           ASSERT (length == strlen (expected));
-          ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+          ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
           if (o)
             {
               for (size_t i = 0; i < 41; i++)
@@ -1304,7 +1304,7 @@ main ()
                 static const char expected[] = "Rafa? Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 17; i++)
@@ -1322,7 +1322,7 @@ main ()
                 static const char expected[] = "Rafa\\u0142 Maszkowski";
                 ASSERT (retval == 0);
                 ASSERT (length == strlen (expected));
-                ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+                ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
                 if (o)
                   {
                     for (size_t i = 0; i < 17; i++)

@@ -3,6 +3,7 @@ tests/uniconv/test-u32-conv-to-enc.c
 tests/macros.h
 
 Depends-on:
+memeq
 
 configure.ac:
 

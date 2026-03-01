@@ -64,7 +64,7 @@ main (void)
   /* Test embedded NULs and EOF behavior.  */
   result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, '\n', EOF, f);
   ASSERT (result == 3);
-  ASSERT (memcmp (line, "d\0f", 4) == 0);
+  ASSERT (memeq (line, "d\0f", 4));
   ASSERT (3 < len);
 
   result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, '\n', EOF, f);
@@ -93,7 +93,7 @@ main (void)
   result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, EOF, EOF, f);
   ASSERT (result == 2);
   ASSERT (10 == len);
-  ASSERT (memcmp (line, "\0f\0eeea\nb", 10) == 0);
+  ASSERT (memeq (line, "\0f\0eeea\nb", 10));
 
   result = getndelim2 (&line, &len, 0, GETNLINE_NO_LIMIT, '\n', '\r', f);
   ASSERT (result == -1);

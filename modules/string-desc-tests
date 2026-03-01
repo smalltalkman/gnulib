@@ -6,6 +6,7 @@ tests/macros.h
 Depends-on:
 close
 test-framework-sh
+memeq
 
 configure.ac:
 

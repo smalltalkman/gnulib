@@ -90,7 +90,7 @@ main (int argc, char **argv)
               argc--;
               break;
             }
-          if (strlen (s) > 3 && memcmp (s, "no-", 3) == 0)
+          if (strlen (s) > 3 && memeq (s, "no-", 3))
             {
               neg = 1;
               s += 3;

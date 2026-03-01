@@ -55,7 +55,7 @@ test_static (void)
 {
   memcpy (stbuf, SECRET, SECRET_SIZE);
   explicit_bzero (stbuf, SECRET_SIZE);
-  ASSERT (memcmp (zero, stbuf, SECRET_SIZE) == 0);
+  ASSERT (memeq (zero, stbuf, SECRET_SIZE));
 }
 
 /* =============== Verify operation on heap-allocated memory =============== */

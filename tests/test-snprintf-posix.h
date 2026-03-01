@@ -64,7 +64,7 @@ strisnan (const char *string, size_t start_index, size_t end_index, int uppercas
       if (string[start_index] == '-')
         start_index++;
       if (start_index + 3 <= end_index
-          && memcmp (string + start_index, uppercase ? "NAN" : "nan", 3) == 0)
+          && memeq (string + start_index, uppercase ? "NAN" : "nan", 3))
         {
           start_index += 3;
           if (start_index == end_index
@@ -94,14 +94,14 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
         {
           if (size > 0)
             {
-              ASSERT (memcmp (buf, "12345", size - 1) == 0);
+              ASSERT (memeq (buf, "12345", size - 1));
               ASSERT (buf[size - 1] == '\0');
             }
-          ASSERT (memcmp (buf + size, &"DEADBEEF"[size], 8 - size) == 0);
+          ASSERT (memeq (buf + size, &"DEADBEEF"[size], 8 - size));
         }
       else
         {
-          ASSERT (memcmp (buf, "12345\0EF", 8) == 0);
+          ASSERT (memeq (buf, "12345\0EF", 8));
         }
     }
 
@@ -1647,7 +1647,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
         ASSERT (streq (result, expected)
                 /* Some implementations produce exponents with 3 digits.  */
                 || (strlen (result) == strlen (expected) + 1
-                    && memcmp (result, expected, strlen (expected) - 2) == 0
+                    && memeq (result, expected, strlen (expected) - 2)
                     && result[strlen (expected) - 2] == '0'
                     && streq (result + strlen (expected) - 1,
                               expected + strlen (expected) - 2)));
@@ -1938,7 +1938,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
         ASSERT (streq (result, expected)
                 /* Some implementations produce exponents with 3 digits.  */
                 || (strlen (result) == strlen (expected) + 1
-                    && memcmp (result, expected, strlen (expected) - 2) == 0
+                    && memeq (result, expected, strlen (expected) - 2)
                     && result[strlen (expected) - 2] == '0'
                     && streq (result + strlen (expected) - 1,
                               expected + strlen (expected) - 2)));
@@ -2295,7 +2295,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
                 /* Some implementations produce exponents with 3 digits.  */
                 || (expected[strlen (expected) - 4] == 'e'
                     && strlen (result) == strlen (expected) + 1
-                    && memcmp (result, expected, strlen (expected) - 2) == 0
+                    && memeq (result, expected, strlen (expected) - 2)
                     && result[strlen (expected) - 2] == '0'
                     && streq (result + strlen (expected) - 1,
                               expected + strlen (expected) - 2)));
@@ -2572,7 +2572,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
                 /* Some implementations produce exponents with 3 digits.  */
                 || (expected[strlen (expected) - 4] == 'e'
                     && strlen (result) == strlen (expected) + 1
-                    && memcmp (result, expected, strlen (expected) - 2) == 0
+                    && memeq (result, expected, strlen (expected) - 2)
                     && result[strlen (expected) - 2] == '0'
                     && streq (result + strlen (expected) - 1,
                               expected + strlen (expected) - 2)));
@@ -2964,7 +2964,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       input[i] = 'a' + ((1000000 / (i + 1)) % 26);
     input[i] = '\0';
     retval = my_snprintf (result, sizeof (result), "%.4000s %d", input, 99);
-    ASSERT (memcmp (result, input, 4000) == 0);
+    ASSERT (memeq (result, input, 4000));
     ASSERT (streq (result + 4000, " 99"));
     ASSERT (retval == strlen (result));
   }
@@ -3040,7 +3040,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       block = (char *) malloc (i);
       memcpy (block, "abcdefgh", i);
       retval = my_snprintf (result, sizeof (result), "%.*s", (int) i, block);
-      ASSERT (memcmp (result, block, i) == 0);
+      ASSERT (memeq (result, block, i));
       ASSERT (result[i] == '\0');
       ASSERT (retval == strlen (result));
       free (block);
@@ -3054,7 +3054,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
       for (size_t j = 0; j < i; j++)
         block[j] = "abcdefgh"[j];
       retval = my_snprintf (result, sizeof (result), "%.*ls", (int) i, block);
-      ASSERT (memcmp (result, "abcdefgh", i) == 0);
+      ASSERT (memeq (result, "abcdefgh", i));
       ASSERT (result[i] == '\0');
       ASSERT (retval == strlen (result));
       free (block);
@@ -3106,7 +3106,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
     int retval =
       my_snprintf (result, sizeof (result),
                    "a%cz %d", '\0', 33, 44, 55);
-    ASSERT (memcmp (result, "a\0z 33\0", 6 + 1) == 0);
+    ASSERT (memeq (result, "a\0z 33\0", 6 + 1));
     ASSERT (retval == 6);
   }
 
@@ -3158,7 +3158,7 @@ test_function (int (*my_snprintf) (char *, size_t, const char *, ...))
         as if by a call to the wcrtomb function with a pointer to storage of
         at least MB_CUR_MAX bytes, the wint_t argument converted to wchar_t,
         and an initial shift state."  */
-    ASSERT (memcmp (result, "a\0z 33\0", 6 + 1) == 0);
+    ASSERT (memeq (result, "a\0z 33\0", 6 + 1));
     ASSERT (retval == 6);
   }
 

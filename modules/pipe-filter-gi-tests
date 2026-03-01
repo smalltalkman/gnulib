@@ -16,6 +16,7 @@ read-file
 full-write
 usleep
 streq
+memeq
 
 configure.ac:
 

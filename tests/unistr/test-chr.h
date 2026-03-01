@@ -70,7 +70,7 @@ main (void)
         n = U_UCTOMB (c, uc, 6);
         ASSERT (exp < input + length - 1);
         ASSERT (U_CHR (prev, (length - 1) - (prev - input), uc) == exp);
-        ASSERT (memcmp (exp, c, n * sizeof (UNIT)) == 0);
+        ASSERT (memeq (exp, c, n * sizeof (UNIT)));
         prev = exp;
         exp += n * 63;
       }

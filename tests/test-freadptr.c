@@ -60,7 +60,7 @@ main (int argc, char **argv)
         ASSERT (ptr != NULL);
         ASSERT (available1 != 0);
         ASSERT (available1 <= strlen (expected));
-        ASSERT (memcmp (ptr, expected, available1) == 0);
+        ASSERT (memeq (ptr, expected, available1));
       }
 
       /* Test behaviour after normal ungetc.  */
@@ -71,7 +71,7 @@ main (int argc, char **argv)
         if (ptr != NULL)
           {
             ASSERT (available2 == available1);
-            ASSERT (memcmp (ptr, expected, available2) == 0);
+            ASSERT (memeq (ptr, expected, available2));
           }
       }
 
@@ -87,7 +87,7 @@ main (int argc, char **argv)
             ASSERT (ptr[0] == '@');
             if (available3 > 1)
               {
-                ASSERT (memcmp (ptr + 1, expected + 1, available3 - 1) == 0);
+                ASSERT (memeq (ptr + 1, expected + 1, available3 - 1));
               }
           }
       }

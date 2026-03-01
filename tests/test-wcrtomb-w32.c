@@ -145,13 +145,13 @@ test_one_locale (const char *name, int codepage)
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x00FC, NULL);
         ASSERT (ret == 1);
-        ASSERT (memcmp (buf, "\374", 1) == 0);
+        ASSERT (memeq (buf, "\374", 1));
         ASSERT (buf[1] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x00DF, NULL);
         ASSERT (ret == 1);
-        ASSERT (memcmp (buf, "\337", 1) == 0);
+        ASSERT (memeq (buf, "\337", 1));
         ASSERT (buf[1] == 'x');
       }
       return 0;
@@ -163,19 +163,19 @@ test_one_locale (const char *name, int codepage)
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x0622, NULL);
         ASSERT (ret == 1);
-        ASSERT (memcmp (buf, "\302", 1) == 0);
+        ASSERT (memeq (buf, "\302", 1));
         ASSERT (buf[1] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x0644, NULL);
         ASSERT (ret == 1);
-        ASSERT (memcmp (buf, "\341", 1) == 0);
+        ASSERT (memeq (buf, "\341", 1));
         ASSERT (buf[1] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x0648, NULL);
         ASSERT (ret == 1);
-        ASSERT (memcmp (buf, "\346", 1) == 0);
+        ASSERT (memeq (buf, "\346", 1));
         ASSERT (buf[1] == 'x');
       }
       return 0;
@@ -189,13 +189,13 @@ test_one_locale (const char *name, int codepage)
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x00FC, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\303\274", 2) == 0);
+        ASSERT (memeq (buf, "\303\274", 2));
         ASSERT (buf[2] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x00DF, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\303\237", 2) == 0);
+        ASSERT (memeq (buf, "\303\237", 2));
         ASSERT (buf[2] == 'x');
       }
       return 0;
@@ -207,19 +207,19 @@ test_one_locale (const char *name, int codepage)
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x65E5, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\223\372", 2) == 0);
+        ASSERT (memeq (buf, "\223\372", 2));
         ASSERT (buf[2] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x672C, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\226\173", 2) == 0);
+        ASSERT (memeq (buf, "\226\173", 2));
         ASSERT (buf[2] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x8A9E, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\214\352", 2) == 0);
+        ASSERT (memeq (buf, "\214\352", 2));
         ASSERT (buf[2] == 'x');
       }
       return 0;
@@ -231,19 +231,19 @@ test_one_locale (const char *name, int codepage)
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x65E5, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\244\351", 2) == 0);
+        ASSERT (memeq (buf, "\244\351", 2));
         ASSERT (buf[2] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x672C, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\245\273", 2) == 0);
+        ASSERT (memeq (buf, "\245\273", 2));
         ASSERT (buf[2] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x8A9E, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\273\171", 2) == 0);
+        ASSERT (memeq (buf, "\273\171", 2));
         ASSERT (buf[2] == 'x');
       }
       return 0;
@@ -255,19 +255,19 @@ test_one_locale (const char *name, int codepage)
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x65E5, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\310\325", 2) == 0);
+        ASSERT (memeq (buf, "\310\325", 2));
         ASSERT (buf[2] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x672C, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\261\276", 2) == 0);
+        ASSERT (memeq (buf, "\261\276", 2));
         ASSERT (buf[2] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x8A9E, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\325\132", 2) == 0);
+        ASSERT (memeq (buf, "\325\132", 2));
         ASSERT (buf[2] == 'x');
       }
       return 0;
@@ -281,13 +281,13 @@ test_one_locale (const char *name, int codepage)
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x00FC, NULL);
         ASSERT (ret == 2);
-        ASSERT (memcmp (buf, "\250\271", 2) == 0);
+        ASSERT (memeq (buf, "\250\271", 2));
         ASSERT (buf[2] == 'x');
 
         memset (buf, 'x', 8);
         ret = wcrtomb (buf, 0x00DF, NULL);
         ASSERT (ret == 4);
-        ASSERT (memcmp (buf, "\201\060\211\070", 4) == 0);
+        ASSERT (memeq (buf, "\201\060\211\070", 4));
         ASSERT (buf[4] == 'x');
       }
       return 0;

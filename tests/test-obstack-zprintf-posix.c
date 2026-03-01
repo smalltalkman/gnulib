@@ -47,7 +47,7 @@ strisnan (const char *string, size_t start_index, size_t end_index, int uppercas
       if (string[start_index] == '-')
         start_index++;
       if (start_index + 3 <= end_index
-          && memcmp (string + start_index, uppercase ? "NAN" : "nan", 3) == 0)
+          && memeq (string + start_index, uppercase ? "NAN" : "nan", 3))
         {
           start_index += 3;
           if (start_index == end_index
@@ -65,7 +65,7 @@ test_function (ptrdiff_t (*my_obstack_zprintf) (struct obstack *, const char *, 
   obstack_init (&obs);
 
   #define RESULT_EQ(expected) \
-    (len == strlen (expected) && memcmp (result, expected, len) == 0)
+    (len == strlen (expected) && memeq (result, expected, len))
 
   /* Test the support of the 'a' and 'A' conversion specifier for hexadecimal
      output of floating-point numbers.  */
@@ -138,7 +138,7 @@ test_function (ptrdiff_t (*my_obstack_zprintf) (struct obstack *, const char *, 
     char *result = obstack_finish (&obs);
     ASSERT (len >= 3 + 3
             && strisnan (result, 0, len - 3, 0)
-            && memcmp (result + len - 3, " 33", 3) == 0);
+            && memeq (result + len - 3, " 33", 3));
     obstack_free (&obs, result);
   }
 
@@ -171,7 +171,7 @@ test_function (ptrdiff_t (*my_obstack_zprintf) (struct obstack *, const char *, 
     char *result = obstack_finish (&obs);
     ASSERT (len >= 3 + 3
             && strisnan (result, 0, len - 3, 0)
-            && memcmp (result + len - 3, " 33", 3) == 0);
+            && memeq (result + len - 3, " 33", 3));
     obstack_free (&obs, result);
   }
 
@@ -194,7 +194,7 @@ test_function (ptrdiff_t (*my_obstack_zprintf) (struct obstack *, const char *, 
     char *result = obstack_finish (&obs);
     ASSERT (len >= 3 + 3
             && strisnan (result, 0, len - 3, 0)
-            && memcmp (result + len - 3, " 33", 3) == 0);
+            && memeq (result + len - 3, " 33", 3));
     obstack_free (&obs, result);
   }
 
@@ -208,7 +208,7 @@ test_function (ptrdiff_t (*my_obstack_zprintf) (struct obstack *, const char *, 
     ASSERT (len == 4000 + 3);
     for (size_t i = 0; i < 4000 - 7; i++)
       ASSERT (result[i] == '0');
-    ASSERT (memcmp (result + 4000 - 7, "1234567 99", 7 + 3) == 0);
+    ASSERT (memeq (result + 4000 - 7, "1234567 99", 7 + 3));
     obstack_free (&obs, result);
   }
 

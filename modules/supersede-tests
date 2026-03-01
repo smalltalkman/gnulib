@@ -13,6 +13,7 @@ read-file
 unlink
 rmdir
 symlink
+memeq
 
 configure.ac:
 

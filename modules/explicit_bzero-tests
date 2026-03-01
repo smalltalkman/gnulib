@@ -6,6 +6,7 @@ tests/macros.h
 Depends-on:
 stdint-h
 vma-iter
+memeq
 
 configure.ac:
 

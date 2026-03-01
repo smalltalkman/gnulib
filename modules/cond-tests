@@ -9,6 +9,7 @@ yield
 gettimeofday
 sleep
 streq
+memeq
 
 configure.ac:
 

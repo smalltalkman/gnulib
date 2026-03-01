@@ -63,7 +63,7 @@ test_strchr (void)
         n = U_UCTOMB (c, uc, 6);
         ASSERT (exp < input + length - 2);
         ASSERT (U_STRCHR (prev, uc) == exp);
-        ASSERT (memcmp (exp, c, n * sizeof (UNIT)) == 0);
+        ASSERT (memeq (exp, c, n * sizeof (UNIT)));
         prev = exp;
         exp += n * 63;
       }

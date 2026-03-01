@@ -9,6 +9,7 @@ Depends-on:
 fsync
 ftruncate
 write
+memeq
 
 configure.ac:
 

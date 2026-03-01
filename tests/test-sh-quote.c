@@ -44,7 +44,7 @@ check_one (const char *input, const char *expected)
   buf[output_len + 1] = '%';
   bufend = shell_quote_copy (buf, input);
   ASSERT (bufend == buf + output_len);
-  ASSERT (memcmp (buf, output, output_len + 1) == 0);
+  ASSERT (memeq (buf, output, output_len + 1));
   ASSERT (buf[output_len + 1] == '%');
 
   ASSERT (streq (output, expected));

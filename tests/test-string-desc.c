@@ -56,8 +56,8 @@ main (int argc, char *argv[])
 
   /* Test sd_data.  */
   (void) sd_data (s0);
-  ASSERT (memcmp (sd_data (s1), "Hello world!", 12) == 0);
-  ASSERT (memcmp (sd_data (s2), "The\0quick\0brown\0\0fox", 21) == 0);
+  ASSERT (memeq (sd_data (s1), "Hello world!", 12));
+  ASSERT (memeq (sd_data (s2), "The\0quick\0brown\0\0fox", 21));
 
   /* Test sd_is_empty.  */
   ASSERT (sd_is_empty (s0));
@@ -201,7 +201,7 @@ main (int argc, char *argv[])
   {
     char *ptr = sd_c (s2);
     ASSERT (ptr != NULL);
-    ASSERT (memcmp (ptr, "The\0quick\0brown\0\0fox\0", 22) == 0);
+    ASSERT (memeq (ptr, "The\0quick\0brown\0\0fox\0", 22));
     free (ptr);
   }
 

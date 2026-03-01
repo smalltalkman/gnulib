@@ -9,6 +9,7 @@ inttypes-h
 sleep
 test-xfail
 streq
+memeq
 
 configure.ac:
 

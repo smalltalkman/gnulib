@@ -98,7 +98,7 @@ main (void)
        master.  */
     if (result != NULL)
       {
-        ASSERT (memcmp (result, "/dev/", 5) == 0);
+        ASSERT (memeq (result, "/dev/", 5));
       }
 
     close (fd);
@@ -124,7 +124,7 @@ main (void)
 
     result = ptsname (fd);
     ASSERT (result != NULL);
-    ASSERT (memcmp (result, "/dev/pts/", 9) == 0);
+    ASSERT (memeq (result, "/dev/pts/", 9));
 
     close (fd);
   }
@@ -154,7 +154,7 @@ main (void)
 
     result = ptsname (fd);
     ASSERT (result != NULL);
-    ASSERT (memcmp (result, "/dev/pts/", 9) == 0);
+    ASSERT (memeq (result, "/dev/pts/", 9));
 
     /* This close (fd) call takes 15 seconds.  It would be interruptible by the
        SIGALRM timer, but then this test would report failure.  */

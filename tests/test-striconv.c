@@ -54,7 +54,7 @@ main ()
                                &result, &length);
     ASSERT (retval == 0);
     ASSERT (length == strlen (expected));
-    ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+    ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
     free (result);
   }
 
@@ -68,7 +68,7 @@ main ()
                                &result, &length);
     ASSERT (retval == 0);
     ASSERT (length == strlen (expected));
-    ASSERT (result != NULL && memcmp (result, expected, strlen (expected)) == 0);
+    ASSERT (result != NULL && memeq (result, expected, strlen (expected)));
     free (result);
   }
 

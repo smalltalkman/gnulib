@@ -3,6 +3,7 @@ tests/test-openpty.c
 tests/signature.h
 
 Depends-on:
+memeq
 
 configure.ac:
 

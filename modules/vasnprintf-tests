@@ -5,6 +5,7 @@ tests/macros.h
 Depends-on:
 vasnprintf-extra-tests
 streq
+memeq
 
 configure.ac:
 

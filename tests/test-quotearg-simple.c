@@ -367,7 +367,7 @@ main (_GL_UNUSED int argc, char *argv[])
            a-time, and from left to right (no SEGV) or some other way.  */
         size_t n = quotearg_buffer (buf, sizeof buf, z, SIZE_MAX, NULL);
         ASSERT (n == s_len + 2 * q_len);
-        ASSERT (memcmp (buf, q, sizeof buf) == 0);
+        ASSERT (memeq (buf, q, sizeof buf));
         free (q);
       }
   }

@@ -39,7 +39,7 @@ is_running_under_virtualbox (void)
     {
       int n = read (fd, buf, sizeof (buf));
       close (fd);
-      if (n == 10 + 1 && memcmp (buf, "VirtualBox\n", 10 + 1) == 0)
+      if (n == 10 + 1 && memeq (buf, "VirtualBox\n", 10 + 1))
         return true;
     }
 #endif

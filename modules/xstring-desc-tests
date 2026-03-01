@@ -3,6 +3,7 @@ tests/test-xstring-desc.c
 tests/macros.h
 
 Depends-on:
+memeq
 
 configure.ac:
 

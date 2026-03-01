@@ -9,6 +9,7 @@ m4/ungetc.m4
 
 Depends-on:
 binary-io
+memeq
 
 configure.ac:
 gl_FUNC_UNGETC_WORKS

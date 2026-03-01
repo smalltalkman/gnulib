@@ -72,8 +72,8 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'d", 1000);
       ASSERT (result != NULL);
       ASSERT (length == 4 + separator_len);
-      ASSERT (memcmp (result, "1", 1) == 0
-              && memcmp (result + 1, separator, separator_len) == 0
+      ASSERT (memeq (result, "1", 1)
+              && memeq (result + 1, separator, separator_len)
               && streq (result + 1 + separator_len, "000"));
       free (result);
     }
@@ -82,8 +82,8 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'d", -1000);
       ASSERT (result != NULL);
       ASSERT (length == 5 + separator_len);
-      ASSERT (memcmp (result, "-1", 2) == 0
-              && memcmp (result + 2, separator, separator_len) == 0
+      ASSERT (memeq (result, "-1", 2)
+              && memeq (result + 2, separator, separator_len)
               && streq (result + 2 + separator_len, "000"));
       free (result);
     }
@@ -92,8 +92,8 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'d", -142857);
       ASSERT (result != NULL);
       ASSERT (length == 7 + separator_len);
-      ASSERT (memcmp (result, "-142", 4) == 0
-              && memcmp (result + 4, separator, separator_len) == 0
+      ASSERT (memeq (result, "-142", 4)
+              && memeq (result + 4, separator, separator_len)
               && streq (result + 4 + separator_len, "857"));
       free (result);
     }
@@ -102,12 +102,12 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'d", 2147483647);
       ASSERT (result != NULL);
       ASSERT (length == 10 + 3 * separator_len);
-      ASSERT (memcmp (result, "2", 1) == 0
-              && memcmp (result + 1, separator, separator_len) == 0
-              && memcmp (result + 1 + separator_len, "147", 3) == 0
-              && memcmp (result + 4 + separator_len, separator, separator_len) == 0
-              && memcmp (result + 4 + 2 * separator_len, "483", 3) == 0
-              && memcmp (result + 7 + 2 * separator_len, separator, separator_len) == 0
+      ASSERT (memeq (result, "2", 1)
+              && memeq (result + 1, separator, separator_len)
+              && memeq (result + 1 + separator_len, "147", 3)
+              && memeq (result + 4 + separator_len, separator, separator_len)
+              && memeq (result + 4 + 2 * separator_len, "483", 3)
+              && memeq (result + 7 + 2 * separator_len, separator, separator_len)
               && streq (result + 7 + 3 * separator_len, "647"));
       free (result);
     }
@@ -116,12 +116,12 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'d", -2147483647);
       ASSERT (result != NULL);
       ASSERT (length == 11 + 3 * separator_len);
-      ASSERT (memcmp (result, "-2", 2) == 0
-              && memcmp (result + 2, separator, separator_len) == 0
-              && memcmp (result + 2 + separator_len, "147", 3) == 0
-              && memcmp (result + 5 + separator_len, separator, separator_len) == 0
-              && memcmp (result + 5 + 2 * separator_len, "483", 3) == 0
-              && memcmp (result + 8 + 2 * separator_len, separator, separator_len) == 0
+      ASSERT (memeq (result, "-2", 2)
+              && memeq (result + 2, separator, separator_len)
+              && memeq (result + 2 + separator_len, "147", 3)
+              && memeq (result + 5 + separator_len, separator, separator_len)
+              && memeq (result + 5 + 2 * separator_len, "483", 3)
+              && memeq (result + 8 + 2 * separator_len, separator, separator_len)
               && streq (result + 8 + 3 * separator_len, "647"));
       free (result);
     }
@@ -134,8 +134,8 @@ main (int argc, char *argv[])
           /* Most implementations don't add the grouping character within the
              leading zeroes.  */
           ASSERT (length == 10 + separator_len);
-          ASSERT (memcmp (result, "0000001", 7) == 0
-                  && memcmp (result + 7, separator, separator_len) == 0
+          ASSERT (memeq (result, "0000001", 7)
+                  && memeq (result + 7, separator, separator_len)
                   && streq (result + 7 + separator_len, "000"));
         }
       else
@@ -144,12 +144,12 @@ main (int argc, char *argv[])
              within the leading zeroes.
              <https://sourceware.org/PR23432>  */
           ASSERT (length == 10 + 3 * separator_len);
-          ASSERT (memcmp (result, "0", 1) == 0
-                  && memcmp (result + 1, separator, separator_len) == 0
-                  && memcmp (result + 1 + separator_len, "000", 3) == 0
-                  && memcmp (result + 4 + separator_len, separator, separator_len) == 0
-                  && memcmp (result + 4 + 2 * separator_len, "001", 3) == 0
-                  && memcmp (result + 7 + 2 * separator_len, separator, separator_len) == 0
+          ASSERT (memeq (result, "0", 1)
+                  && memeq (result + 1, separator, separator_len)
+                  && memeq (result + 1 + separator_len, "000", 3)
+                  && memeq (result + 4 + separator_len, separator, separator_len)
+                  && memeq (result + 4 + 2 * separator_len, "001", 3)
+                  && memeq (result + 7 + 2 * separator_len, separator, separator_len)
                   && streq (result + 7 + 3 * separator_len, "000"));
         }
       free (result);
@@ -163,8 +163,8 @@ main (int argc, char *argv[])
           /* Most implementations don't add the grouping character within the
              leading zeroes.  */
           ASSERT (length == 11 + separator_len);
-          ASSERT (memcmp (result, "-0000001", 8) == 0
-                  && memcmp (result + 8, separator, separator_len) == 0
+          ASSERT (memeq (result, "-0000001", 8)
+                  && memeq (result + 8, separator, separator_len)
                   && streq (result + 8 + separator_len, "000"));
         }
       else
@@ -173,12 +173,12 @@ main (int argc, char *argv[])
              within the leading zeroes.
              <https://sourceware.org/PR23432>  */
           ASSERT (length == 11 + 3 * separator_len);
-          ASSERT (memcmp (result, "-0", 2) == 0
-                  && memcmp (result + 2, separator, separator_len) == 0
-                  && memcmp (result + 2 + separator_len, "000", 3) == 0
-                  && memcmp (result + 5 + separator_len, separator, separator_len) == 0
-                  && memcmp (result + 5 + 2 * separator_len, "001", 3) == 0
-                  && memcmp (result + 8 + 2 * separator_len, separator, separator_len) == 0
+          ASSERT (memeq (result, "-0", 2)
+                  && memeq (result + 2, separator, separator_len)
+                  && memeq (result + 2 + separator_len, "000", 3)
+                  && memeq (result + 5 + separator_len, separator, separator_len)
+                  && memeq (result + 5 + 2 * separator_len, "001", 3)
+                  && memeq (result + 8 + 2 * separator_len, separator, separator_len)
                   && streq (result + 8 + 3 * separator_len, "000"));
         }
       free (result);
@@ -196,8 +196,8 @@ main (int argc, char *argv[])
                  <https://pubs.opengroup.org/onlinepubs/9799919799/functions/fprintf.html>
                  <https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap05.html#tag_05>  */
               ASSERT (length == 10);
-              ASSERT (memcmp (result, "      1" + separator_len, 7 - separator_len) == 0
-                      && memcmp (result + 7 - separator_len, separator, separator_len) == 0
+              ASSERT (memeq (result, "      1" + separator_len, 7 - separator_len)
+                      && memeq (result + 7 - separator_len, separator, separator_len)
                       && streq (result + 7, "000"));
             }
           else
@@ -208,8 +208,8 @@ main (int argc, char *argv[])
                  <https://sourceware.org/PR30883>
                  <https://sourceware.org/PR31542>  */
               ASSERT (length == 9 + separator_len);
-              ASSERT (memcmp (result, "     1", 6) == 0
-                      && memcmp (result + 6, separator, separator_len) == 0
+              ASSERT (memeq (result, "     1", 6)
+                      && memeq (result + 6, separator, separator_len)
                       && streq (result + 6 + separator_len, "000"));
             }
         }
@@ -233,8 +233,8 @@ main (int argc, char *argv[])
                  <https://pubs.opengroup.org/onlinepubs/9799919799/functions/fprintf.html>
                  <https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap05.html#tag_05>  */
               ASSERT (length == 10);
-              ASSERT (memcmp (result, "     -1" + separator_len, 7 - separator_len) == 0
-                      && memcmp (result + 7 - separator_len, separator, separator_len) == 0
+              ASSERT (memeq (result, "     -1" + separator_len, 7 - separator_len)
+                      && memeq (result + 7 - separator_len, separator, separator_len)
                       && streq (result + 7, "000"));
             }
           else
@@ -245,8 +245,8 @@ main (int argc, char *argv[])
                  <https://sourceware.org/PR30883>
                  <https://sourceware.org/PR31542>  */
               ASSERT (length == 9 + separator_len);
-              ASSERT (memcmp (result, "    -1", 6) == 0
-                      && memcmp (result + 6, separator, separator_len) == 0
+              ASSERT (memeq (result, "    -1", 6)
+                      && memeq (result + 6, separator, separator_len)
                       && streq (result + 6 + separator_len, "000"));
             }
         }
@@ -264,8 +264,8 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'.0f", 1000.0);
       ASSERT (result != NULL);
       ASSERT (length == 4 + separator_len);
-      ASSERT (memcmp (result, "1", 1) == 0
-              && memcmp (result + 1, separator, separator_len) == 0
+      ASSERT (memeq (result, "1", 1)
+              && memeq (result + 1, separator, separator_len)
               && streq (result + 1 + separator_len, "000"));
       free (result);
     }
@@ -274,12 +274,12 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'.5f", 3141592653.5897932386);
       ASSERT (result != NULL);
       ASSERT (length == 16 + 3 * separator_len);
-      ASSERT (memcmp (result, "3", 1) == 0
-              && memcmp (result + 1, separator, separator_len) == 0
-              && memcmp (result + 1 + separator_len, "141", 3) == 0
-              && memcmp (result + 4 + separator_len, separator, separator_len) == 0
-              && memcmp (result + 4 + 2 * separator_len, "592", 3) == 0
-              && memcmp (result + 7 + 2 * separator_len, separator, separator_len) == 0
+      ASSERT (memeq (result, "3", 1)
+              && memeq (result + 1, separator, separator_len)
+              && memeq (result + 1 + separator_len, "141", 3)
+              && memeq (result + 4 + separator_len, separator, separator_len)
+              && memeq (result + 4 + 2 * separator_len, "592", 3)
+              && memeq (result + 7 + 2 * separator_len, separator, separator_len)
               && streq (result + 7 + 3 * separator_len, "653,58979"));
       free (result);
     }
@@ -288,12 +288,12 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'.5f", -3141592653.5897932386);
       ASSERT (result != NULL);
       ASSERT (length == 17 + 3 * separator_len);
-      ASSERT (memcmp (result, "-3", 2) == 0
-              && memcmp (result + 2, separator, separator_len) == 0
-              && memcmp (result + 2 + separator_len, "141", 3) == 0
-              && memcmp (result + 5 + separator_len, separator, separator_len) == 0
-              && memcmp (result + 5 + 2 * separator_len, "592", 3) == 0
-              && memcmp (result + 8 + 2 * separator_len, separator, separator_len) == 0
+      ASSERT (memeq (result, "-3", 2)
+              && memeq (result + 2, separator, separator_len)
+              && memeq (result + 2 + separator_len, "141", 3)
+              && memeq (result + 5 + separator_len, separator, separator_len)
+              && memeq (result + 5 + 2 * separator_len, "592", 3)
+              && memeq (result + 8 + 2 * separator_len, separator, separator_len)
               && streq (result + 8 + 3 * separator_len, "653,58979"));
       free (result);
     }
@@ -310,8 +310,8 @@ main (int argc, char *argv[])
                  <https://pubs.opengroup.org/onlinepubs/9799919799/functions/fprintf.html>
                  <https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap05.html#tag_05>  */
               ASSERT (length == 10);
-              ASSERT (memcmp (result, "0000001" + separator_len, 7 - separator_len) == 0
-                      && memcmp (result + 7 - separator_len, separator, separator_len) == 0
+              ASSERT (memeq (result, "0000001" + separator_len, 7 - separator_len)
+                      && memeq (result + 7 - separator_len, separator, separator_len)
                       && streq (result + 7, "000"));
             }
           else
@@ -322,8 +322,8 @@ main (int argc, char *argv[])
                  <https://sourceware.org/PR30883>
                  <https://sourceware.org/PR31542>  */
               ASSERT (length == 9 + separator_len);
-              ASSERT (memcmp (result, "000001", 6) == 0
-                      && memcmp (result + 6, separator, separator_len) == 0
+              ASSERT (memeq (result, "000001", 6)
+                      && memeq (result + 6, separator, separator_len)
                       && streq (result + 6 + separator_len, "000"));
             }
         }
@@ -341,8 +341,8 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'g", 1000.0);
       ASSERT (result != NULL);
       ASSERT (length == 4 + separator_len);
-      ASSERT (memcmp (result, "1", 1) == 0
-              && memcmp (result + 1, separator, separator_len) == 0
+      ASSERT (memeq (result, "1", 1)
+              && memeq (result + 1, separator, separator_len)
               && streq (result + 1 + separator_len, "000"));
       free (result);
     }
@@ -351,8 +351,8 @@ main (int argc, char *argv[])
       char *result = asnprintf (NULL, &length, "%'g", -142857.0);
       ASSERT (result != NULL);
       ASSERT (length == 7 + separator_len);
-      ASSERT (memcmp (result, "-142", 4) == 0
-              && memcmp (result + 4, separator, separator_len) == 0
+      ASSERT (memeq (result, "-142", 4)
+              && memeq (result + 4, separator, separator_len)
               && streq (result + 4 + separator_len, "857"));
       free (result);
     }
@@ -391,16 +391,16 @@ main (int argc, char *argv[])
                    42351647362715016953416125033982098102569580078125.0);
       ASSERT (result != NULL);
       ASSERT (length == 50 + 16 * separator_len);
-      ASSERT (memcmp (result, "42", 2) == 0
-              && memcmp (result + 2, separator, separator_len) == 0
-              && memcmp (result + 2 + separator_len, "351", 3) == 0
-              && memcmp (result + 5 + separator_len, separator, separator_len) == 0
-              && memcmp (result + 5 + 2 * separator_len, "647", 3) == 0
-              && memcmp (result + 8 + 2 * separator_len, separator, separator_len) == 0
-              && memcmp (result + 8 + 3 * separator_len, "362", 3) == 0
-              && memcmp (result + 11 + 3 * separator_len, separator, separator_len) == 0
-              && memcmp (result + 11 + 4 * separator_len, "715", 3) == 0
-              && memcmp (result + 14 + 4 * separator_len, separator, separator_len) == 0);
+      ASSERT (memeq (result, "42", 2)
+              && memeq (result + 2, separator, separator_len)
+              && memeq (result + 2 + separator_len, "351", 3)
+              && memeq (result + 5 + separator_len, separator, separator_len)
+              && memeq (result + 5 + 2 * separator_len, "647", 3)
+              && memeq (result + 8 + 2 * separator_len, separator, separator_len)
+              && memeq (result + 8 + 3 * separator_len, "362", 3)
+              && memeq (result + 11 + 3 * separator_len, separator, separator_len)
+              && memeq (result + 11 + 4 * separator_len, "715", 3)
+              && memeq (result + 14 + 4 * separator_len, separator, separator_len));
       free (result);
     }
     {
@@ -416,8 +416,8 @@ main (int argc, char *argv[])
                  <https://pubs.opengroup.org/onlinepubs/9799919799/functions/fprintf.html>
                  <https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap05.html#tag_05>  */
               ASSERT (length == 10);
-              ASSERT (memcmp (result, "0000001" + separator_len, 7 - separator_len) == 0
-                      && memcmp (result + 7 - separator_len, separator, separator_len) == 0
+              ASSERT (memeq (result, "0000001" + separator_len, 7 - separator_len)
+                      && memeq (result + 7 - separator_len, separator, separator_len)
                       && streq (result + 7, "000"));
             }
           else
@@ -428,8 +428,8 @@ main (int argc, char *argv[])
                  <https://sourceware.org/PR30883>
                  <https://sourceware.org/PR31542>  */
               ASSERT (length == 9 + separator_len);
-              ASSERT (memcmp (result, "000001", 6) == 0
-                      && memcmp (result + 6, separator, separator_len) == 0
+              ASSERT (memeq (result, "000001", 6)
+                      && memeq (result + 6, separator, separator_len)
                       && streq (result + 6 + separator_len, "000"));
             }
         }

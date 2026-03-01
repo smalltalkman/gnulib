@@ -29,6 +29,7 @@ environ
 sh-filename
 sigprocmask
 waitpid
+memeq
 
 configure.ac:
 

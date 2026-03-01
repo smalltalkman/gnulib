@@ -43,47 +43,47 @@ main (void)
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 1, out, 10);
-  ASSERT (memcmp (out, "ME======", 1) == 0);
+  ASSERT (memeq (out, "ME======", 1));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 1, out, 2);
-  ASSERT (memcmp (out, "ME======", 2) == 0);
+  ASSERT (memeq (out, "ME======", 2));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 1, out, 3);
-  ASSERT (memcmp (out, "ME======", 3) == 0);
+  ASSERT (memeq (out, "ME======", 3));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 1, out, 4);
-  ASSERT (memcmp (out, "ME======", 4) == 0);
+  ASSERT (memeq (out, "ME======", 4));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 1, out, 8);
-  ASSERT (memcmp (out, "ME======", 8) == 0);
+  ASSERT (memeq (out, "ME======", 8));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 2, out, 8);
-  ASSERT (memcmp (out, "MFRA====", 8) == 0);
+  ASSERT (memeq (out, "MFRA====", 8));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 3, out, 8);
-  ASSERT (memcmp (out, "MFRGG===", 8) == 0);
+  ASSERT (memeq (out, "MFRGG===", 8));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 4, out, 8);
-  ASSERT (memcmp (out, "MFRGGZA=", 8) == 0);
+  ASSERT (memeq (out, "MFRGGZA=", 8));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 5, out, 8);
-  ASSERT (memcmp (out, "MFRGGZDF", 8) == 0);
+  ASSERT (memeq (out, "MFRGGZDF", 8));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 6, out, 16);
-  ASSERT (memcmp (out, "MFRGGZDFMY======", 16) == 0);
+  ASSERT (memeq (out, "MFRGGZDFMY======", 16));
 
   memset (out, 0x42, sizeof (out));
   base32_encode (in, 6, out, 100);
-  ASSERT (memcmp (out, "MFRGGZDFMY======", 16) == 0);
+  ASSERT (memeq (out, "MFRGGZDFMY======", 16));
 
   /* Decode. */
 
@@ -98,49 +98,49 @@ main (void)
   ok = base32_decode (b32in, 8, out, &len);
   ASSERT (ok);
   ASSERT (len == 1);
-  ASSERT (memcmp (out, "abcdefghijklmnop", 1) == 0);
+  ASSERT (memeq (out, "abcdefghijklmnop", 1));
 
   memset (out, 0x42, sizeof (out));
   len = 2;
   ok = base32_decode (b32in, 8, out, &len);
   ASSERT (ok);
   ASSERT (len == 2);
-  ASSERT (memcmp (out, "abcdefghijklmnop", 2) == 0);
+  ASSERT (memeq (out, "abcdefghijklmnop", 2));
 
   memset (out, 0x42, sizeof (out));
   len = 3;
   ok = base32_decode (b32in, 8, out, &len);
   ASSERT (ok);
   ASSERT (len == 3);
-  ASSERT (memcmp (out, "abcdefghijklmnop", 3) == 0);
+  ASSERT (memeq (out, "abcdefghijklmnop", 3));
 
   memset (out, 0x42, sizeof (out));
   len = 4;
   ok = base32_decode (b32in, 8, out, &len);
   ASSERT (ok);
   ASSERT (len == 4);
-  ASSERT (memcmp (out, "abcdefghijklmnop", 4) == 0);
+  ASSERT (memeq (out, "abcdefghijklmnop", 4));
 
   memset (out, 0x42, sizeof (out));
   len = 5;
   ok = base32_decode (b32in, 8, out, &len);
   ASSERT (ok);
   ASSERT (len == 5);
-  ASSERT (memcmp (out, "abcdefghijklmnop", 5) == 0);
+  ASSERT (memeq (out, "abcdefghijklmnop", 5));
 
   memset (out, 0x42, sizeof (out));
   len = 6;
   ok = base32_decode (b32in, 8, out, &len);
   ASSERT (ok);
   ASSERT (len == 5);
-  ASSERT (memcmp (out, "abcdefghijklmnop", 5) == 0);
+  ASSERT (memeq (out, "abcdefghijklmnop", 5));
 
   memset (out, 0x42, sizeof (out));
   len = 100;
   ok = base32_decode (b32in, strlen (b32in), out, &len);
   ASSERT (ok);
   ASSERT (len == 16);
-  ASSERT (memcmp (out, "abcdefghijklmnop", 16) == 0);
+  ASSERT (memeq (out, "abcdefghijklmnop", 16));
 
   /* Allocating encode */
 
@@ -162,7 +162,7 @@ main (void)
     ok = base32_decode_ctx (&ctx, b32in, strlen (b32in), out, &len);
     ASSERT (ok);
     ASSERT (len == 16);
-    ASSERT (memcmp (out, "abcdefghijklmnop", len) == 0);
+    ASSERT (memeq (out, "abcdefghijklmnop", len));
   }
 
   /* Allocating decode context function */
@@ -170,7 +170,7 @@ main (void)
   ok = base32_decode_alloc_ctx (NULL, b32in, strlen (b32in), &p, &len);
   ASSERT (ok);
   ASSERT (len == 16);
-  ASSERT (memcmp (out, "abcdefghijklmnop", len) == 0);
+  ASSERT (memeq (out, "abcdefghijklmnop", len));
   free (p);
 
   {
@@ -182,7 +182,7 @@ main (void)
     ok = base32_decode_alloc_ctx (&ctx, newlineb32, strlen (newlineb32), &p, &len);
     ASSERT (ok);
     ASSERT (len == strlen (in));
-    ASSERT (memcmp (p, in, len) == 0);
+    ASSERT (memeq (p, in, len));
     free (p);
   }
 
@@ -193,7 +193,7 @@ main (void)
     ok = base32_decode_alloc_ctx (&ctx, "MFRGGZDFM\nZTWQ2LK", 17, &p, &len);
     ASSERT (ok);
     ASSERT (len == 10);
-    ASSERT (memcmp (p, "abcdefghij", len) == 0);
+    ASSERT (memeq (p, "abcdefghij", len));
     free (p);
 
     base32_decode_ctx_init (&ctx);
@@ -206,13 +206,13 @@ main (void)
     ok = base32_decode_alloc_ctx (&ctx, "RGGZDFMZ", 8, &p, &len);
     ASSERT (ok);
     ASSERT (len == 5);
-    ASSERT (memcmp (p, "abcde", len) == 0);
+    ASSERT (memeq (p, "abcde", len));
     free (p);
 
     ok = base32_decode_alloc_ctx (&ctx, "TWQ2LK", 6, &p, &len);
     ASSERT (ok);
     ASSERT (len == 5);
-    ASSERT (memcmp (p, "fghij", len) == 0);
+    ASSERT (memeq (p, "fghij", len));
     free (p);
 
     ok = base32_decode_alloc_ctx (&ctx, "", 0, &p, &len);

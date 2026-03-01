@@ -3,6 +3,7 @@ tests/test-string-desc-quotearg.c
 tests/macros.h
 
 Depends-on:
+memeq
 
 configure.ac:
 

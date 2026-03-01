@@ -22,6 +22,7 @@ fflush
 freopen
 waitpid
 streq
+memeq
 
 configure.ac:
 

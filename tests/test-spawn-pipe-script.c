@@ -88,7 +88,7 @@ main ()
     ASSERT (fread (buffer, 1, sizeof (buffer), fp) == 11);
 
     /* Check the result.  */
-    ASSERT (memcmp (buffer, "Halle Potta", 11) == 0);
+    ASSERT (memeq (buffer, "Halle Potta", 11));
 
     /* Wait for child.  */
     ASSERT (wait_subprocess (pid, progname, true, false, true, true, NULL) == 0);

@@ -12,6 +12,7 @@ bool
 unistd-h
 popen
 pclose
+memeq
 
 configure.ac:
 

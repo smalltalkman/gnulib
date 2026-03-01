@@ -47,7 +47,7 @@ main (void)
     char buf[10];
     ssize_t ret = read (fd, buf, 10);
     ASSERT (ret == 5);
-    ASSERT (memcmp (buf, "World", 5) == 0);
+    ASSERT (memeq (buf, "World", 5));
   }
   ASSERT (close (fd) == 0);
 

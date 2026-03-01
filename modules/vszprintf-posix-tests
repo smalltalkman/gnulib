@@ -7,6 +7,7 @@ tests/macros.h
 Depends-on:
 nan
 streq
+memeq
 
 configure.ac:
 

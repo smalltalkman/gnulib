@@ -62,14 +62,14 @@ main (int argc, char **argv)
   {
     char *result = xmemdup0 (buffer, 9);
     ASSERT (result);
-    ASSERT (memcmp (result, buffer, 9) == 0);
+    ASSERT (memeq (result, buffer, 9));
     ASSERT (result[9] == '\0');
     free (result);
   }
   {
     char *result = xmemdup0 (buffer, 10);
     ASSERT (result);
-    ASSERT (memcmp (result, buffer, 10) == 0);
+    ASSERT (memeq (result, buffer, 10));
     ASSERT (result[10] == '\0');
     free (result);
   }

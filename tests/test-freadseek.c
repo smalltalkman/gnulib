@@ -47,7 +47,7 @@ main (int argc, char **argv)
   size_t position = 0;
 
   ASSERT (fread (buf1, 1, nbytes1, stdin) == nbytes1);
-  ASSERT (memcmp (buf1, stdin_contents + position, nbytes1) == 0);
+  ASSERT (memeq (buf1, stdin_contents + position, nbytes1));
   position += nbytes1;
 
   /* Test normal behaviour.  */
@@ -55,7 +55,7 @@ main (int argc, char **argv)
   position += nbytes2;
 
   ASSERT (fread (buf3, 1, nbytes3, stdin) == nbytes3);
-  ASSERT (memcmp (buf3, stdin_contents + position, nbytes3) == 0);
+  ASSERT (memeq (buf3, stdin_contents + position, nbytes3));
   position += nbytes3;
 
   /* Test behaviour after normal ungetc.  */
@@ -64,7 +64,7 @@ main (int argc, char **argv)
   position += nbytes4;
 
   ASSERT (fread (buf5, 1, nbytes5, stdin) == nbytes5);
-  ASSERT (memcmp (buf5, stdin_contents + position, nbytes5) == 0);
+  ASSERT (memeq (buf5, stdin_contents + position, nbytes5));
   position += nbytes5;
 
   /* Test behaviour after arbitrary ungetc.  */
@@ -74,7 +74,7 @@ main (int argc, char **argv)
   position += nbytes6;
 
   ASSERT (fread (buf7, 1, nbytes7, stdin) == nbytes7);
-  ASSERT (memcmp (buf7, stdin_contents + position, nbytes7) == 0);
+  ASSERT (memeq (buf7, stdin_contents + position, nbytes7));
   position += nbytes7;
 
   /* Test move to end of file.  */

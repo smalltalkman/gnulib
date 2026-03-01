@@ -113,7 +113,7 @@ child_main (void)
   /* Read from STDIN_FILENO.  */
   char buf[1024];
   int nread = fread (buf, 1, sizeof (buf), stdin);
-  if (!(nread == 5 && memcmp (buf, "Potta", 5) == 0))
+  if (!(nread == 5 && memeq (buf, "Potta", 5)))
     {
       fprintf (stderr, "child: read %d bytes, expected %d bytes\n", nread, 5);
       return 1;

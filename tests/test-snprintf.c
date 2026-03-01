@@ -45,17 +45,17 @@ main ()
         {
           if (size > 0)
             {
-              ASSERT (memcmp (buf, "12345", size - 1) == 0);
+              ASSERT (memeq (buf, "12345", size - 1));
               ASSERT (buf[size - 1] == '\0' || buf[size - 1] == '0' + size);
             }
 #if !CHECK_SNPRINTF_POSIX
           if (size > 0)
 #endif
-            ASSERT (memcmp (buf + size, &"DEADBEEF"[size], 8 - size) == 0);
+            ASSERT (memeq (buf + size, &"DEADBEEF"[size], 8 - size));
         }
       else
         {
-          ASSERT (memcmp (buf, "12345\0EF", 8) == 0);
+          ASSERT (memeq (buf, "12345\0EF", 8));
         }
     }
 

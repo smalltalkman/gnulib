@@ -46,7 +46,7 @@ check_character (const char *s, size_t n)
 
   ret = c32rtomb (buf, wc, NULL);
   ASSERT (ret == n);
-  ASSERT (memcmp (buf, s, n) == 0);
+  ASSERT (memeq (buf, s, n));
 
   /* Test special calling convention, passing a NULL pointer.  */
   ret = c32rtomb (NULL, wc, NULL);

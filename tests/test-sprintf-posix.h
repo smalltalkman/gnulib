@@ -64,7 +64,7 @@ strisnan (const char *string, size_t start_index, size_t end_index, int uppercas
       if (string[start_index] == '-')
         start_index++;
       if (start_index + 3 <= end_index
-          && memcmp (string + start_index, uppercase ? "NAN" : "nan", 3) == 0)
+          && memeq (string + start_index, uppercase ? "NAN" : "nan", 3))
         {
           start_index += 3;
           if (start_index == end_index
@@ -89,7 +89,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
     memcpy (buf, "DEADBEEF", 8);
     retval = my_sprintf (buf, "%d", 12345);
     ASSERT (retval == 5);
-    ASSERT (memcmp (buf, "12345\0EF", 8) == 0);
+    ASSERT (memeq (buf, "12345\0EF", 8));
   }
 
   /* Test support of size specifiers as in C99.  */
@@ -1634,7 +1634,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
         ASSERT (streq (result, expected)
                 /* Some implementations produce exponents with 3 digits.  */
                 || (strlen (result) == strlen (expected) + 1
-                    && memcmp (result, expected, strlen (expected) - 2) == 0
+                    && memeq (result, expected, strlen (expected) - 2)
                     && result[strlen (expected) - 2] == '0'
                     && streq (result + strlen (expected) - 1,
                               expected + strlen (expected) - 2)));
@@ -1925,7 +1925,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
         ASSERT (streq (result, expected)
                 /* Some implementations produce exponents with 3 digits.  */
                 || (strlen (result) == strlen (expected) + 1
-                    && memcmp (result, expected, strlen (expected) - 2) == 0
+                    && memeq (result, expected, strlen (expected) - 2)
                     && result[strlen (expected) - 2] == '0'
                     && streq (result + strlen (expected) - 1,
                               expected + strlen (expected) - 2)));
@@ -2282,7 +2282,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
                 /* Some implementations produce exponents with 3 digits.  */
                 || (expected[strlen (expected) - 4] == 'e'
                     && strlen (result) == strlen (expected) + 1
-                    && memcmp (result, expected, strlen (expected) - 2) == 0
+                    && memeq (result, expected, strlen (expected) - 2)
                     && result[strlen (expected) - 2] == '0'
                     && streq (result + strlen (expected) - 1,
                               expected + strlen (expected) - 2)));
@@ -2559,7 +2559,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
                 /* Some implementations produce exponents with 3 digits.  */
                 || (expected[strlen (expected) - 4] == 'e'
                     && strlen (result) == strlen (expected) + 1
-                    && memcmp (result, expected, strlen (expected) - 2) == 0
+                    && memeq (result, expected, strlen (expected) - 2)
                     && result[strlen (expected) - 2] == '0'
                     && streq (result + strlen (expected) - 1,
                               expected + strlen (expected) - 2)));
@@ -2951,7 +2951,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       input[i] = 'a' + ((1000000 / (i + 1)) % 26);
     input[i] = '\0';
     retval = my_sprintf (result, "%.4000s %d", input, 99);
-    ASSERT (memcmp (result, input, 4000) == 0);
+    ASSERT (memeq (result, input, 4000));
     ASSERT (streq (result + 4000, " 99"));
     ASSERT (retval == strlen (result));
   }
@@ -3027,7 +3027,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       block = (char *) malloc (i);
       memcpy (block, "abcdefgh", i);
       retval = my_sprintf (result, "%.*s", (int) i, block);
-      ASSERT (memcmp (result, block, i) == 0);
+      ASSERT (memeq (result, block, i));
       ASSERT (result[i] == '\0');
       ASSERT (retval == strlen (result));
       free (block);
@@ -3041,7 +3041,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
       for (size_t j = 0; j < i; j++)
         block[j] = "abcdefgh"[j];
       retval = my_sprintf (result, "%.*ls", (int) i, block);
-      ASSERT (memcmp (result, "abcdefgh", i) == 0);
+      ASSERT (memeq (result, "abcdefgh", i));
       ASSERT (result[i] == '\0');
       ASSERT (retval == strlen (result));
       free (block);
@@ -3087,7 +3087,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
   { /* NUL character.  */
     int retval =
       my_sprintf (result, "a%cz %d", '\0', 33, 44, 55);
-    ASSERT (memcmp (result, "a\0z 33\0", 6 + 1) == 0);
+    ASSERT (memeq (result, "a\0z 33\0", 6 + 1));
     ASSERT (retval == 6);
   }
 
@@ -3141,7 +3141,7 @@ test_function (int (*my_sprintf) (char *, const char *, ...))
          - on musl libc,
          - with GCC 14.1, 13.2, 12.3, and 11.4
            <https://gcc.gnu.org/PR114876>  */
-    ASSERT (memcmp (result, "a\0z 33\0", 6 + 1) == 0);
+    ASSERT (memeq (result, "a\0z 33\0", 6 + 1));
     ASSERT (retval == 6);
   }
 

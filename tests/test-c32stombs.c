@@ -64,7 +64,7 @@ main (int argc, char *argv[])
 
                 ret = c32stombs (buf, input, n);
                 ASSERT (ret == (n <= 5 ? n : 5));
-                ASSERT (memcmp (buf, original, ret) == 0);
+                ASSERT (memeq (buf, original, ret));
                 if (n > 5)
                   ASSERT (buf[ret] == '\0');
                 ASSERT (buf[ret + (n > 5) + 0] == '_');
@@ -93,7 +93,7 @@ main (int argc, char *argv[])
                                 n < 5 ? 3 :
                                 n < 9 ? 5 :
                                 n <= 10 ? n : 10));
-                ASSERT (memcmp (buf, original, ret) == 0);
+                ASSERT (memeq (buf, original, ret));
                 if (n > 10)
                   ASSERT (buf[ret] == '\0');
                 ASSERT (buf[ret + (n > 10) + 0] == '_');
@@ -122,7 +122,7 @@ main (int argc, char *argv[])
                                 n < 5 ? 3 :
                                 n < 7 ? 5 :
                                 n <= 8 ? n : 8));
-                ASSERT (memcmp (buf, original, ret) == 0);
+                ASSERT (memeq (buf, original, ret));
                 if (n > 8)
                   ASSERT (buf[ret] == '\0');
                 ASSERT (buf[ret + (n > 8) + 0] == '_');
@@ -158,7 +158,7 @@ main (int argc, char *argv[])
                                 n < 7 ? 3 :
                                 n < 11 ? 7 :
                                 n <= 12 ? n : 12));
-                ASSERT (memcmp (buf, original, ret) == 0);
+                ASSERT (memeq (buf, original, ret));
                 if (n > 12)
                   ASSERT (buf[ret] == '\0');
                 ASSERT (buf[ret + (n > 12) + 0] == '_');

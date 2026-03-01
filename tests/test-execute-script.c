@@ -82,7 +82,7 @@ main ()
 
     size_t length;
     char *contents = read_file (DATA_FILENAME, 0, &length);
-    ASSERT (length == 11 && memcmp (contents, "Halle Potta", 11) == 0);
+    ASSERT (length == 11 && memeq (contents, "Halle Potta", 11));
   }
 
   ASSERT (unlink (DATA_FILENAME) == 0);

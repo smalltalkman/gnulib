@@ -46,7 +46,7 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
     size_t file_size;
     char *file_contents = read_file (filename, RF_BINARY, &file_size);
     ASSERT (file_size == 12);
-    ASSERT (memcmp (file_contents, "Hello world\n", 12) == 0);
+    ASSERT (memeq (file_contents, "Hello world\n", 12));
   }
 
   /* Test the case that the file exists and is a regular file.  */
@@ -68,12 +68,12 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
       if (supersede_if_exists)
         {
           ASSERT (file_size == 12);
-          ASSERT (memcmp (file_contents, "Hello world\n", 12) == 0);
+          ASSERT (memeq (file_contents, "Hello world\n", 12));
         }
       else
         {
           ASSERT (file_size == 7);
-          ASSERT (memcmp (file_contents, "Foobar\n", 7) == 0);
+          ASSERT (memeq (file_contents, "Foobar\n", 7));
         }
     }
     ASSERT (close_supersede (fd, &action) == 0);
@@ -83,7 +83,7 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
     size_t file_size;
     char *file_contents = read_file (filename, RF_BINARY, &file_size);
     ASSERT (file_size == 7);
-    ASSERT (memcmp (file_contents, "Foobar\n", 7) == 0);
+    ASSERT (memeq (file_contents, "Foobar\n", 7));
 
     if (supersede_if_exists)
       {
@@ -92,7 +92,7 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
 #if !(defined _WIN32 && !defined __CYGWIN__)
         /* Note: On Linux/mips, statbuf.st_dev is smaller than a dev_t!  */
         dev_t new_dev = statbuf.st_dev;
-        ASSERT (memcmp (&orig_dev, &new_dev, sizeof (dev_t)) == 0);
+        ASSERT (memeq (&orig_dev, &new_dev, sizeof (dev_t)));
         ASSERT (memcmp (&orig_ino, &statbuf.st_ino, sizeof (ino_t)) != 0);
 #endif
       }
@@ -139,12 +139,12 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
           if (supersede_if_exists)
             {
               ASSERT (file_size == 7);
-              ASSERT (memcmp (file_contents, "Foobar\n", 7) == 0);
+              ASSERT (memeq (file_contents, "Foobar\n", 7));
             }
           else
             {
               ASSERT (file_size == 4);
-              ASSERT (memcmp (file_contents, "New\n", 4) == 0);
+              ASSERT (memeq (file_contents, "New\n", 4));
             }
         }
         ASSERT (close_supersede (fd, &action) == 0);
@@ -154,7 +154,7 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
         size_t file_size;
         char *file_contents = read_file (linkname, RF_BINARY, &file_size);
         ASSERT (file_size == 4);
-        ASSERT (memcmp (file_contents, "New\n", 4) == 0);
+        ASSERT (memeq (file_contents, "New\n", 4));
 
         if (supersede_if_exists)
           {
@@ -163,7 +163,7 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
 #if !(defined _WIN32 && !defined __CYGWIN__)
             /* Note: On Linux/mips, statbuf.st_dev is smaller than a dev_t!  */
             dev_t new_dev = statbuf.st_dev;
-            ASSERT (memcmp (&orig_dev, &new_dev, sizeof (dev_t)) == 0);
+            ASSERT (memeq (&orig_dev, &new_dev, sizeof (dev_t)));
             ASSERT (memcmp (&orig_ino, &statbuf.st_ino, sizeof (ino_t)) != 0);
 #endif
           }
@@ -229,7 +229,7 @@ test_open_supersede (bool supersede_if_exists, bool supersede_if_does_not_exist)
         size_t file_size;
         char *file_contents = read_file (linkname, RF_BINARY, &file_size);
         ASSERT (file_size == 12);
-        ASSERT (memcmp (file_contents, "Hello world\n", 12) == 0);
+        ASSERT (memeq (file_contents, "Hello world\n", 12));
 
         /* Clean up.  */
         unlink (linkname);

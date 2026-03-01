@@ -8,6 +8,7 @@ tests/macros.h
 Depends-on:
 lseek
 unistd-h
+memeq
 
 configure.ac:
 

@@ -45,7 +45,7 @@ main (void)
   ASSERT (ttyname_r (fd, buf, 1) == ERANGE);
 
   ASSERT (ttyname_r (fd, buf, sizeof (buf)) == 0);
-  ASSERT (memcmp (buf, "/dev/", 5) == 0);
+  ASSERT (memeq (buf, "/dev/", 5));
 
   /* Test behaviour for invalid file descriptors.  */
   {

@@ -73,14 +73,14 @@ test_static (void)
 {
   memcpy (stbuf, SECRET, SECRET_SIZE);
   memset_explicit (stbuf, 0, SECRET_SIZE);
-  ASSERT (memcmp (zero, stbuf, SECRET_SIZE) == 0);
+  ASSERT (memeq (zero, stbuf, SECRET_SIZE));
   for (int i = 1; i <= UCHAR_MAX; i++)
     {
       char checkbuf[SECRET_SIZE];
       memset (checkbuf, i, SECRET_SIZE);
       memcpy (stbuf, SECRET, SECRET_SIZE);
       memset_explicit (stbuf, i, SECRET_SIZE);
-      ASSERT (memcmp (checkbuf, stbuf, SECRET_SIZE) == 0);
+      ASSERT (memeq (checkbuf, stbuf, SECRET_SIZE));
     }
 }
 

@@ -10,6 +10,7 @@ extensions
 unistr/u16-set
 unistr/u32-set
 unistr/u32-to-u16
+memeq
 
 configure.ac:
 gl_FUNC_MMAP_ANON

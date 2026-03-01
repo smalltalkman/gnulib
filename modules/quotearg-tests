@@ -19,6 +19,7 @@ unsetenv
 setlocale
 localcharset
 streq
+memeq
 
 configure.ac:
 gt_LOCALE_FR

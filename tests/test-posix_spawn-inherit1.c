@@ -97,7 +97,7 @@ parent_main (void)
     }
   char buf[1024];
   int nread = fread (buf, 1, sizeof (buf), fp);
-  if (!(nread == 11 && memcmp (buf, "Halle Potta", 11) == 0))
+  if (!(nread == 11 && memeq (buf, "Halle Potta", 11)))
     {
       fprintf (stderr, "data file wrong: has %d bytes, expected %d bytes\n", nread, 11);
       return 1;

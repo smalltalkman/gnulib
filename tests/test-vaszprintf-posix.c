@@ -43,7 +43,7 @@ strisnan (const char *string, size_t start_index, size_t end_index, int uppercas
       if (string[start_index] == '-')
         start_index++;
       if (start_index + 3 <= end_index
-          && memcmp (string + start_index, uppercase ? "NAN" : "nan", 3) == 0)
+          && memeq (string + start_index, uppercase ? "NAN" : "nan", 3))
         {
           start_index += 3;
           if (start_index == end_index

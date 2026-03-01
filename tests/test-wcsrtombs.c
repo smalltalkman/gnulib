@@ -69,7 +69,7 @@ main (int argc, char *argv[])
                 ret = wcsrtombs (buf, &src, n, NULL);
                 ASSERT (ret == (n <= 5 ? n : 5));
                 ASSERT (src == (n <= 5 ? input + n : NULL));
-                ASSERT (memcmp (buf, original, ret) == 0);
+                ASSERT (memeq (buf, original, ret));
                 if (src == NULL)
                   ASSERT (buf[ret] == '\0');
                 ASSERT (buf[ret + (src == NULL) + 0] == '_');
@@ -104,7 +104,7 @@ main (int argc, char *argv[])
                                 n < 3 ? input + 1 :
                                 n < 5 ? input + 2 :
                                 n <= 7 ? input + (n - 2) : NULL));
-                ASSERT (memcmp (buf, original, ret) == 0);
+                ASSERT (memeq (buf, original, ret));
                 if (src == NULL)
                   ASSERT (buf[ret] == '\0');
                 ASSERT (buf[ret + (src == NULL) + 0] == '_');
@@ -141,7 +141,7 @@ main (int argc, char *argv[])
                                 n < 5 ? input + 2 :
                                 n < 7 ? input + 3 :
                                 n <= 8 ? input + (n - 3) : NULL));
-                ASSERT (memcmp (buf, original, ret) == 0);
+                ASSERT (memeq (buf, original, ret));
                 if (src == NULL)
                   ASSERT (buf[ret] == '\0');
                 ASSERT (buf[ret + (src == NULL) + 0] == '_');
@@ -177,7 +177,7 @@ main (int argc, char *argv[])
                                 n < 3 ? input + 1 :
                                 n < 7 ? input + 2 :
                                 n <= 9 ? input + (n - 4) : NULL));
-                ASSERT (memcmp (buf, original, ret) == 0);
+                ASSERT (memeq (buf, original, ret));
                 if (src == NULL)
                   ASSERT (buf[ret] == '\0');
                 ASSERT (buf[ret + (src == NULL) + 0] == '_');

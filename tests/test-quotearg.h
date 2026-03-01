@@ -52,7 +52,7 @@ static void
 compare (char const *a, size_t la, char const *b, size_t lb)
 {
   ASSERT (la == lb);
-  ASSERT (memcmp (a, b, la) == 0);
+  ASSERT (memeq (a, b, la));
   ASSERT (b[lb] == '\0');
 }
 

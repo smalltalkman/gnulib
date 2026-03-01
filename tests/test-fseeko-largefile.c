@@ -74,7 +74,7 @@ main (void)
 
     char buf[TESTFILE_DATA_LEN];
     ASSERT (fread (buf, 1, TESTFILE_DATA_LEN, fp) == TESTFILE_DATA_LEN);
-    ASSERT (memcmp (buf, TESTFILE_DATA, TESTFILE_DATA_LEN) == 0);
+    ASSERT (memeq (buf, TESTFILE_DATA, TESTFILE_DATA_LEN));
 
     ret = fclose (fp);
     ASSERT (ret == 0);

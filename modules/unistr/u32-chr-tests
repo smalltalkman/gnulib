@@ -9,6 +9,7 @@ Depends-on:
 c99
 extensions
 unistr/u32-set
+memeq
 
 configure.ac:
 gl_FUNC_MMAP_ANON

@@ -233,7 +233,7 @@ main (int argc, char *argv[])
 
         size_t length;
         char *contents = read_file (BASE ".tmp", 0, &length);
-        ASSERT (length == 3 && memcmp (contents, "bar", 3) == 0);
+        ASSERT (length == 3 && memeq (contents, "bar", 3));
 
         ASSERT (remove (BASE ".tmp") == 0);
       }
@@ -285,7 +285,7 @@ main (int argc, char *argv[])
 
         size_t length;
         char *contents = read_file (BASE ".tmp", 0, &length);
-        ASSERT (length == 3 && memcmp (contents, "bar", 3) == 0);
+        ASSERT (length == 3 && memeq (contents, "bar", 3));
 
         ASSERT (remove (BASE ".tmp") == 0);
       }
@@ -404,7 +404,7 @@ main (int argc, char *argv[])
 
         size_t length;
         char *contents = read_file (BASE ".tmp", 0, &length);
-        ASSERT (length == 6 && memcmp (contents, "Foobar", 6) == 0);
+        ASSERT (length == 6 && memeq (contents, "Foobar", 6));
 
         ASSERT (remove (BASE ".tmp") == 0);
       }

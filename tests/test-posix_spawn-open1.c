@@ -120,7 +120,7 @@ child_main (void)
 
   /* See if reading from STDIN_FILENO yields the expected contents.  */
   if (fread (buf, 1, sizeof (buf), stdin) == 11
-      && memcmp (buf, "Halle Potta", 11) == 0)
+      && memeq (buf, "Halle Potta", 11))
     return 0;
   else
     return 2;

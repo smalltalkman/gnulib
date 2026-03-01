@@ -62,7 +62,7 @@ main (void)
   {
     char buf[10];
     ASSERT (fread (buf, 1, 10, fp) == 9);
-    ASSERT (memcmp (buf, "foogarsh!", 9) == 0);
+    ASSERT (memeq (buf, "foogarsh!", 9));
   }
   ASSERT (fclose (fp) == 0);
 

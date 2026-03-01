@@ -3,6 +3,7 @@ tests/test-obstack-zprintf-gnu.c
 tests/macros.h
 
 Depends-on:
+memeq
 
 configure.ac:
 

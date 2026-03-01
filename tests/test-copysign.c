@@ -87,7 +87,7 @@ main ()
   y = 1.0;
   z = copysign (x, y);
   ASSERT (z == 0.0);
-  ASSERT (memcmp (&z, &zero, sizeof z) == 0);
+  ASSERT (memeq (&z, &zero, sizeof z));
 
   x = 0.0;
   y = -1.0;
@@ -99,7 +99,7 @@ main ()
   y = 1.0;
   z = copysign (x, y);
   ASSERT (z == 0.0);
-  ASSERT (memcmp (&z, &zero, sizeof z) == 0);
+  ASSERT (memeq (&z, &zero, sizeof z));
 
   x = minus_zerod;
   y = -1.0;

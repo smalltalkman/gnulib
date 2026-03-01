@@ -26,6 +26,7 @@ setenv
 setlocale
 strerror
 streq
+memeq
 
 configure.ac:
 gt_LOCALE_FR

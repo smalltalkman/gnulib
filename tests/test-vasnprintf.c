@@ -55,7 +55,7 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
       ASSERT (length == 5);
       if (size < 5 + 1)
         ASSERT (result != buf);
-      ASSERT (memcmp (buf + size, &"DEADBEEF"[size], 8 - size) == 0);
+      ASSERT (memeq (buf + size, &"DEADBEEF"[size], 8 - size));
       if (result != buf)
         free (result);
     }
@@ -78,11 +78,11 @@ test_function (char * (*my_asnprintf) (char *, size_t *, const char *, ...))
          163141592653589790000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
        */
       ASSERT (strlen (result) == 126);
-      ASSERT (memcmp (result, "163141592653589790", 18) == 0);
+      ASSERT (memeq (result, "163141592653589790", 18));
       ASSERT (length == 126);
       if (size < 126 + 1)
         ASSERT (result != buf);
-      ASSERT (memcmp (buf + size, &"DEADBEEF"[size], 8 - size) == 0);
+      ASSERT (memeq (buf + size, &"DEADBEEF"[size], 8 - size));
       if (result != buf)
         free (result);
     }

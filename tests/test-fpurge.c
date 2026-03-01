@@ -77,7 +77,7 @@ main (void)
         char buf[8];
         if (fread (buf, 1, 7, fp) < 7)
           goto skip;
-        ASSERT (memcmp (buf, "foogars", 7) == 0);
+        ASSERT (memeq (buf, "foogars", 7));
       }
       /* Discard the buffered 'h'.  */
       if (check_filepos)
@@ -115,7 +115,7 @@ main (void)
       {
         char buf[10];
         ASSERT (fread (buf, 1, 10, fp) == 9);
-        ASSERT (memcmp (buf, "foogarsh!", 9) == 0);
+        ASSERT (memeq (buf, "foogarsh!", 9));
       }
       ASSERT (fclose (fp) == 0);
 
