@@ -261,7 +261,9 @@ We need to avoid two problems with that:
 
 To this end:
 
-  1) Code included in this package that comes from a single LLM prompt
+  1) Code derived from an LLM must respect copyrights and licenses
+     in the source material that the LLM is based on.
+     For a traditional, single LLM prompt this means a code response
      must be limited in size: it must be at most 5 lines long.
 
   2) As a submitter, you assert that you have reviewed such code that you
