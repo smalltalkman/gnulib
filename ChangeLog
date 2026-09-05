@@ -1,5 +1,20 @@
 2026-09-05  Oleg Tolmatcev  <oleg.tolmatcev@gmail.com>
 
+	stat, fstat: Optimize on native Windows.
+	* lib/stat-w32.c: Include <wchar.h>.
+	(GetFinalPathNameByHandleFuncType, GetFinalPathNameByHandleFunc):
+	Remove, along with the GetFinalPathNameByHandle and VOLUME_NAME_NONE
+	macros.
+	(GetFileInformationByHandleExFuncType,
+	GetFileInformationByHandleExFunc): Declare regardless of
+	_GL_WINDOWS_STAT_INODES, as the file name lookup needs them too.
+	(initialize): Do not resolve GetFinalPathNameByHandleA.
+	(_gl_fstat_by_handle): Get the name from GetFileInformationByHandleEx,
+	since it is faster than GetFinalPathNameByHandle and still operates
+	on the target of symbolic links.
+
+2026-09-05  Oleg Tolmatcev  <oleg.tolmatcev@gmail.com>
+
 	stat: Fix handling of symbolic links on native Windows.
 	* lib/stat-w32.c (_gl_fstat_by_handle): Call GetFinalPathNameByHandle
 	even if path==NULL, because it will resolve symbolic links, something
